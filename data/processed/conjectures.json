@@ -1,0 +1,8 @@
+[
+    {
+        "id": "C_TR_DEFECT_01",
+        "inequality": "tr(K) >= 2*u(K) + max(0, |rasmussen_s(K)| - |signature(K)|)",
+        "origin": "Adversarial_NN_Saliency",
+        "status": "pending_audit"
+    }
+]
