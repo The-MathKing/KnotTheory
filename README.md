@@ -1,6 +1,9 @@
 # Adversarial Heuristics in Algebraic Topology
 **Author**: Aryan Padarthi
 
+**Public Repository**: [https://github.com/The-MathKing/KnotTheory](https://github.com/The-MathKing/KnotTheory)  
+**Anonymous Repository (for double-blind review)**: [https://anonymous.4open.science/status/KnotTheory-8862](https://anonymous.4open.science/status/KnotTheory-8862)
+
 This repository contains the full computational pipeline and manuscript for resolving the Trivializing Gap via Zero-Trust Machine Learning. The project utilizes a deep feedforward neural network as an adversarial heuristic to navigate the topological blind spots of classical database metrics.
 
 ## Abstract
