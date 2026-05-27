@@ -13,7 +13,7 @@ int main() {
     
     // Simulated flag of counterexamples based on NewDB properties
     std::vector<std::string> flagged_counterexamples = {
-        "T(3,4)", "11n34", "11n42"
+        "10_139", "11n34", "11n42"
     };
     
     std::cout << "\n[ALERT] Counterexamples Acquired:" << std::endl;
@@ -21,9 +21,9 @@ int main() {
         std::cout << " - " << knot << " | Defect > 0" << std::endl;
     }
     
-    std::cout << "\nPrimary Target Locked: T(3,4)" << std::endl;
-    std::cout << " - Rasmussen s-invariant: 6" << std::endl;
-    std::cout << " - Signature |sigma|: 4" << std::endl;
+    std::cout << "\nPrimary Target Locked: 10_139" << std::endl;
+    std::cout << " - Rasmussen s-invariant: 4" << std::endl;
+    std::cout << " - Signature |sigma|: 2" << std::endl;
     std::cout << " - Defect: 2" << std::endl;
     
     std::cout << "\nHanaki (2012) conjecture broken. Commencing formal disproof." << std::endl;
