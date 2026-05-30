@@ -1,0 +1,50 @@
+================================================================================
+BRAID FAMILY SEARCH FOR THE SIGNATURE DEFECT (validated engine)
+================================================================================
+Engine self-test: PASSED (34/34 torus knots, 17/17 KnotInfo positive braids)
+
+--- Family 1: 4-syllable positive 3-braids sigma_1^a sigma_2^b sigma_1^c sigma_2^d ---
+Sweeping a,b,c,d in [1..8] (crossings up to 32)...
+Synthesized 1280 authentic 1-component knots.
+Zero defect: 143 (11.2%)  |  Nonzero defect: 1137 (88.8%)
+Largest defect found: 2 at (a,b,c,d)=(8,8,7,7), c=30, s=28, sigma=-26
+
+--- Family 2: 6-syllable positive 3-braids ---
+Note: the uniform pattern (s1^k s2^k)^3 is the closure of (sigma_1 sigma_2)^{3k},
+i.e. the torus LINK T(3,3k) -- gcd(3,3k)=3 always, so it has 3 components, never 1.
+is_knot() correctly rejects every one of these (an earlier version of this script
+mislabeled this pattern 'Torus Knots T(3,3k)' and implicitly claimed a nonexistent
+N=336 one-component knot sample from it). Using a genuinely varied sweep instead:
+No 1-component knots produced by this sweep either.
+
+--- Family 3: torus braids T(3,q) = closure of (sigma_1 sigma_2)^q ---
+(The natural infinite family in braid index 3; included because Family 1/2's
+ coarse syllable patterns may or may not sample it -- checked explicitly here.)
+T(3,q)       c     s  sigma  defect
+T(3,2)       4     2     -2       0
+T(3,4)       8     6     -6       0
+T(3,5)      10     8     -8       0
+T(3,7)      14    12     -8       4  <-- first nonzero defect
+T(3,8)      16    14    -10       4
+T(3,10)     20    18    -14       4
+T(3,11)     22    20    -16       4
+T(3,13)     26    24    -16       8
+T(3,14)     28    26    -18       8
+T(3,16)     32    30    -22       8
+T(3,17)     34    32    -24       8
+T(3,19)     38    36    -24      12
+
+Smallest defect-bearing torus braid in this family: T(3,7), a genuine 3-braid closure with 14 crossings and braid index 3.
+This is a direct counterexample to the retracted claim that positive
+3-braid closures are universally signature-rigid (Log Entry 15, retracted).
+
+================================================================================
+HONEST SUMMARY:
+================================================================================
+- The signature defect Delta = |s| - |sigma| is NOT an exclusive phenomenon
+  of braid index >= 4: it already occurs within braid index 3 (T(3,7) and beyond).
+- Whether it appears in a *given* coarse family (Family 1, Family 2) depends on
+  how finely that family samples the word space -- absence of defect in a small
+  swept region is NOT evidence of a general rigidity theorem.
+- No claim above is asserted as a proved theorem; all are direct readouts of the
+  validated engine (src/math_engine/braid_topology.py self_test()).

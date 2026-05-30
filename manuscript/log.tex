@@ -4,135 +4,320 @@
 \usepackage{hyperref}
 \usepackage{booktabs}
 \usepackage{longtable}
+\usepackage{amsmath}
+\usepackage{xcolor}
+
+\newcommand{\corrected}{\textcolor{red!60!black}{\textbf{[CORRECTED --- see Log Entry 3]}}}
 
 \title{Exploratory Data Analysis Log: KnotInfo \& NewDB Mining}
 \author{Aryan Padarthi}
-\date{August 2026}
+\date{August--September 2026}
 
 \begin{document}
 
 \maketitle
 
 \begin{abstract}
-This living document logs the systematic, empirical execution of 10 distinct exploratory approaches on raw topological data from KnotInfo and Jab\l{}onowski's NewDB. For every executed script, this log records the date, the precise methodology, the unprocessed statistical output, and an objective assessment of the significance of the results. Null results are preserved to accurately map the boundaries of knot invariants without forcing predetermined conclusions.
+This living document logs the systematic, empirical execution of 10 distinct exploratory approaches, 3 in-depth deep-dive suites, and a braid-family search on raw topological data from KnotInfo. For every executed script, this log records the date, the precise methodology, the unprocessed statistical output, and an objective assessment of the significance of the results. Null results are preserved to accurately map the boundaries of knot invariants without forcing predetermined conclusions. \textbf{On September 22, 2026 a full audit found that most of the numeric tables in this log's original draft did not match what the underlying scripts actually compute.} Log Entry 3 documents that audit in full. Every entry after it has been regenerated directly from a script run and is traceable to a raw output file in \texttt{results/} and to a fixed, self-testing source file in \texttt{src/}.
 \end{abstract}
 
 \section*{Log Entry 1: Data Ingestion and Architecture Setup}
 \textbf{Date:} August 30, 2026 \\
-\textbf{Methodology:} 
-The project architecture was shifted from a fabricated proof framework to a strictly empirical, data-driven machine learning pipeline. Created the foundational `log.tex` to record all subsequent output from the 10 proposed exploratory approaches. \\
-\textbf{Raw Results / Output:} 
+\textbf{Methodology:}
+The project architecture was shifted from a fabricated proof framework to a strictly empirical, data-driven machine learning pipeline. Created the foundational \texttt{log.tex} to record all subsequent output from the 10 proposed exploratory approaches. \\
+\textbf{Raw Results / Output:}
 N/A - System Setup. \\
-\textbf{Significance:} 
-The codebase is now fully primed for honest empirical mining. The immediate next step is executing Approach 9 to deep-dive into the positive-knot signature/$s$-invariant relationship.
+\textbf{Significance:}
+The codebase is now fully primed for honest empirical mining across 12,967 knots in KnotInfo.
 
-\section*{Log Entry 2: Approach 9 Execution (Positive-Knot Deep Dive)}
+\section*{Log Entry 2: Approach 9 Execution (Positive-Knot Signature/$s$-Invariant Deep Dive)}
 \textbf{Date:} August 30, 2026 \\
-\textbf{Methodology:} 
-Executed Approach 9 by parsing \texttt{knotinfo\_data\_complete.xls}. Filtered the dataset for all configurations where \texttt{is\_positive == 'Y'} and \texttt{is\_alternating == 'N'}. Extracted the Rasmussen $s$-invariant, signature $\sigma$, Seifert genus $g_3$, slice genus $g_4$, and $\tau$ invariant for the complete subset without cherry-picking. \\
-\textbf{Raw Results / Output:} \\
-Analyzed 90 positive, non-alternating knots. 
+\textbf{Methodology:}
+Executed Approach 9 by parsing KnotInfo for strictly positive, non-alternating knots (\texttt{positive == 'Y'} and \texttt{alternating == 'N'}). Extracted $|s(K)|$, $|\sigma(K)|$, $g_3(K)$, $g_4(K)$, and $\tau(K)$ across all 90 knots up to 12 crossings without cherry-picking. \\
+\textbf{Raw Results / Output:} Full table reproduced in \texttt{results/approach\_9.txt} (re-verified September 22, 2026 -- unchanged). \\
+Analyzed 90 positive, non-alternating knots. Knots where $|s(K)| \neq |\sigma(K)|$: \textbf{36 out of 90} (40.0\%). \\
+\textbf{Significance:}
+The data rigorously demonstrates that the signature $\sigma$ deviates from the Rasmussen $s$-invariant in exactly 40\% of strictly positive non-alternating knots up to 12 crossings. \\
+\textbf{Verification status:} \textcolor{green!50!black}{\textbf{CONFIRMED.}} Re-running \texttt{src/experiments/approach\_9.py} on September 22, 2026 reproduces this table and the 36/90 figure exactly.
 
-\begin{longtable}{lccccc}
+\section*{Log Entry 3: AUDIT AND RETRACTION}
+\textbf{Date:} September 22, 2026 \\
+\textbf{What triggered this:} Before adding further entries, every script behind Log Entries 3--15 of the original draft was re-run from a clean checkout and its output diffed against what this log claimed. The result: \textbf{15 of 20 spot-checked numeric claims did not match the data}, one script (\texttt{approach\_1.py}) silently crashed after its first table row (a duplicated-column bug meant only 1 of its 7 rows could ever have been produced), and the ``pure mathematical investigation'' in the old Log Entry 15 used a hand-built Seifert/Goeritz matrix that was \emph{tautologically} forced to output $\sigma(\hat\beta) = -(e(\beta)-2)$ for every positive 3-braid word it was given -- meaning it was mathematically incapable of ever finding a signature defect, regardless of what the true signature was. Its headline claim (``positive 3-braid closures are universally signature-rigid; the defect requires braid index $\geq 4$'') is false: $T(3,7)$, a positive 3-braid knot with 14 crossings, has $s=12$, $|\sigma|=8$, defect $4$.
+
+\textbf{Reproducing the audit.} Two standalone scripts document this, independent of any other file in the repo:
+\begin{itemize}
+\item \texttt{verification/audit\_log\_claims.py} -- recomputes 20 headline numbers directly from \texttt{data/processed/knotinfo\_invariants.csv} and prints CLAIMED vs.\ ACTUAL side by side.
+\item \texttt{verification/refute\_3braid\_claim.py} -- validates a closed-form torus-knot signature formula against 7 KnotInfo ground-truth knots, shows the old 3-braid engine is tautological (1401/1401 positive 3-braids tested all return $\sigma=-(e-2)$), and exhibits $T(3,7)$ as an explicit counterexample to the retracted theorem.
+\end{itemize}
+
+\textbf{Itemized findings.}
+\begin{enumerate}
+\item \textbf{Bug (code):} \texttt{approach\_1.py} line 44 built its per-inequality column list by concatenating \texttt{candidate\_features} without deduplication; when an inequality's own left/right column (e.g. \texttt{three\_genus}) also appeared in \texttt{candidate\_features}, the resulting DataFrame had a duplicate column name, so \texttt{sub\_df[right\_col]} returned a DataFrame instead of a Series and \texttt{pd.to\_numeric} raised \texttt{TypeError}. \textbf{Fixed} by deduplicating with \texttt{dict.fromkeys}. Verified: script now runs to completion and prints all 7 inequality rows (\texttt{results/approach\_1.txt}).
+\item \textbf{Fabrication (log text, not code):} the original Log Entries 3--10 quoted numbers that do not match what their named scripts print. Examples caught by \texttt{audit\_log\_claims.py}: ``$|s|\le 2g_4$ tight 100.0\%'' vs.\ actual 74.8\%; ``fibered $2g_4=|s|$ exact 100.0\%'' vs.\ actual 73.2\%; ``$u\ge g_4+g_T$: 84 counterexamples'' vs.\ actual 495; ``$g_4$ pinched exactly 74.2\%'' vs.\ actual 43.8\%. A full list of 20 claims and their actual values is in \texttt{results/audit\_log\_claims\_output.txt}.
+\item \textbf{Internal contradiction:} the original Log Entry 3 asserted $|s(K)|=2g_4(K)$ holds for \emph{all} 12,967 knots, while the original Log Entry 10 tabulated $4_1$ with derived lower bound $0$ (since $s(4_1)=0$) against $g_4(4_1)=1$ -- two entries of the same document contradicting each other.
+\item \textbf{Tautological engine:} \texttt{src/math\_engine/braid\_topology.py}'s \texttt{goeritz\_matrix\_and\_signature()} hand-built a Seifert matrix for 3-braids whose signature was, by construction, always $-(e-2)$. It never computed a real linking-number matrix from the braid word; it re-derived the length of its own input. \textbf{Fixed} in full (see Log Entry 16).
+\item \textbf{False theorem:} the retracted claim that the defect $|s|-|\sigma|$ requires braid index $\ge 4$. Disproven by $T(3,7)$ (braid index 3, defect 4) and, once the engine was fixed, by defect rates of 84--89\% within braid-index-3 families at crossing numbers as low as 10 (Log Entry 16).
+\item \textbf{Hardcoded narrative bugs, independent of log.tex:} six \texttt{print()} calls inside \texttt{deep\_dive\_defect.py}, \texttt{deep\_dive\_turaev.py}, \texttt{deep\_dive\_concordance.py}, and \texttt{approach\_10.py} contained narrative ``Result'' sentences with numbers or claims that were hardcoded and did not match the data computed two lines above them in the same script -- e.g. Test D3 claimed defect-knot determinants ``skew towards 1 and 7 mod 8'' when the actual dominant residues are 5 and 3 mod 8 (70.8\% combined, vs.\ 29\% for 1 and 7 combined); Test T5 called an $r=0.13$ correlation ($r^2=1.6\%$ of variance explained) ``strongly governed''; \texttt{approach\_10.py} claimed signature tightness ``severely degrades... down to $\sim$40\%'' when the true range across all 7 families tested is 71.4\%--85.4\%. All six are \textbf{fixed} to compute their stated claim from the actual data (diffs in \texttt{src/experiments/deep\_dive\_*.py} and \texttt{approach\_10.py}).
+\end{enumerate}
+
+\textbf{Policy going forward.} Every entry below this point is a direct, unedited transcription of a script's stdout, captured to a file under \texttt{results/} on the date given, with the exact command used. Narrative ``Significance'' text is written to only assert what the printed numbers actually show.
+
+\section*{Log Entry 4: Approach 1, corrected (Inequality-Slack Mining \& Tightness Prediction)}
+\textbf{Date:} September 22, 2026 \quad \textbf{Command:} \texttt{python src/experiments/approach\_1.py > results/approach\_1.txt} \\
+\textbf{Methodology:} Computed the slack $B-A$ across the complete knot database for 7 classical topological bounds, and trained depth-3 decision trees to find which third invariant predicts tightness. \\
+\textbf{Raw Results / Output:}
+\begin{table}[h]
+\centering
+\begin{tabular}{lccccl}
 \toprule
-\textbf{Knot Name} & \textbf{$|s(K)|$} & \textbf{$|\sigma(K)|$} & \textbf{$g_3$} & \textbf{$g_4$} & \textbf{$\tau$} \\
+\textbf{Inequality} & \textbf{Evaluated} & \textbf{Tight \%} & \textbf{Mean Slack} & \textbf{Max Slack} & \textbf{Top Predictor} \\
 \midrule
-\endhead
-8\_19 & 6.0 & 6.0 & 3.0 & 3.0 & 3.0 \\
-9\_49 & 4.0 & 4.0 & 2.0 & 2.0 & 2.0 \\
-10\_124 & 8.0 & 8.0 & 4.0 & 4.0 & 4.0 \\
-10\_128 & 6.0 & 6.0 & 3.0 & 3.0 & 3.0 \\
-10\_134 & 6.0 & 6.0 & 3.0 & 3.0 & 3.0 \\
-10\_139 & 8.0 & 6.0 & 4.0 & 4.0 & 4.0 \\
-10\_142 & 6.0 & 6.0 & 3.0 & 3.0 & 3.0 \\
-10\_152 & 8.0 & 6.0 & 4.0 & 4.0 & 4.0 \\
-10\_154 & 6.0 & 4.0 & 3.0 & 3.0 & 3.0 \\
-10\_161 & 6.0 & 4.0 & 3.0 & 3.0 & 3.0 \\
-11n\_77 & 8.0 & 6.0 & 4.0 & 4.0 & 4.0 \\
-11n\_93 & 6.0 & 6.0 & 3.0 & 3.0 & 3.0 \\
-11n\_126 & 6.0 & 6.0 & 3.0 & 3.0 & 3.0 \\
-11n\_136 & 6.0 & 6.0 & 3.0 & 3.0 & 3.0 \\
-11n\_169 & 6.0 & 6.0 & 3.0 & 3.0 & 3.0 \\
-11n\_171 & 4.0 & 4.0 & 2.0 & 2.0 & 2.0 \\
-11n\_180 & 6.0 & 6.0 & 3.0 & 3.0 & 3.0 \\
-11n\_181 & 4.0 & 4.0 & 2.0 & 2.0 & 2.0 \\
-11n\_183 & 6.0 & 4.0 & 3.0 & 3.0 & 3.0 \\
-12n\_74 & 8.0 & 8.0 & 4.0 & 4.0 & 4.0 \\
-12n\_77 & 6.0 & 6.0 & 3.0 & 3.0 & 3.0 \\
-12n\_88 & 6.0 & 6.0 & 3.0 & 3.0 & 3.0 \\
-12n\_91 & 8.0 & 6.0 & 4.0 & 4.0 & 4.0 \\
-12n\_96 & 6.0 & 6.0 & 3.0 & 3.0 & 3.0 \\
-12n\_100 & 6.0 & 6.0 & 3.0 & 3.0 & 3.0 \\
-12n\_105 & 8.0 & 6.0 & 4.0 & 4.0 & 4.0 \\
-12n\_110 & 6.0 & 4.0 & 3.0 & 3.0 & 3.0 \\
-12n\_133 & 6.0 & 6.0 & 3.0 & 3.0 & 3.0 \\
-12n\_136 & 8.0 & 6.0 & 4.0 & 4.0 & 4.0 \\
-12n\_153 & 8.0 & 8.0 & 4.0 & 4.0 & 4.0 \\
-12n\_166 & 8.0 & 8.0 & 4.0 & 4.0 & 4.0 \\
-12n\_169 & 6.0 & 6.0 & 3.0 & 3.0 & 3.0 \\
-12n\_177 & 6.0 & 6.0 & 3.0 & 3.0 & 3.0 \\
-12n\_187 & 8.0 & 6.0 & 4.0 & 4.0 & 4.0 \\
-12n\_203 & 6.0 & 6.0 & 3.0 & 3.0 & 3.0 \\
-12n\_217 & 6.0 & 4.0 & 3.0 & 3.0 & 3.0 \\
-12n\_242 & 10.0 & 8.0 & 5.0 & 5.0 & 5.0 \\
-12n\_243 & 8.0 & 8.0 & 4.0 & 4.0 & 4.0 \\
-12n\_244 & 8.0 & 8.0 & 4.0 & 4.0 & 4.0 \\
-12n\_245 & 6.0 & 6.0 & 3.0 & 3.0 & 3.0 \\
-12n\_251 & 6.0 & 6.0 & 3.0 & 3.0 & 3.0 \\
-12n\_259 & 6.0 & 6.0 & 3.0 & 3.0 & 3.0 \\
-12n\_289 & 6.0 & 6.0 & 3.0 & 3.0 & 3.0 \\
-12n\_292 & 8.0 & 8.0 & 4.0 & 4.0 & 4.0 \\
-12n\_305 & 8.0 & 8.0 & 4.0 & 4.0 & 4.0 \\
-12n\_308 & 6.0 & 6.0 & 3.0 & 3.0 & 3.0 \\
-12n\_328 & 8.0 & 6.0 & 4.0 & 4.0 & 4.0 \\
-12n\_338 & 8.0 & 8.0 & 4.0 & 4.0 & 4.0 \\
-12n\_341 & 6.0 & 6.0 & 3.0 & 3.0 & 3.0 \\
-12n\_374 & 8.0 & 6.0 & 4.0 & 4.0 & 4.0 \\
-12n\_386 & 8.0 & 8.0 & 4.0 & 4.0 & 4.0 \\
-12n\_406 & 6.0 & 6.0 & 3.0 & 3.0 & 3.0 \\
-12n\_417 & 8.0 & 6.0 & 4.0 & 4.0 & 4.0 \\
-12n\_426 & 8.0 & 6.0 & 4.0 & 4.0 & 4.0 \\
-12n\_453 & 6.0 & 6.0 & 3.0 & 3.0 & 3.0 \\
-12n\_472 & 10.0 & 8.0 & 5.0 & 5.0 & 5.0 \\
-12n\_473 & 8.0 & 8.0 & 4.0 & 4.0 & 4.0 \\
-12n\_474 & 8.0 & 8.0 & 4.0 & 4.0 & 4.0 \\
-12n\_477 & 6.0 & 6.0 & 3.0 & 3.0 & 3.0 \\
-12n\_502 & 8.0 & 8.0 & 4.0 & 4.0 & 4.0 \\
-12n\_503 & 6.0 & 6.0 & 3.0 & 3.0 & 3.0 \\
-12n\_518 & 8.0 & 6.0 & 4.0 & 4.0 & 4.0 \\
-12n\_574 & 10.0 & 8.0 & 5.0 & 5.0 & 5.0 \\
-12n\_575 & 8.0 & 6.0 & 4.0 & 4.0 & 4.0 \\
-12n\_576 & 8.0 & 8.0 & 4.0 & 4.0 & 4.0 \\
-12n\_581 & 6.0 & 6.0 & 3.0 & 3.0 & 3.0 \\
-12n\_585 & 6.0 & 6.0 & 3.0 & 3.0 & 3.0 \\
-12n\_591 & 8.0 & 6.0 & 4.0 & 4.0 & 4.0 \\
-12n\_594 & 6.0 & 4.0 & 3.0 & 3.0 & 3.0 \\
-12n\_600 & 6.0 & 6.0 & 3.0 & 3.0 & 3.0 \\
-12n\_638 & 6.0 & 6.0 & 3.0 & 3.0 & 3.0 \\
-12n\_640 & 8.0 & 6.0 & 4.0 & 4.0 & 4.0 \\
-12n\_644 & 6.0 & 6.0 & 3.0 & 3.0 & 3.0 \\
-12n\_647 & 8.0 & 6.0 & 4.0 & 4.0 & 4.0 \\
-12n\_655 & 6.0 & 6.0 & 3.0 & 3.0 & 3.0 \\
-12n\_679 & 10.0 & 8.0 & 5.0 & 5.0 & 5.0 \\
-12n\_680 & 8.0 & 6.0 & 4.0 & 4.0 & 4.0 \\
-12n\_688 & 10.0 & 8.0 & 5.0 & 5.0 & 5.0 \\
-12n\_689 & 8.0 & 6.0 & 4.0 & 4.0 & 4.0 \\
-12n\_691 & 8.0 & 6.0 & 4.0 & 4.0 & 4.0 \\
-12n\_692 & 8.0 & 6.0 & 4.0 & 4.0 & 4.0 \\
-12n\_694 & 8.0 & 6.0 & 4.0 & 4.0 & 4.0 \\
-12n\_725 & 10.0 & 8.0 & 5.0 & 5.0 & 5.0 \\
-12n\_758 & 6.0 & 6.0 & 3.0 & 3.0 & 3.0 \\
-12n\_764 & 6.0 & 6.0 & 3.0 & 3.0 & 3.0 \\
-12n\_806 & 6.0 & 6.0 & 3.0 & 3.0 & 3.0 \\
-12n\_850 & 8.0 & 6.0 & 4.0 & 4.0 & 4.0 \\
-12n\_851 & 6.0 & 4.0 & 3.0 & 3.0 & 3.0 \\
-12n\_881 & 4.0 & 4.0 & 2.0 & 2.0 & 2.0 \\
-12n\_888 & 10.0 & 8.0 & 5.0 & 5.0 & 5.0 \\
+$|\sigma| \leq 2g_4$ & 12947 & 74.20\% & 0.517 & 4.0 & determinant (0.416) \\
+$g_4 \leq g_3$ & 12947 & 5.91\% & 2.192 & 5.0 & volume (0.507) \\
+$|\sigma| \leq 2u$ & 8038 & 39.67\% & 1.540 & 6.0 & arc index (0.544) \\
+$|\tau| \leq g_4$ & 12947 & 74.82\% & 0.252 & 2.0 & three genus (0.364) \\
+$|s| \leq 2g_4$ & 12946 & 74.82\% & 0.505 & 4.0 & three genus (0.364) \\
+$g_4^{top} \leq g_4$ & 2974 & 97.44\% & 0.026 & 1.0 & determinant (0.531) \\
+$u \leq c$ & 8038 & 0.00\% & 10.556 & 12.0 & --- \\
 \bottomrule
-\end{longtable}
-\noindent \textbf{Summary statistics:}\\
-Knots where $|s(K)| \neq |\sigma(K)|$: \textbf{36 out of 90} (40.0\%). \\
-\textbf{Significance:} 
-This is a phenomenal result. Rather than a null finding, the data rigorously proves that the signature $\sigma$ deviates from the Rasmussen $s$-invariant in exactly 40\% of all strictly positive non-alternating knots up to 12 crossings in KnotInfo. Furthermore, $|s(K)|$ consistently bounded $2g_4$, and $\tau$ consistently matched $g_4$. This cleanly severs any hypothesized linear transitivity between the signature and the $s$-invariant for positive knots.
+\end{tabular}
+\end{table}
+\textbf{Significance:}
+$|s(K)|\le 2g_4(K)$ is tight in 74.82\% of cases, \emph{not} 100\% -- it is a real, sometimes-loose inequality, not a disguised identity. The genus bound $g_4\le g_3$ is tight only 5.9\% of the time, confirming 3-genus is usually a poor proxy for 4-genus. $g_4^{top}\le g_4$ is tight in 97.44\% of the 2974 knots where the topological 4-genus is tabulated -- the 2.56\% gap is exactly the Freedman/Donaldson discrepancy revisited in Log Entry 15 (Test C1).
+
+\section*{Log Entry 5: Approach 2, corrected (Symbolic Regression \& Exact Relations in Subclasses)}
+\textbf{Date:} September 22, 2026 \quad \textbf{Command:} \texttt{python src/experiments/approach\_2.py > results/approach\_2.txt} \\
+\textbf{Methodology:} Checked 4 candidate exact identities across 6 topological subclasses, plus manual verification on 10 benchmark knots (full command output in \texttt{results/approach\_2.txt}). \\
+\textbf{Raw Results / Output:}
+\begin{table}[h]
+\centering
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Subclass} & \textbf{$s=2\tau$} & \textbf{$\sigma=-2\tau$} & \textbf{$2g_4=|s|$} & \textbf{$g_3=g_4$} \\
+\midrule
+Alternating ($N=6730$) & 100.00\% & 100.00\% & 74.62\% & 7.22\% \\
+Two-Bridge ($N=715$) & 100.00\% & 100.00\% & 79.69\% & 19.19\% \\
+Positive Braid ($N=17$) & 100.00\% & 41.18\% & 100.00\% & 100.00\% \\
+Strictly Positive ($N=246$) & 100.00\% & 85.37\% & 100.00\% & 100.00\% \\
+Fibered ($N=5397$) & 100.00\% & 92.46\% & 73.21\% & 1.46\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+\textbf{Significance:}
+$s(K)=2\tau(K)$ is exact in every subclass tested (this identity is a known theorem, not a discovery -- both invariants come from Heegaard Floer/Lee theory and agree on all knots checked here). $2g_4(K)=|s(K)|$ is \emph{not} universal outside the positive-braid and strictly-positive subclasses: it drops to 73--80\% on Alternating, Two-Bridge, and Fibered knots. $g_3(K)=g_4(K)$ is a genuinely rare identity (1.5\%--19\% outside positive knots) -- the original log's claim that it is ``100\% exact'' for strictly positive and positive-braid knots is the one part of this entry that was already correct, because positive-braid knots are fibered with the Bennequin surface realizing both genera simultaneously (Stallings/Rasmussen).
+
+\section*{Log Entry 6: Approach 3, corrected (Joint Anomaly Detection)}
+\textbf{Date:} September 22, 2026 \quad \textbf{Command:} \texttt{python src/experiments/approach\_3.py > results/approach\_3.txt} \\
+\textbf{Methodology:} Trained an Isolation Forest (200 estimators, contamination $=0.01$) over the 14-dimensional joint invariant feature space. \\
+\textbf{Raw Results / Output:} Top 5 of 15 anomalous knots (full 15 in \texttt{results/approach\_3.txt}):
+\begin{table}[h]
+\centering
+\begin{tabular}{lcccccccccc}
+\toprule
+\textbf{Knot} & \textbf{Score} & \textbf{Alt} & $c$ & $g_3$ & $g_4$ & $u$ & $\sigma$ & $s$ & $\tau$ & det \\
+\midrule
+10\_124 & $-0.0867$ & N & 10 & 4 & 4 & 4 & $-8$ & 8 & 4 & 1 \\
+10\_139 & $-0.0847$ & N & 10 & 4 & 4 & 4 & $-6$ & 8 & 4 & 3 \\
+12n\_242 & $-0.0799$ & N & 12 & 5 & 5 & 5 & $-8$ & 10 & 5 & 1 \\
+12n\_725 & $-0.0746$ & N & 12 & 5 & 5 & 5 & $-8$ & 10 & 5 & 5 \\
+9\_1 & $-0.0737$ & Y & 9 & 4 & 4 & 4 & $-8$ & 8 & 4 & 9 \\
+\bottomrule
+\end{tabular}
+\end{table}
+\textbf{Significance:}
+The anomaly detector's top hits are almost entirely the same knots flagged by the direct $|s|\ne|\sigma|$ scan (Log Entry 2), confirming (not discovering) that the signature/Rasmussen defect dominates the joint-invariant outlier signal at these crossing numbers -- this is a consistency check on Log Entry 2, not an independent finding.
+
+\section*{Log Entry 7: Approach 4, corrected (Saliency-Based Predictability)}
+\textbf{Date:} September 22, 2026 \quad \textbf{Command:} \texttt{python src/experiments/approach\_4.py > results/approach\_4.txt} \\
+\textbf{Methodology:} Random-forest regression (10-fold CV) predicting each invariant from the other 10. \\
+\textbf{Raw Results / Output:}
+\begin{table}[h]
+\centering
+\begin{tabular}{lcl}
+\toprule
+\textbf{Target} & \textbf{$R^2$} & \textbf{Top saliency} \\
+\midrule
+$\tau$ & 1.0000 & $s$ (0.99) \\
+$s$ & 1.0000 & $\tau$ (0.99) \\
+$\sigma$ & 0.9863 & $s$ (0.50), $\tau$ (0.45) \\
+$g_4$ & 0.9358 & $\tau$ (0.37), $s$ (0.34), $\sigma$ (0.28) \\
+Turaev genus & 0.8172 & determinant (0.56), bridge index (0.24) \\
+$u$ & 0.7632 & $g_4$ (0.86) \\
+$c$ & 0.7176 & braid index (0.59) \\
+braid index & 0.6827 & $g_3$ (0.44), determinant (0.26) \\
+$g_3$ & 0.3832 & determinant (0.51), $g_4$ (0.18) \\
+determinant & 0.3719 & $g_3$ (0.46), $g_4$ (0.24) \\
+bridge index & 0.1950 & determinant (0.35) \\
+\bottomrule
+\end{tabular}
+\end{table}
+\textbf{Significance:}
+$R^2\approx1$ for $(s,\tau)$ is definitional near-redundancy, not discovery ($s=2\tau$, Log Entry 5). $\sigma$ is well- but not perfectly predicted by $(s,\tau)$ ($R^2=0.986$) -- the residual is exactly the signature defect. Determinant and 3-genus are the two \emph{least} predictable invariants here ($R^2<0.4$), i.e. they carry information the others don't capture -- a more honest ``candidate for further study'' than the original log's list.
+
+\section*{Log Entry 8: Approach 5, corrected (Extremal Statistics by Crossing Number)}
+\textbf{Date:} September 22, 2026 \quad \textbf{Command:} \texttt{python src/experiments/approach\_5.py > results/approach\_5.txt} \\
+\textbf{Raw Results / Output:}
+\begin{table}[h]
+\centering
+\begin{tabular}{ccccc}
+\toprule
+$n$ & Max Defect Knot & Max $g_3/c$ Knot & Max $|\tau|/g_3$ Knot & Max $\det(K)$ \\
+\midrule
+3 & $3_1$ (0) & $3_1$ (0.33) & $3_1$ (1.00) & $3_1$ (3) \\
+6 & $6_1$ (0) & $6_2$ (0.33) & $6_2$ (0.50) & $6_3$ (13) \\
+8 & $8_1$ (0) & $8_2$ (0.38) & $8_{15}$ (1.00) & $8_{18}$ (45) \\
+10 & $10_{132}$ (2) & $10_2$ (0.40) & $10_{49}$ (1.00) & $10_{123}$ (121) \\
+12 & $12n_{45}$ (2) & $12a_{146}$ (0.42) & $12a_{43}$ (1.00) & $12a_{868}$ (377) \\
+\bottomrule
+\end{tabular}
+\end{table}
+(Full $n=3..12$ table in \texttt{results/approach\_5.txt}.) \\
+\textbf{Significance:}
+The maximum defect within the KnotInfo tabulation range ($c\le12$) is still small (2) and first appears at $n=10$ -- consistent with, and now cross-checked against, the much larger defect rates found for synthesized braid words in Log Entry 16, which reach much higher crossing numbers than KnotInfo tabulates. $g_3/c$ stays $\le 0.5$ (Seifert bound), as required.
+
+\section*{Log Entry 9: Approach 6, corrected (Structural Inequality-Graph Analysis)}
+\textbf{Date:} September 22, 2026 \quad \textbf{Command:} \texttt{python src/experiments/approach\_6.py > results/approach\_6.txt} \\
+\textbf{Methodology:} Empirical ordering consistency ($A\le B$ vs.\ $A\ge B$ percentage) on 34 previously-unconnected invariant pairs. Full 34-row table in \texttt{results/approach\_6.txt}; representative rows below. \\
+\textbf{Raw Results / Output:}
+\begin{table}[h]
+\centering
+\begin{tabular}{lccl}
+\toprule
+\textbf{Pair $(A,B)$} & $A\le B$ \% & $A\ge B$ \% & \textbf{Candidate bound} \\
+\midrule
+(turaev genus, bridge index) & 100.00 & 0.00 & $g_T \le$ bridge index \\
+(turaev genus, braid index) & 100.00 & 0.00 & $g_T \le$ braid index \\
+($g_4^{top}$, unknotting number) & 100.00 & 45.67 & $g_4^{top} \le u$ \\
+(3-genus, $g_4^{top}$) & 7.50 & 100.00 & $g_3 \ge g_4^{top}$ \\
+(signature, rasmussen $s$) & 97.97 & 97.35 & $|\sigma|\le|s|$ \\
+(bridge index, braid index) & 100.00 & 6.15 & bridge $\le$ braid \\
+\bottomrule
+\end{tabular}
+\end{table}
+\textbf{Significance:}
+24 of the 34 unconnected pairs produce a one-directional bound holding $\ge$97\% of the time; the strongest ($g_T\le$ bridge/braid index, both 100.00\%/0.00\%) match the exact bound independently re-derived and verified in Log Entry 14 (Test T3, 0 violations across 2953 knots). The (signature, rasmussen $s$) row is notable: $|\sigma|\le|s|$ holds 97.97\% of the time \emph{and} $|\sigma|\ge|s|$ holds 97.35\% of the time -- these are not contradictory, they describe the $\sim$95\% of knots where $|\sigma|=|s|$ exactly plus small numbers on each side of equality.
+
+\section*{Log Entry 10: Approach 7, corrected (Near-Violation Study of Conjectural Bounds)}
+\textbf{Date:} September 22, 2026 \quad \textbf{Command:} \texttt{python src/experiments/approach\_7.py > results/approach\_7.txt} \\
+\textbf{Raw Results / Output:}
+\begin{table}[h]
+\centering
+\begin{tabular}{lccc}
+\toprule
+\textbf{Conjectural inequality} & \textbf{Evaluated} & \textbf{Violations} & \textbf{Status} \\
+\midrule
+$|\tau(K)| \leq g_4^{top}(K)$ & 2974 & 63 & DISPROVEN \\
+$|s(K)|/2 \leq g_4^{top}(K)$ & 2973 & 63 & DISPROVEN \\
+$u(K) \geq g_4(K) + g_T(K)$ & 2352 & 495 & DISPROVEN \\
+$g_3(K) \geq g_4(K) + g_T(K)$ & 2953 & 109 & DISPROVEN \\
+$|\sigma(K)|/2 \leq u(K) - g_T(K)$ & 2352 & 347 & DISPROVEN \\
+\bottomrule
+\end{tabular}
+\end{table}
+First counterexamples: $10_{139}, 10_{145}, 10_{152}$ (Conj.\ 1--2); $8_{19}, 8_{21}, 9_{42}$ (Conj.\ 3, 5); $8_{19}, 9_{49}, 10_{124}$ (Conj.\ 4). \\
+\textbf{Significance:}
+All 5 candidate bounds are disproven, and far more decisively than the original (fabricated) draft claimed -- e.g.\ Conj.\ 3 has 495 counterexamples, not 84. $|\tau|\le g_4^{top}$ failing is \emph{expected}, not surprising: $\tau$ is a smooth-category bound on $g_4^{smooth}$, and $g_4^{top}\le g_4^{smooth}$ can be strictly smaller, so there is no a priori reason $\tau$ should also bound the topological genus. This is corroborated directly by Log Entry 15/Test C1's 76 knots with $g_4^{top}<g_4^{smooth}$.
+
+\section*{Log Entry 11: Approach 8, corrected (Cross-Validation of Derived vs.\ Direct $g_4$)}
+\textbf{Date:} September 22, 2026 \quad \textbf{Command:} \texttt{python src/experiments/approach\_8.py > results/approach\_8.txt} \\
+\textbf{Methodology:} Compared $g_4(K)$ against the derived bracket $\max(|\tau|,|s|/2,|\sigma|/2) \le g_4 \le \min(g_3,u)$. \\
+\textbf{Raw Results / Output:}
+\begin{itemize}
+\item Pinched exactly (lower = upper = $g_4$): \textbf{3,790 knots (29.2\%)} of 12,947 evaluated.
+\item Slack gap (lower $<$ upper): \textbf{9,157 knots (70.6\%)}.
+\end{itemize}
+Sample: $3_1,5_1,7_1,5_2,6_2,7_2,7_3$ are all TIGHT; $4_1,6_1,6_3,7_7,8_1,8_3,8_4$ all show a SLACK GAP (e.g.\ $4_1$: lower $0.0$, upper $1$, exact $g_4=1$). \\
+\textbf{Significance:}
+The derived bracket pins down $g_4$ exactly in under a third of knots, not three-quarters as the original draft claimed -- classical bounds leave real work for genuine 4-genus computation (Khovanov/HOMFLY-based methods) in the majority of cases.
+
+\section*{Log Entry 12: Approach 10 (Boundary \& Family Robustness Testing)}
+\textbf{Date:} September 22, 2026 \quad \textbf{Command:} \texttt{python src/experiments/approach\_10.py > results/approach\_10.txt} \\
+\textbf{Raw Results / Output:}
+\begin{table}[h]
+\centering
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Family} & \textbf{Count} & $|\sigma|=2g_4$ \% & $g_4=g_3$ \% & $|s|=2\tau$ \% \\
+\midrule
+Alternating & 6730 & 74.6 & 7.2 & 100.0 \\
+Non-Alternating & 6236 & 73.7 & 4.5 & 100.0 \\
+Positive Knots & 246 & 85.4 & 100.0 & 100.0 \\
+Non-Positive Knots & 2731 & 73.1 & 1.1 & 100.0 \\
+Fibered & 5397 & 71.4 & 1.5 & 100.0 \\
+Non-Fibered & 7568 & 76.2 & 9.1 & 100.0 \\
+Quasi-Alternating & 1891 & 74.7 & 9.1 & 100.0 \\
+\bottomrule
+\end{tabular}
+\end{table}
+\textbf{Verification status:} This table's \emph{numbers} matched the original draft on re-run (\textcolor{green!50!black}{CONFIRMED}). Its three narrative bullets, however, did not follow from the table -- e.g.\ they claimed signature tightness ``severely degrades... down to $\sim$40\%,'' when the table's own range is 71.4\%--85.4\%, and called $g_4=g_3$ tightness on Alternating knots ``exceptionally high'' when it is 7.2\%. \texttt{approach\_10.py} was patched to derive its narrative lines from the computed table instead of printing fixed strings; \texttt{results/approach\_10.txt} now reads: \\
+\textit{``$|s(K)|=2\tau(K)$ is exact in every family tested (minimum 100.0\%). $|\sigma|=2g_4$ tightness ranges 71.4\%--85.4\% across families -- it does NOT `severely degrade to $\sim$40\%' anywhere in this table. $g_4=g_3$ tightness is actually LOW for most families (Alternating 7.2\%, Fibered 1.5\%) and only high for the Positive-Knots subclass (100.0\%).''}
+
+\section*{Log Entry 13: Deep-Dive Suite A, corrected (Topological Defect: Tests D1--D5)}
+\textbf{Date:} September 22, 2026 \quad \textbf{Command:} \texttt{python src/experiments/run\_deep\_dives.py > results/deep\_dives.txt} \\
+343 defect knots identified ($|s|-|\sigma|>0$); defect magnitude 2 in 340, 4 in 3.
+\begin{itemize}
+\item \textbf{D1:} Defect concentrated in positive (10.5\% of 343), strongly quasipositive (14.9\%), quasipositive (15.5\%) knots.
+\item \textbf{D2:} Mean unknotting gap $u-g_4$ on defect knots: $0.004\pm0.061$ vs.\ $0.149\pm0.414$ on non-defect non-alternating knots.
+\item \textbf{D3 \corrected:} $\det(K)\bmod 8$ skews towards \textbf{5 and 3} mod 8 (70.8\% of the 343 with known determinant combined) -- \emph{not} ``1 and 7,'' which are the two \emph{smallest} bins (29\% combined). All residues are odd.
+\item \textbf{D4 \corrected:} Defect knots have \textbf{lower}, not ``comparable,'' mean hyperbolic volume than non-defect $n\ge10$ knots: 13.46 vs.\ 17.71 (a 24\% difference).
+\item \textbf{D5 \corrected:} Braid index is tabulated for only 80 of the 343 defect knots. Among those 80, 100\% have braid index $\ge3$ (minimum observed 3) -- this is a statement about the 80 with known braid index, not all 343.
+\end{itemize}
+\textbf{Significance:} The determinant-parity and unknotting-gap patterns (D2, D3) are real and now correctly stated. The volume and braid-index claims (D4, D5) were previously overstated or missing a sample-size caveat; both are now honest.
+
+\section*{Log Entry 14: Deep-Dive Suite B, corrected (Turaev Genus \& Ribbon Bounds: Tests T1--T5)}
+\textbf{Date:} September 22, 2026 \quad \textbf{Command:} (same run as Entry 13) \\
+\begin{itemize}
+\item \textbf{T1 \corrected:} The 495 counterexamples to $u\ge g_4+g_T$ occur only in non-alternating knots (495/495) -- but $g_T=1$ in 490 of them (99.0\%), \emph{not} ``$g_T\ge2$'' as originally claimed.
+\item \textbf{T2:} All 109 counterexamples to $g_3\ge g_4+g_T$ have $g_3=g_4$ (slice-genus equality); full list of 109 knots in \texttt{results/deep\_dives.txt}.
+\item \textbf{T3:} $g_T(K)\le\text{braid index}(K)-1$ holds across \textbf{all 2953} evaluated knots, \textbf{0 violations} (100.0\%).
+\item \textbf{T4:} Alternating knots ($N=1852$): $g_T\equiv0$. Non-alternating ($N=1101$): $g_T=1$ (98.9\%), $g_T=2$ (1.1\%).
+\item \textbf{T5 \corrected:} Correlation between $g_T(K)$ and diagrammatic inefficiency $(c-2g_3-|\sigma|)/2$ is $r=0.1281$, i.e.\ $r^2=1.6\%$ of variance explained -- a \textbf{weak} correlation. The original claim that $g_T$ is ``strongly governed'' by this formula is not supported by its own $r$ value.
+\end{itemize}
+\textbf{Significance:} T3's bound ($g_T\le$ braid index $-1$, 0 violations on 2953 knots) is the strongest, cleanest result in this whole log and is independently corroborated by Log Entry 9's inequality-graph scan (same bound, 100.00\%/0.00\%). T5 was a null result dressed as a finding; it is now reported as one.
+
+\section*{Log Entry 15: Deep-Dive Suite C, corrected (Concordance Slack \& 4-Genus: Tests C1--C5)}
+\textbf{Date:} September 22, 2026 \quad \textbf{Command:} (same run as Entry 13) \\
+\begin{itemize}
+\item \textbf{C1 \corrected:} $g_4^{top}<g_4^{smooth}$ in 76/2974 knots (2.56\%) -- match rate \textbf{97.44\%}, not 99.8\%. First discrepancy knots: $10_{139}, 10_{145}, 10_{152}, 10_{154}, 10_{161}$.
+\item \textbf{C2 \corrected:} $|\tau(K)|=g_4^{top}(K)$ tight in \textbf{73.5\%} of 2974 knots, mean slack 0.223 -- not ``over 75\%.''
+\item \textbf{C3 \corrected:} Arf $=1$ knots have mean slack $0.2786$ vs.\ $0.2264$ for Arf $=0$: a \textbf{23.0\%} increase, not 32\%.
+\item \textbf{C4:} Algebraic concordance order 2 and 4 knots have mean slack 0.997/0.994 vs.\ 0.080 for infinite order (N=2257/373/172/176).
+\item \textbf{C5:} $u=g_4$ in 52.91\% of 8034 knots; $u\le g_4+1$ in 97.5\%.
+\end{itemize}
+\textbf{Significance:} Every $\%$ figure in this suite was off by 1.5--10 points in the original draft, always in the direction of overstating tightness/strength. C1's 76 discrepancy knots are the same set flagged in Log Entry 10 as the reason $|\tau|\le g_4^{top}$ fails.
+
+\section*{Log Entry 16: Math Engine Rebuild -- Retraction of the ``Signature-Rigid'' Claim, and Correct Braid-Family Results}
+\textbf{Date:} September 22, 2026 \quad \textbf{Commands:} \texttt{python src/math\_engine/braid\_topology.py}; \texttt{python src/math\_engine/investigate\_braid\_families.py}; \texttt{python src/math\_engine/syllable\_depth\_proof.py} \\
+\textbf{What was wrong:} see Log Entry 3, item 4--5. The old \texttt{goeritz\_matrix\_and\_signature()} could only ever return $\sigma=-(e-2)$ for a positive 3-braid, so ``0 defect knots found across 1,280 configurations'' was not evidence of anything.
+
+\textbf{The fix.} \texttt{src/math\_engine/braid\_topology.py} now implements the Seifert-matrix algorithm of J.~Collins, \emph{An algorithm for computing the Seifert matrix of a link from a braid representation} (2007), specialised to all-positive braid words: homology generators are placed between consecutive same-generator crossings, and their pairwise linking numbers are computed by Collins's five-case rule (\S3.2--3.3 of that paper) rather than hand-guessed. It works for any strand count, not just 3. It is validated in an embedded \texttt{self\_test()} against:
+\begin{itemize}
+\item the closed-form Brieskorn/Hirzebruch signature of \textbf{34 torus knots} $T(p,q)$, $2\le p\le6$ -- \textbf{0 mismatches};
+\item \textbf{all 17} KnotInfo knots ($c\le12$) carrying an authentic positive-braid word in \texttt{positive\_braid\_notation} -- \textbf{0 mismatches}.
+\end{itemize}
+(\texttt{results/math\_engine\_selftest.txt}.) This engine is asserted at the top of every script that uses it (\texttt{assert self\_test()}), so a future regression cannot silently ship broken numbers again.
+
+\textbf{Corrected search results (\texttt{results/investigate\_braid\_families.txt}, \texttt{results/syllable\_depth\_proof.txt}):}
+\begin{table}[h]
+\centering
+\begin{tabular}{lccc}
+\toprule
+\textbf{Family (positive braids)} & \textbf{$N$ knots} & \textbf{Nonzero defect} & \textbf{Min.\ defect-bearing $c$} \\
+\midrule
+4-syllable 3-braids, $\sigma_1^a\sigma_2^b\sigma_1^c\sigma_2^d$, $a..d\in[1,8]$ & 1280 & 1137 (88.8\%) & --- (largest defect only 2) \\
+6-syllable 3-braids, varied & 336 & 285 (84.8\%) & $c=10$ \\
+4-strand braids, $\sigma_1^a\sigma_2^b\sigma_3^c\sigma_1^d\sigma_2^e\sigma_3^f$ & 192 & 152 (79.2\%) & $c=11$ \\
+Torus braids $T(3,q)$, $q$ coprime to 3 & 12 & 8 & $T(3,7)$, $c=14$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{Significance -- honestly stated.}
+\begin{itemize}
+\item The signature defect is \textbf{common}, not absent, within braid index 3: 84--89\% of the synthesized 3-braid knots in these two families have $|s|\ne|\sigma|$, at crossing numbers as low as 10 -- far below the retracted claim's implicit threshold of braid index $\ge4$.
+\item $T(3,7)$ (braid index 3, $c=14$) is an explicit, hand-checkable counterexample to ``positive 3-braid closures are universally signature-rigid.''
+\item The original ``theorems'' printed at the end of the old \texttt{investigate\_braid\_families.py} (``defect is strictly even,'' ``defect $=0$ iff alternating/balanced,'' ``defect grows linearly for $c\ge30$'') have been \textbf{removed}. None of them was checked against real signature data; they were narrative dressed as conclusions from a script whose signature routine could not test them. No replacement theorem is claimed here -- the corrected scripts report defect rates and examples only, not universal statements, per the policy in Log Entry 3.
+\item A genuine open-flavored quantitative question survives this audit: for the torus family $T(3,q)$, the ratio $|\sigma|/(2g)$ takes values $1, 1, 1, \tfrac23, \tfrac57, \ldots$ as $q\to\infty$ and appears to approach a limit around $2/3$ from above and below. This overlaps published work (Feller, \emph{The signature of positive braids is linearly bounded by their first Betti number}, 2016; Baader--Dehornoy et al., \emph{Signature spectrum of positive braids}, 2021; Greene--Liechti, \emph{On the signature of a positive braid}, 2023) on the general conjecture $b_1(\beta) \ge -\sigma(\beta) > \tfrac12 b_1(\beta)$ for positive braids -- it is not a new open problem, but it is a correct, checkable, and narrow target for the project's remaining scope (see README.md ``Next Steps'').
+\end{itemize}
 
 \end{document}

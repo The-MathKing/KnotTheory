@@ -1,0 +1,28 @@
+================================================================================
+APPROACH 8: CROSS-VALIDATION OF DERIVED VS DIRECT INVARIANTS
+================================================================================
+Loaded dataset with 12967 knots.
+
+Derived Bound Verification across 12947 knots:
+ - Pinched Exactly (Lower == Upper == g4): 3790 knots (29.2%)
+ - Gap/Slack (Lower < Upper): 9157 knots (70.6%)
+
+Sample Cross-Validation of 15 Knots (Exact g4 vs Derived Bounds):
+Knot       | Alt  | Exact g4   | Derived Lower  | Derived Upper  | Tight/Gap
+---------------------------------------------------------------------------
+0_1        | Y    | 0          | 0.0            | 0              | TIGHT
+3_1        | Y    | 1          | 1.0            | 1              | TIGHT
+5_1        | Y    | 2          | 2.0            | 2              | TIGHT
+5_2        | Y    | 1          | 1.0            | 1              | TIGHT
+6_2        | Y    | 1          | 1.0            | 1              | TIGHT
+7_1        | Y    | 3          | 3.0            | 3              | TIGHT
+7_2        | Y    | 1          | 1.0            | 1              | TIGHT
+7_3        | Y    | 2          | 2.0            | 2              | TIGHT
+4_1        | Y    | 1          | 0.0            | 1              | SLACK GAP
+6_1        | Y    | 0          | 0.0            | 1              | SLACK GAP
+6_3        | Y    | 1          | 0.0            | 1              | SLACK GAP
+7_7        | Y    | 1          | 0.0            | 1              | SLACK GAP
+8_1        | Y    | 1          | 0.0            | 1              | SLACK GAP
+8_3        | Y    | 1          | 0.0            | 1              | SLACK GAP
+8_4        | Y    | 1          | 1.0            | 2              | SLACK GAP
+

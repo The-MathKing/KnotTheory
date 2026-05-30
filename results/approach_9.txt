@@ -1,0 +1,104 @@
+/Volumes/2TB/scifair/src/experiments/approach_9.py:25: DtypeWarning: Columns (0: name_rank, 1: dt_rank, 2: classical_conway_name, 3: conway_notation, 4: two_bridge_notation, 5: fibered_anon, 6: enhanced_gauss_notation, 7: crossing_number, 8: tetrahedral_census_name, 9: three_genus, 10: three_genus_anon, 11: crosscap_number, 12: crosscap_number_anon, 13: braid_index, 14: braid_length, 15: signature, 16: nakanishi_index, 17: nakanishi_index_anon, 18: super_bridge_index, 19: super_bridge_index_anon, 20: thurston_bennequin_number_anon, 21: arc_index, 22: arc_index_anon, 23: tunnel_number, 24: morse_novikov_number, 25: morse_novikov_number_anon, 26: alexander_polynomial_vector, 27: jones_polynomial_vector, 28: conway_polynomial_vector, 29: kauffman_polynomial_vector, 30: a_polynomial, 31: a_polynomial_anon, 32: topological_four_genus, 33: topological_four_genus_anon, 34: smooth_concordance_genus, 35: smooth_concordance_genus_anon, 36: topological_concordance_genus, 37: smooth_concordance_crosscap_number, 38: topological_concordance_crosscap_number, 39: algebraic_concordance_order, 40: smooth_concordance_order, 41: smooth_concordance_order_anon, 42: topological_concordance_order, 43: topological_concordance_order_anon, 44: ribbon, 45: determinant, 46: rasmussen_invariant, 47: ozsvath_szabo_tau_invariant, 48: ozsvath_szabo_tau_invariant_anon, 49: volume, 50: maximum_cusp_volume, 51: longitude_translation, 52: meridian_translation, 53: longitude_length, 54: meridian_length, 55: other_short_geodesics, 56: chern_simons_invariant, 57: volume_imaginary_part, 58: arf_invariant, 59: turaev_genus, 60: turaev_genus_anon, 61: signature_function_anon, 62: monodromy, 63: small_large, 64: positive_braid, 65: positive, 66: positive_anon, 67: strongly_quasipositive, 68: strongly_quasipositive_anon, 69: quasipositive, 70: quasipositive_anon, 71: positive_braid_notation, 72: positive_pd_notation, 73: strongly_quasipositive_braid_notation, 74: strongly_quasipositive_braid_notation_anon, 75: quasipositive_braid_notation, 76: quasipositive_braid_notation_anon, 77: fd_clasp_number, 78: width, 79: td_clasp_number, 80: nu, 81: epsilon, 82: quasi_alternating, 83: quasi_alternating_anon, 84: almost_alternating, 85: almost_alternating_anon, 86: adequate_anon, 87: montesinos_notation, 88: boundary_slopes, 89: pretzel_notation, 90: unknotting_number_algebraic, 91: hfk_polynomial_vector, 92: mosaic_tile_number, 93: ropelength, 94: homfly_polynomial_vector, 95: almost_strongly_qp, 96: almost_strongly_qp_braid) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(csv_path)
+================================================================================
+APPROACH 9: POSITIVE-KNOT SIGNATURE / s-INVARIANT DEEP DIVE
+================================================================================
+Reading dataset from data/processed/knotinfo_invariants.csv...
+
+Found 90 positive, non-alternating knots.
+Knot Name       | |s(K)|   | |sigma(K)| | g3    | g4    | tau  
+-----------------------------------------------------------------
+8_19            | 6.0      | 6.0        | 3.0   | 3.0   | 3.0  
+9_49            | 4.0      | 4.0        | 2.0   | 2.0   | 2.0  
+10_124          | 8.0      | 8.0        | 4.0   | 4.0   | 4.0  
+10_128          | 6.0      | 6.0        | 3.0   | 3.0   | 3.0  
+10_134          | 6.0      | 6.0        | 3.0   | 3.0   | 3.0  
+10_139          | 8.0      | 6.0        | 4.0   | 4.0   | 4.0  
+10_142          | 6.0      | 6.0        | 3.0   | 3.0   | 3.0  
+10_152          | 8.0      | 6.0        | 4.0   | 4.0   | 4.0  
+10_154          | 6.0      | 4.0        | 3.0   | 3.0   | 3.0  
+10_161          | 6.0      | 4.0        | 3.0   | 3.0   | 3.0  
+11n_77          | 8.0      | 6.0        | 4.0   | 4.0   | 4.0  
+11n_93          | 6.0      | 6.0        | 3.0   | 3.0   | 3.0  
+11n_126         | 6.0      | 6.0        | 3.0   | 3.0   | 3.0  
+11n_136         | 6.0      | 6.0        | 3.0   | 3.0   | 3.0  
+11n_169         | 6.0      | 6.0        | 3.0   | 3.0   | 3.0  
+11n_171         | 4.0      | 4.0        | 2.0   | 2.0   | 2.0  
+11n_180         | 6.0      | 6.0        | 3.0   | 3.0   | 3.0  
+11n_181         | 4.0      | 4.0        | 2.0   | 2.0   | 2.0  
+11n_183         | 6.0      | 4.0        | 3.0   | 3.0   | 3.0  
+12n_74          | 8.0      | 8.0        | 4.0   | 4.0   | 4.0  
+12n_77          | 6.0      | 6.0        | 3.0   | 3.0   | 3.0  
+12n_88          | 6.0      | 6.0        | 3.0   | 3.0   | 3.0  
+12n_91          | 8.0      | 6.0        | 4.0   | 4.0   | 4.0  
+12n_96          | 6.0      | 6.0        | 3.0   | 3.0   | 3.0  
+12n_100         | 6.0      | 6.0        | 3.0   | 3.0   | 3.0  
+12n_105         | 8.0      | 6.0        | 4.0   | 4.0   | 4.0  
+12n_110         | 6.0      | 4.0        | 3.0   | 3.0   | 3.0  
+12n_133         | 6.0      | 6.0        | 3.0   | 3.0   | 3.0  
+12n_136         | 8.0      | 6.0        | 4.0   | 4.0   | 4.0  
+12n_153         | 8.0      | 8.0        | 4.0   | 4.0   | 4.0  
+12n_166         | 8.0      | 8.0        | 4.0   | 4.0   | 4.0  
+12n_169         | 6.0      | 6.0        | 3.0   | 3.0   | 3.0  
+12n_177         | 6.0      | 6.0        | 3.0   | 3.0   | 3.0  
+12n_187         | 8.0      | 6.0        | 4.0   | 4.0   | 4.0  
+12n_203         | 6.0      | 6.0        | 3.0   | 3.0   | 3.0  
+12n_217         | 6.0      | 4.0        | 3.0   | 3.0   | 3.0  
+12n_242         | 10.0     | 8.0        | 5.0   | 5.0   | 5.0  
+12n_243         | 8.0      | 8.0        | 4.0   | 4.0   | 4.0  
+12n_244         | 8.0      | 8.0        | 4.0   | 4.0   | 4.0  
+12n_245         | 6.0      | 6.0        | 3.0   | 3.0   | 3.0  
+12n_251         | 6.0      | 6.0        | 3.0   | 3.0   | 3.0  
+12n_259         | 6.0      | 6.0        | 3.0   | 3.0   | 3.0  
+12n_289         | 6.0      | 6.0        | 3.0   | 3.0   | 3.0  
+12n_292         | 8.0      | 8.0        | 4.0   | 4.0   | 4.0  
+12n_305         | 8.0      | 8.0        | 4.0   | 4.0   | 4.0  
+12n_308         | 6.0      | 6.0        | 3.0   | 3.0   | 3.0  
+12n_328         | 8.0      | 6.0        | 4.0   | 4.0   | 4.0  
+12n_338         | 8.0      | 8.0        | 4.0   | 4.0   | 4.0  
+12n_341         | 6.0      | 6.0        | 3.0   | 3.0   | 3.0  
+12n_374         | 8.0      | 6.0        | 4.0   | 4.0   | 4.0  
+12n_386         | 8.0      | 8.0        | 4.0   | 4.0   | 4.0  
+12n_406         | 6.0      | 6.0        | 3.0   | 3.0   | 3.0  
+12n_417         | 8.0      | 6.0        | 4.0   | 4.0   | 4.0  
+12n_426         | 8.0      | 6.0        | 4.0   | 4.0   | 4.0  
+12n_453         | 6.0      | 6.0        | 3.0   | 3.0   | 3.0  
+12n_472         | 10.0     | 8.0        | 5.0   | 5.0   | 5.0  
+12n_473         | 8.0      | 8.0        | 4.0   | 4.0   | 4.0  
+12n_474         | 8.0      | 8.0        | 4.0   | 4.0   | 4.0  
+12n_477         | 6.0      | 6.0        | 3.0   | 3.0   | 3.0  
+12n_502         | 8.0      | 8.0        | 4.0   | 4.0   | 4.0  
+12n_503         | 6.0      | 6.0        | 3.0   | 3.0   | 3.0  
+12n_518         | 8.0      | 6.0        | 4.0   | 4.0   | 4.0  
+12n_574         | 10.0     | 8.0        | 5.0   | 5.0   | 5.0  
+12n_575         | 8.0      | 6.0        | 4.0   | 4.0   | 4.0  
+12n_576         | 8.0      | 8.0        | 4.0   | 4.0   | 4.0  
+12n_581         | 6.0      | 6.0        | 3.0   | 3.0   | 3.0  
+12n_585         | 6.0      | 6.0        | 3.0   | 3.0   | 3.0  
+12n_591         | 8.0      | 6.0        | 4.0   | 4.0   | 4.0  
+12n_594         | 6.0      | 4.0        | 3.0   | 3.0   | 3.0  
+12n_600         | 6.0      | 6.0        | 3.0   | 3.0   | 3.0  
+12n_638         | 6.0      | 6.0        | 3.0   | 3.0   | 3.0  
+12n_640         | 8.0      | 6.0        | 4.0   | 4.0   | 4.0  
+12n_644         | 6.0      | 6.0        | 3.0   | 3.0   | 3.0  
+12n_647         | 8.0      | 6.0        | 4.0   | 4.0   | 4.0  
+12n_655         | 6.0      | 6.0        | 3.0   | 3.0   | 3.0  
+12n_679         | 10.0     | 8.0        | 5.0   | 5.0   | 5.0  
+12n_680         | 8.0      | 6.0        | 4.0   | 4.0   | 4.0  
+12n_688         | 10.0     | 8.0        | 5.0   | 5.0   | 5.0  
+12n_689         | 8.0      | 6.0        | 4.0   | 4.0   | 4.0  
+12n_691         | 8.0      | 6.0        | 4.0   | 4.0   | 4.0  
+12n_692         | 8.0      | 6.0        | 4.0   | 4.0   | 4.0  
+12n_694         | 8.0      | 6.0        | 4.0   | 4.0   | 4.0  
+12n_725         | 10.0     | 8.0        | 5.0   | 5.0   | 5.0  
+12n_758         | 6.0      | 6.0        | 3.0   | 3.0   | 3.0  
+12n_764         | 6.0      | 6.0        | 3.0   | 3.0   | 3.0  
+12n_806         | 6.0      | 6.0        | 3.0   | 3.0   | 3.0  
+12n_850         | 8.0      | 6.0        | 4.0   | 4.0   | 4.0  
+12n_851         | 6.0      | 4.0        | 3.0   | 3.0   | 3.0  
+12n_881         | 4.0      | 4.0        | 2.0   | 2.0   | 2.0  
+12n_888         | 10.0     | 8.0        | 5.0   | 5.0   | 5.0  
+
+--- Summary ---
+Total Positive Non-Alternating Knots Analyzed: 90
+Knots where |s(K)| != |sigma(K)|: 36

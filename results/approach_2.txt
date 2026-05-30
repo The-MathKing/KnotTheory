@@ -1,0 +1,49 @@
+================================================================================
+APPROACH 2: SYMBOLIC REGRESSION & EXACT RELATIONS IN SUBCLASSES
+================================================================================
+Loaded dataset with 12967 knots.
+
+--- Subclass: Alternating Knots (N = 6730) ---
+  Relation s(K) = 2*tau(K): Exact Match on 6729/6729 (100.00%)
+  Relation sigma(K) = -2*tau(K): Exact Match on 6730/6730 (100.00%)
+  Relation 2*g4(K) = |s(K)|: Exact Match on 5019/6726 (74.62%)
+  Relation g3(K) = g4(K): Exact Match on 486/6727 (7.22%)
+
+--- Subclass: Two-Bridge Knots (N = 715) ---
+  Relation s(K) = 2*tau(K): Exact Match on 714/714 (100.00%)
+  Relation sigma(K) = -2*tau(K): Exact Match on 714/714 (100.00%)
+  Relation 2*g4(K) = |s(K)|: Exact Match on 569/714 (79.69%)
+  Relation g3(K) = g4(K): Exact Match on 137/714 (19.19%)
+
+--- Subclass: Positive Braid Knots (N = 17) ---
+  Relation s(K) = 2*tau(K): Exact Match on 17/17 (100.00%)
+  Relation sigma(K) = -2*tau(K): Exact Match on 7/17 (41.18%)
+  Relation 2*g4(K) = |s(K)|: Exact Match on 17/17 (100.00%)
+  Relation g3(K) = g4(K): Exact Match on 17/17 (100.00%)
+
+--- Subclass: Strictly Positive Knots (N = 246) ---
+  Relation s(K) = 2*tau(K): Exact Match on 246/246 (100.00%)
+  Relation sigma(K) = -2*tau(K): Exact Match on 210/246 (85.37%)
+  Relation 2*g4(K) = |s(K)|: Exact Match on 246/246 (100.00%)
+  Relation g3(K) = g4(K): Exact Match on 246/246 (100.00%)
+
+--- Subclass: Fibered Knots (N = 5397) ---
+  Relation s(K) = 2*tau(K): Exact Match on 5397/5397 (100.00%)
+  Relation sigma(K) = -2*tau(K): Exact Match on 4990/5397 (92.46%)
+  Relation 2*g4(K) = |s(K)|: Exact Match on 3949/5394 (73.21%)
+  Relation g3(K) = g4(K): Exact Match on 79/5394 (1.46%)
+
+--- Manual Verification on 10 Documented Benchmark Knots ---
+Knot       | Alternating  | s(K)   | tau(K)   | sigma(K)   | g3    | g4   
+-----------------------------------------------------------------
+3_1        | Y            | 2      | 1        | -2         | 1     | 1    
+4_1        | Y            | 0      | 0        | 0          | 1     | 1    
+5_1        | Y            | 4      | 2        | -4         | 2     | 2    
+5_2        | Y            | 2      | 1        | -2         | 1     | 1    
+6_1        | Y            | 0      | 0        | 0          | 1     | 0    
+7_1        | Y            | 6      | 3        | -6         | 3     | 3    
+8_19       | N            | 6      | 3        | -6         | 3     | 3    
+9_42       | N            | 0      | 0        | 2          | 2     | 1    
+10_139     | N            | 8      | 4        | -6         | 4     | 4    
+12n_242    | N            | 10     | 5        | -8         | 5     | 5    
+

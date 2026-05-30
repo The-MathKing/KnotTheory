@@ -1,0 +1,72 @@
+================================================================================
+APPROACH 6: STRUCTURAL ANALYSIS OF THE INEQUALITY GRAPH & UNCONNECTED PAIRS
+================================================================================
+Loaded dataset with 12967 knots.
+
+Evaluating empirical ordering consistency on candidate unconnected invariant pairs...
+Invariant Pair (A, B)                         | A <= B Pct   | A >= B Pct   | Candidate Bound
+-----------------------------------------------------------------------------------------------
+(three_genus, topological_four_genus)         | 7.50         | 100.00       | |three_genus| >= |topological_four_genus|
+(three_genus, unknotting_number)              | 10.20        | 99.20        | |three_genus| >= |unknotting_number|
+(three_genus, rasmussen_invariant)            | 32.30        | 80.83        | None
+(three_genus, ozsvath_szabo_tau_invariant)    | 5.72         | 100.00       | |three_genus| >= |ozsvath_szabo_tau_invariant|
+(three_genus, turaev_genus)                   | 0.20         | 100.00       | |three_genus| >= |turaev_genus|
+(three_genus, bridge_index)                   | 43.54        | 93.64        | None
+(three_genus, braid_index)                    | 94.86        | 24.78        | None
+(smooth_four_genus, turaev_genus)             | 27.67        | 97.12        | |smooth_four_genus| >= |turaev_genus|
+(smooth_four_genus, bridge_index)             | 97.48        | 11.11        | |smooth_four_genus| <= |bridge_index|
+(smooth_four_genus, braid_index)              | 99.13        | 3.12         | |smooth_four_genus| <= |braid_index|
+(topological_four_genus, unknotting_number)   | 100.00       | 45.67        | |topological_four_genus| <= |unknotting_number|
+(topological_four_genus, signature)           | 76.93        | 28.65        | None
+(topological_four_genus, rasmussen_invariant) | 76.12        | 29.70        | None
+(topological_four_genus, ozsvath_szabo_tau_invariant) | 75.66        | 97.88        | |topological_four_genus| >= |ozsvath_szabo_tau_invariant|
+(topological_four_genus, turaev_genus)        | 28.08        | 97.08        | |topological_four_genus| >= |turaev_genus|
+(topological_four_genus, bridge_index)        | 97.58        | 11.37        | |topological_four_genus| <= |bridge_index|
+(topological_four_genus, braid_index)         | 99.33        | 2.49         | |topological_four_genus| <= |braid_index|
+(unknotting_number, rasmussen_invariant)      | 73.12        | 55.30        | None
+(unknotting_number, ozsvath_szabo_tau_invariant) | 41.83        | 100.00       | |unknotting_number| >= |ozsvath_szabo_tau_invariant|
+(unknotting_number, turaev_genus)             | 8.97         | 100.00       | |unknotting_number| >= |turaev_genus|
+(unknotting_number, bridge_index)             | 96.16        | 20.02        | |unknotting_number| <= |bridge_index|
+(unknotting_number, braid_index)              | 98.90        | 3.88         | |unknotting_number| <= |braid_index|
+(signature, rasmussen_invariant)              | 97.97        | 97.35        | |signature| <= |rasmussen_invariant|
+(signature, ozsvath_szabo_tau_invariant)      | 27.21        | 99.42        | |signature| >= |ozsvath_szabo_tau_invariant|
+(signature, turaev_genus)                     | 28.55        | 89.77        | None
+(signature, bridge_index)                     | 69.28        | 33.77        | None
+(signature, braid_index)                      | 89.62        | 18.80        | None
+(rasmussen_invariant, ozsvath_szabo_tau_invariant) | 27.69        | 100.00       | |rasmussen_invariant| >= |ozsvath_szabo_tau_invariant|
+(rasmussen_invariant, turaev_genus)           | 29.37        | 88.92        | None
+(rasmussen_invariant, bridge_index)           | 69.14        | 33.87        | None
+(rasmussen_invariant, braid_index)            | 88.88        | 19.15        | None
+(ozsvath_szabo_tau_invariant, turaev_genus)   | 43.75        | 88.79        | None
+(ozsvath_szabo_tau_invariant, bridge_index)   | 97.48        | 11.01        | |ozsvath_szabo_tau_invariant| <= |bridge_index|
+(ozsvath_szabo_tau_invariant, braid_index)    | 99.13        | 3.12         | |ozsvath_szabo_tau_invariant| <= |braid_index|
+(turaev_genus, bridge_index)                  | 100.00       | 0.00         | |turaev_genus| <= |bridge_index|
+(turaev_genus, braid_index)                   | 100.00       | 0.00         | |turaev_genus| <= |braid_index|
+(bridge_index, braid_index)                   | 100.00       | 6.15         | |bridge_index| <= |braid_index|
+
+Top Novel Candidate Structural Orderings:
+ - |three_genus| >= |topological_four_genus| holds across 100.00% of evaluated knots.
+ - |three_genus| >= |unknotting_number| holds across 99.20% of evaluated knots.
+ - |three_genus| >= |ozsvath_szabo_tau_invariant| holds across 100.00% of evaluated knots.
+ - |three_genus| >= |turaev_genus| holds across 100.00% of evaluated knots.
+ - |smooth_four_genus| >= |turaev_genus| holds across 97.12% of evaluated knots.
+ - |smooth_four_genus| <= |bridge_index| holds across 97.48% of evaluated knots.
+ - |smooth_four_genus| <= |braid_index| holds across 99.13% of evaluated knots.
+ - |topological_four_genus| <= |unknotting_number| holds across 100.00% of evaluated knots.
+ - |topological_four_genus| >= |ozsvath_szabo_tau_invariant| holds across 97.88% of evaluated knots.
+ - |topological_four_genus| >= |turaev_genus| holds across 97.08% of evaluated knots.
+ - |topological_four_genus| <= |bridge_index| holds across 97.58% of evaluated knots.
+ - |topological_four_genus| <= |braid_index| holds across 99.33% of evaluated knots.
+ - |unknotting_number| >= |ozsvath_szabo_tau_invariant| holds across 100.00% of evaluated knots.
+ - |unknotting_number| >= |turaev_genus| holds across 100.00% of evaluated knots.
+ - |unknotting_number| <= |bridge_index| holds across 96.16% of evaluated knots.
+ - |unknotting_number| <= |braid_index| holds across 98.90% of evaluated knots.
+ - |signature| <= |rasmussen_invariant| holds across 97.97% of evaluated knots.
+ - |signature| >= |ozsvath_szabo_tau_invariant| holds across 99.42% of evaluated knots.
+ - |rasmussen_invariant| >= |ozsvath_szabo_tau_invariant| holds across 100.00% of evaluated knots.
+ - |ozsvath_szabo_tau_invariant| <= |bridge_index| holds across 97.48% of evaluated knots.
+ - |ozsvath_szabo_tau_invariant| <= |braid_index| holds across 99.13% of evaluated knots.
+ - |turaev_genus| <= |bridge_index| holds across 100.00% of evaluated knots.
+ - |turaev_genus| <= |braid_index| holds across 100.00% of evaluated knots.
+ - |bridge_index| <= |braid_index| holds across 100.00% of evaluated knots.
+

@@ -1,0 +1,36 @@
+STEP 1 -- validate the signature formula against KnotInfo ground truth
+  T(2,3) = 3_1       sigma = -2   matches KnotInfo
+  T(2,5) = 5_1       sigma = -4   matches KnotInfo
+  T(2,7) = 7_1       sigma = -6   matches KnotInfo
+  T(2,9) = 9_1       sigma = -8   matches KnotInfo
+  T(2,11) = 11a_367   sigma = -10  matches KnotInfo
+  T(3,4) = 8_19      sigma = -6   matches KnotInfo
+  T(3,5) = 10_124    sigma = -8   matches KnotInfo
+
+STEP 2 -- the engine returns -(e-2) for every positive 3-braid it accepts
+  1401 positive 3-braid knots tested; 0 gave sigma != -(e-2).
+  The engine's signature is a restatement of its own input length.
+
+STEP 3 -- counterexamples: positive 3-braid knots T(3,q) = closure of (s1 s2)^q
+  knot        c  s = 2g  |sigma|  DEFECT    old (buggy) new (fixed)
+  T(3,2)      4       2        2       0             -2          -2
+  T(3,4)      8       6        6       0             -6          -6
+  T(3,5)     10       8        8       0             -8          -8
+  T(3,7)     14      12        8       4            -12          -8  <-- counterexample
+  T(3,8)     16      14       10       4            -14         -10  <-- counterexample
+  T(3,10)     20      18       14       4            -18         -14  <-- counterexample
+  T(3,11)     22      20       16       4            -20         -16  <-- counterexample
+  T(3,13)     26      24       16       8            -24         -16  <-- counterexample
+  T(3,14)     28      26       18       8            -26         -18  <-- counterexample
+  T(3,16)     32      30       22       8            -30         -22  <-- counterexample
+  T(3,17)     34      32       24       8            -32         -24  <-- counterexample
+  T(3,19)     38      36       24      12            -36         -24  <-- counterexample
+
+Smallest counterexample: T(3,7), a positive 3-braid knot with c = 14 crossings,
+braid index 3, s = 12, |sigma| = 8, defect = 4 > 0.
+The old engine reports sigma = -(e-2) regardless (column 'old (buggy)'), so it could
+never see this. The new, validated engine (column 'new (fixed)') agrees exactly with
+the independently-checked closed form at every q -- assertion above confirms this for
+all torus braids in this sweep.
+The defect therefore does NOT require braid index >= 4, and positive 3-braid
+closures are NOT signature-rigid. Log Entry 15 (original draft) was correctly retracted.

@@ -1,2 +1,6 @@
 manuscript/
 .DS_Store
+__pycache__/
+*.pyc
+/audit
+src/models/audit

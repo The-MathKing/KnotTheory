@@ -1,0 +1,24 @@
+       CLAIM IN log.tex                   CLAIMED     ACTUAL
+-------------------------------------------------------------
+WRONG  E3 |sigma|<=2g4 : evaluated          12967      12947
+OK     E3 |sigma|<=2g4 : tight %             74.2       74.2
+WRONG  E3 |sigma|<=2g4 : mean slack         0.628      0.517
+WRONG  E3 |sigma|<=2g4 : max slack            8.0        4.0
+WRONG  E3 |s|<=2g4 : tight %                100.0       74.8
+WRONG  E3 |s|<=2g4 : mean slack             0.000      0.505
+WRONG  E3 |s|<=2g4 : max slack                0.0        4.0
+WRONG  E3 |tau|<=g4 : tight %                75.3       74.8
+OK     E3 g4<=g3 : tight %                    5.9        5.9
+WRONG  E4 fibered: 2g4=|s| exact %          100.0       73.2
+WRONG  E4 fibered: sigma=-2tau exact %       71.4       92.5
+WRONG  E4 alternating: 2g4=|s| exact %      100.0       74.6
+WRONG  E9 |tau|<=g4_top : violations            0         63
+WRONG  E9 |s|/2<=g4_top : violations            0         63
+WRONG  E9 u>=g4+gT : violations                84        495
+WRONG  E9 g3>=g4+gT : violations               12        109
+WRONG  E10 g4 pinched exactly %              74.2       43.8
+OK     E12 defect knots (|s|>|sigma|)         343        343
+OK     E13 gT<=braid-1 : evaluated           2953       2953
+OK     E13 gT<=braid-1 : violations             0          0
+-------------------------------------------------------------
+15 of 20 audited claims do not match the data.

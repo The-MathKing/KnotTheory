@@ -1,0 +1,40 @@
+================================================================================
+APPROACH 7: NEAR-VIOLATION STUDY OF CANDIDATE CONJECTURAL BOUNDS
+================================================================================
+Loaded dataset with 12967 knots.
+
+--- Conj 1: |tau(K)| <= g4_top(K) ---
+Total Evaluated: 2974 | Violations: 63 | Exact Boundary (Slack=0): 2187
+  [DISPROVEN]: Discovered 63 counterexamples! First 3 counterexamples:
+    - 10_139 (Slack = -1.0)
+    - 10_145 (Slack = -1.0)
+    - 10_152 (Slack = -1.0)
+
+--- Conj 2: |s(K)|/2 <= g4_top(K) ---
+Total Evaluated: 2973 | Violations: 63 | Exact Boundary (Slack=0): 2186
+  [DISPROVEN]: Discovered 63 counterexamples! First 3 counterexamples:
+    - 10_139 (Slack = -1.0)
+    - 10_145 (Slack = -1.0)
+    - 10_152 (Slack = -1.0)
+
+--- Conj 3: u(K) >= g4(K) + Turaev(K) ---
+Total Evaluated: 2352 | Violations: 495 | Exact Boundary (Slack=0): 861
+  [DISPROVEN]: Discovered 495 counterexamples! First 3 counterexamples:
+    - 8_19 (Slack = -1.0)
+    - 8_21 (Slack = -1.0)
+    - 9_42 (Slack = -1.0)
+
+--- Conj 4: g3(K) >= g4(K) + Turaev(K) ---
+Total Evaluated: 2953 | Violations: 109 | Exact Boundary (Slack=0): 496
+  [DISPROVEN]: Discovered 109 counterexamples! First 3 counterexamples:
+    - 8_19 (Slack = -1.0)
+    - 9_49 (Slack = -1.0)
+    - 10_124 (Slack = -1.0)
+
+--- Conj 5: |sigma(K)|/2 <= u(K) - Turaev(K) ---
+Total Evaluated: 2352 | Violations: 347 | Exact Boundary (Slack=0): 815
+  [DISPROVEN]: Discovered 347 counterexamples! First 3 counterexamples:
+    - 8_19 (Slack = -1.0)
+    - 8_21 (Slack = -1.0)
+    - 9_42 (Slack = -1.0)
+

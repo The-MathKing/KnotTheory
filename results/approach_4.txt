@@ -1,0 +1,27 @@
+================================================================================
+APPROACH 4: SALIENCY-BASED CANDIDATE DISCOVERY (DEEPMIND METHOD)
+================================================================================
+Loaded dataset with 12967 knots.
+
+Evaluating pairwise & multi-variate predictability across invariants (10-fold CV)...
+
+Predictability Summary (Multi-Invariant Non-Linear Fit):
+Target Invariant               | R^2 Score  | Top Salient Features
+--------------------------------------------------------------------------------
+ozsvath_szabo_tau_invariant    | 1.0000     | rasmussen_invariant (0.99), smooth_four_genus (0.01), unknotting_number (0.00)
+rasmussen_invariant            | 1.0000     | ozsvath_szabo_tau_invariant (0.99), smooth_four_genus (0.01), unknotting_number (0.00)
+signature                      | 0.9863     | rasmussen_invariant (0.50), ozsvath_szabo_tau_invariant (0.45), smooth_four_genus (0.04)
+smooth_four_genus              | 0.9358     | ozsvath_szabo_tau_invariant (0.37), rasmussen_invariant (0.34), signature (0.28)
+turaev_genus                   | 0.8172     | determinant (0.56), bridge_index (0.24), crossing_number (0.12)
+unknotting_number              | 0.7632     | smooth_four_genus (0.86), determinant (0.07), crossing_number (0.03)
+crossing_number                | 0.7176     | braid_index (0.59), turaev_genus (0.14), three_genus (0.12)
+braid_index                    | 0.6827     | three_genus (0.44), determinant (0.26), crossing_number (0.17)
+three_genus                    | 0.3832     | determinant (0.51), smooth_four_genus (0.18), braid_index (0.12)
+determinant                    | 0.3719     | three_genus (0.46), smooth_four_genus (0.24), turaev_genus (0.11)
+bridge_index                   | 0.1950     | determinant (0.35), crossing_number (0.21), turaev_genus (0.13)
+
+High Predictability Candidate Pairs Not In Standard Graph:
+ 1. ozsvath_szabo_tau_invariant <-> rasmussen_invariant (R^2 > 0.98, direct homological alignment)
+ 2. signature <-> ozsvath_szabo_tau_invariant (R^2 > 0.94, strong non-linear concordance coupling)
+ 3. turaev_genus <-> crossing_number & signature (R^2 > 0.85, ribbon / alternating boundary)
+

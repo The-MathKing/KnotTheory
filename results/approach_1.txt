@@ -1,0 +1,46 @@
+================================================================================
+APPROACH 1: INEQUALITY-SLACK MINING & TIGHTNESS PREDICTION
+================================================================================
+Loaded dataset with 12967 knots.
+
+--- Inequality: Sigma <= 2*g4 ---
+Evaluated Knots: 12947
+Tight (Slack = 0): 9607 (74.20%) | Loose (Slack > 0): 3340 (25.80%)
+Slack Distribution: Mean=0.517, Std=0.879, Min=0.0, Median=0.0, Max=4.0
+Top 3 Predictors of Tightness: determinant (0.416), volume (0.345), three_genus (0.239)
+
+--- Inequality: g4 <= g3 ---
+Evaluated Knots: 12947
+Tight (Slack = 0): 765 (5.91%) | Loose (Slack > 0): 12182 (94.09%)
+Slack Distribution: Mean=2.192, Std=1.018, Min=0.0, Median=2.0, Max=5.0
+Top 3 Predictors of Tightness: volume (0.507), determinant (0.261), three_genus (0.230)
+
+--- Inequality: Sigma <= 2*u ---
+Evaluated Knots: 8038
+Tight (Slack = 0): 3189 (39.67%) | Loose (Slack > 0): 4849 (60.33%)
+Slack Distribution: Mean=1.540, Std=1.431, Min=0.0, Median=2.0, Max=6.0
+Top 3 Predictors of Tightness: arc_index (0.544), braid_index (0.223), determinant (0.081)
+
+--- Inequality: |tau| <= g4 ---
+Evaluated Knots: 12947
+Tight (Slack = 0): 9687 (74.82%) | Loose (Slack > 0): 3260 (25.18%)
+Slack Distribution: Mean=0.252, Std=0.435, Min=0.0, Median=0.0, Max=2.0
+Top 3 Predictors of Tightness: three_genus (0.364), determinant (0.340), volume (0.296)
+
+--- Inequality: |s| <= 2*g4 ---
+Evaluated Knots: 12946
+Tight (Slack = 0): 9686 (74.82%) | Loose (Slack > 0): 3260 (25.18%)
+Slack Distribution: Mean=0.505, Std=0.871, Min=0.0, Median=0.0, Max=4.0
+Top 3 Predictors of Tightness: three_genus (0.364), determinant (0.340), volume (0.296)
+
+--- Inequality: g4_top <= g4 ---
+Evaluated Knots: 2974
+Tight (Slack = 0): 2898 (97.44%) | Loose (Slack > 0): 76 (2.56%)
+Slack Distribution: Mean=0.026, Std=0.158, Min=0.0, Median=0.0, Max=1.0
+Top 3 Predictors of Tightness: determinant (0.531), three_genus (0.351), braid_length (0.065)
+
+--- Inequality: u <= c ---
+Evaluated Knots: 8038
+Tight (Slack = 0): 0 (0.00%) | Loose (Slack > 0): 8038 (100.00%)
+Slack Distribution: Mean=10.556, Std=1.034, Min=2.0, Median=11.0, Max=12.0
+
