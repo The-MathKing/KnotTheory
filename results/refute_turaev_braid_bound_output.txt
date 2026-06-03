@@ -1,0 +1,19 @@
+STEP 1 -- cross-check the cited formula against our own KnotInfo data
+  8_19 = T(3,4): tabulated g_T=1, formula predicts g_T=1, braid index=3 (OK)
+  10_124 = T(3,5): tabulated g_T=1, formula predicts g_T=1, braid index=3 (OK)
+
+STEP 2 -- where does g_T(T_3,q) <= braid_index - 1 = 2 first fail?
+    n  i    q  coprime  crossings   g_T  braid_idx-1  violates?
+    1  1    4      yes          8     1            2         no
+    1  2    5      yes         10     1            2         no
+    2  1    7      yes         14     2            2         no
+    2  2    8      yes         16     2            2         no
+    3  1   10      yes         20     3            2        YES
+    3  2   11      yes         22     3            2        YES
+    4  1   13      yes         26     4            2        YES
+    4  2   14      yes         28     4            2        YES
+
+First violation: T(3,10) (n=3), 20 crossings, braid index 3, g_T=3.
+g_T=3 > braid_index-1=2, so 'g_T(K) <= braid_index(K) - 1' is FALSE in general.
+KnotInfo tabulates knots only up to 12 crossings; T(3,10) has 20 crossings, which
+is why the empirical sweep in Log Entries 9 and 14 never encountered a violation.

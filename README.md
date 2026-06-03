@@ -35,7 +35,7 @@ run, saved under `results/` and reproducible with the commands given.
 - **`src/data_ingestion/`** -- KnotInfo/NewDB parsing and an inequality-graph builder.
 - **`src/experiments/`** -- 10 independent exploratory approaches (inequality-slack mining, symbolic regression on subclasses, anomaly detection, saliency analysis, extremal statistics, structural graph analysis, conjecture-violation search, derived-bound cross-validation, a positive-knot deep dive, and family/boundary robustness testing) plus 3 "deep dive" suites (15 further tests on the defect, Turaev genus, and concordance slack) that run directly against the CSV data.
 - **`src/math_engine/`** -- an exact, self-validating computational engine (`braid_topology.py`) for positive braid closures: knot-ness, Rasmussen `s`, 3-genus, and signature via a from-scratch implementation of the Collins (2007) Seifert-matrix algorithm, validated against 34 torus knots and all 17 KnotInfo knots with an authentic positive-braid word. Two scripts (`investigate_braid_families.py`, `syllable_depth_proof.py`) use it to search infinite braid families for the signature defect $|s(K)|-|\sigma(K)|$.
-- **`verification/`** -- standalone audit scripts. `audit_log_claims.py` recomputes 20 headline log.tex numbers from raw data and flags mismatches; `refute_3braid_claim.py` demonstrates the bug in the old (now-replaced) 3-braid signature engine and exhibits an explicit counterexample ($T(3,7)$) to a retracted claim.
+- **`verification/`** -- standalone audit scripts. `audit_log_claims.py` recomputes 20 headline log.tex numbers from raw data and flags mismatches; `refute_3braid_claim.py` demonstrates the bug in the old (now-replaced) 3-braid signature engine and exhibits an explicit counterexample ($T(3,7)$) to a retracted claim; `refute_turaev_braid_bound.py` shows that a candidate bound found with zero violations across all 2,953 tabulated KnotInfo knots ($g_T(K)\le\text{braid index}(K)-1$) is false in general, citing a published closed-form Turaev-genus formula (Abe--Kishimoto 2010, Lowrance 2011) and giving the smallest counterexample, $T(3,10)$.
 - **`results/`** -- raw stdout of every script named above, one file per script, regenerated September 22, 2026. Every number in `manuscript/log.tex` after Log Entry 3 traces to one of these files.
 - **`src/models/`** -- an earlier, now-inactive PyTorch/adversarial-ML architecture (see `manuscript/paper.tex`) that was proposed but not completed; kept for the record, not currently part of the reproducible pipeline described above.
 
@@ -57,7 +57,8 @@ python venv/bin/python src/experiments/run_deep_dives.py          # all 15 deep-
 python venv/bin/python src/math_engine/investigate_braid_families.py
 python venv/bin/python src/math_engine/syllable_depth_proof.py
 python venv/bin/python verification/audit_log_claims.py           # 20-claim audit vs. raw CSV
-python venv/bin/python verification/refute_3braid_claim.py        # T(3,7) counterexample
+python venv/bin/python verification/refute_3braid_claim.py        # T(3,7) signature counterexample
+python venv/bin/python verification/refute_turaev_braid_bound.py  # T(3,10) Turaev-genus counterexample
 ```
 
 ## Usage

@@ -320,4 +320,25 @@ Torus braids $T(3,q)$, $q$ coprime to 3 & 12 & 8 & $T(3,7)$, $c=14$ \\
 \item A genuine open-flavored quantitative question survives this audit: for the torus family $T(3,q)$, the ratio $|\sigma|/(2g)$ takes values $1, 1, 1, \tfrac23, \tfrac57, \ldots$ as $q\to\infty$ and appears to approach a limit around $2/3$ from above and below. This overlaps published work (Feller, \emph{The signature of positive braids is linearly bounded by their first Betti number}, 2016; Baader--Dehornoy et al., \emph{Signature spectrum of positive braids}, 2021; Greene--Liechti, \emph{On the signature of a positive braid}, 2023) on the general conjecture $b_1(\beta) \ge -\sigma(\beta) > \tfrac12 b_1(\beta)$ for positive braids -- it is not a new open problem, but it is a correct, checkable, and narrow target for the project's remaining scope (see README.md ``Next Steps'').
 \end{itemize}
 
+\section*{Log Entry 17: $g_T(K)\le\text{braid index}(K)-1$ is FALSE in general -- refuted via published literature}
+\textbf{Date:} September 22, 2026 \quad \textbf{Command:} \texttt{python verification/refute\_turaev\_braid\_bound.py > results/refute\_turaev\_braid\_bound\_output.txt} \\
+\textbf{Question.} Log Entries 9 and 14 both independently found $g_T(K)\le\text{braid index}(K)-1$ with \textbf{zero violations across the 2,953 KnotInfo knots ($c\le12$) with both invariants tabulated}. Before treating this as a candidate theorem, the literature was checked for (a) an existing proof, and (b) whether it is already known to be false.
+
+\textbf{What the literature says.} Jin, Lowrance, Polston, and Zheng, \emph{On the Turaev Genus of Torus Knots} (arXiv:1703.02506), cite a closed-form theorem of Abe--Kishimoto (2010) and Lowrance (2011):
+\[
+g_T(T_{3,3n+i}) = n \qquad \text{for every } n\ge0 \text{ and } i\in\{0,1,2\},
+\]
+for the torus knots $T_{3,q}$ on \emph{three} strands ($q=3n+i$, taken coprime to 3 so that $T_{3,q}$ is a knot). This formula was cross-checked against our own KnotInfo data before use: it predicts $g_T(T_{3,4})=g_T(T_{3,5})=1$ (case $n=1$), which matches the tabulated values for $8_{19}$ and $10_{124}$ exactly (both $g_T=1$, both braid index 3).
+
+\textbf{The refutation.} The braid index of $T_{3,q}$ is $3$ for every $q>3$ (classical: braid index of $T(p,q)$, $p<q$ coprime, is $p$), so the conjectured bound would require $g_T(T_{3,q})\le 3-1=2$ for \emph{all} such $q$. But the cited formula gives $g_T(T_{3,q})=n\to\infty$ as $q\to\infty$ with $n$. The bound first fails at $n=3$:
+\[
+T_{3,10} \ (q=3\cdot3+1,\ \gcd(3,10)=1): \quad g_T=3, \quad \text{braid index}=3, \quad \text{crossing number}=\min(3\cdot9,\,10\cdot2)=20.
+\]
+\[
+3 = g_T(T_{3,10}) > \text{braid index}(T_{3,10})-1 = 2.
+\]
+\textbf{Why the KnotInfo-only check missed this.} $T_{3,10}$ has 20 crossings -- KnotInfo tabulates knots up to 12 crossings. The bound is exact and tight ($g_T=\text{braid index}-1=2$) for $n\le2$ (i.e.\ $T_{3,4}$ through $T_{3,8}$, all $\le16$ crossings, mostly within or just past the tabulated range), and only breaks at $n=3$. \textbf{``Zero violations in 2,953 tabulated knots'' was a true statement about a finite, crossing-number-capped sample, not a proof, and it turned out to describe a bound that fails at the very next accessible torus knot.}
+
+\textbf{Significance.} This is the same lesson as Log Entry 16's retraction, arrived at the opposite way: there, a bound was falsely claimed to hold because the code couldn't test it; here, a bound genuinely does hold on every example the database could test, and still turns out to be false. Both entries argue for the same discipline: a finite computational sweep, however large, is evidence bounded by its own search range, not a proof, and this project's remaining scope should prioritize checking any further candidate bound against known literature (as done here) before reporting it as a finding.
+
 \end{document}
