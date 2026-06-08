@@ -1,0 +1,10 @@
+STEP 1 -- base case (pure alternation), k = 1..40
+  40 values of k tested, 0 mismatches.
+
+STEP 2 -- reduction lemma: s_B depends only on (e,k), not on distribution
+  160 random (e,k,distribution) triples tested, 0 where distribution mattered (should be 0), 0 where the formula was wrong (should be 0).
+
+STEP 3 -- full formula g_T(D) = floor(k/2) - 1, k = 2..30, e = k..k+20
+  203 (e,k) pairs tested, 0 mismatches.
+
+ALL CHECKS PASSED
