@@ -1,4 +1,16 @@
 """
+CORRECTION (see manuscript/log.tex Log Entry 19): the reduction lemma
+below (Lemma 1) is NOT original. It is A. Lowrance's Corollary 3.10,
+"The Khovanov Width of Twisted Links and Closed 3-Braids" (Comment. Math.
+Helv. 86 (2011), arXiv:0901.2196), which he attributes as implicit in
+Champanerkar-Kofman. The proof given here is an independently-derived
+proof of that same fact via a union-find/Temperley-Lieb argument, not a
+new result. Lowrance's Proposition 4.3 proof also uses the even-k half of
+the base case below (Lemma 2) as an intermediate step. What this file
+still contributes: an independent proof by a different technique, the
+explicit general parity closed form, and a validated, reusable engine
+(src/math_engine/turaev_diagram.py) -- not a new mathematical fact.
+
 THEOREM (syllable formula for 3-strand positive braid diagrams).
 
 Let w be a positive braid word on 3 strands, written as k >= 1 maximal
