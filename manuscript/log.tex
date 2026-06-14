@@ -378,4 +378,19 @@ s_B(D) = (e-k) + \begin{cases} 2 & k \text{ odd} \\ 1 & k \text{ even} \end{case
 \end{enumerate}
 \textbf{Significance.} This is the third time in this log that a candidate finding was checked against literature before being reported, and the third time that check changed the conclusion (Log Entry 16: a bound was falsely claimed true; Log Entry 17: a bound that survived testing turned out false; Log Entry 19: a proof that felt original turned out to reprove a nine-year-old corollary). The pattern itself -- and the discipline of checking before claiming -- is the most defensible throughline of this project to date.
 
+\section*{Log Entry 20: Beyond 3 Strands -- an Explicit CONJECTURE, Not a Theorem}
+\textbf{Date:} September 22, 2026 \\
+\textbf{Methodology.} Before attempting a literature check or a proof, the pure-cyclic-alternation pattern (generators $1,2,\ldots,n-1,1,2,\ldots$ repeating, $k$ syllables) was tested computationally for $n=3$ through $9$ using \texttt{src/math\_engine/turaev\_diagram.py}, to see whether Log Entry 18's $n=3$ closed form generalizes.
+
+\textbf{Observation.} It does not generalize the way a first guess would suggest. $n=4$ (3 generators) empirically fits $g_T(D) = \lfloor (k-2)/3 \rfloor$ cleanly (0 mismatches, $k=3..39$) -- suggestive of a naive ``period $= n-1$'' pattern. But $n=5$ (4 generators) breaks that guess immediately: it grows with period 2 (same period as $n=3$), not period 4. Measuring the exact period and growth rate for $n=3$ through $9$ gives:
+\[
+\text{period} = \begin{cases} 2 & n-1 \text{ even} \\ n-1 & n-1 \text{ odd} \end{cases}, \qquad
+\text{growth per syllable} = \frac{\lfloor (n-1)/2 \rfloor}{n-1}.
+\]
+This is consistent with a bipartite/2-colorability structure on the cycle graph $C_{n-1}$ formed by the $n-1$ generators under the cyclic alternation pattern (a cycle is 2-colorable iff its length is even), but this connection has not been proved here.
+
+\textbf{Explicitly not claimed.} This is reported as a \textbf{conjecture with strong computational support} ($n=3..9$, $k$ up to $\sim40$ each), not a theorem: (a) it has not been checked against the literature with the same rigor as Log Entries 17 and 19, and given that check has changed the conclusion twice already in this log, it would be inconsistent to skip it here; (b) no proof has been attempted, let alone completed, for $n\ge5$; (c) only the single cyclic-alternation word pattern has been tested, not the general syllable-length-independent claim (Log Entry 18's Lemma 1 is known to be general for any $n$ per Lowrance's Corollary 3.10, but whether the BASE-CASE closed form above is exactly the minimum over all generator orderings, not just the cyclic one, is untested).
+
+\textbf{Significance.} Flagged honestly as future work, not as a result of this project as it stands. Given the track record in this log, the appropriate next step before any further claim is: search the literature for $B_n$, $n\ge4$, closed-braid Turaev genus formulas (initial searches this session found only 3-strand results, consistent with the fact that Murasugi's clean conjugacy normal form -- the tool that makes the 3-strand case tractable -- has no established analogue for $n\ge4$, but a more thorough search is warranted before concluding this is actually open).
+
 \end{document}

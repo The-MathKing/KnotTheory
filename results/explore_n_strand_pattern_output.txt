@@ -1,0 +1,12 @@
+  n  ngens  period  sum/period   growth=floor(ngens/2)/ngens
+  3      2       2         1.0                        0.5000  [OK]
+  4      3       3         1.0                        0.3333  [OK]
+  5      4       2         1.0                        0.5000  [OK]
+  6      5       5         2.0                        0.4000  [OK]
+  7      6       2         1.0                        0.5000  [OK]
+  8      7       7         3.0                        0.4286  [OK]
+  9      8       2         1.0                        0.5000  [OK]
+
+This is exploratory evidence for a conjecture (see manuscript/log.tex
+Log Entry 20), not a proof, and has not been checked against the
+literature with the same rigor as Log Entries 17 and 19.
