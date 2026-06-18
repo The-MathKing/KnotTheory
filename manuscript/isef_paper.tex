@@ -1,0 +1,147 @@
+\documentclass[11pt]{article}
+\usepackage{geometry}
+\geometry{letterpaper, margin=1in}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{enumitem}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\newtheorem{conjecture}{Conjecture}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+
+\title{An Audited Computational Framework for Knot-Invariant Inequalities,\\
+with an Elementary Diagram-Level Turaev Genus Calculus for Positive Braids}
+\author{Aryan Padarthi}
+\date{September 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We report on a database-driven search for structural inequalities among classical knot invariants over the KnotInfo database (12{,}967 knots), and on the discipline required to make such a search trustworthy. An initial round of exploratory mining produced a set of headline claims that, on audit, were found to not correspond to the data: a signature-computation routine was shown to be tautologically incapable of detecting the phenomenon it claimed to rule out, and several narrative summaries in the accompanying scripts were found to be hardcoded and inconsistent with their own computed output. We document this audit in full and rebuild the pipeline from a validated foundation. Two new computational engines are then constructed and validated against independent ground truth: an implementation of J.~Collins' Seifert-matrix algorithm for positive braid closures (validated against 34 torus knots and all 17 KnotInfo knots with an authentic positive-braid presentation), and a from-scratch Kauffman-state (Temperley--Lieb) circle-counting engine for the Turaev genus of a closed-braid diagram (validated against three alternating knots and 596 real KnotInfo braid presentations). Using these engines we test two candidate structural bounds; both are shown to be false, one refuted by an explicit small counterexample, the other refuted by a published theorem that our own computation would otherwise have missed entirely, since the smallest counterexample lies outside the database's 12-crossing tabulation limit. We then prove an elementary closed-form description of how the syllable structure of a positive 3-strand braid word controls the Turaev genus of its standard diagram, independent of crossing number, and give a from-scratch inductive proof via a union-find argument. Checking this claim against the literature, as our own audit discipline requires, shows the underlying reduction lemma is not new (A.~Lowrance, 2011); our contribution is an independent proof by a different technique, together with the validated, reusable engine, and an honestly-labeled conjectural extension beyond three strands that is not claimed as a theorem. We argue that the repeated discipline of checking computational findings against both the source data and the published literature before reporting them -- which changed our conclusion on three separate occasions in this project -- is itself the most defensible and reproducible product of this work.
+\end{abstract}
+
+\section{Introduction}
+\label{sec:intro}
+
+Large tabulated databases of knot invariants (KnotInfo, the Knot Atlas, and others) make it tempting to search computationally for new structural inequalities among classical invariants (signature $\sigma$, the Seifert and 4-ball genera, the unknotting number) and modern homological ones (the Rasmussen $s$-invariant \cite{rasmussen2010}, the Ozsv\'ath--Szab\'o $\tau$, the Turaev genus $g_T$ \cite{turaev1987}): fix two invariants $A(K)$ and $B(K)$, sweep the database, and report whether $A(K) \leq B(K)$ holds universally. This kind of search is genuinely useful -- several of the inequalities in Section~\ref{sec:audit} were independently rediscovered this way, and rediscovering a known theorem from raw data is itself a useful check on a computational pipeline. But it carries two distinct failure modes that are easy to miss and, we found, easy to fall into even while actively trying to avoid them:
+
+\begin{enumerate}
+\item \textbf{A computational routine can be structurally incapable of finding the thing it is being used to test for.} If a signature-computation routine is (unknowingly) tautological -- always returning a value forced by its own input length, rather than a genuine computation from the braid word -- then ``zero counterexamples found in 1{,}280 configurations'' is not evidence for anything, no matter how large the search.
+\item \textbf{A bound can hold on every tabulated example and still be false.} Any finite database has a crossing-number ceiling. A bound that first fails outside that ceiling will pass every test the database can run.
+\end{enumerate}
+
+This paper documents both failure modes as they occurred in our own project, the audit process that caught them, and the mathematical content that survived and grew out of that process: a validated computational framework for two braid-diagram invariants, two refuted candidate bounds, and a proved (though, on inspection, not original) elementary formula for how word structure controls the Turaev genus of a positive 3-braid diagram, together with a labeled-as-conjectural extension to more strands.
+
+The full, dated, reproducible record of this process is kept as a running log, \texttt{manuscript/log.tex}, with every number in this paper traceable to a script and a saved output file under \texttt{results/}. This paper is a condensed narrative account of that log; Sections~\ref{sec:audit}--\ref{sec:conjecture} correspond respectively to Log Entries 3, 16--17, and 18--20.
+
+\section{The Audit}
+\label{sec:audit}
+
+An initial exploratory pipeline mined KnotInfo for candidate inequalities among the invariants $\sigma$ (signature), $s$ (Rasmussen invariant), $\tau$ (Ozsv\'ath--Szab\'o tau), $g_3$ (Seifert genus), $g_4$ (smooth 4-genus), $g_4^{top}$ (topological 4-genus), $u$ (unknotting number), and $g_T$ (Turaev genus), and a separate module searched infinite families of positive braid closures for a signature defect $\Delta(K) = |s(K)| - |\sigma(K)|$.
+
+Before extending this work, we re-ran every script from a clean checkout and diffed its output against the log's existing claims. Of 20 spot-checked headline numbers, 15 did not match; one script crashed after its first result due to a duplicate-column bug and could not have produced the six further rows attributed to it; and the braid-family search's central claim -- that positive 3-braid closures are ``signature-rigid'' and that the defect $\Delta(K)$ requires braid index $\geq 4$ -- traced to a Seifert-matrix routine that, for any positive 3-braid word, returned $\sigma = -(e-2)$ regardless of the word's actual structure ($e$ being the crossing number). This routine could not have detected a defect by construction. The claim itself is false: $T(3,7)$, a positive 3-braid knot with 14 crossings, has $s=12$ and $|\sigma|=8$, a defect of 4.
+
+We additionally found six further instances, spread across four scripts, of narrative summary text that was hardcoded rather than computed -- for example, one script asserted that a measured correlation of $r=0.13$ (explaining 1.6\% of variance) showed a Turaev-genus formula that ``strongly governs'' the data. Every one of these was traced, fixed to derive its stated claim from the actual computation, and re-run.
+
+\subsection{A validated Seifert-matrix engine}
+
+We replaced the tautological signature routine with a from-scratch implementation of J.~Collins' algorithm for computing a Seifert matrix from a braid representation \cite{collins2007}, specialized to all-positive words. Given a braid word, the algorithm places a homology generator between each pair of consecutive same-index crossings and computes pairwise linking numbers by a five-case rule depending on the relative positions of the crossings. We validated this implementation against two independent sources of ground truth: the closed-form Brieskorn--Hirzebruch signature formula for 34 torus knots $T(p,q)$, $2 \leq p \leq 6$, and all 17 knots in KnotInfo (crossing number $\leq 12$) that carry an authentic positive-braid presentation in the database. Both checks pass with zero mismatches (\texttt{src/math\_engine/braid\_topology.py}).
+
+Re-running the braid-family search with this validated engine finds that the signature defect is \emph{common}, not absent, within braid index 3: 84--89\% of the knots synthesized in two independently-constructed 3-braid word families exhibit a nonzero defect, at crossing numbers as low as 10 -- far below the retracted claim's implicit threshold.
+
+\section{Two Refuted Candidate Bounds}
+\label{sec:refuted}
+
+With the corrected pipeline, we identified a second candidate bound with a striking empirical signature: $g_T(K) \leq \text{braid index}(K) - 1$ held with \emph{zero violations} across all 2{,}953 KnotInfo knots with both invariants tabulated, confirmed two ways (a direct sweep and an independent inequality-graph scan).
+
+Rather than report this, we checked it against the literature, per the discipline established in Section~\ref{sec:audit}. Jin, Lowrance, Polston, and Zheng \cite{jlpz2017} cite a closed-form result of Abe--Kishimoto \cite{abekishimoto2010} and Lowrance \cite{lowrance2011}: for the torus knots $T(3,q)$,
+\[
+g_T(T_{3,3n+i}) = n \qquad \text{for all } n \geq 0,\ i \in \{0,1,2\}.
+\]
+The braid index of $T(3,q)$ is fixed at 3 for every $q > 3$, so this formula grows without bound while the conjectured cap stays fixed at 2. We validated the formula against our own data first (it predicts $g_T = 1$ for both $8_{19} = T(3,4)$ and $10_{124} = T(3,5)$, matching KnotInfo exactly) before using it. The bound's first failure is at $T(3,10)$: 20 crossings, braid index 3, $g_T = 3 > 2$. Since KnotInfo tabulates knots only up to 12 crossings, the database-only sweep could not have found this counterexample no matter how exhaustive the search within its range -- a direct illustration of failure mode (2) from Section~\ref{sec:intro}.
+
+\section{A Diagram-Level Turaev Genus Calculus}
+\label{sec:calculus}
+
+Disproving $g_T(K) \leq \text{braid index}(K) - 1$ by citing Abe--Kishimoto/Lowrance's result required their lower bound on the true, diagram-minimized invariant $g_T(K)$, obtained via knot Floer homology width -- genuine, deep machinery, out of reach for an elementary treatment. What \emph{is} elementary is the Turaev genus of a single, specific diagram, which is only ever an upper bound on $g_T(K)$ but is fully computable from Kauffman states.
+
+\subsection{A validated engine}
+
+We implemented $g_T(D)$ for the standard closed-braid diagram of any braid word from scratch, via a union-find over Temperley--Lieb-style diagram composition (\texttt{src/math\_engine/turaev\_diagram.py}). A positive crossing's $A$-resolution is the identity (``pass through''); its $B$-resolution is the Temperley--Lieb cap-cup generator $e_i$; a negative crossing swaps the two. Composing these along a word and closing the braid, then counting connected components among every node the composition ever creates, gives the Kauffman state circle count. We validated this two ways: three alternating knots (Hopf link, trefoil, figure-eight) give exactly $g_T(D) = 0$, a strong two-sided check since it requires both Kauffman states to be computed correctly at once; and across 596 real KnotInfo knots sampled from the 2{,}952 with a tabulated braid word and Turaev genus, the computed $g_T(D)$ was never below the true tabulated value (which would be mathematically impossible for a correct implementation, since $g_T(K) = \min_D g_T(D)$), and matched it exactly in 25.3\% of cases.
+
+\subsection{A syllable formula for 3-strand positive braids}
+
+Comparing two positive-braid presentations of the same knot, $8_{19} = T(3,4)$, motivated the main technical result of this section: KnotInfo's own word, \texttt{[1,1,1,2,1,1,1,2]}, gives $g_T(D) = 1$ (the true minimum), while the naive torus-braid word \texttt{[1,2,1,2,1,2,1,2]} -- same knot, same crossing number, same braid index -- gives $g_T(D) = 3$.
+
+\begin{definition}
+A \emph{syllable} of a braid word is a maximal block of a repeated generator. On 3 strands (generators $\sigma_1, \sigma_2$), consecutive syllables necessarily alternate.
+\end{definition}
+
+\begin{theorem}
+\label{thm:syllable}
+Let $w$ be a positive braid word on 3 strands with $k \geq 1$ syllables and total length $e$, and let $D$ be its standard closed-braid diagram. Then
+\[
+s_B(D) = (e-k) + \begin{cases} 2 & k \text{ odd} \\ 1 & k \text{ even} \end{cases}, \qquad
+g_T(D) = \left\lfloor \frac{k}{2} \right\rfloor - 1 \quad (k \geq 2),
+\]
+independent of $e$ and of how the crossings are distributed among the $k$ syllables.
+\end{theorem}
+
+\begin{proof}[Proof sketch]
+\emph{Lemma (syllable reduction).} Within a syllable of length $m$, the first crossing performs a genuine union of whatever preceded it; every subsequent crossing in the same syllable re-reads its own immediately-preceding fresh node and unions it with itself, a no-op that permanently isolates that node as its own circle. This produces exactly $m-1$ free circles per syllable and reduces the word to the pure-alternation word of length $k$.
+
+\emph{Base case (pure alternation).} Generators $\sigma_1 = \text{cap}(0,1)$ and $\sigma_2 = \text{cap}(1,2)$ share strand position 1 as a hinge. By induction on $k$, there are always exactly 3 components before the braid closure: the pair $\{\mathrm{TOP}_0, \mathrm{TOP}_1\}$, sealed together permanently at step 1; a growing chain containing $\mathrm{TOP}_2$ that absorbs the previous step's fresh node at every step via the shared hinge; and the single latest fresh node. Case analysis on the parity of $k$ for the three braid-closure identifications gives exactly 2 final components when $k$ is odd and 1 when $k$ is even. Combining with the reduction lemma gives the stated formula. Full detail is in \texttt{verification/prove\_syllable\_turaev\_formula.py}, checked computationally against the base case for $k=1..40$, 160 random syllable-length distributions across 8 $(e,k)$ pairs, and 203 further $(e,k)$ pairs -- zero mismatches throughout.
+\end{proof}
+
+\subsection{A correction: this is not a new theorem}
+\label{sec:correction}
+
+Before extending or further reporting Theorem~\ref{thm:syllable}, we checked it against the literature, following the same discipline as Section~\ref{sec:refuted}. It fails the check. A.~Lowrance \cite{lowrance2011} already proves the syllable-reduction lemma in general, for any braid index, as Corollary 3.10 of his 2011 paper (building on an observation he attributes as implicit in Champanerkar--Kofman \cite{champanerkarkofman2007}): replacing a crossing $\sigma_i$ with $\sigma_i^k$ ($k>0$) does not change the Turaev-surface genus of a diagram. His Proposition 4.3, computing the \emph{true} $g_T(T(3,q))$, explicitly uses the even-$k$ half of our base case as an intermediate step, though not stated as a general closed form.
+
+What survives this correction: an independently-constructed proof of a known lemma via a genuinely different technique (union-find/Temperley-Lieb diagram algebra, versus Lowrance's tangle-twisting argument); the explicit general closed form with its parity split, which we have not found stated this way in the literature searched to date, though a more exhaustive search would be needed to call that gap confirmed; and a validated, reusable computational engine, whose correctness is unaffected by whether the mathematical fact it computes was previously known.
+
+\section{Beyond Three Strands: An Honest Conjecture}
+\label{sec:conjecture}
+
+Having learned, twice, that skipping the literature check changes the conclusion, we apply the same standard to a natural follow-up question and report the result as what it is: an unverified conjecture, not a theorem.
+
+Testing the analogous pure-cyclic-alternation word (generators $1, 2, \ldots, n-1, 1, 2, \ldots$ repeating) for $n = 3$ through $9$ strands shows the $n=3$ closed form does not generalize the way a first guess ($\text{period} = n-1$) would suggest: $n=4$ fits that guess, but $n=5$ breaks it immediately, growing with period 2 rather than 4. Measuring the exact period and growth rate for $n = 3$ through $9$ gives
+\[
+\text{period} = \begin{cases} 2 & n-1 \text{ even} \\ n-1 & n-1 \text{ odd} \end{cases}, \qquad
+\text{growth per syllable} = \frac{\lfloor (n-1)/2 \rfloor}{n-1},
+\]
+consistent with, but not proven to follow from, the bipartite structure of the cycle graph $C_{n-1}$ on the generators (a cycle is 2-colorable iff its length is even). We do not claim this as a result: it has not been checked against the literature with the rigor of Section~\ref{sec:correction}, and no proof has been attempted for $n \geq 5$. We report it as a concrete, checkable, and interesting direction for future work.
+
+\section{Discussion}
+\label{sec:discussion}
+
+The most reliable pattern in this project was not any single inequality but the discipline that survived contact with three separate mistakes: an inequality that failed because the code testing it could not have found a counterexample even in principle; an inequality that held on every tabulated example and was still false, refuted only by checking a search range the database itself could not reach; and a proof that felt original and, on the same check, turned out to reprove a nine-year-old result. Each of these was caught by the same two-part habit -- re-run the computation from a clean state and diff it against the claim, and check any surviving claim against the published literature before reporting it -- applied consistently rather than only when something felt suspicious. We think this discipline, more than any single number in this paper, is the reproducible contribution of this project.
+
+\section{Conclusion and Future Work}
+
+We have built and validated two from-scratch computational engines for positive braid diagrams (Seifert-matrix signature, Kauffman-state Turaev genus), used them to refute two candidate structural bounds, and used the second engine to independently re-derive (via a novel proof technique) a known closed-form description of how syllable structure controls the Turaev genus of a 3-strand positive braid diagram. The natural next steps are: (1) a thorough literature search for the $n \geq 4$ conjecture of Section~\ref{sec:conjecture}, given the demonstrated cost of skipping it; (2) an attempted proof of that conjecture, likely requiring a cleaner combinatorial model of which generator pairs are ``hinged'' under a given cyclic ordering; and (3) extending the validated engines to mixed-sign (non-positive) braid words, which KnotInfo's own braid presentations already exercise and which our validation set (Section~\ref{sec:calculus}) already partially covers.
+
+\begin{thebibliography}{9}
+
+\bibitem{collins2007} J.~Collins, \emph{An algorithm for computing the Seifert matrix of a link from a braid representation}, 2007.
+
+\bibitem{champanerkarkofman2007} A.~Champanerkar, I.~Kofman, \emph{Twisting quasi-alternating links}, Proc. Amer. Math. Soc. 137 (2009).
+
+\bibitem{lowrance2011} A.~Lowrance, \emph{The Khovanov width of twisted links and closed 3-braids}, Comment. Math. Helv. 86 (2011), no.~3, 675--706. arXiv:0901.2196.
+
+\bibitem{abekishimoto2010} T.~Abe, K.~Kishimoto, \emph{The dealternating number and the alternation number of a closed 3-braid}, J. Knot Theory Ramifications 19 (2010).
+
+\bibitem{jlpz2017} K.~Jin, A.~Lowrance, E.~Polston, Y.~Zheng, \emph{On the Turaev genus of torus knots}, 2017. arXiv:1703.02506.
+
+\bibitem{turaev1987} V.~Turaev, \emph{A simple proof of the Murasugi and Kauffman theorems on alternating links}, Enseign. Math. 33 (1987).
+
+\bibitem{rasmussen2010} J.~Rasmussen, \emph{Khovanov homology and the slice genus}, Invent. Math. 182 (2010), no.~2, 419--447.
+
+\end{thebibliography}
+
+\end{document}

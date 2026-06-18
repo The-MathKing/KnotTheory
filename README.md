@@ -43,12 +43,21 @@ run, saved under `results/` and reproducible with the commands given.
 
 ## Manuscript
 
-`manuscript/log.tex` is the primary, currently-accurate record of this
-project: an honest, dated, reproducible lab notebook. `manuscript/paper.tex`
-is an earlier architecture *proposal* (not a completed result) for a
-"Zero-Trust" adversarial-ML framework; it predates the pivot to direct
-empirical mining and should be read as background, not as a description of
-the current pipeline.
+`manuscript/isef_paper.tex` is the current write-up of this project: an
+audit of a database-driven inequality search (two refuted candidate
+bounds, one via an explicit counterexample and one via literature only
+the database couldn't reach), a validated diagram-level Turaev genus
+engine, an elementary proof of a syllable-structure formula for 3-strand
+positive braid diagrams (independently re-derived; not original, see its
+Section 4.3 for the correction and citation), and an honestly-labeled
+conjecture beyond 3 strands. Every number in it traces to
+`manuscript/log.tex`, the underlying dated lab notebook, and from there to
+a script and a saved file under `results/`.
+
+`manuscript/paper.tex` is an earlier architecture *proposal* (not a
+completed result) for a "Zero-Trust" adversarial-ML framework; it predates
+the pivot to direct empirical mining and should be read as background, not
+as a description of the current pipeline.
 
 ## Reproducing every number in this README and in log.tex
 
