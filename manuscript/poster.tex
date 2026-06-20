@@ -1,0 +1,246 @@
+\documentclass[final]{beamer}
+\usepackage[orientation=portrait,size=a0,scale=1.35]{beamerposter}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amssymb}
+\usepackage{booktabs}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta, positioning, calc}
+
+% ---------------------------------------------------------------- styling
+\definecolor{myblue}{RGB}{20,60,110}
+\definecolor{mylight}{RGB}{228,236,246}
+\definecolor{sealcolor}{RGB}{175,45,45}
+\definecolor{chaincolor}{RGB}{30,80,150}
+\definecolor{freshcolor}{RGB}{40,130,70}
+
+\setbeamercolor{block title}{bg=myblue, fg=white}
+\setbeamercolor{block body}{bg=mylight, fg=black}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{itemize items}[circle]
+\setbeamerfont{block title}{size=\Large,series=\bfseries}
+\setbeamerfont{block body}{size=\normalsize}
+\setlength{\parskip}{6pt}
+
+\title{An Audited Computational Framework for Knot-Invariant Inequalities}
+\author{Aryan Padarthi}
+\institute{Independent Research}
+
+\begin{document}
+\begin{frame}[t]
+\vspace{-1.3cm}
+{\centering
+\color{myblue}\VERYHuge\bfseries \inserttitle \par
+\vspace{10pt}
+\Large\insertauthor \quad--\quad \insertinstitute \par}
+\vspace{0.6cm}
+
+\begin{columns}[t, totalwidth=\textwidth]
+
+% ============================== COLUMN 1 ==============================
+\begin{column}{.325\linewidth}
+
+\begin{block}{Two Ways a Database Search Fails}
+\textbf{Motivation.} Mining a knot-invariant database (KnotInfo, 12{,}967 knots)
+for inequalities $A(K)\le B(K)$ is cheap and tempting. It fails two ways
+that are easy to miss:
+\begin{itemize}
+\item A routine can be \textbf{structurally incapable} of finding what
+  it claims to test for.
+\item A bound can hold on \textbf{every tabulated example} and still
+  be false beyond the database's crossing-number ceiling.
+\end{itemize}
+This project hit both, caught both, and built validated tools in response.
+\end{block}
+
+\begin{block}{Failure Mode 1: A Tautological Engine}
+An early signature routine for positive 3-braids returned
+$\sigma(\hat\beta) = -(e-2)$ \textbf{for every input}, regardless of the
+braid word -- restating the crossing number $e$, never actually computing
+a linking form. ``Zero defects in 1{,}280 configurations'' was forced by
+the code, not discovered.
+
+\vspace{8pt}
+\textbf{Counterexample once fixed:} $T(3,7)$, a genuine positive 3-braid
+knot (14 crossings, braid index 3):
+\[ s = 12, \qquad |\sigma| = 8, \qquad \text{defect} = 4. \]
+Re-run with a validated engine, \textbf{84--89\%} of knots in two
+independent 3-braid families show a nonzero defect, at crossings as low
+as 10.
+\end{block}
+
+\begin{block}{Failure Mode 2: True on Every Tabulated Knot, Still False}
+The bound $g_T(K) \le \text{braid index}(K) - 1$ held with
+\textbf{zero violations across all 2{,}953} KnotInfo knots with both
+invariants tabulated.
+
+\vspace{8pt}
+Checked against the literature (Abe--Kishimoto 2010; Lowrance 2011)
+before reporting it:
+\[ g_T(T_{3,3n+i}) = n \quad (n\ge0,\ i\in\{0,1,2\}) \]
+Braid index of $T(3,q)$ is fixed at 3 for $q>3$; $g_T$ grows without
+bound. \textbf{First failure: $T(3,10)$}, 20 crossings, $g_T=3>2$.
+
+\vspace{8pt}
+\textbf{KnotInfo stops at 12 crossings.} The counterexample is 8
+crossings past the ceiling --- an exhaustive database sweep could never
+have found it.
+\end{block}
+
+\begin{block}{Also Found: Six More Silent Bugs}
+Separate from the two failures above, six \texttt{print()} statements
+across four analysis scripts contained hardcoded narrative claims that
+did not match the data computed two lines above them in the same script
+--- e.g.\ one asserted defect-knot determinants ``skew towards 1 and 7
+mod 8'' when the actual dominant residues are 5 and 3 (70.8\% combined,
+vs.\ 29\% for 1 and 7). All six were traced, fixed to derive their claim
+from the real computation, and re-run.
+\end{block}
+
+\end{column}
+
+% ============================== COLUMN 2 ==============================
+\begin{column}{.325\linewidth}
+
+\begin{block}{Two Validated, From-Scratch Engines}
+\textbf{Seifert-matrix signature} (Collins' 2007 algorithm, positive
+braids): homology generators between consecutive same-index crossings,
+linking numbers by a 5-case rule. Validated against 34 torus knots
+(closed-form signature) and all 17 KnotInfo knots with an authentic
+positive-braid word --- \textbf{0 mismatches}.
+
+\vspace{8pt}
+\textbf{Turaev genus of a diagram} (Kauffman-state / Temperley--Lieb
+circle counting, union-find implementation): validated against 3
+alternating knots (must give exactly $g_T{=}0$) and \textbf{596 real
+KnotInfo knots} --- never below the true tabulated value (mathematically
+required), exactly tight in 25.3\% of cases.
+\end{block}
+
+\begin{block}{The Hinge Mechanism (Proof Sketch)}
+\textbf{Theorem.} For a positive braid word on 3 strands with $k$
+syllables (maximal same-generator blocks) and length $e$:
+\[
+g_T(D) = \left\lfloor \frac{k}{2} \right\rfloor - 1, \qquad k\ge2,
+\]
+independent of $e$ and of how crossings are split among syllables.
+
+\vspace{10pt}
+\begin{center}
+\begin{tikzpicture}[scale=1.9, every node/.style={font=\large}]
+  \foreach \x/\lab in {0/$T_0$, 1/$T_1$, 2/$T_2$} {
+    \draw[thick] (\x,0) -- (\x,3);
+    \node[below] at (\x,-0.05) {\lab};
+  }
+  \draw[very thick, sealcolor] (0,2.4) .. controls (0.5,2.75) and (0.5,2.75) .. (1,2.4);
+  \node[sealcolor, right, font=\normalsize] at (1.2,2.6) {seal at step 1};
+  \draw[very thick, chaincolor, -{Stealth[length=3mm]}] (2,2.0) .. controls (1.5,1.7) .. (1,1.3);
+  \draw[very thick, chaincolor, -{Stealth[length=3mm]}] (1,1.3) .. controls (1.5,1.0) .. (2,0.7);
+  \node[chaincolor, right, font=\normalsize] at (2.2,1.35) {chain absorbs};
+  \node[chaincolor, right, font=\normalsize] at (2.2,1.0) {via shared hinge};
+  \filldraw[freshcolor] (2,0.35) circle (5pt);
+  \node[freshcolor, right, font=\normalsize] at (2.2,0.35) {latest fresh node};
+\end{tikzpicture}
+\end{center}
+
+\textbf{Lemma 1 (reduction).} Repeats within a syllable spin off isolated
+circles; only one crossing per syllable matters. Reduces to $k$-length
+pure alternation.
+
+\vspace{6pt}
+\textbf{Lemma 2 (hinge induction).} $\sigma_1{=}\mathrm{cap}(0,1)$ and
+$\sigma_2{=}\mathrm{cap}(1,2)$ share strand 1. Before closure: exactly 3
+components always --- $\{T_0,T_1\}$ sealed at step 1, a chain absorbing
+$T_2$ one node per step, and the newest fresh node. Closure parity gives
+2 components ($k$ odd) or 1 ($k$ even).
+
+\vspace{6pt}
+Zero mismatches: base case $k{=}1..40$, 160 random distributions, 203
+further $(e,k)$ pairs.
+\end{block}
+
+\begin{block}{Why 8$_{19}$ Motivated This}
+KnotInfo's own word for $8_{19}=T(3,4)$, \texttt{[1,1,1,2,1,1,1,2]}
+($k{=}4$ syllables), gives $g_T(D)=1$ --- the true minimum. The naive
+torus word \texttt{[1,2,1,2,1,2,1,2]} ($k{=}8$) for the \emph{same knot,
+same crossing number, same braid index} gives $g_T(D)=3$. Syllable count,
+not crossing number, controls diagram genus.
+\end{block}
+
+\end{column}
+
+% ============================== COLUMN 3 ==============================
+\begin{column}{.325\linewidth}
+
+\begin{block}{Correction: Not Original --- Caught the Same Way}
+\centering
+{\color{sealcolor}\Large\textbf{Checked against literature before reporting. It failed.}}
+
+\vspace{8pt}
+\raggedright
+A. Lowrance (\emph{Comment. Math. Helv.} 86, 2011) already proves the
+reduction lemma in general (\textbf{Corollary 3.10}, any braid index),
+building on Champanerkar--Kofman. His Proposition 4.3 even uses the
+even-$k$ base case as an intermediate step.
+
+\vspace{6pt}
+\textbf{What survives:} an independent proof by a different technique
+(union-find/Temperley-Lieb vs.\ his tangle-twisting argument), the
+explicit closed form, and the validated reusable engine.
+
+\vspace{6pt}
+This is the \textbf{third} time in this project that checking a claim
+against data or literature before reporting it changed the conclusion.
+\end{block}
+
+\begin{block}{Beyond 3 Strands: Labeled a Conjecture, Not a Theorem}
+Cyclic alternation for $n=3..9$ strands:
+\[
+\text{period} = \begin{cases}2 & n{-}1 \text{ even}\\ n{-}1 & n{-}1\text{ odd}\end{cases}
+\]
+\[
+\text{growth per syllable} = \frac{\lfloor (n-1)/2\rfloor}{n-1}
+\]
+Consistent with 2-colorability of the generator cycle $C_{n-1}$ --- not
+proved. \textbf{No literature check done yet; no proof attempted for
+$n\ge5$.} Reported honestly as future work, not a result.
+\end{block}
+
+\begin{block}{Results at a Glance}
+\begin{center}
+\small
+\begin{tabular}{@{}p{0.40\linewidth}p{0.20\linewidth}p{0.32\linewidth}@{}}
+\toprule
+\textbf{Claim} & \textbf{Status} & \textbf{Evidence} \\
+\midrule
+Positive 3-braids signature-rigid & \textbf{Retracted} & tautological engine \\[4pt]
+$g_T\le$ braid index $- 1$ & \textbf{Refuted} & $T(3,10)$ + cited thm. \\[4pt]
+Syllable formula ($n{=}3$) & Re-proved & Lowrance 2011 (prior) \\[4pt]
+Syllable formula ($n{\ge}4$) & Conjecture & computation only \\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{block}
+
+\begin{block}{Discussion \& Future Work}
+The most reliable output of this project was not a single inequality but
+a \textbf{discipline}: re-run from a clean checkout and diff against the
+claim; check any surviving claim against the literature before reporting
+it. Applied consistently, it changed the conclusion three separate times.
+
+\vspace{6pt}
+\textbf{Next:} literature search for the $n\ge4$ conjecture; a proof via
+the hinge structure of the generator cycle $C_{n-1}$; extend both engines
+to mixed-sign (non-positive) braid words.
+
+\vspace{10pt}
+\small
+Full reproducible record: \texttt{manuscript/log.tex} (20 dated entries),
+every number traceable to a script and a saved file under
+\texttt{results/}. Paper: \texttt{manuscript/isef\_paper.tex}.
+\end{block}
+
+\end{column}
+
+\end{columns}
+\end{frame}
+\end{document}
