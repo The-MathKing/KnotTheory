@@ -1,5 +1,6 @@
 \documentclass[final]{beamer}
-\usepackage[orientation=portrait,size=a0,scale=1.35]{beamerposter}
+\usepackage[size=custom,width=121.92,height=121.92,scale=1.75]{beamerposter}
+% 121.92 cm = 48 in, the standard ISEF tri-fold display-board panel size
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath, amssymb}
 \usepackage{booktabs}
@@ -124,21 +125,21 @@ g_T(D) = \left\lfloor \frac{k}{2} \right\rfloor - 1, \qquad k\ge2,
 \]
 independent of $e$ and of how crossings are split among syllables.
 
-\vspace{10pt}
+\vspace{14pt}
 \begin{center}
-\begin{tikzpicture}[scale=1.9, every node/.style={font=\large}]
+\begin{tikzpicture}[scale=2.1, every node/.style={font=\normalsize}]
   \foreach \x/\lab in {0/$T_0$, 1/$T_1$, 2/$T_2$} {
-    \draw[thick] (\x,0) -- (\x,3);
-    \node[below] at (\x,-0.05) {\lab};
+    \draw[thick] (\x,0) -- (\x,4);
+    \node[below] at (\x,-0.1) {\lab};
   }
-  \draw[very thick, sealcolor] (0,2.4) .. controls (0.5,2.75) and (0.5,2.75) .. (1,2.4);
-  \node[sealcolor, right, font=\normalsize] at (1.2,2.6) {seal at step 1};
-  \draw[very thick, chaincolor, -{Stealth[length=3mm]}] (2,2.0) .. controls (1.5,1.7) .. (1,1.3);
-  \draw[very thick, chaincolor, -{Stealth[length=3mm]}] (1,1.3) .. controls (1.5,1.0) .. (2,0.7);
-  \node[chaincolor, right, font=\normalsize] at (2.2,1.35) {chain absorbs};
-  \node[chaincolor, right, font=\normalsize] at (2.2,1.0) {via shared hinge};
-  \filldraw[freshcolor] (2,0.35) circle (5pt);
-  \node[freshcolor, right, font=\normalsize] at (2.2,0.35) {latest fresh node};
+  \draw[very thick, sealcolor] (0,3.3) .. controls (0.5,3.7) and (0.5,3.7) .. (1,3.3);
+  \node[sealcolor, right] at (1.35,3.5) {seal at step 1};
+  \draw[very thick, chaincolor, -{Stealth[length=3mm]}] (2,2.7) .. controls (1.4,2.3) .. (1,1.9);
+  \draw[very thick, chaincolor, -{Stealth[length=3mm]}] (1,1.9) .. controls (1.4,1.5) .. (2,1.1);
+  \node[chaincolor, right] at (2.35,2.3) {chain absorbs};
+  \node[chaincolor, right] at (2.35,1.5) {via shared hinge};
+  \filldraw[freshcolor] (2,0.5) circle (5pt);
+  \node[freshcolor, right] at (2.35,0.5) {latest fresh node};
 \end{tikzpicture}
 \end{center}
 
