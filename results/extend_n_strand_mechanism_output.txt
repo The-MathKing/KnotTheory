@@ -1,0 +1,24 @@
+STEP 1 -- period vs parity of n, n=3..15
+  n=  3  n odd=True  measured period=2  predicted (2 if n odd else n-1)=2  OK
+  n=  4  n odd=False  measured period=3  predicted (2 if n odd else n-1)=3  OK
+  n=  5  n odd=True  measured period=2  predicted (2 if n odd else n-1)=2  OK
+  n=  6  n odd=False  measured period=5  predicted (2 if n odd else n-1)=5  OK
+  n=  7  n odd=True  measured period=2  predicted (2 if n odd else n-1)=2  OK
+  n=  8  n odd=False  measured period=7  predicted (2 if n odd else n-1)=7  OK
+  n=  9  n odd=True  measured period=2  predicted (2 if n odd else n-1)=2  OK
+  n= 10  n odd=False  measured period=9  predicted (2 if n odd else n-1)=9  OK
+  n= 11  n odd=True  measured period=2  predicted (2 if n odd else n-1)=2  OK
+  n= 12  n odd=False  measured period=11  predicted (2 if n odd else n-1)=11  OK
+  n= 13  n odd=True  measured period=2  predicted (2 if n odd else n-1)=2  OK
+  n= 14  n odd=False  measured period=13  predicted (2 if n odd else n-1)=13  OK
+  n= 15  n odd=True  measured period=2  predicted (2 if n odd else n-1)=2  OK
+  0 mismatches out of 13 values of n tested.
+
+STEP 2 -- for odd n, is the sequence IDENTICAL to floor((k-(n-1))/2)?
+  0 mismatches across 6 odd values of n, 16 values of k each.
+
+ALL CHECKS PASSED
+
+Reminder: this verifies the CONJECTURE and its proposed mechanism computationally.
+It is not a substitute for the multi-lap induction that would make this a proof
+(see Log Entry 21's 'Honest status' paragraph).
