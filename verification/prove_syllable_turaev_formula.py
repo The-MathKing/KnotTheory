@@ -58,11 +58,16 @@ Only Z_m survives as the syllable's output to the rest of the word, with
 X and Y already merged -- identical to what a single application of the
 generator would have produced.                                          QED
 
-Applying Lemma 1 to every syllable of w: the k syllables contribute
-sum(m_i - 1) = e - k permanently isolated circles, and the REST of the
-computation is identical to applying the k-syllable PURE ALTERNATION word
-of length k (one crossing per syllable). This proves the additive term in
-(*) and reduces the problem to the base case e = k.
+Applying Lemma 1 to every syllable of w: by induction on the number of
+syllables processed so far, this composes across the whole word, since
+Lemma 1's conclusion holds for ARBITRARY input state (X, Y) at the
+syllable's positions -- syllable 2 sees exactly the frontier state that
+syllable 1 would have left behind whether syllable 1 had length 1 or
+length m_1, and so on. So the k syllables contribute sum(m_i - 1) = e - k
+permanently isolated circles, and the REST of the computation is
+identical to applying the k-syllable PURE ALTERNATION word of length k
+(one crossing per syllable). This proves the additive term in (*) and
+reduces the problem to the base case e = k.
 
 Lemma 2 (base case, pure alternation). For the pure-alternation word of
 length k >= 1 (crossings alternate sigma_1, sigma_2, sigma_1, ... starting
@@ -83,13 +88,16 @@ distinct components among all nodes created, consisting of:
 Proof by induction on k. Base k=1: step 1 performs union(TOP_0, TOP_1) --
 component A -- and creates fresh Z_1 at positions (0,1); TOP_2 is
 untouched. So the 3 components are A = {TOP_0,TOP_1}, B = {TOP_2}, C =
-{Z_1}, matching the claim. Inductive step: assume the claim holds after
-k-1 steps, so components are A (fixed, as above), B (containing TOP_2 and
-Z_1, ..., Z_{k-2}), C = {Z_{k-1}}. Step k touches positions determined by
-parity; by the hinge argument, one of the two positions it touches carries
-the node Z_{k-1} forward (component C) and the other carries the node
-Z_{k-2} (already in component B, since it was absorbed at step k-1).
-union(Z_{k-1}, Z_{k-2}) therefore merges C into B, and a new fresh Z_k is
+{Z_1}, matching the claim. Inductive step (k >= 2): assume the claim holds
+after k-1 steps, so components are A (fixed, as above), B (containing
+TOP_2 and, if k-1 >= 2, the absorbed nodes Z_1, ..., Z_{k-3}), C =
+{Z_{k-1}}. Step k touches positions determined by parity; by the hinge
+argument, one of the two positions it touches carries the node Z_{k-1}
+forward (component C) and the other carries the node currently occupying
+that position, which is in B by the inductive hypothesis -- this is
+Z_{k-2} when k >= 3, or TOP_2 itself when k = 2 (the base case of B, which
+is degenerately "already in B" since B = {TOP_2} at that point). Either
+way, union(Z_{k-1}, [that node]) merges C into B, and a new fresh Z_k is
 created as the new component C. Components A, B, C retain the stated
 structure with k in place of k-1.                                       QED
 

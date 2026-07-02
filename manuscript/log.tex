@@ -6,6 +6,7 @@
 \usepackage{longtable}
 \usepackage{amsmath}
 \usepackage{xcolor}
+\usepackage{enumitem}
 
 \newcommand{\corrected}{\textcolor{red!60!black}{\textbf{[CORRECTED --- see Log Entry 3]}}}
 
@@ -55,7 +56,8 @@ The data rigorously demonstrates that the signature $\sigma$ deviates from the R
 \item \textbf{Bug (code):} \texttt{approach\_1.py} line 44 built its per-inequality column list by concatenating \texttt{candidate\_features} without deduplication; when an inequality's own left/right column (e.g. \texttt{three\_genus}) also appeared in \texttt{candidate\_features}, the resulting DataFrame had a duplicate column name, so \texttt{sub\_df[right\_col]} returned a DataFrame instead of a Series and \texttt{pd.to\_numeric} raised \texttt{TypeError}. \textbf{Fixed} by deduplicating with \texttt{dict.fromkeys}. Verified: script now runs to completion and prints all 7 inequality rows (\texttt{results/approach\_1.txt}).
 \item \textbf{Fabrication (log text, not code):} the original Log Entries 3--10 quoted numbers that do not match what their named scripts print. Examples caught by \texttt{audit\_log\_claims.py}: ``$|s|\le 2g_4$ tight 100.0\%'' vs.\ actual 74.8\%; ``fibered $2g_4=|s|$ exact 100.0\%'' vs.\ actual 73.2\%; ``$u\ge g_4+g_T$: 84 counterexamples'' vs.\ actual 495; ``$g_4$ pinched exactly 74.2\%'' vs.\ actual 43.8\%. A full list of 20 claims and their actual values is in \texttt{results/audit\_log\_claims\_output.txt}.
 \item \textbf{Internal contradiction:} the original Log Entry 3 asserted $|s(K)|=2g_4(K)$ holds for \emph{all} 12,967 knots, while the original Log Entry 10 tabulated $4_1$ with derived lower bound $0$ (since $s(4_1)=0$) against $g_4(4_1)=1$ -- two entries of the same document contradicting each other.
-\item \textbf{Tautological engine:} \texttt{src/math\_engine/braid\_topology.py}'s \texttt{goeritz\_matrix\_and\_signature()} hand-built a Seifert matrix for 3-braids whose signature was, by construction, always $-(e-2)$. It never computed a real linking-number matrix from the braid word; it re-derived the length of its own input. \textbf{Fixed} in full (see Log Entry 16).
+\item \textbf{Tautological engine:} in \texttt{src/math\_engine/braid\_topology.py}, the function \\
+  \texttt{goeritz\_matrix\_and\_signature()} hand-built a Seifert matrix for 3-braids whose signature was, by construction, always $-(e-2)$. It never computed a real linking-number matrix from the braid word; it re-derived the length of its own input. \textbf{Fixed} in full (see Log Entry 16).
 \item \textbf{False theorem:} the retracted claim that the defect $|s|-|\sigma|$ requires braid index $\ge 4$. Disproven by $T(3,7)$ (braid index 3, defect 4) and, once the engine was fixed, by defect rates of 84--89\% within braid-index-3 families at crossing numbers as low as 10 (Log Entry 16).
 \item \textbf{Hardcoded narrative bugs, independent of log.tex:} six \texttt{print()} calls inside \texttt{deep\_dive\_defect.py}, \texttt{deep\_dive\_turaev.py}, \texttt{deep\_dive\_concordance.py}, and \texttt{approach\_10.py} contained narrative ``Result'' sentences with numbers or claims that were hardcoded and did not match the data computed two lines above them in the same script -- e.g. Test D3 claimed defect-knot determinants ``skew towards 1 and 7 mod 8'' when the actual dominant residues are 5 and 3 mod 8 (70.8\% combined, vs.\ 29\% for 1 and 7 combined); Test T5 called an $r=0.13$ correlation ($r^2=1.6\%$ of variance explained) ``strongly governed''; \texttt{approach\_10.py} claimed signature tightness ``severely degrades... down to $\sim$40\%'' when the true range across all 7 families tested is 71.4\%--85.4\%. All six are \textbf{fixed} to compute their stated claim from the actual data (diffs in \texttt{src/experiments/deep\_dive\_*.py} and \texttt{approach\_10.py}).
 \end{enumerate}
@@ -278,7 +280,7 @@ Quasi-Alternating & 1891 & 74.7 & 9.1 & 100.0 \\
 \section*{Log Entry 15: Deep-Dive Suite C, corrected (Concordance Slack \& 4-Genus: Tests C1--C5)}
 \textbf{Date:} September 22, 2026 \quad \textbf{Command:} (same run as Entry 13) \\
 \begin{itemize}
-\item \textbf{C1 \corrected:} $g_4^{top}<g_4^{smooth}$ in 76/2974 knots (2.56\%) -- match rate \textbf{97.44\%}, not 99.8\%. First discrepancy knots: $10_{139}, 10_{145}, 10_{152}, 10_{154}, 10_{161}$.
+\item \textbf{C1 \corrected:} $g_4^{top}<g_4^{smooth}$ in 76/2974 knots (2.56\%) -- match rate \textbf{97.44\%}, not 99.8\%. First discrepancy knots: $10_{139}$, $10_{145}$, $10_{152}$, $10_{154}$, $10_{161}$.
 \item \textbf{C2 \corrected:} $|\tau(K)|=g_4^{top}(K)$ tight in \textbf{73.5\%} of 2974 knots, mean slack 0.223 -- not ``over 75\%.''
 \item \textbf{C3 \corrected:} Arf $=1$ knots have mean slack $0.2786$ vs.\ $0.2264$ for Arf $=0$: a \textbf{23.0\%} increase, not 32\%.
 \item \textbf{C4:} Algebraic concordance order 2 and 4 knots have mean slack 0.997/0.994 vs.\ 0.080 for infinite order (N=2257/373/172/176).
@@ -287,7 +289,13 @@ Quasi-Alternating & 1891 & 74.7 & 9.1 & 100.0 \\
 \textbf{Significance:} Every $\%$ figure in this suite was off by 1.5--10 points in the original draft, always in the direction of overstating tightness/strength. C1's 76 discrepancy knots are the same set flagged in Log Entry 10 as the reason $|\tau|\le g_4^{top}$ fails.
 
 \section*{Log Entry 16: Math Engine Rebuild -- Retraction of the ``Signature-Rigid'' Claim, and Correct Braid-Family Results}
-\textbf{Date:} September 22, 2026 \quad \textbf{Commands:} \texttt{python src/math\_engine/braid\_topology.py}; \texttt{python src/math\_engine/investigate\_braid\_families.py}; \texttt{python src/math\_engine/syllable\_depth\_proof.py} \\
+\textbf{Date:} September 22, 2026 \\
+\textbf{Commands:}
+\begin{itemize}[nosep]
+\item \texttt{python src/math\_engine/braid\_topology.py}
+\item \texttt{python src/math\_engine/investigate\_braid\_families.py}
+\item \texttt{python src/math\_engine/syllable\_depth\_proof.py}
+\end{itemize}
 \textbf{What was wrong:} see Log Entry 3, item 4--5. The old \texttt{goeritz\_matrix\_and\_signature()} could only ever return $\sigma=-(e-2)$ for a positive 3-braid, so ``0 defect knots found across 1,280 configurations'' was not evidence of anything.
 
 \textbf{The fix.} \texttt{src/math\_engine/braid\_topology.py} now implements the Seifert-matrix algorithm of J.~Collins, \emph{An algorithm for computing the Seifert matrix of a link from a braid representation} (2007), specialised to all-positive braid words: homology generators are placed between consecutive same-generator crossings, and their pairwise linking numbers are computed by Collins's five-case rule (\S3.2--3.3 of that paper) rather than hand-guessed. It works for any strand count, not just 3. It is validated in an embedded \texttt{self\_test()} against:
@@ -297,7 +305,7 @@ Quasi-Alternating & 1891 & 74.7 & 9.1 & 100.0 \\
 \end{itemize}
 (\texttt{results/math\_engine\_selftest.txt}.) This engine is asserted at the top of every script that uses it (\texttt{assert self\_test()}), so a future regression cannot silently ship broken numbers again.
 
-\textbf{Corrected search results (\texttt{results/investigate\_braid\_families.txt}, \texttt{results/syllable\_depth\_proof.txt}):}
+\textbf{Corrected search results} (raw output in \texttt{results/investigate\_braid\_families.txt} \\ and \texttt{results/syllable\_depth\_proof.txt}):
 \begin{table}[h]
 \centering
 \begin{tabular}{lccc}
@@ -321,7 +329,9 @@ Torus braids $T(3,q)$, $q$ coprime to 3 & 12 & 8 & $T(3,7)$, $c=14$ \\
 \end{itemize}
 
 \section*{Log Entry 17: $g_T(K)\le\text{braid index}(K)-1$ is FALSE in general -- refuted via published literature}
-\textbf{Date:} September 22, 2026 \quad \textbf{Command:} \texttt{python verification/refute\_turaev\_braid\_bound.py > results/refute\_turaev\_braid\_bound\_output.txt} \\
+\textbf{Date:} September 22, 2026 \\
+\textbf{Command:} \texttt{python verification/refute\_turaev\_braid\_bound.py} \\
+\hspace*{2em} $>$ \texttt{results/refute\_turaev\_braid\_bound\_output.txt} \\
 \textbf{Question.} Log Entries 9 and 14 both independently found $g_T(K)\le\text{braid index}(K)-1$ with \textbf{zero violations across the 2,953 KnotInfo knots ($c\le12$) with both invariants tabulated}. Before treating this as a candidate theorem, the literature was checked for (a) an existing proof, and (b) whether it is already known to be false.
 
 \textbf{What the literature says.} Jin, Lowrance, Polston, and Zheng, \emph{On the Turaev Genus of Torus Knots} (arXiv:1703.02506), cite a closed-form theorem of Abe--Kishimoto (2010) and Lowrance (2011):
@@ -332,7 +342,10 @@ for the torus knots $T_{3,q}$ on \emph{three} strands ($q=3n+i$, taken coprime t
 
 \textbf{The refutation.} The braid index of $T_{3,q}$ is $3$ for every $q>3$ (classical: braid index of $T(p,q)$, $p<q$ coprime, is $p$), so the conjectured bound would require $g_T(T_{3,q})\le 3-1=2$ for \emph{all} such $q$. But the cited formula gives $g_T(T_{3,q})=n\to\infty$ as $q\to\infty$ with $n$. The bound first fails at $n=3$:
 \[
-T_{3,10} \ (q=3\cdot3+1,\ \gcd(3,10)=1): \quad g_T=3, \quad \text{braid index}=3, \quad \text{crossing number}=\min(3\cdot9,\,10\cdot2)=20.
+T_{3,10} \ (q=3\cdot3+1,\ \gcd(3,10)=1):
+\]
+\[
+g_T=3, \quad \text{braid index}=3, \quad \text{crossing number}=\min(3\cdot9,\,10\cdot2)=20.
 \]
 \[
 3 = g_T(T_{3,10}) > \text{braid index}(T_{3,10})-1 = 2.
@@ -342,7 +355,13 @@ T_{3,10} \ (q=3\cdot3+1,\ \gcd(3,10)=1): \quad g_T=3, \quad \text{braid index}=3
 \textbf{Significance.} This is the same lesson as Log Entry 16's retraction, arrived at the opposite way: there, a bound was falsely claimed to hold because the code couldn't test it; here, a bound genuinely does hold on every example the database could test, and still turns out to be false. Both entries argue for the same discipline: a finite computational sweep, however large, is evidence bounded by its own search range, not a proof, and this project's remaining scope should prioritize checking any further candidate bound against known literature (as done here) before reporting it as a finding.
 
 \section*{Log Entry 18: A New Diagram-Level Turaev Genus Engine, and a Proved Syllable Formula for 3-Strand Positive Braids}
-\textbf{Date:} September 22, 2026 \quad \textbf{Command:} \texttt{python src/math\_engine/turaev\_diagram.py}; \texttt{python verification/prove\_syllable\_turaev\_formula.py > results/prove\_syllable\_turaev\_formula\_output.txt} \\
+\textbf{Date:} September 22, 2026 \\
+\textbf{Commands:}
+\begin{itemize}[nosep]
+\item \texttt{python src/math\_engine/turaev\_diagram.py}
+\item \texttt{python verification/prove\_syllable\_turaev\_formula.py} \\
+  \hspace*{1em} $>$ \texttt{results/prove\_syllable\_turaev\_formula\_output.txt}
+\end{itemize}
 \textbf{Motivation.} Log Entry 17 showed $g_T(K)\le\text{braid index}(K)-1$ is false, but only by \emph{citing} Abe--Kishimoto/Lowrance's knot-Floer-homology-based result -- a genuine independent lower-bound technique for the true (diagram-minimized) $g_T(K)$ is deep, graduate-level machinery and out of scope here. What \emph{is} in scope, and what an initial attempt at extending Option A surfaced, is the Turaev genus of a \emph{specific diagram} -- an elementary, self-contained, from-scratch-provable quantity.
 
 \textbf{New validated engine.} \texttt{src/math\_engine/turaev\_diagram.py} computes $g_T(D)$ for the standard closed-braid diagram of any braid word, via Kauffman-state (Temperley--Lieb) circle counting implemented from scratch with a union-find. It is validated two ways: (a) three alternating knots (Hopf link, trefoil, figure-8) give exactly $g_T(D)=0$, a strong two-sided check since it requires both Kauffman states to be computed correctly simultaneously; (b) across 596 real KnotInfo knots (sampled from all 2,952 with both a tabulated braid word and a tabulated Turaev genus), the computed $g_T(D)$ was \emph{never} below the true tabulated value (which would be mathematically impossible for a correct implementation, since $g_T(K)=\min_D g_T(D)$) and matched it exactly in 25.3\% of cases.
@@ -405,5 +424,18 @@ This is consistent with a bipartite/2-colorability structure on the cycle graph 
 \textbf{A candidate explanation, not a proof.} Tracing the union-find mechanism (as in Log Entry 18's Lemma 2) shows that within one full lap of the $n-1$ generators, the same sealed-pair-plus-growing-chain structure occurs as in the $n=3$ base case. What differs is the \emph{wraparound} step (the first step of the next lap, reapplying generator 1): whether it reads two nodes already in the same component (a self-merge, contributing nothing new) or two nodes in different components (a genuine merge) depends on whether strand 0 and strand $n-1$ -- the two ends of the generator chain -- carry the same color under the natural 2-coloring of the $n$ strands by parity. They match iff $n$ is odd, which is exactly the observed period-2 condition. \textbf{This is a structural explanation strongly consistent with the data, not a completed induction}: Log Entry 18's proof for $n=3$ tracks every step explicitly through closure; this argument has not been carried through the same level of detail across multiple laps for general $n$.
 
 \textbf{Honest status.} The $n=3$ result (Log Entry 18) is a complete, checked proof. The $n\ge4$ pattern is now a conjecture with (a) a specific, testable structural mechanism, not just a fitted curve, (b) exact agreement with that mechanism's prediction (odd $n$ reduces exactly to the $n=3$ formula) across 13 values of $n$, and (c) an explicitly identified gap: the multi-lap wraparound argument is not carried out in full rigor the way Log Entry 18's is. This is reported at that resolution deliberately, per this project's standing policy (Log Entry 3), rather than rounded up to ``proved.''
+
+\section*{Log Entry 22: Line-by-Line Rigor Check on the One Complete Proof in This Log}
+\textbf{Date:} September 22, 2026 \\
+\textbf{What was checked.} Before treating Log Entry 18's theorem as finished, its full proof text (in \texttt{verification/prove\_syllable\_turaev\_formula.py}, of which the log's version is a condensed summary) was given a line-by-line rigor check, hunting specifically for the kind of gap that ``feels obvious and isn't'' -- unjustified inference steps, mishandled boundary cases, and claims of the form ``this composes'' or ``by symmetry'' asserted rather than shown.
+
+\textbf{Two gaps found, both expository, neither fatal.}
+\begin{enumerate}
+\item Lemma 1 is proved for a single syllable given an arbitrary input state; the proof asserted, without spelling out the induction, that this composes across all $k$ syllables of the word. Checking it directly: it does compose, because Lemma 1's conclusion holds for \emph{arbitrary} input state, so syllable $j+1$ always sees exactly the frontier state syllable $j$ would have left behind regardless of syllable $j$'s length -- but this step needed to be said, not left implicit.
+\item Lemma 2's inductive step refers to ``the node $Z_{k-2}$, already in component $B$,'' which implicitly assumes $k\ge3$ ($Z_{k-2}$ doesn't exist for $k=2$). Checking the $k=1\to k=2$ transition directly by hand: it does work, because at $k=2$ the role of ``the node already in $B$'' is played by $\mathrm{TOP}_2$ itself (the base case of $B$), not a $Z$-node -- a degenerate instance of the same mechanism, not a different case, but the written proof didn't say so.
+\end{enumerate}
+Both gaps were fixed with one clarifying sentence each, directly in the proof script (\texttt{verification/prove\_syllable\_turaev\_formula.py}); the argument did not need to be restructured, and the already-passing computational cross-checks (base case $k=1..40$, 160 random distributions, 203 further $(e,k)$ pairs) required no changes and still pass.
+
+\textbf{Significance.} This closes the loop on Theorem~1 (Log Entry 18): it is not just computationally verified but has now been checked as an argument, line by line, and the gaps that check found were exactly the boundary cases ($k=1\to2$) this project's own track record would predict as the likely failure point -- consistent with, and reinforcing, the discipline named as this project's real product in Log Entries 19--21.
 
 \end{document}
