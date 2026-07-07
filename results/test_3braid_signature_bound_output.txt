@@ -1,0 +1,8 @@
+Tested 992 positive 3-braid knots against |sigma| >= b1/2.
+Violations: 0
+Minimum ratio found: 0.6000 at word=[1, 2, 2, 1, 1, 2, 2, 1, 1, 2, 2, 2, 1, 1, 2, 2, 1, 2, 1, 2, 2, 1] sigma=-12 b1=20
+
+Literature check: for positive 3-braids with b1 >= 2, the STRONGER
+bound -sigma >= b1/2 + 1 is already an established prior result --
+consistent with the empirical minimum ratio found here (0.6 > 0.5),
+and not a new finding. See Log Entry 23.
