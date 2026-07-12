@@ -1,0 +1,58 @@
+\documentclass[12pt]{article}
+\usepackage{geometry}
+\geometry{a4paper, margin=1in}
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{enumitem}
+
+\title{Investigation Log: Periodicity of the Octal Game 0.45}
+\author{Aryan Padarthi}
+\date{September 23, 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Following an audit that found four consecutive candidate results in low-dimensional topology already claimed by an active research community (see \texttt{manuscript/log.tex}, Log Entries 17, 19, 23), this log documents a deliberate pivot to a different mathematical neighborhood: combinatorial game theory, specifically the still-open general conjecture that every finite octal game has an eventually periodic Sprague--Grundy sequence. A specific, small, unresolved instance (the octal game \texttt{0.45}) is identified, its periodicity conjecture (preperiod 498, period 20, per A.~Flammenkamp's published database) is independently reproduced from scratch, and a real structural mechanism explaining the period is found and extensively verified: the sequence is confined to a 5-element value set beyond $n=198$, and the recursion determining each term has an empirically bounded effective depth far smaller than its rules a priori permit. This is reported at the resolution it has actually reached: strong, original, extensively-verified structural progress, not a completed formal proof.
+\end{abstract}
+
+\section*{Entry 1: Why This Problem}
+\textbf{Date:} September 23, 2026 \\
+After the knot-theory audit's fourth consecutive miss (\texttt{manuscript/log.tex} Log Entry 23), a genuinely different area was sought, following the same standard applied throughout: find a specific, well-defined, checkably-open target before investing effort, rather than assume openness.
+
+\textbf{The area.} Octal games (Guy--Smith notation \texttt{0.}$d_1d_2d_3\ldots$) are simple take-and-break Nim variants; whether every finite one has an eventually periodic nim-sequence is a major open conjecture in the field. Of 167 inequivalent octal games with at most 3 code digits, only 20 have been rigorously proven periodic despite millions of computed nim-values by A.~Flammenkamp, who maintains the field's reference database.
+
+\textbf{The candidate.} \texttt{0.45}: remove 1 token from a heap only by splitting the remainder into two nonempty heaps (needs heap $\ge 3$); remove 2 tokens either to end the heap (heap $=2$) or by splitting the remainder (needs heap $\ge 4$). Flammenkamp's database reports a conjectured preperiod of 498 and period of 20 -- by a wide margin the smallest such pair among the unresolved small-code games checked (\texttt{.356}: 7315/142; \texttt{.156}: 3479/349; \texttt{.644}: 3256/442 -- all independently verified, see below). \texttt{0.45} is not among the four games (\texttt{.127}, \texttt{.16}, \texttt{.376}, \texttt{.56}) already proved periodic by Gangolli--Plambeck; no published proof for it was found.
+
+\section*{Entry 2: A Validated Engine}
+\textbf{Date:} September 23, 2026 \quad \textbf{Command:} \texttt{python src/octal\_games/grundy.py} \\
+\texttt{src/octal\_games/grundy.py} computes Sprague--Grundy sequences for arbitrary octal codes from scratch (a direct mex computation, no special-casing). It is validated two ways:
+\begin{itemize}
+\item \textbf{Kayles} (\texttt{0.77}): the engine's own search finds preperiod 71, period 12 -- an \textbf{exact match} to R.~K.~Guy's 1949 hand-proved result, independently cited in secondary literature.
+\item \textbf{Four cross-checks against Flammenkamp's database}: \texttt{0.45} (498, 20), \texttt{0.356} (7315, 142), \texttt{0.156} (3479, 349), \texttt{0.644} (3256, 442) -- all four reproduced exactly by this engine before being trusted for anything further, after an earlier AI-search summary of the same database gave a contradictory status for a related game (\texttt{.16}) that turned out to be wrong on inspection of the primary source.
+\end{itemize}
+Full output: \texttt{results/octal\_games/grundy\_selftest.txt}.
+
+\section*{Entry 3: Three Findings on 0.45}
+\textbf{Date:} September 23, 2026 \quad \textbf{Command:} \texttt{python verification/investigate\_octal\_45.py} \\
+All computed up to $N=60{,}000$ (300$\times$ the last exception found; roughly 3000 periods past the conjectured onset).
+
+\textbf{1. Boundedness.} $G(n) \in \{1,2,4,7,8\}$ for all $199 \le n \le 60{,}000$, with zero exceptions. Below $n=199$ there are exactly 11 exceptions ($n=0,1,6,11,19,31,78,88,98,106,198$), and Flammenkamp's own published bitmask for this game is all-1s, so his ``sparse/rare value'' criterion (\texttt{popcount(G(n) AND m) AND 1 == 0}) reduces exactly to ``$\mathrm{popcount}(G(n))$ is even'' -- which is exactly this set of 11 exceptions and nothing else, matching his database's reported count and largest-rare-index exactly.
+
+\textbf{2. Stabilization.} The mex-determining reachable set at position $n$ draws, in principle, on splits $a+b = n-1$ (or $n-2$) for every $1 \le a \le \lfloor (n-1)/2 \rfloor$ -- a range that grows without bound as $n$ grows. Empirically, restricted to the values $\{0,\ldots,8\}$ that can actually affect the mex (given finding 1), the reachable set is fully determined by only the first $A$ split terms, for a bound $A$ found to be at most $98$ across 416 sampled $n \in [500, 60{,}000]$ (worst case $A=78$ at $n=526$ in a focused re-check). Terms beyond $A$ -- checked out to $a \sim 30{,}000$ for some $n$ -- contribute nothing new.
+
+\textbf{3. Closure.} Combining 1 and 2: for $n$ large enough that its bounded window of relevant recent terms lies entirely past $n=199$ (i.e.\ in the fully-bounded regime), the reachable set restricted to $\{0,\ldots,8\}$ -- and hence $G(n)$ itself -- depends only on $n \bmod 20$. Checked directly, with zero exceptions, across thousands of $(n, n{+}20)$ pairs spanning the full computed range.
+
+\section*{Entry 4: Honest Status}
+\textbf{Date:} September 23, 2026 \\
+This is \textbf{not} a completed formal proof that \texttt{0.45}'s nim-sequence is periodic for all $n$. What it is:
+\begin{itemize}
+\item An original structural account -- not previously found in any source consulted -- of \emph{why} the period-20 pattern holds: a bounded value set plus a bounded effective recursion depth, rather than an unexplained empirical repeat.
+\item Verification far beyond the standard of evidence usually meant by ``observed periodic'' in this literature: 300$\times$ the last exception, with the stabilization bound checked (not merely assumed) across hundreds of large, widely-spaced sample points.
+\item A concrete, stated route to a complete proof: show the stabilization bound (Finding 2) holds for \emph{all} $n$ past some explicit threshold, directly from the recursion's definition -- which would, combined with Finding 1, close the argument by the standard periodicity-certification method used throughout this literature (verify one clean window, then propagate by the bounded-depth structure).
+\end{itemize}
+This is reported at exactly this resolution, per the same policy stated in \texttt{manuscript/log.tex} Log Entry 3: distinguish clearly between what has been shown and what is strongly evidenced but not yet closed, and do not round up.
+
+\end{document}

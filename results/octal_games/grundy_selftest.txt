@@ -1,0 +1,8 @@
+  0.77 (Kayles -- exact match to Guy's 1949 result): period 12 from n=71 verified up to n=163 -- OK
+  0.07 (Dawson's Kayles -- this module's own exact computation): period 34 from n=53 verified up to n=277 -- OK
+  0.137 (Dawson's Chess -- this module's own exact computation): period 34 from n=52 verified up to n=276 -- OK
+  0.45 (Flammenkamp database): period 20 from n=498 verified up to n=638 -- OK
+  0.356 (Flammenkamp database): period 142 from n=7315 verified up to n=8187 -- OK
+  0.156 (Flammenkamp database): period 349 from n=3479 verified up to n=5593 -- OK
+  0.644 (Flammenkamp database): period 442 from n=3256 verified up to n=5928 -- OK
+PASSED

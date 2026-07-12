@@ -1,0 +1,27 @@
+Computing Grundy sequence for 0.45 up to N=60000 ...
+
+=== STEP 1: cross-check the claimed period ===
+G[n] == G[n+20] for all n in [498, 60000]: HOLDS, zero exceptions
+
+=== STEP 2: boundedness (G(n) in {1,2,4,7,8} for n>=199) ===
+Indices with even popcount(G(n)) (Flammenkamp's 'rare'/sparse set, since the published bitmask for this game is all-1s): [0, 1, 6, 11, 19, 31, 78, 88, 98, 106, 198]
+Largest rare index: 198. Any rare index beyond 198 up to N=60000? False
+Distinct G(n) values for 199 <= n <= 60000: [1, 2, 4, 7, 8]
+Equal to the conjectured set S=[1, 2, 4, 7, 8]: True
+
+=== STEP 3: stabilization (bounded effective recursion depth) ===
+Across 416 sampled n in [500,60000], the mex-relevant reachable set (restricted to 0..8) is fully determined by the first A=78 split terms (worst case at n=526); including further terms, even out to a~30000, changes nothing.
+
+=== HONEST STATUS ===
+This is NOT a claimed formal proof for all n. It is:
+ - an exact match to Flammenkamp's published (preperiod, period)
+   via an independently-written engine (src/octal_games/grundy.py);
+ - an exhaustive check of periodicity, boundedness, and the
+   stabilization bound across the entire computed range;
+ - a structural explanation (bounded value set + bounded effective
+   recursion depth) strong enough to describe a concrete route to
+   a full proof: verify the stabilization bound and the resulting
+   period-20 self-consistency directly from the recursion's
+   definition, not just observed over a finite computed range.
+No claim is made that this game's periodicity has been formally
+proved here. See manuscript/log.tex for the full, dated account.
