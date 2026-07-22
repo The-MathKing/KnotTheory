@@ -1,0 +1,30 @@
+P(10,2): Z=6 target 2k+2=6 | disjoint forts found=2 -> lower bound Z>=2  [short by 4]  sizes=[7, 7]  0.0s
+      {u1,u7,u9,v2,v6,v8,v9}
+      {u0,u2,u4,u6,u8,v0,v4}
+P(12,2): Z=6 target 2k+2=6 | disjoint forts found=2 -> lower bound Z>=2  [short by 4]  sizes=[8, 10]  0.0s
+      {u0,u1,u7,u8,v2,v6,v9,v11}
+      {u2,u3,u5,u6,u9,u11,v0,v1,v7,v8}
+P(14,3): Z=8 target 2k+2=8 | disjoint forts found=2 -> lower bound Z>=2  [short by 6]  sizes=[7, 7]  0.1s
+      {u1,u3,u11,u13,v0,v4,v10}
+      {u4,u6,u8,u10,v3,v7,v11}
+P(16,3): Z=8 target 2k+2=8 | disjoint forts found=2 -> lower bound Z>=2  [short by 6]  sizes=[8, 8]  0.1s
+      {u6,u8,u12,u14,v5,v9,v11,v15}
+      {u5,u7,u11,u13,v4,v8,v10,v14}
+P(18,3): Z=8 target 2k+2=8 | disjoint forts found=2 -> lower bound Z>=2  [short by 6]  sizes=[10, 10]  0.1s
+      {u1,u3,u11,u13,u15,u17,v0,v4,v10,v14}
+      {u0,u2,u4,u6,u8,u10,v3,v7,v11,v17}
+P(18,4): Z=10 target 2k+2=10 | disjoint forts found=2 -> lower bound Z>=2  [short by 8]  sizes=[11, 11]  0.1s
+      {u3,u4,u6,u8,u10,u11,v2,v6,v7,v8,v12}
+      {u1,u2,u12,u13,u15,u17,v3,v11,v15,v16,v17}
+P(20,4): Z=10 target 2k+2=10 | disjoint forts found=2 -> lower bound Z>=2  [short by 8]  sizes=[10, 10]  0.1s
+      {u2,u3,u5,u15,u17,u18,v1,v6,v14,v19}
+      {u6,u8,u9,u13,u14,u16,v5,v10,v12,v17}
+P(22,4): Z=10 target 2k+2=10 | disjoint forts found=2 -> lower bound Z>=2  [short by 8]  sizes=[13, 13]  0.2s
+      {u2,u7,u8,u10,u11,u16,v1,v3,v6,v9,v12,v15,v17}
+      {u1,u9,u14,u15,u17,u18,v0,v2,v8,v10,v13,v16,v19}
+P(23,5): Z=12 target 2k+2=12 | disjoint forts found=2 -> lower bound Z>=2  [short by 10]  sizes=[12, 12]  0.2s
+      {u2,u4,u6,u15,u17,u19,v1,v4,v7,v14,v17,v20}
+      {u3,u5,u7,u16,u18,u20,v2,v5,v8,v15,v18,v21}
+P(24,5): Z=12 target 2k+2=12 | disjoint forts found=2 -> lower bound Z>=2  [short by 10]  sizes=[10, 10]  0.1s
+      {u0,u2,u6,u8,u10,u22,v3,v5,v11,v21}
+      {u5,u7,u9,u13,u15,u17,v4,v10,v12,v18}

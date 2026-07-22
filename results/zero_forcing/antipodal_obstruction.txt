@@ -1,0 +1,97 @@
+The antipodal obstruction.
+
+The period-one symbol is F(s) = (s+a)L_k(s) + alpha s + beta, and the
+certificate is admissible only if c^2 = a alpha - beta is nonzero (any sign in
+the combinatorially symmetric class, positive in the symmetric one).
+
+THEOREM (parity).  Since L_k(-s) = (-1)^k L_k(s): if k is EVEN and F has two
+roots y, -y with y != 0, then subtracting the two root conditions gives
+alpha = -L_k(y) and adding them gives beta = -a L_k(y), so
+
+    c^2 = a alpha - beta = -a L_k(y) + a L_k(y) = 0
+
+identically.  So for even k a period-one symbol may have NO antipodal pair of
+roots.  For odd k the same elimination gives beta = -y L_k(y) and
+alpha = -a L_k(y)/y, hence c^2 = L_k(y)(y^2-a^2)/y, and there is no obstruction.
+
+For k = 2 the symbol has exactly three roots and no residual conditions, so the
+criterion is closed-form: matching coefficients gives c^2 = e3 - e1 e2, and by
+the elementary identity (s1+s2)(s1+s3)(s2+s3) = e1 e2 - e3,
+
+    c^2 = -(s1+s2)(s1+s3)(s2+s3).
+
+So c^2 = 0 exactly when two roots are antipodal -- a factorisation, not an
+observation -- and c^2 > 0 exactly when an odd number of the pairwise sums is
+negative.
+
+COROLLARY (which cyclotomic symbols are excluded for even k).  The roots of
+Psi_{2d} are the negatives of the roots of Psi_d for odd d, and the root set of
+Psi_d is closed under negation when 4 | d and phi(d) >= 4.  So for even k the
+factor set D may not contain both d and 2d for any odd d, nor any d divisible
+by 4 with phi(d) >= 4.  This script checks that prediction against every
+candidate D, and confirms that every such D has c^2 EXACTLY zero.
+
+check L_k(-s) = (-1)^k L_k(s): True
+
+SYMBOLIC c^2 with a prescribed antipodal pair {y,-y} and a third root x:
+  k=2 (even):  c^2 = 0  (obstructed)   
+  k=3 (odd ):  c^2 != 0  (no obstruction)     -(y**2 - 3)*(x**2 - x*y + y**2 - 3)*(x**2 + x*y + y**2 - 3)/x**2
+  k=4 (even):  c^2 = 0  (obstructed)   
+  k=5 (odd ):  c^2 != 0  (no obstruction)     -(y**4 - 5*y**2 + 5)*(x**4 - x**3*y + x**2*y**2 - 5*x**2 - x*y**3 + 5*
+  k=6 (even):  c^2 = 0  (obstructed)   
+  k=7 (odd ):  c^2 != 0  (no obstruction)     -(y**6 - 7*y**4 + 14*y**2 - 7)*(x**6 - x**5*y + x**4*y**2 - 7*x**4 - x
+  k=8 (even):  c^2 = 0  (obstructed)   
+
+k=2 CLOSED FORM
+  c^2 + (r1+r2)(r1+r3)(r2+r3) = 0
+
+COROLLARY: candidate cyclotomic factor sets for even k
+  k  D                  antipodal?  c^2              prediction
+  2  (7,)               no          -1               ok
+  2  (9,)               no          -1               ok
+  2  (14,)              no          1                ok
+  2  (18,)              no          1                ok
+  2  (1, 5)             no          1                ok
+  2  (1, 8)             YES         0                ok
+  2  (1, 10)            no          -5               ok
+  2  (1, 12)            YES         0                ok
+  2  (2, 5)             no          5                ok
+  2  (2, 8)             YES         0                ok
+  2  (2, 10)            no          -1               ok
+  2  (2, 12)            YES         0                ok
+  2  (3, 5)             no          1                ok
+  2  (3, 8)             YES         0                ok
+  2  (3, 10)            no          1                ok
+  2  (3, 12)            YES         0                ok
+  2  (4, 5)             no          -1               ok
+  2  (4, 8)             YES         0                ok
+  2  (4, 10)            no          1                ok
+  2  (4, 12)            YES         0                ok
+  2  (5, 6)             no          -1               ok
+  2  (6, 8)             YES         0                ok
+  2  (6, 10)            no          -1               ok
+  2  (6, 12)            YES         0                ok
+  2  (1, 2, 3)          YES         0                ok
+  2  (1, 2, 4)          YES         0                ok
+  2  (1, 2, 6)          YES         0                ok
+  2  (1, 3, 6)          YES         0                ok
+  2  (2, 3, 6)          YES         0                ok
+  2  (3, 4, 6)          YES         0                ok
+  4  (1, 16)            YES         0                ok
+  4  (1, 24)            YES         0                ok
+  4  (2, 16)            YES         0                ok
+  4  (2, 24)            YES         0                ok
+  4  (3, 16)            YES         0                ok
+  4  (3, 24)            YES         0                ok
+  4  (4, 15)            no          -1               ok
+  4  (4, 16)            YES         0                ok
+  4  (4, 24)            YES         0                ok
+  4  (4, 30)            no          1                ok
+  4  (5, 14)            no          1                ok
+  4  (5, 18)            no          1                ok
+  4  (6, 16)            YES         0                ok
+  4  (6, 24)            YES         0                ok
+  4  (7, 10)            no          -1               ok
+  4  (9, 10)            no          -1               ok
+
+50 factor sets in the 3-parameter family tested; violations of the prediction: 0

@@ -1,0 +1,8 @@
+P(7,3): Z=6 exp=6 witness_verified=True OK  0.13s
+P(8,3): Z=6 exp=6 witness_verified=True OK  0.03s
+P(9,3): Z=6 exp=6 witness_verified=True OK  0.36s
+P(10,3): Z=8 exp=8 witness_verified=True OK  0.05s
+P(11,3): Z=7 exp=7 witness_verified=True OK  7.80s
+P(12,3): Z=7 exp=7 witness_verified=True OK  2.00s
+P(13,3): Z=8 exp=8 witness_verified=True OK  29.91s
+P(14,3): Z=8 exp=8 witness_verified=True OK  0.38s

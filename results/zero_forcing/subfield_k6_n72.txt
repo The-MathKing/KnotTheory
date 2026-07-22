@@ -1,0 +1,10 @@
+k=6 d=3 n=72 m=24:  Galois group (Z/24)*/(+-1) has order 4; representatives [1, 5, 7, 11]
+ |H|  index                      H            orbit sizes  sets                         result
+   4      1          [1, 5, 7, 11]     [4, 2, 2, 1, 1, 1]     8                 all degenerate
+   2      2                 [1, 7] [2, 2, 1, 1, 2, 1, 1, 1]    38 REALISABLE  l=(1, 2, 3, 6, 7, 9, 10)
+   2      2                [1, 11] [2, 1, 2, 1, 2, 1, 1, 1]    38 REALISABLE  l=(1, 2, 3, 6, 8, 9, 11)
+   2      2                 [1, 5]  [2, 2, 2, 1, 1, 2, 1]    18 REALISABLE  l=(1, 2, 3, 5, 8, 9, 10)
+   1      4                    [1] [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]   330                 all degenerate
+
+BEST: H of index 2 -> weights lie in a degree-2 field over Q
+  root set l = (1, 2, 3, 6, 7, 9, 10)

@@ -1,0 +1,8 @@
+P(17,3): 293 unknowns, 272 equations, Jacobian rank 244
+  square system: 244 equations x 244 unknowns; 49 unknowns FIXED at exact rationals (denominator 10^4)
+  Newton: max|f| on the 244 structural equations = 3.1115e-61
+          max|f| on the 28 DEPENDENT equations = 4.0839e-61  (implied, not solved for)
+  ||Y||_inf = 1.5448e+03   ||I - Y J||_inf = 2.1828e-12   ||Y f||_inf = 2.8477e-60
+  KRAWCZYK PASSES at delta = 1e-12: alpha = 1.8540e-08 < 1 and 1.8540e-20 <= 1e-12
+  the certified matrix: nullity 8, gap to the next singular value 0.1269, min|edge|/scale 0.0500
+  VERDICT: null A = 8 PROVED

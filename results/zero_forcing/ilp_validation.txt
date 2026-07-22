@@ -1,0 +1,5 @@
+P(7,3): Z=6 exp=6 OK  0.86s rounds=56
+P(8,3): Z=6 exp=6 OK  0.28s rounds=24
+P(9,3): Z=6 exp=6 OK  4.32s rounds=121
+P(10,3): Z=8 exp=8 OK  0.37s rounds=30
+P(11,3): Z=7 exp=7 OK  28.93s rounds=209

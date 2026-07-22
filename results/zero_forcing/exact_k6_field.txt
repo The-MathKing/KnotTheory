@@ -1,0 +1,9 @@
+H=[1, 7]  S=(1, 2, 3, 6, 7, 9, 10)  K=Q(sqrt 2)
+  5 independent conditions (H-orbit representatives [1, 2, 3, 6, 9])
+
+H=[1, 5]  S=(1, 2, 3, 5, 8, 9, 10)  K=Q(sqrt 6)
+  4 independent conditions (H-orbit representatives [1, 2, 3, 8])
+
+H=[1, 11]  S=(1, 2, 3, 6, 8, 9, 11)  K=Q(sqrt 3)
+  5 independent conditions (H-orbit representatives [1, 2, 3, 6, 8])
+

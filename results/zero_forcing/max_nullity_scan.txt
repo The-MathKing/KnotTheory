@@ -1,0 +1,11 @@
+     graph  ceiling 2k+2   max nullity found
+  P(12,2)  r= 6: ADMISSIBLE CERTIFICATE   (gap 3.1e-02, min req.wt 0.030)
+   P(12,2)             6                   6
+  P(14,2)  r= 6: ADMISSIBLE CERTIFICATE   (gap 1.5e-02, min req.wt 0.026)
+   P(14,2)             6                   6
+  P(13,3)  r= 8: none found
+  P(13,3)  r= 7: ADMISSIBLE CERTIFICATE   (gap 8.3e-02, min req.wt 0.042)
+   P(13,3)             8                   7
+  P(15,3)  r= 8: none found
+  P(15,3)  r= 7: ADMISSIBLE CERTIFICATE   (gap 3.7e-02, min req.wt 0.029)
+   P(15,3)             8                   7

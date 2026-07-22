@@ -1,0 +1,56 @@
+P(15,3)   target nullity 2k+2 = 8
+  stage 1 (gauge-fixed, outer sign -1): r-th sv/scale = 1.077e-03, min|inner|/scale = 0.0063
+  251 unknowns, 240 equations, 212 structural, 28 dependent; fixing 39 at rationals
+  stage 2 (double): max|f| structural = 1.939e-02, dependent = 1.720e-02
+  did not converge; stopping
+
+P(19,3)   target nullity 2k+2 = 8
+  stage 1 (gauge-fixed, outer sign -1): r-th sv/scale = 4.945e-04, min|inner|/scale = 0.0760
+  335 unknowns, 304 equations, 276 structural, 28 dependent; fixing 59 at rationals
+  stage 2 (double): max|f| structural = 5.246e-15, dependent = 2.623e-14
+  stage 2b (60 digits): structural 1.702e-61, dependent 1.75e-61
+  ||Y||=4.367e+02  ||I-YJ||=1.058e-12  ||Yf||=1.196e-60
+  stage 3 KRAWCZYK PASSES at delta = 1e-13: alpha = 5.251e-10
+  certified matrix: nullity 8, gap 0.0756, min|edge|/scale 0.0738
+  VERDICT: PROVED null A = 8
+
+P(21,3)   target nullity 2k+2 = 8
+  stage 1 (gauge-fixed, outer sign -1): r-th sv/scale = 7.533e-06, min|inner|/scale = 0.3236
+  377 unknowns, 336 equations, 308 structural, 28 dependent; fixing 69 at rationals
+  stage 2 (double): max|f| structural = 4.566e-15, dependent = 1.781e-14
+  stage 2b (60 digits): structural 2.334e-61, dependent 2.723e-61
+  ||Y||=2.475e+02  ||I-YJ||=6.497e-13  ||Yf||=1.808e-60
+  stage 3 KRAWCZYK PASSES at delta = 1e-13: alpha = 2.977e-10
+  certified matrix: nullity 8, gap 0.1715, min|edge|/scale 0.3236
+  VERDICT: PROVED null A = 8
+
+P(23,3)   target nullity 2k+2 = 8
+  stage 1 (gauge-fixed, outer sign -1): r-th sv/scale = 2.791e-04, min|inner|/scale = 0.2293
+  419 unknowns, 368 equations, 340 structural, 28 dependent; fixing 79 at rationals
+  stage 2 (double): max|f| structural = 2.629e-16, dependent = 3.503e-16
+  stage 2b (60 digits): structural 6.029e-61, dependent 3.889e-61
+  ||Y||=6.424e+02  ||I-YJ||=1.913e-12  ||Yf||=1.244e-60
+  stage 3 KRAWCZYK PASSES at delta = 1e-13: alpha = 7.728e-10
+  certified matrix: nullity 8, gap 0.1299, min|edge|/scale 0.2140
+  VERDICT: PROVED null A = 8
+
+P(25,3)   target nullity 2k+2 = 8
+  stage 1 (gauge-fixed, outer sign -1): r-th sv/scale = 4.053e-04, min|inner|/scale = 0.1141
+  461 unknowns, 400 equations, 372 structural, 28 dependent; fixing 89 at rationals
+  stage 2 (double): max|f| structural = 1.595e-14, dependent = 8.598e-14
+  stage 2b (60 digits): structural 2.65e-61, dependent 3.5e-61
+  ||Y||=4.474e+02  ||I-YJ||=1.480e-12  ||Yf||=4.385e-60
+  stage 3 KRAWCZYK PASSES at delta = 1e-13: alpha = 5.384e-10
+  certified matrix: nullity 8, gap 0.0526, min|edge|/scale 0.1092
+  VERDICT: PROVED null A = 8
+
+P(27,3)   target nullity 2k+2 = 8
+  stage 1 (gauge-fixed, outer sign +1): r-th sv/scale = 8.712e-05, min|inner|/scale = 0.2457
+  503 unknowns, 432 equations, 404 structural, 28 dependent; fixing 99 at rationals
+  stage 2 (double): max|f| structural = 4.884e-14, dependent = 1.503e-13
+  stage 2b (60 digits): structural 1.945e-61, dependent 8.751e-62
+  ||Y||=4.411e+02  ||I-YJ||=2.214e-12  ||Yf||=4.997e-61
+  stage 3 KRAWCZYK PASSES at delta = 1e-13: alpha = 5.316e-10
+  certified matrix: nullity 8, gap 0.0867, min|edge|/scale 0.2439
+  VERDICT: PROVED null A = 8
+

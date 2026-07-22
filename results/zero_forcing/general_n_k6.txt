@@ -1,0 +1,5 @@
+k = 6   ceiling r = 2k+2 = 14   |T - I| is 196 equations in 5n weights  =>  n >= 40
+    n  prime  5n - r^2   max|T - I|   min|edge|/scale   nullity  verdict
+   27    no       -61      1.05e+00            0.0001         1   no
+   29   yes       -51      7.87e-01            0.0005         0   no
+   31   yes       -41      5.68e-01            0.0000         0   no

@@ -1,0 +1,12 @@
+k=6 d=3 n=72 m=24: 8 Galois-closed root sets
+sigma = 0 sits at l = [6]
+
+              orders  has sig=0   symbol err  min|req|/scale  nullity  verdict
+          (3, 8, 24)      False     1.78e-15         0.00000       14  symbol hit, weight collapses (gap 9.7e-02)
+         (3, 12, 24)      False     3.55e-15         0.00000       14  symbol hit, weight collapses (gap 2.5e-02)
+          (4, 8, 24)       True     1.60e-15         0.00000       14  symbol hit, weight collapses (gap 2.2e-02)
+         (4, 12, 24)       True     2.36e-15         0.00000       14  symbol hit, weight collapses (gap 9.9e-02)
+          (6, 8, 24)      False     3.55e-15         0.00000       14  symbol hit, weight collapses (gap 3.6e-02)
+         (6, 12, 24)      False     2.66e-15         0.00000       14  symbol hit, weight collapses (gap 4.7e-02)
+       (3, 4, 6, 24)       True     2.71e-15         0.00000       14  symbol hit, weight collapses (gap 6.2e-02)
+    (3, 4, 6, 8, 12)       True     3.55e-15         0.00000       14  symbol hit, weight collapses (gap 8.5e-02)

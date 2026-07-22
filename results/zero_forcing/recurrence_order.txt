@@ -1,0 +1,13 @@
+
+checked 63 (n,k) pairs x 3 random A each = 189 matrices
+sparsity, end-coefficient formulas, and nullity(A) = dim ker(T - I) <= 2k+2: ALL PASS
+
+Equality case: rho-equivariant P(n,2) certificates (target nullity 6 = 2k+2):
+  n=12: roots s=[-1.7321 -1.      0.    ]  c^2=4.7321  nullity=6  max|T-I|=6.74e-12  T = I
+  n=14: roots s=[-1.8019 -1.247  -0.445 ]  c^2=11.5918  nullity=6  max|T-I|=9.65e-11  T = I
+  n=16: roots s=[-1.8478 -1.4142 -0.7654]  c^2=18.5786  nullity=6  max|T-I|=2.76e-10  T = I
+  n=18: roots s=[-1.8794 -1.5321 -1.    ]  c^2=24.8726  nullity=6  max|T-I|=2.02e-10  T = I
+  n=20: roots s=[-1.9021 -1.618  -1.1756]  c^2=30.2656  nullity=6  max|T-I|=1.07e-09  T = I
+
+Determinant of the monodromy, the SU reduction, and the forcing-set corollary:
+  checked 60 matrices over 30 (n,k) pairs: ALL PASS

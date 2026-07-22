@@ -1,0 +1,20 @@
+Does the block reduction hold for arbitrary cyclic covers?
+
+  P(n,2) as a cyclic cover           n= 12  nullity(full)=  0  sum of block nullities=  0  deg span=  6  OK
+  P(n,3) as a cyclic cover           n= 12  nullity(full)=  0  sum of block nullities=  0  deg span=  8  OK
+  P(n,5) as a cyclic cover           n= 12  nullity(full)=  0  sum of block nullities=  0  deg span= 12  OK
+  P(n,2) as a cyclic cover           n= 17  nullity(full)=  0  sum of block nullities=  0  deg span=  6  OK
+  P(n,3) as a cyclic cover           n= 17  nullity(full)=  0  sum of block nullities=  0  deg span=  8  OK
+  P(n,5) as a cyclic cover           n= 17  nullity(full)=  0  sum of block nullities=  0  deg span= 12  OK
+  P(n,2) as a cyclic cover           n= 20  nullity(full)=  0  sum of block nullities=  0  deg span=  6  OK
+  P(n,3) as a cyclic cover           n= 20  nullity(full)=  0  sum of block nullities=  0  deg span=  8  OK
+  P(n,5) as a cyclic cover           n= 20  nullity(full)=  0  sum of block nullities=  0  deg span= 12  OK
+
+  3-vertex, voltages 1,2,0,0         n= 13  nullity(full)=  0  sum of block nullities=  0  deg span=  6  OK
+  theta graph, voltages 0,1,4        n= 13  nullity(full)=  0  sum of block nullities=  0  deg span=  8  OK
+  4-vertex mixed voltages            n= 13  nullity(full)=  0  sum of block nullities=  0  deg span= 22  OK
+  3-vertex, voltages 1,2,0,0         n= 16  nullity(full)=  0  sum of block nullities=  0  deg span=  6  OK
+  theta graph, voltages 0,1,4        n= 16  nullity(full)=  0  sum of block nullities=  0  deg span=  8  OK
+  4-vertex mixed voltages            n= 16  nullity(full)=  0  sum of block nullities=  0  deg span= 22  OK
+
+block reduction + ceiling for cyclic covers: ALL PASS

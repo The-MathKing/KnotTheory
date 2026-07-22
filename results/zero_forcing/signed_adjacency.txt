@@ -1,0 +1,41 @@
+The signed adjacency matrix of P(n,k), and an infinite-family question.
+
+The k=3 and k=7 certificates both have a = alpha = 0 and beta = 1, i.e. symbol
+F = s L_k(s) + 1.  That is not a coincidence: a = alpha = 0 means both diagonals
+vanish, so the matrix is
+
+    A = [[ P + P^-1 , I ], [ -I , P^k + P^-k ]]
+
+the adjacency matrix of P(n,k) with one set of spokes negated.  Substituting
+s = z + 1/z and L_k = z^k + z^-k and clearing denominators,
+
+    F(s) = 0   <=>   Q_k(z) := z^(2k+2) + z^(2k) + z^(k+1) + z^2 + 1 = 0,
+
+which is exactly the adjacency polynomial P_k(z) = z^(2k+2) + z^(2k) - z^(k+1)
++ z^2 + 1 of thm:adjclass with the sign of the middle term flipped -- the spoke
+sign flip.  So by the same argument as thm:adjclass,
+
+    null(signed Adj P(n,k)) = sum of phi(d) over d with Phi_d | Q_k and d | n,
+
+and the nullity attains the ceiling 2k+2 exactly when Q_k is a product of
+cyclotomic polynomials.  This script decides that for each k.
+
+Q_k(z) = z^(2k+2) + z^(2k) + z^(k+1) + z^2 + 1   (SIGNED spokes)
+  k  deg  product of cyclotomics?   d's            sum phi(d)   lcm(d)
+  2    6   YES                     [5, 6]                 6       30   CEILING
+  3    8   YES                     [5, 10]                8       10   CEILING
+  7   16   YES                     [5, 10, 24]           16      120   CEILING
+
+k in 2..60 for which Q_k is a product of cyclotomics: [2, 3, 7]
+
+for contrast, the UNSIGNED P_k(z) = ... - z^(k+1) + ... (thm:adjclass)
+  k=  2  d's [3, 10]         sum phi = 6  lcm = 30  CEILING
+  k=  5  d's [3, 6, 24]      sum phi = 12  lcm = 24  CEILING
+
+numerical confirmation: nullity of the signed matrix
+    k   lcm   n      predicted   actual
+    2    30   30            6        6   OK
+    2    30   60            6        6   OK
+    3    10   10            8        8   OK
+    3    10   20            8        8   OK
+    7   120  120           16       16   OK

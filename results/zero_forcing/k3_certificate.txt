@@ -1,0 +1,36 @@
+Psi_5 = s**2 + s - 1    Psi_10 = s**2 - s - 1
+F = Psi_5 * Psi_10 = s**4 - 3*s**2 + 1
+F - s*L_3 = 1   =>  a = 0, alpha = 0, beta = 1, c^2 = -1
+roots of F: [-sqrt(5)/2 - 1/2, 1/2 - sqrt(5)/2, -1/2 + sqrt(5)/2, 1/2 + sqrt(5)/2]
+root set closed under negation: True  (two antipodal pairs)
+
+A = [[P+P^-1, I], [-I, P^3+P^-3]]   integer, pattern exactly P(n,3)
+    n   nullity  pattern  next singular value   Z(P(n,3))  verdict
+   10        8   True              2.236068          8   OK
+   20        8   True              0.474903          8   OK
+   30        8   True              0.381966     (too large)   OK
+   40        8   True              0.308174     (too large)   OK
+   50        8   True              0.256542     (too large)   OK
+   60        8   True              0.219248     (too large)   OK
+   70        8   True              0.191245     (too large)   OK
+   80        8   True              0.169508     (too large)   OK
+   90        8   True              0.152170     (too large)   OK
+  100        8   True              0.138029     (too large)   OK
+
+exact check of the nullity via the symbol, for the same n
+  null A = 2 * #{m : F(2cos(2 pi m/n)) = 0, 0 < m < n/2} and every root
+  of F is a root of Psi_5 or Psi_10, so it is on the grid iff 10 | n.
+  n=  10  grid roots counted with multiplicity:  8   numerical nullity:  8   match
+  n=  20  grid roots counted with multiplicity:  8   numerical nullity:  8   match
+  n=  30  grid roots counted with multiplicity:  8   numerical nullity:  8   match
+  n=   7  grid roots counted with multiplicity:  0   numerical nullity:  0   match
+  n=  12  grid roots counted with multiplicity:  0   numerical nullity:  0   match
+  n=  15  grid roots counted with multiplicity:  4   numerical nullity:  4   match
+
+non-example: the UNSIGNED adjacency matrix (both spokes +1) has c^2=+1,
+so its symbol is s*L_3 - 1, a different polynomial:
+  n=10: nullity 0
+  n=20: nullity 0
+  n=30: nullity 0
+
+failures: none

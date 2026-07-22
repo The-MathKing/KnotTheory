@@ -1,0 +1,7 @@
+      base graph   Ham    D    n  nullity  at ceiling?  window inj.
+     P(n,2) base  True    6   20        6         True         True
+     P(n,3) base  True    8   24   no ceiling certificate found
+     theta 0,1,3  True    6   20        6         True         True
+     theta 0,2,5  True   10   28   no ceiling certificate found
+   path 3-vertex  True   12   30       12         True         True
+   star 4-vertex False   12   30       12         True         True

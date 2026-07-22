@@ -1,0 +1,20 @@
+Uniform certificate attempt for Z(P(n,4)) >= 8
+   n  nullity  status
+--------------------------
+  14        0  =0
+  16        0  =0
+  18        8  >= 8 OK
+  20        0  =0
+  22        8  >= 8 OK
+  24        8  >= 8 OK
+  26        8  >= 8 OK
+  28        8  >= 8 OK
+  30        8  >= 8 OK
+  32        8  >= 8 OK
+  34        8  >= 8 OK
+  36        8  >= 8 OK
+  38        8  >= 8 OK
+  40        8  >= 8 OK
+
+reached 8 for n in [18, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40]
+failed for n in [14, 16, 20]

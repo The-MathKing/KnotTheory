@@ -1,0 +1,11 @@
+k=6 d=3 n=72 m=24; H=[1, 7]; root set l=(1, 2, 3, 6, 7, 9, 10)
+fixed field of H has degree 2 over Q; basis values [1.0, 1.4142135623730951]
+double-precision seed: symbol err 2.66e-15, nullity 14, min|req| 0.3300, realisable
+refining coordinates [9, 10, 11, 12, 13, 14, 15] to 60 digits ...
+Traceback (most recent call last):
+  File "/Volumes/2TB/scifair/verification/exact_k6.py", line 108, in <module>
+    w = solve_hp(w0, n, k, d, S, free_idx, prec=prec)
+  File "/Volumes/2TB/scifair/verification/exact_k6.py", line 73, in solve_hp
+    x0 = [mp.mpf(float(w0[j])) for j in free_idx]
+                       ~~^^^
+IndexError: index 15 is out of bounds for axis 0 with size 15

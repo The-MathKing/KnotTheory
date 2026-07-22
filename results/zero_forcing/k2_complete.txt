@@ -1,0 +1,52 @@
+  n   M   c^2 (3 most negative)   null   pattern   symbolic c^2 check   Z(P(n,2))   agree
+  5   2   fewer than 3 interior values                                            5
+  6   2   fewer than 3 interior values                                            4
+  7   3          -1.000000000      --   --        ok                   6      (no symmetric certificate)
+  8   3          +0.000000000      --   --        ok                   5      (no symmetric certificate)
+  9   4          +2.879385242       6   True      ok                        6      yes
+ 10   4          -0.000000000      --   --        ok                   6      (no symmetric certificate)
+ 11   5         +11.343537520       6   True      ok                        6      yes
+ 12   5          +4.732050808       6   True      ok                        6      yes
+ 13   6         +20.113898812       6   True      ok                        6      yes
+ 14   6         +11.591793886       6   True      ok                        6      yes
+ 15   7         +27.664168859       6   True      ok                        6      yes
+ 16   7         +18.578624239       6   True      ok                        6      yes
+ 17   8         +33.784273618       6   True      ok                        6      yes
+ 18   8         +24.872578108       6   True      ok                        6      yes
+ 19   9         +38.658384285       6   True      ok                        6      yes
+ 20   9         +30.265627631       6   True      ok                        6      yes
+ 21  10         +42.537003013       6   True      ok                        6      yes
+ 22  10         +34.794133677       6   True      ok                        6      yes
+ 23  11         +45.642607368       6   True      ok                        6      yes
+ 24  11         +38.572120663       6   True      ok                        6      yes
+ 25  12         +48.151769822       6   True      ok                        6      yes
+ 26  12         +41.724819121       6   True      ok                        6      yes
+ 27  13         +50.199283119       6   True      ok                        6      yes
+ 28  13         +44.365338903       6   True      ok                        6      yes
+ 29  14         +51.886831751       6   True      ok                        6      yes
+ 30  14         +46.588656399       6   True      ok                        6      yes
+ 31  15         +53.291116951       6   True      ok                        6      yes
+ 32  15         +48.472044543       6   True      ok                        6      yes
+ 33  16         +54.470309053       6   True      ok                        6      yes
+ 34  16         +50.077536565       6   True      ok                        6      yes
+ 35  17         +55.468878995       6   True      ok                        6      yes
+ 36  17         +51.454716655       6   True      ok                        6      yes
+ 37  18         +56.321136209       6   True      ok                        6      yes
+ 38  18         +52.643238864       6   True      ok                        6      yes
+ 39  19         +57.053802545       6   True      ok                        6      yes
+ 40  19         +53.674917164       6   True      ok                        6      yes
+
+the cs certificate for 7 | n  (a=1, alpha=0, spokes 1 and -1)
+  P(7,2): nullity 6   pattern True   Z = 6   ok
+  P(14,2): nullity 6   pattern True   Z = 6   ok
+  P(21,2): nullity 6   pattern True   Z = 6   ok
+  P(28,2): nullity 6   pattern True   Z = 6   ok
+  P(35,2): nullity 6   pattern True   Z = 6   ok
+
+exhaustive Z for the exceptional n
+  Z(P(5,2)) = 5
+  Z(P(6,2)) = 4
+  Z(P(8,2)) = 5
+  Z(P(10,2)) = 6
+
+failures: none

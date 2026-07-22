@@ -1,0 +1,95 @@
+period-1 coplanar search, k=6, ceiling 14, n in [60,900]
+  n= 140: best nullity   8
+  n= 210: best nullity   8
+  n= 234: best nullity   8
+  n= 280: best nullity   8
+  n= 315: best nullity   8
+  n= 320: best nullity   8
+  n= 350: best nullity   8
+  n= 420: best nullity   8
+  n= 444: best nullity   8
+  n= 460: best nullity   8
+  n= 468: best nullity   8
+  n= 476: best nullity   8
+  n= 480: best nullity   8
+  n= 490: best nullity   8
+  n= 495: best nullity   7
+  n= 504: best nullity   8
+  n= 520: best nullity   8
+  n= 522: best nullity   8
+  n= 525: best nullity   8
+  n= 528: best nullity   8
+  n= 532: best nullity   8
+  n= 558: best nullity   8
+  n= 560: best nullity   8
+  n= 564: best nullity   8
+  n= 594: best nullity   8
+  n= 616: best nullity   8
+  n= 624: best nullity   7
+  n= 630: best nullity   8
+  n= 636: best nullity   7
+  n= 640: best nullity   8
+  n= 644: best nullity   8
+  n= 648: best nullity   8
+  n= 666: best nullity   8
+  n= 675: best nullity   7
+  n= 684: best nullity   8
+  n= 690: best nullity   7
+  n= 693: best nullity   7
+  n= 700: best nullity   8
+  n= 702: best nullity   8
+  n= 704: best nullity   8
+  n= 708: best nullity   8
+  n= 714: best nullity   8
+  n= 726: best nullity   7
+  n= 732: best nullity   8
+  n= 735: best nullity   8
+  n= 738: best nullity   8
+  n= 740: best nullity   8
+  n= 744: best nullity   7
+  n= 748: best nullity   8
+  n= 750: best nullity   7
+  n= 760: best nullity   8
+  n= 765: best nullity   7
+  n= 768: best nullity   8
+  n= 770: best nullity   8
+  n= 774: best nullity   8
+  n= 792: best nullity   7
+  n= 798: best nullity   8
+  n= 800: best nullity   7
+  n= 804: best nullity   8
+  n= 810: best nullity   8
+  n= 812: best nullity   8
+  n= 816: best nullity   8
+  n= 819: best nullity   8
+  n= 820: best nullity   8
+  n= 825: best nullity   7
+  n= 828: best nullity   8
+  n= 832: best nullity   7
+  n= 836: best nullity   8
+  n= 840: best nullity   8
+  n= 846: best nullity   8
+  n= 850: best nullity   8
+  n= 852: best nullity   8
+  n= 855: best nullity   8
+  n= 858: best nullity   7
+  n= 860: best nullity   8
+  n= 864: best nullity   8
+  n= 868: best nullity   8
+  n= 870: best nullity   8
+  n= 876: best nullity   7
+  n= 880: best nullity   8
+  n= 882: best nullity   8
+  n= 888: best nullity   8
+  n= 896: best nullity   8
+  n= 900: best nullity   8
+
+BEST for k=6: nullity 8 (ceiling 14)
+   n=140  roots m=(2, 22, 38, 42)  c^2=0.447214
+   n=210  roots m=(3, 33, 57, 63)  c^2=0.447214
+   n=234  roots m=(8, 73, 75, 89)  c^2=0.312636
+   n=280  roots m=(4, 44, 76, 84)  c^2=0.447214
+   n=315  roots m=(9, 54, 72, 117)  c^2=0.554958
+   n=320  roots m=(8, 25, 30, 85)  c^2=0.062045
+   n=350  roots m=(5, 55, 95, 105)  c^2=0.447214
+   n=420  roots m=(6, 66, 114, 126)  c^2=0.447214

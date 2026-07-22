@@ -1,0 +1,4 @@
+period-d block search, k=6, target nullity r=14 (= 2k+2)
+    n   d  m=n/d  params  ratios   lam_r/scale        gap   min|wt|  verdict
+   48   3     16      15      14      1.28e-05   1.33e-05    0.0600  none
+   54   3     18      15      14      8.07e-06   2.12e-05    0.0600  none

@@ -1,0 +1,189 @@
+ISEF 2026 (Phoenix) -- MATHEMATICS category
+All published abstracts: 39 projects.  Grand Awards cross-checked against
+the Society for Science full-awards press release (10 Grand Awards).
+====================================================================================================
+
+[4th $600]
+  A Comparison of Precinct and District Voting Data Using Persistent Homology to Quantify Gerrymandering in Texas & California
+  Shah, Ananya -- NY
+
+[3rd $1,200]
+  Complexity Functions Are All You Need
+  Ying, Liqian -- Singapore
+  special: American Mathematical Society: Honorable Mention and One-Year Membership to AMS (for 5 projects with up to 3 t
+
+[2nd $2,400]
+  Detecting Causality in (2+1)-Dimensional Globally Hyperbolic Spacetimes Using Conjugation Quandles Over Dihedral Groups
+  Fan, Zining -- PA
+
+[3rd $1,200]
+  Early Warning for Critical Transitions in Epidemics: A Generative Dynamical Systems Approach
+  Rangarajan, Maya -- NY
+
+[4th $600]
+  Energy-Stable Numerical Method for Blood Flow in 3D Brain Aneurysms
+  Zhu, Helen -- NJ
+
+[4th $600]
+  Projective Generalization of Foci and Isogonal Cubics Loci of Complete Quadrilaterals
+  Lu, Pin-Chun -- Taiwan
+
+[1st $6,000 + Regeneron Young Scientist $75,000]
+  Solvability of Meromorphic Equations in Elementary Functions
+  Veselinov, Nikola -- Bulgaria
+  special: Regeneron Young Scientist Awards
+  special: American Mathematical Society: One-Year Membership to American Mathematical Society to each winner (7 winning 
+
+[3rd $1,200]
+  The Repelling Propellers Problem: Optimizing Energy Configurations in Orbital Patterns
+  Mehrotra, Riya -- CA
+  special: American Mathematical Society: One-Year Membership to American Mathematical Society to each winner (7 winning 
+
+[4th $600]
+  The Split Elevation Theorem and the H Tower for Virtual Knots
+  Jang, Seongwon -- South Korea
+  special: American Mathematical Society: One-Year Membership to American Mathematical Society to each winner (7 winning 
+
+[2nd $2,400]
+  Universal Matrices for Counting Fibo-Multinomial and C-Multinomial Coefficients With a Cryptographic Application
+  Chand, Arav -- NY
+  special: American Mathematical Society: One-Year Membership to American Mathematical Society to each winner (7 winning 
+
+[no grand award]
+  A Framework for Model-Less Causal and Non-Causal Time-Series Forecasting
+  Cabrera-Isaza, Emilio -- Puerto Rico
+
+[no grand award]
+  A Generalized Theory of Divisor Topologies in the Framework of Tau-Factorization
+  Johnson, Austin -- Puerto Rico
+  special: Westlake University: Westlake University is awarding Pre-college Summer Program Scholarships, covering the pro
+  special: Shanghai this summer, to up to six finalists.
+  special: American Mathematical Society: Honorable Mention and One-Year Membership to AMS (for 5 projects with up to 3 t
+
+[no grand award]
+  A New Upper Estimate for the Fermat-Torricelli Ratio
+  Kim, Ganghun -- NJ
+  special: American Mathematical Society: One-Year Membership to American Mathematical Society to each winner (7 winning 
+
+[no grand award]
+  A Novel Spectral-Stochastic Mathematical Framework for Water Scarcity Mitigation via Physics-Informed Neural Operators
+  Rastogi, Advika -- KY
+  special: American Mathematical Society: One-Year Membership to American Mathematical Society to each winner (7 winning 
+
+[no grand award]
+  Adaptive seqNMF for Analysis of Zebra Finch HVC Neuronal Activity: Implications for the Central Pattern Generator Hypothesis
+  Mallick, Piyush -- TX
+
+[no grand award]
+  An Entropy-Driven Framework for Early Prediction of Phase Transitions in Strategic and Combinatorial Systems
+  Cruz, Tiffany -- HI
+
+[no grand award]
+  An Investigation of Fractal Dimension Growth and Convergence in Mathematical Fractals Using Box-Counting and Perimeter Scaling Methods
+  Mayberry, Douglass -- LA
+
+[no grand award]
+  Beyond the Riemann Hypothesis: A Novel Geometric Approach to Deterministic Prime Location for Enhanced Cryptographic Security
+  Al-Shafee, Hassan -- OH
+
+[no grand award]
+  Computational and Statistical Analysis Maximum Growth in the Collatz Conjecture: Evidence of a Scaling Law and Local Arithmetic Structure
+  Rivera Porras , Jan  -- Puerto Rico
+  special: American Mathematical Society: Honorable Mention and One-Year Membership to AMS (for 5 projects with up to 3 t
+
+[no grand award]
+  Digraphs From a New Josephus Transformation
+  Lin, Jia-Ying -- Taiwan
+  special: The Scientific and Technological Research Council of Türkiye  TUBITAK: 1st Prize Award
+  special: American Mathematical Society: Honorable Mention and One-Year Membership to AMS (for 5 projects with up to 3 t
+
+[no grand award]
+  Dynamic Coprime Labeling: A Novel Framework for Cryptographic Safe Prime Generation on k-Uniform Hypergraphs
+  Tonapi, Anushka -- India
+
+[no grand award]
+  Early Stage Analysis of Alzheimer's Disease Using Fractal Dimension Calculations
+  Karaarslan, Eylem -- Turkey
+
+[no grand award]
+  Eigenvalue Distributions of Stochastic Matrices and the Karpelevic Region
+  Rigler, Ebba -- Sweden
+  special: American Mathematical Society: Honorable Mention and One-Year Membership to AMS (for 5 projects with up to 3 t
+
+[no grand award]
+  Finding a Bijection Between the Kekulé Structures of Benzenoids and Weakly Increasing Matrices
+  Yang, Leo -- NC
+  special: American Mathematical Society: One-Year Membership to American Mathematical Society to each winner (7 winning 
+
+[no grand award]
+  Fractal-Type Structures Associated With the Riemann Xi Function
+  Desai, Vidhi -- TX
+  special: American Mathematical Society: Honorable Mention and One-Year Membership to AMS (for 5 projects with up to 3 t
+
+[no grand award]
+  Fractional Members of the Vigneras Multiple Gamma Hierarchy
+  Hernandez Vega, Adrian -- FL
+  special: American Mathematical Society: Honorable Mention and One-Year Membership to AMS (for 5 projects with up to 3 t
+
+[no grand award]
+  GerrySim: A Markov Chain Monte Carlo Framework for Reducing Partisan and Racial Gerrymandering
+  Kulkarni, Sahil -- TX
+  special: American Mathematical Society: Honorable Mention and One-Year Membership to AMS (for 5 projects with up to 3 t
+
+[no grand award]
+  Goat a Feeling I Should Switch: A Study of Whether Switching Doors in the Monty Hall Problem Increases Your Chances of Winning
+  Spaeth Jr., George -- MN
+
+[no grand award]
+  Integration to Segregation: Analyzing Clustering Coefficients in the Brain Across Arithmetic Performance
+  Harbut, Nathan -- AR
+  special: American Mathematical Society: Honorable Mention and One-Year Membership to AMS (for 5 projects with up to 3 t
+
+[no grand award]
+  Invariant-Guided Exploration of the Weyl Chamber for Universal Quantum Gate Discovery
+  Shandilya, Arnav -- TX
+
+[no grand award]
+  Irreducible Polynomials Over Finite Fields as Cryptographical Frameworks for Cybersecurity
+  Lee, Jiseop -- TX
+
+[no grand award]
+  Market Value Formation of Professional Soccer Players: An Analysis Based on Long-Term Ability and Short-Term Performance
+  Zhang, Tongning -- China
+
+[no grand award]
+  Modeling Selfish Routing: Experimental Analysis of Wardrop's First Principle of Equilibrium, Social Optimum, the Price of Anarchy, and Congestion Pricing in Conyers, Georgia
+  Christie, Gabrielle -- GA
+  special: American Mathematical Society: Honorable Mention and One-Year Membership to AMS (for 5 projects with up to 3 t
+
+[no grand award]
+  New Frameworks in Mathematics: Calculus Without Calculus, fCWC, and WJ-fC: CWC-Series Converge When Taylor Series Cannot, Infinite Families of Identities, Multi-Field Applications from Biotech to AI, Novel Fundamental Operators, and Open Conjectures
+  Ohm, Wyndia -- CA
+  special: American Mathematical Society: Honorable Mention and One-Year Membership to AMS (for 5 projects with up to 3 t
+
+[no grand award]
+  Novel Metric Operator Theory: A Solution to a Longstanding Open Problem in Operator Theory and Quantum Mechanics
+  Jallad, Tawfiq -- Jordan
+  special: American Mathematical Society: Honorable Mention and One-Year Membership to AMS (for 5 projects with up to 3 t
+
+[no grand award]
+  Optimizing Urban Accessibility: Quantum Acceleration of the Steiner Tree for the 15-Minute City
+  Shrimali, Prishaa -- NY
+  special: American Mathematical Society: Honorable Mention and One-Year Membership to AMS (for 5 projects with up to 3 t
+
+[no grand award]
+  Revealing The Fragility Beneath: Engineering Dynamic Multi-Layer Financial Networks for Modeling Systemic Risk and Shock Propagation
+  Uffa, Nyel -- MN
+  special: The Consortium for Mathematics and its Applications: Honorable Mention In-Kind
+  special: American Mathematical Society: Honorable Mention and One-Year Membership to AMS (for 5 projects with up to 3 t
+  special: Non-Trivial Ventures: Non-Trivial Fellowship Scholarship
+
+[no grand award]
+  Using Mathematical Modeling to Study Refund Policies in Airline Pricing
+  Yu, Melissa -- CA
+  special: Non-Trivial Ventures: Non-Trivial Fellowship Scholarship
+
+[no grand award]
+  When Epidemics Meet: Understanding Spatiotemporal Interactions of Two Pathogens on Metapopulation Networks via Reaction-Diffusion Dynamics
+  Yu, Alyssa -- MD
+  special: American Mathematical Society: Honorable Mention and One-Year Membership to AMS (for 5 projects with up to 3 t

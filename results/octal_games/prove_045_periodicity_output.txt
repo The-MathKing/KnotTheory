@@ -1,0 +1,11 @@
+Guy-Smith bound 2p+2l+t = 2*498+2*20+2 = 1038
+hypothesis window G(n)=G(n-20) for 518 <= n <= 1038: PASS
+last exception to G(n)=G(n-20) up to N=20000: n=517 (so the preperiod is exactly 498) -- PASS
+shift argument, both inclusions, every pair, n in [1039,1157]: PASS
+engine validation against Flammenkamp's .45 row:
+      rare: computed   11   table   11   match
+      miss: computed   67   table   67   match
+    last+t: computed  200   table  200   match
+      maxG: computed    8   table    8   match
+
+ALL CHECKS PASSED

@@ -1,0 +1,32 @@
+k=6 d=4 n=64 m=16: interior grid indices [1, 2, 3, 4, 5, 6, 7] (7 values, need 7)
+
+ trial     residual  min|req|/scale  nullity
+     0     2.73e-15         0.00504       14  
+     1     8.34e-14         0.00000       16  
+     4     8.58e-14         0.00048       16  
+     5     3.37e-13         0.10264       16  
+     6     1.22e-14         0.00321       16  
+     7     6.12e-15         0.29633       16  
+     9     6.37e-15         0.00000       16  
+    10     4.23e-14         0.00000       16  
+    13     7.29e-18         0.00000       16  
+    15     1.24e-14         0.14376       16  
+    16     8.13e-15         0.03781       14  REALISABLE
+
+free coordinates [np.int64(5), np.int64(6), np.int64(8), np.int64(10), np.int64(15), np.int64(16), np.int64(17)] solved to:
+   w[ 5] = +1.383853615471291
+   w[ 6] = -0.981210617929637
+   w[ 8] = +0.157467762186786
+   w[10] = +0.130099528260001
+   w[15] = -2.999999999999999
+   w[16] = +0.140745831004246
+   w[17] = +3.441003970534208
+
+Are the free coordinates rational?  (integer-relation test)
+   w[ 5]: no low-height rational relation
+   w[ 6]: no low-height rational relation
+   w[ 8]: no low-height rational relation
+   w[10]: no low-height rational relation
+   w[15]: no low-height rational relation
+   w[16]: no low-height rational relation
+   w[17]: no low-height rational relation

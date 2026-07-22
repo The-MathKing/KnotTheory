@@ -1,0 +1,7 @@
+k=6, d=4 (rank law needs d >= 3), target nullity 14
+    n     m  interior  root sets  tried         result  min|req|        gap
+   64    16         7          1      1    CERTIFICATE    0.0861   6.81e-02
+   80    20         9         36      1    CERTIFICATE    0.1198   8.95e-03
+
+k=6: certificates at n = [64, 80]
+  => Z(P(n,6)) = 14 for each of those n

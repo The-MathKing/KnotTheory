@@ -1,0 +1,32 @@
+  path(6): Z=1 (expected 1) OK
+  cycle(7): Z=2 (expected 2) OK
+  K5: Z=4 (expected 4) OK
+  K6: Z=5 (expected 5) OK
+
+  ILP vs brute-force cross-check:
+    P(5,2): ILP=5 brute=5 OK
+    P(6,2): ILP=4 brute=4 OK
+    P(7,2): ILP=6 brute=6 OK
+    P(7,3): ILP=6 brute=6 OK
+    P(8,3): ILP=6 brute=6 OK
+    P(9,2): ILP=6 brute=6 OK
+    P(9,4): ILP=6 brute=6 OK
+
+  Published Z(P(n,2))=6 for n>=10:
+    P(10,2): Z=6 OK
+    P(11,2): Z=6 OK
+    P(12,2): Z=6 OK
+    P(13,2): Z=6 OK
+    P(14,2): Z=6 OK
+    P(15,2): Z=6 OK
+    P(16,2): Z=6 OK
+    P(17,2): Z=6 OK
+    P(18,2): Z=6 OK
+
+  Erratum check Z(P(12,3))=7, Z(P(n,3))=8 for n>=13:
+    P(9,3): Z=6 
+    P(10,3): Z=8 
+    P(11,3): Z=7 
+    P(12,3): Z=7 OK
+HighsMipSolverData::transformNewIntegerFeasibleSolution tmpSolver.run();
+    P(13,3): Z=8 OK

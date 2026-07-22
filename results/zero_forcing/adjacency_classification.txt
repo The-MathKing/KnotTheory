@@ -1,0 +1,19 @@
+Adjacency nullity of P(n,k), classified exactly
+
+P_k(z) = z^(2k+2) + z^(2k) - z^(k+1) + z^2 + 1
+
+  k  2k+2    cyclotomic factors Phi_d of P_k    lcm  nullity when lcm | n
+  2     6                            [3, 10]     30             6  = 2k+2
+  3     8                               none      -         0 for every n
+  4    10                                [3]      3                     2
+  5    12                         [3, 6, 24]     24            12  = 2k+2
+  6    14                               none      -         0 for every n
+  7    16                             [3, 6]      6                     4
+  8    18                            [3, 10]     30                     6
+  9    20                               none      -         0 for every n
+ 10    22                                [3]      3                     2
+ 11    24                             [3, 6]      6                     4
+ 12    26                               [10]     10                     4
+
+cross-check against direct computation:
+  k = 2, 5, 8 over 13 <= n < 200: formula matches direct count everywhere

@@ -1,0 +1,38 @@
+Proposition check (k=6): with rational weights, is the set of
+singular blocks closed under the Galois action?
+  d=3 n=60 m=20: det M_l is Galois-invariant as a multiset -> NO (6 failures)
+  d=3 n=72 m=24: det M_l is Galois-invariant as a multiset -> NO (6 failures)
+  d=4 n=64 m=16: det M_l is Galois-invariant as a multiset -> NO (6 failures)
+
+Search for a realisable Galois-closed root set, k=6
+  d     n    m  sets                             result
+  3    60   20     2                     all degenerate
+  3    72   24     8                     all degenerate
+  3    84   28     2                     all degenerate
+  3    90   30     8              REALISABLE (3, 5, 15)
+  3    96   32     1                     all degenerate
+  3   108   36    12           REALISABLE (3, 4, 9, 12)
+  3   120   40     4                     all degenerate
+  4    60   15     1              REALISABLE (3, 5, 15)
+  4    72   18     2              REALISABLE (3, 9, 18)
+  4    80   20     2              REALISABLE (4, 5, 20)
+  4    84   21     1                 REALISABLE (3, 21)
+  4    96   24     8              REALISABLE (3, 8, 24)
+  4   108   27     0  no Galois-closed set of that size
+  4   120   30     8              REALISABLE (3, 5, 15)
+  5    80   16     1              REALISABLE (4, 8, 16)
+  5    90   18     2              REALISABLE (3, 9, 18)
+  5   120   24     8              REALISABLE (3, 8, 24)
+
+realisable Galois-closed sets found: 11
+   k=6 d=3 n=90 orders=(3, 5, 15)
+   k=6 d=3 n=108 orders=(3, 4, 9, 12)
+   k=6 d=4 n=60 orders=(3, 5, 15)
+   k=6 d=4 n=72 orders=(3, 9, 18)
+   k=6 d=4 n=80 orders=(4, 5, 20)
+   k=6 d=4 n=84 orders=(3, 21)
+   k=6 d=4 n=96 orders=(3, 8, 24)
+   k=6 d=4 n=120 orders=(3, 5, 15)
+   k=6 d=5 n=80 orders=(4, 8, 16)
+   k=6 d=5 n=90 orders=(3, 9, 18)
+   k=6 d=5 n=120 orders=(3, 8, 24)

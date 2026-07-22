@@ -1,0 +1,121 @@
+Exhaustive enumeration of rational period-one symbols, in the LARGER class.
+
+Proposition prop:exh enumerated rational symbols attaining 2k+2 and required
+c^2 = a alpha - beta > 0, the condition for a SYMMETRIC certificate.  In the
+combinatorially symmetric class the two spoke weights are independent and need
+only have product c^2, so the condition weakens to c^2 != 0.  And
+
+    c^2 = 0  <=>  beta = a alpha  <=>  F = (s+a) L_k(s) + alpha (s+a)
+             <=>  F = (s+a)(L_k(s) + t)   for some constant t,
+
+an exact characterisation, one line, valid for every k.  The antipodal
+obstruction of thm:antipodal is the special case forced by parity when k is
+even.  This script redoes the enumeration with the weaker condition.
+
+all Psi_d are used with every root interior, so each contributes 2 to the
+nullity; D must have sum of degrees k+1 and every d >= 3 to reach 2k+2.
+
+k = 2   ceiling 2k+2 = 6
+  candidate factor sets of total degree 3: 17
+    outside the 3-parameter family : 0
+    inside, c^2 = 0 (dead, = (s+a)(L_k+t)) : 7
+    inside, c^2 > 0 (SYMMETRIC certificate): 5
+    inside, c^2 < 0 (cs certificate ONLY)  : 5
+      D=(7,)             a=1    alpha=0    c^2=-1   [cs]  ->  every n divisible by 7
+      D=(9,)             a=0    alpha=-1   c^2=-1   [cs]  ->  every n divisible by 9
+      D=(14,)            a=-1   alpha=0    c^2=1    [sym]  ->  every n divisible by 14
+      D=(3, 5)           a=2    alpha=2    c^2=1    [sym]  ->  every n divisible by 15
+      D=(18,)            a=0    alpha=-1   c^2=1    [sym]  ->  every n divisible by 18
+      D=(4, 5)           a=1    alpha=1    c^2=-1   [cs]  ->  every n divisible by 20
+      D=(4, 10)          a=-1   alpha=1    c^2=1    [sym]  ->  every n divisible by 20
+      D=(3, 10)          a=0    alpha=0    c^2=1    [sym]  ->  every n divisible by 30
+      D=(5, 6)           a=0    alpha=0    c^2=-1   [cs]  ->  every n divisible by 30
+      D=(6, 10)          a=-2   alpha=2    c^2=-1   [cs]  ->  every n divisible by 30
+
+k = 3   ceiling 2k+2 = 8
+  candidate factor sets of total degree 4: 35
+    outside the 3-parameter family : 21
+    inside, c^2 = 0 (dead, = (s+a)(L_k+t)) : 8
+    inside, c^2 > 0 (SYMMETRIC certificate): 0
+    inside, c^2 < 0 (cs certificate ONLY)  : 6
+      D=(5, 10)          a=0    alpha=0    c^2=-1   [cs]  ->  every n divisible by 10
+      D=(3, 6, 8)        a=0    alpha=0    c^2=-2   [cs]  ->  every n divisible by 24
+      D=(5, 8)           a=1    alpha=1    c^2=-1   [cs]  ->  every n divisible by 40
+      D=(8, 10)          a=-1   alpha=-1   c^2=-1   [cs]  ->  every n divisible by 40
+      D=(3, 14)          a=0    alpha=-1   c^2=-1   [cs]  ->  every n divisible by 42
+      D=(6, 7)           a=0    alpha=1    c^2=-1   [cs]  ->  every n divisible by 42
+
+k = 4   ceiling 2k+2 = 10
+  candidate factor sets of total degree 5: 67
+    outside the 3-parameter family : 54
+    inside, c^2 = 0 (dead, = (s+a)(L_k+t)) : 7
+    inside, c^2 > 0 (SYMMETRIC certificate): 3
+    inside, c^2 < 0 (cs certificate ONLY)  : 3
+      D=(4, 15)          a=-1   alpha=-1   c^2=-1   [cs]  ->  every n divisible by 60
+      D=(4, 30)          a=1    alpha=-1   c^2=1    [sym]  ->  every n divisible by 60
+      D=(5, 14)          a=0    alpha=1    c^2=1    [sym]  ->  every n divisible by 70
+      D=(7, 10)          a=0    alpha=1    c^2=-1   [cs]  ->  every n divisible by 70
+      D=(5, 18)          a=1    alpha=0    c^2=1    [sym]  ->  every n divisible by 90
+      D=(9, 10)          a=-1   alpha=0    c^2=-1   [cs]  ->  every n divisible by 90
+
+k = 5   ceiling 2k+2 = 12
+  candidate factor sets of total degree 6: 127
+    outside the 3-parameter family : 118
+    inside, c^2 = 0 (dead, = (s+a)(L_k+t)) : 6
+    inside, c^2 > 0 (SYMMETRIC certificate): 1
+    inside, c^2 < 0 (cs certificate ONLY)  : 2
+      D=(3, 6, 24)       a=0    alpha=0    c^2=1    [sym]  ->  every n divisible by 24
+      D=(7, 18)          a=1    alpha=0    c^2=-1   [cs]  ->  every n divisible by 126
+      D=(9, 14)          a=-1   alpha=0    c^2=-1   [cs]  ->  every n divisible by 126
+
+k = 6   ceiling 2k+2 = 14
+  candidate factor sets of total degree 7: 225
+    outside the 3-parameter family : 216
+    inside, c^2 = 0 (dead, = (s+a)(L_k+t)) : 9
+    inside, c^2 > 0 (SYMMETRIC certificate): 0
+    inside, c^2 < 0 (cs certificate ONLY)  : 0
+      none: no rational period-one symbol attains 2k+2, in either class
+
+k = 7   ceiling 2k+2 = 16
+  candidate factor sets of total degree 8: 385
+    outside the 3-parameter family : 378
+    inside, c^2 = 0 (dead, = (s+a)(L_k+t)) : 6
+    inside, c^2 > 0 (SYMMETRIC certificate): 0
+    inside, c^2 < 0 (cs certificate ONLY)  : 1
+      D=(5, 10, 24)      a=0    alpha=0    c^2=-1   [cs]  ->  every n divisible by 120
+
+k = 8   ceiling 2k+2 = 18
+  candidate factor sets of total degree 9: 651
+    outside the 3-parameter family : 644
+    inside, c^2 = 0 (dead, = (s+a)(L_k+t)) : 7
+    inside, c^2 > 0 (SYMMETRIC certificate): 0
+    inside, c^2 < 0 (cs certificate ONLY)  : 0
+      none: no rational period-one symbol attains 2k+2, in either class
+
+k = 9   ceiling 2k+2 = 20
+  candidate factor sets of total degree 10: 1065
+    outside the 3-parameter family : 1057
+    inside, c^2 = 0 (dead, = (s+a)(L_k+t)) : 8
+    inside, c^2 > 0 (SYMMETRIC certificate): 0
+    inside, c^2 < 0 (cs certificate ONLY)  : 0
+      none: no rational period-one symbol attains 2k+2, in either class
+
+k = 10   ceiling 2k+2 = 22
+  candidate factor sets of total degree 11: 1705
+    outside the 3-parameter family : 1698
+    inside, c^2 = 0 (dead, = (s+a)(L_k+t)) : 7
+    inside, c^2 > 0 (SYMMETRIC certificate): 0
+    inside, c^2 < 0 (cs certificate ONLY)  : 0
+      none: no rational period-one symbol attains 2k+2, in either class
+
+========================================================================
+ k  ceiling  sym certs  cs-only certs  attained n (lcm)
+  2        6          5              5  [7, 9, 14, 15, 18, 20, 30]
+  3        8          0              6  [10, 24, 40, 42]
+  4       10          3              3  [60, 70, 90]
+  5       12          1              2  [24, 126]
+  6       14          0              0  --
+  7       16          0              1  [120]
+  8       18          0              0  --
+  9       20          0              0  --
+ 10       22          0              0  --

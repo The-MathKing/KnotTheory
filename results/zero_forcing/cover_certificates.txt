@@ -1,0 +1,6 @@
+      base graph  nV    n  span D  target  nullity   min|w|
+     P(n,2) base   2   20       6       3        6   0.1085
+     P(n,3) base   2   40       8       4     none
+     theta 0,1,3   2   20       6       3        6   0.0979
+   path 3-vertex   3   24      12       6     none
+   star 4-vertex   4   24      12       6     none

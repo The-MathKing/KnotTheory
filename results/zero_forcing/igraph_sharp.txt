@@ -1,0 +1,10 @@
+Is Z(I(n,j,k)) = 2(j+k) once n is past stabilization AND in range n>=2(j+k)+1?
+
+=== (j,k)=(2,3), bound 2(j+k)=10, theorem needs n>=11 ===
+  I(12,2,3) [24 vtx]: Z=7 witness=0 4 5 6 13 16 17  bound=10  (in range)  [0s]
+  I(18,2,3) [36 vtx]: Z=10 witness=0 1 2 3 4 5 6 7 8 9  bound=10  (in range)  [6s]
+  I(24,2,3) [48 vtx]: Z=10 witness=0 1 2 3 4 5 6 7 8 9  bound=10  (in range)  [38s]
+  I(30,2,3) [60 vtx]: Z=10 witness=0 1 2 3 4 5 6 7 8 9  bound=10  (in range)  [229s]
+
+=== (j,k)=(3,4), bound 2(j+k)=14, theorem needs n>=15 ===
+  I(24,3,4) [48 vtx]: Z=12 witness=0 2 3 4 5 6 7 8 9 10 11 13  bound=14  (in range)  [1649s]

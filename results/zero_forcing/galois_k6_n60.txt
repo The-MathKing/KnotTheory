@@ -1,0 +1,16 @@
+k=6 d=3 n=60 m=20
+interior Galois orbits of Gamma_20:
+   order   4: l = [5]  (size 1 = phi(4)/2 = 1)
+   order   5: l = [4, 8]  (size 2 = phi(5)/2 = 2)
+   order  10: l = [2, 6]  (size 2 = phi(10)/2 = 2)
+   order  20: l = [1, 3, 7, 9]  (size 4 = phi(20)/2 = 4)
+
+Galois-closed sets of size 7: 2
+
+  orders (4, 5, 20)  ->  l = (1, 3, 4, 5, 7, 8, 9)
+    G* = s**7 + s**6 - 6*s**5 - 5*s**4 + 10*s**3 + 5*s**2 - 5*s   (integer coefficients)
+    symbol solve error 7.68e-05
+    nullity 0 (target 14), gap 2.45e-02, min|required|/scale 0.0500  not realisable
+
+  orders (4, 10, 20)  ->  l = (1, 2, 3, 5, 6, 7, 9)
+    G* = s**7 - s**6 - 6*s**5 + 5*s**4 + 10*s**3 - 5*s**2 - 5*s   (integer coefficients)

@@ -1,0 +1,3 @@
+k = 3   ceiling r = 2k+2 = 8   |T - I| is 64 equations in 5n weights  =>  n >= 13
+    n  prime  5n - r^2   max|T - I|   min|edge|/scale   nullity  verdict
+   17   yes        21      2.64e-14            0.0500         8   CEILING

@@ -1,0 +1,15 @@
+        graph  d1  d2  2(d1+d2)  2(j+k)  result
+    I(18,3,8)   3   2        10      22  bootZ=10 = target [14s]
+        u0 u2 u3 u4 u5 u6 u7 u8 u10 v11
+   I(24,3,10)   3   2        10      26  bootZ=10 = target [101s]
+        u0 u6 u7 u8 u10 u11 u14 u18 u21 v0
+   I(24,9,10)   3   2        10      38  bootZ=10 = target [119s]
+        u0 u8 u9 u10 u11 u14 u15 u18 u20 v10
+    I(20,5,8)   5   4        18      26  bootZ=10 < target [32s]
+        u0 u7 u8 u9 u10 u12 u15 u17 v0 v3
+    I(21,7,9)   7   3        20      32  bootZ=11 < target [222s]
+        u0 u2 u3 u4 u5 u6 u7 u8 u14 u17 v2
+    I(18,2,3)   2   3        10      10  bootZ=10 = target [8s]
+        u0 u1 u2 u3 u4 u5 u6 u7 u8 u9
+    I(24,2,3)   2   3        10      10  bootZ=10 = target [55s]
+        u0 u1 u2 u3 u4 u5 u6 u7 u8 u9
