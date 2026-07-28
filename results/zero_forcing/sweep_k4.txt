@@ -1,0 +1,4 @@
+k = 4   nullity target 10   threshold n >= 18.3 (dimension 3n - 55)
+
+--- P(24,4)         variety dimension 17 ---
+P(24,4)   target nullity 2k+2 = 10

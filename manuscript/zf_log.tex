@@ -974,6 +974,124 @@ $a,t\in\{0,\pm1\}$.
 The lesson I should have learned three entries ago: when a computation returns
 ``not realisable,'' check which inequality was being tested.
 
+\section*{Entry 26: off the congruence classes}
+\textbf{Date:} September 27, 2026 \\
+\textbf{Commands:} {\small\texttt{general\_n.py}, \texttt{krawczyk.py},
+\texttt{certify\_pipeline.py},}\\
+{\small\texttt{gauge\_fixed.py}, \texttt{certify\_sweep.py}, \texttt{tiles.py}}
+
+Every exact value in this project has been attached to a divisibility class.
+That is not a gap in the searching; it is forced, and I can now say how.
+
+A period-one symbol is a \emph{fixed} polynomial. Its roots are fixed algebraic
+numbers, and a fixed algebraic number lies on $\Gamma_n$ only for $n$ in a
+divisibility class. So the set of $n$ a given period-one matrix can settle is
+$\{n:\operatorname{lcm}(D)\mid n\}$, which has density at most $1/3$ and
+contains \emph{at most one prime}, since $\{n:L\mid n\}$ with $L\ge3$ contains a
+prime only when $L$ is that prime. To cover more, the weights must depend on
+$n$.
+
+For $k\ge3$ that dependence is constrained by one identity I had not noticed.
+Since $L_k$ has nonzero coefficients only in degrees congruent to $k$ mod $2$,
+the coefficient of $s^{k-1}$ in $(s+a)L_k+\alpha s+\beta$ is the $s^{k-2}$
+coefficient of $L_k$, namely $-k$, for \emph{every} $(a,\alpha,\beta)$. So every
+period-one symbol satisfies
+\[
+  e_2(r_1,\dots,r_{k+1})=-k .
+\]
+On the grid, after expanding $e_1^2$ by product-to-sum, that is a rational
+linear relation among cosines of rational angles --- a Conway--Jones relation,
+hence rigid. For $k=2$ the coefficient of $s^{k-1}=s$ is $\alpha-2$, free, so
+the condition is vacuous. \emph{That} is why $k=2$ is general in $n$ and nothing
+else is: the $k=2$ theorem gets to choose its roots as functions of $n$.
+I checked $e_2=-k$ against all $26$ certificates in the paper; it holds in every
+case with $k\ge3$ and takes six different values among the $k=2$ ones.
+
+\textbf{So stop using the invariant matrices.} The ceiling corollary
+characterises nullity $2k+2$ for \emph{any} matrix on the pattern by $T=I$ on
+the monodromy, and that condition has no arithmetic in it. Minimising
+$\|T-I\|$ over all $5n$ weights reaches the ceiling at $k=2$ for
+$n=9,11,13,14,15$ and at $k=3$ for $n=17,20$ --- including primes.
+
+\textbf{Certifying it, and the mistake I nearly shipped.} $T=I$ is bad to
+certify: the image of $w\mapsto T$ is $51$-dimensional inside the
+$64$-dimensional space of $8\times8$ matrices at $k=3$, so no square subsystem
+is available. Certify the nullity instead, via $A(w)K(X)=0$ with $K$ in graph
+form --- bilinear, so the Jacobian is affine and its Lipschitz constant is an
+explicit integer, which makes a Krawczyk bound cheap.
+
+I first chose the square subsystem by QR pivoting, got a passing Krawczyk test,
+and was ready to call it a proof. It was not one: the $28$ equations I had
+dropped were not shown to vanish at the true zero, only at my starting point.
+The fix is structural. $K^{\!\top}\!AK$ is symmetric because $A$ is, and
+$28=\binom82$ is exactly its antisymmetric part; if the non-pivot rows vanish
+then $K^{\!\top}\!AK$ equals the pivot block, which must therefore be symmetric,
+so setting its upper triangle to zero forces the lower triangle. The system
+\emph{all non-pivot rows} $+$ \emph{upper triangle of the pivot block} is
+equivalent to $AK=0$, not merely a maximal-rank selection of it. And the
+reduction is checkable: the $28$ dependent equations fall to $10^{-61}$ without
+being solved for.
+
+With that, a proof:
+\[
+  Z(P(n,3))=M(P(n,3))=8\qquad n=17,19,21,23,25,27,
+\]
+the primes $17,19,23$ among them. Combined with the $10\mid n$ certificate this
+holds at $n=10,17,19,20,21,23,25,27,30,40,\dots$, a set no divisibility
+condition describes. First results in this project not living on a congruence
+class. The certificate at $n=17$ was found three independent ways and all three
+certify; since stage~1 is only a search and stages~2--3 are the proof, the route
+does not enter the result.
+
+\textbf{Three of my own claims corrected, one in the middle of relying on it.}
+The threshold: I wrote $n\ge(2k+2)^2/5$ from a loose codimension count. Spending
+the gauge properly --- the $2n$ diagonal-conjugation parameters normalise every
+spoke to $1$ and, for odd $n$, every outer weight to $\pm1$ --- leaves $3n$
+unknowns and gives $n\ge(k+1)(2k+3)/3$, which is $35$ at $k=6$, not $27$. I had
+already run $k=6$ at $n=27,29,31$ and read their failure as meaningful. It was
+not; those $n$ are below the threshold and could not have worked.
+
+The growth rate: I conjectured $N(k)=O(k)$ from the saturation data
+($\approx4k+3$). The dimension count is a necessary condition and forces
+$N(k)$ to be at least quadratic. Withdrawn.
+
+The monodromy is not symplectic. I guessed it would be, since the recurrence is
+self-adjoint. The standard form is not preserved; the space of skew $B$ with
+$T^{\!\top}BT=B$ has dimension $k+1$, so the eigenvalues come in reciprocal
+pairs and the characteristic polynomial is palindromic. Different statement,
+and it does not give the equation count I wanted from it.
+
+\textbf{And one instrument withdrawn.} The eigenvalue-minimising search whose
+plateaus I have been quoting as evidence against reachability gives maximum
+nullity $7$ at $P(20,3)$, where $8$ is attained --- by the $\Psi_5\Psi_{10}$
+certificate and, in the symmetric class, by the new method. It collapses onto
+the degenerate strata, all spokes zero or all edges zero. So the conclusion I
+drew from it, that exactness for $k\ge6$ looked unlikely, was never supported by
+that data. I have marked every negative result from it as unreliable in the
+paper rather than quietly dropping them.
+
+\textbf{Toward all large $n$.} If a weight block has transfer product $I$, and
+blocks compose, then $n$ is any sum of available block lengths. Blocks do not
+compose naively, because $T_i$ depends on a window of width about $2k+2$; giving
+every tile a fixed docking segment of $k+1$ positions at each end fixes that,
+and I checked it rather than assumed it --- perturbing one tile's interior leaves
+the other tiles' products bit-identical, $0.000\mathrm{e}{+}00$, for $k=2,3,4$.
+Two coprime lengths would only give $n=ia+jb$ and leave everything below
+$(a-1)(b-1)\approx600$ uncovered, which is useless; tiles of \emph{every} length
+in $[L,2L)$ instead make every $n\ge L$ a sum, with no gap. For $k=3$ a tile of
+length $\ell$ has $5(\ell-8)$ free weights against $64$ equations, so $\ell\ge21$
+and $L=21$ would give all $n\ge21$. Whether those systems are solvable with all
+weights nonzero is being computed and I do not know the answer yet.
+
+\textbf{A regression I caused and caught.} Warm-starting each $n$ from the
+previous certified solution made the sweep affordable, but I gated the cold
+fallback on the warm start being worse than $10^{-2}$. A warm start returning
+$10^{-3}$ then suppressed the cold solve and failed stage~2, and the sweep
+reported only $n=17,19$ --- losing $21,23,25,27$, which I had already certified.
+Restructured so stage~1 produces candidates and stage~2 is attempted on each in
+turn. Worth recording because the failure mode was silent: the sweep looked like
+a clean negative result.
+
 \begin{thebibliography}{9}
 \bibitem{RST} S. Rashidi, N. Shajareh Poursalavati, M. Tavakkoli,
 \emph{J. Algebra Combin. Discrete Struct. Appl.} 7(2) (2020), 183--193.

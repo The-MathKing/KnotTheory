@@ -62,10 +62,33 @@ def assemble(w, cells, S):
     return A
 
 
-def solve(n, k, sign=+1, tries=60, iters=500, seed=0, ladder=True):
+def resample(w_prev, n_prev, n_new):
+    """Carry a solution at n_prev to a starting point at n_new by resampling the
+    three weight sequences (outer diagonal, inner diagonal, inner edge) in the
+    position index.  Nothing about this is canonical -- it only has to land in
+    the basin of the Newton step, which is all stage 1 is for."""
+    import numpy as _np
+    blocks = [w_prev[:n_prev], w_prev[n_prev:2*n_prev], w_prev[2*n_prev:3*n_prev]]
+    xs_new = _np.linspace(0.0, 1.0, n_new, endpoint=False)
+    xs_old = _np.linspace(0.0, 1.0, n_prev, endpoint=False)
+    out = []
+    for blk in blocks:
+        ext = _np.concatenate([blk, blk[:1]])
+        xo = _np.concatenate([xs_old, [1.0]])
+        out.append(_np.interp(xs_new, xo, ext))
+    w = _np.concatenate(out)
+    if n_new % 2 == 0:                     # even n carries a free outer weight
+        w = _np.concatenate([w, [1.0]])
+    return w
+
+
+def solve(n, k, sign=+1, tries=60, iters=500, seed=0, ladder=True, w0=None):
     """Continuation in the target nullity: reaching 2k+2 directly is hard, so
     aim for 2, then 4, ..., then 2k+2, warm-starting the weights each time.
     Each step of the ladder is a small perturbation of the last."""
+    if w0 is not None:
+        # warm start: skip the ladder, go straight for the full target
+        return _run(n, k, sign, 2 * k + 2, iters, seed, w0=w0)
     if ladder:
         best = None
         for t in range(tries):

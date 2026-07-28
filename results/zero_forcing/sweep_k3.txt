@@ -1,0 +1,4 @@
+k = 3   nullity target 8   threshold n >= 12.0 (dimension 3n - 36)
+
+--- P(18,3)         variety dimension 18 ---
+P(18,3)   target nullity 2k+2 = 8

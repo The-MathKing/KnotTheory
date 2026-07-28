@@ -1837,67 +1837,129 @@ against true $Z$ of $6$--$12$, and also weakens as $k$ grows.
 \end{itemize}
 
 \section{Status of the claims}
+Every claim below is labelled by the standard it meets. Four standards appear,
+in decreasing strength: \emph{proved}, meaning a proof in the text;
+\emph{proved by an exact certificate}, meaning an explicit matrix whose nullity
+is computed in $\mathbb Z$ or $\mathbb Q(\zeta_n)$; \emph{proved by interval
+certification}, meaning a Krawczyk contraction bound establishing that a true
+real solution exists in an explicit box; and \emph{numerical}, meaning a
+floating-point computation only. We also list what we have refuted, including
+our own earlier claims.
+
 \begin{itemize}
-\item \textbf{Proved:} Theorems~\ref{thm:I} and \ref{thm:DP} and the corollary,
-for all $n$ in the stated ranges; Theorem~\ref{thm:red},
-Corollary~\ref{cor:ceiling}, Propositions~\ref{prop:SU} and
-\ref{prop:symbol}, and Theorem~\ref{thm:cyclo}.
-\item \textbf{Proved (exact certificates):} Theorem~\ref{thm:certvals}, giving
-$Z(P(n,3))=8$ for $n=40,60,80,120$; $Z(P(n,4))=10$ for $n=60,70,90,120$ and for
-every $n$ divisible by $60$, $70$ or $90$; $Z(P(n,5))=12$ for every $n$
-divisible by $24$; $Z(P(n,2))=6$ for $9\le n\le130$, $n\ne10$. Each rests on an
-explicit matrix, integral in the cyclotomic cases and otherwise verified in
-$\mathbb Q(\zeta_n)$, together with Theorem~\ref{thm:I}. These are the first
-exact values for $k\ge4$.
-\item \textbf{Proved (finite):} every tabulated value of $Z$, by exhaustive
-search.
-\item \textbf{Numerically certified, not yet exact:} Theorem~\ref{thm:k6},
-$Z(P(60,6))=Z(P(72,6))=14$, $Z(P(96,7))=16$, $Z(P(96,8))=18$ --- the first
-values for $k\ge6$. The certificates are
-period-three matrices whose weights are algebraic numbers from a Newton solve,
-verified on the full $2n\times2n$ matrix with a thirteen-order spectral
-separation and every required entry a fifth of the matrix scale, but not in
-exact arithmetic. We do not claim these at the same standard as the $k=4,5$
-results.
-\item \textbf{Observation supported by computation:} the rank law
+\item \textbf{Proved.} Theorems~\ref{thm:I}, \ref{thm:DP} and
+Theorem~\ref{thm:red} with Corollary~\ref{cor:ceiling}; Propositions
+\ref{prop:SU} and \ref{prop:symbol}; Theorem~\ref{thm:cyclo};
+Theorem~\ref{thm:adjclass} and Theorem~\ref{thm:signedadj}, the nullity
+classifications of the adjacency matrix and of its signed variant;
+Theorem~\ref{thm:realis}, that $c^{2}=0$ if and only if the symbol factors as
+$(s+a)(L_k+t)$, with Corollaries~\ref{cor:niven} and \ref{thm:antipodal} and
+Proposition~\ref{prop:k2closed}; Theorem~\ref{thm:k6imp}, that no rational
+period-one symbol attains $14$ at $k=6$ in either matrix class;
+Theorem~\ref{thm:congbound}, that a period-one certificate covers exactly one
+divisibility class, which contains at most one prime, together with the identity
+$e_2=-k$ for every $k\ge3$; and Theorem~\ref{thm:cover} with
+Theorem~\ref{thm:coverattain} for cyclic covers.
+
+\item \textbf{Proved by an exact certificate.} $Z(P(n,2))=6$ for every $n\ge9$
+with $n\ne10$, and for every $n$ divisible by $7$ (Theorem~\ref{thm:k2all});
+$Z(P(n,3))=8$ for every $n$ divisible by $10$ (Theorem~\ref{thm:k3});
+$Z(P(n,4))=10$ for every $n$ divisible by $60$, $70$ or $90$;
+$Z(P(n,5))=12$ for every $n$ divisible by $24$; $Z(P(n,7))=16$ for every $n$
+divisible by $120$ (Theorem~\ref{thm:k7}). The $k=4,5$ values were the first
+exact values for $k\ge4$; the $k=7$ value replaces a floating-point claim we
+previously made at a single $n$. In the $k=2$ ($7\mid n$), $k=3$ and $k=7$ cases
+the certificate is an integer matrix with entries in $\{0,\pm1\}$.
+
+\item \textbf{Proved by interval certification.} $Z(P(n,3))=M(P(n,3))=8$ at the
+values of $n$ listed in Theorem~\ref{thm:p17}, including the primes $17$, $19$
+and $23$. Each rests on a Krawczyk contraction bound for the bilinear system
+$A(w)K(X)=0$, with the square subsystem chosen structurally so that it is
+equivalent to $AK=0$ rather than merely a maximal-rank selection of it. By
+Theorem~\ref{thm:congbound} no period-one certificate can reach these $n$ at
+all, so this is the only route to them that we know.
+
+\item \textbf{Proved (finite).} Every tabulated value of $Z$, by exhaustive
+search over vertex subsets.
+
+\item \textbf{Numerical, not exact.} Theorem~\ref{thm:k6}: $Z(P(n,6))=14$ at
+$n=60,72,84,90,96,108,120$ and $Z(P(96,8))=18$. The certificates are period-three
+matrices whose weights come from a Newton solve, verified on the full
+$2n\times2n$ matrix with a wide spectral separation and every required entry a
+substantial fraction of the matrix scale, but not in exact arithmetic. We do not
+claim these at the standard of the items above. ($Z(P(96,7))=16$ was in this
+category and is now exact.)
+
+\item \textbf{Observation supported by computation, not proved.} The rank law
 $\operatorname{rank}=\min(2d+1,k+1)$, verified for $3\le k\le13$ and
-$1\le d\le7$, and returning the known value $3$ at $d=1$. Not proved.
-\item \textbf{Conjectural:} Conjecture~\ref{conj}. The sequences are
-non-monotone, so extrapolation is not safe: five consecutive equal values
-occurred at $k=5$ ($Z=10$ for $17\le n\le21$) before the sequence moved to $11$
-and then $12$, and at $k=6$ the bound is attained at $n=28$ and lost at $n=29$.
-\item \textbf{Observation, not a theorem:} that the obstruction to nullity
-$2k+2$ at the remaining $n$ is arithmetic rather than dimensional. The
-parameter budgets are met, and extensive search in both matrix classes
-plateaus well above machine precision; but no proof is offered, and no
+$1\le d\le7$. Also the saturation of the reachable set of monodromies, at
+dimension $31$ for $k=2$ and $51$ for $k=3$.
+
+\item \textbf{Conjectural.} Conjectures~\ref{conj} and \ref{conj:generaln}. For
+\ref{conj:generaln} we prove the necessary condition \eqref{eq:thresh} and
+verify the conclusion at the $n$ of Theorem~\ref{thm:p17}, but the statement for
+all large $n$ is not proved for any $k\ge3$.
+
+\item \textbf{Refuted (ours).} That the period-one construction ``never exceeds
+$6$ for every $k\ge2$''. Three roots can be prescribed and no more, but the
+remaining $k-2$ can land on the grid by Galois conjugacy, and do. The
+period-two construction we built to get past $6$ was unnecessary and its values
+are superseded.
+
+\item \textbf{Refuted (ours).} That $k=3$ and $k=7$ admit no rational
+period-one symbol attaining $2k+2$. That enumeration imposed $c^{2}>0$, the
+condition for a \emph{symmetric} certificate, where $c^{2}\ne0$ suffices: $c^{2}$
+is the product of the two spoke weights and only its vanishing is fatal. Six
+symbols at $k=3$ and one at $k=7$ survive, giving Theorems~\ref{thm:k3}
+and~\ref{thm:k7}.
+
+\item \textbf{Refuted (ours).} The unconditional bound $Z(B^n)\ge D$ for cyclic
+covers, by $Z(P(8,2))=5<6$. Only the conditional form
+$Z(B^n)\ge\nu$ for an attained $\nu$ survives.
+
+\item \textbf{Refuted (ours).} The single-threshold form $n_0(k)=5k-2$, by
+$Z(P(29,6))=12$; and any bound of the form
+$Z\le2(\gcd(n,j)+\gcd(n,k))$, by $Z(P(11,3))=7>4$.
+
+\item \textbf{Refuted (ours).} That the threshold for reaching the ceiling with
+a general matrix is $n\ge(2k+2)^{2}/5$. Spending the gauge gives
+\eqref{eq:thresh}, $n\ge(k+1)(2k+3)/3$, which is larger; the earlier figure led
+us to test $k=6$ at $n=27,29,31$, all below the true threshold of $35$.
+
+\item \textbf{Refuted (ours).} That $N(k)$ in Conjecture~\ref{conj:generaln} is
+$O(k)$. The saturation data alone suggests $4k+3$, but \eqref{eq:thresh} forces
+$N(k)\ge\lceil(k+1)(2k+3)/3\rceil$, which is quadratic.
+
+\item \textbf{Refuted (ours).} That the monodromy of the reduced recurrence is
+symplectic. The standard form is not preserved; what holds is that the space of
+skew forms $B$ with $T^{\!\top}BT=B$ has dimension $k+1$, so the eigenvalues
+come in reciprocal pairs and the characteristic polynomial is palindromic.
+
+\item \textbf{Withdrawn as unreliable (ours).} The eigenvalue-minimising search
+whose plateaus we previously reported as evidence that the ceiling is
+unreachable at various $(n,k)$. It gave maximum nullity $7$ at $P(20,3)$, where
+$8$ is attained --- by Theorem~\ref{thm:k3} and, in the symmetric class, by the
+method of Section~\ref{sec:generaln}. It collapses onto the degenerate strata
+(all spokes zero, or all edges zero). Its negative results should not be read as
+evidence, and the conclusion we drew from them, that exactness for $k\ge6$ was
+unlikely, was not supported.
+
+\item \textbf{Open.} Conjecture~\ref{conj:generaln} for $k\ge3$; whether
+$M=Z$ in general; exact rather than interval certification at the $n$ of
+Theorem~\ref{thm:p17}; and the rank law. We expect
+$M(P(10,2))<Z(P(10,2))=6$, a strict gap, since the search fails there even
+though the reachable dimension is saturated, but we do not prove it and no
 $(n,k)$ is proved to have $M(P(n,k))<2k+2$.
-\item \textbf{Refuted (ours):} that the period-one construction ``never exceeds
-$6$, for every $k\ge2$''. Three roots can be prescribed and no more, but the
-remaining $k-2$ roots can land on the grid by Galois conjugacy, and do:
-period-one certificates reach $2k+2$ for $k=2,3,4,5$. The period-two
-construction we built to get past $6$ was unnecessary, and the values it gave
-($8$ for $P(n,4)$, $10$ for $P(24,6)$) are superseded.
-\item \textbf{Refuted (ours):} the single-threshold form $n_0(k)=5k-2$, by
-$Z(P(29,6))=12$. It was recorded as a falsifiable prediction and it failed.
-\item \textbf{Refuted (ours):} any bound of the form
-$Z\le2(\gcd(n,j)+\gcd(n,k))$, by $Z(P(11,3))=7>4$ and five similar cases.
-Observation~\ref{obs:gcd} survives only as a statement about $d_1,d_2>1$.
-\item \textbf{Open:} whether $Z(P(n,k))=2k+2$ for \emph{all} large $n$ ---
-note that by Proposition~\ref{prop:reach} the period-$d$ method cannot settle
-prime $n$ at all, so a different construction is needed there --- and
-whether $M(P(n,k))=Z(P(n,k))$ in general. Also open is whether the degeneracy
-of Section~\ref{sec:periodd} is essential: at $n=48$ and $n=54$, where the
-choice of root set has no slack, every solution collapses a spoke, and we have
-no proof that this must happen rather than merely observing that it does. By Corollary~\ref{cor:ceiling} the
-certificate method could in principle settle the first question completely,
-since its ceiling is exactly $2k+2$; what is missing is a construction valid
-for every residue class of $n$, and for $k\ge6$ any construction at all. The
-three combinatorial techniques of Section~\ref{sec:resist} are insufficient in
-principle rather than merely in practice.
-\item \textbf{Not determined:} whether Theorem~\ref{thm:DP} is attained for
-$k\ge3$ (it is attained at $k=1,2$). Theorem~\ref{thm:I} is attained at $j=1$
-(via the corollary) and at $I(18,2,3)$, but is far from sharp elsewhere in the
-regime where it carries new content; see Remark~\ref{rem:scope}.
+
+\item \textbf{Superseded (ours).} The claim that the period-$d$ method ``cannot
+settle prime $n$ at all'' and that a different construction would be needed
+there. That is correct for the period-$d$ method and is now a theorem
+(Theorem~\ref{thm:congbound}), but it is no longer a limitation of the paper:
+Section~\ref{sec:generaln} settles prime $n$ for $k=3$.
+
+\item \textbf{Not determined.} Whether Theorem~\ref{thm:DP} is attained for
+$k\ge3$; whether the degeneracy of Section~\ref{sec:periodd} at $n=48,54$ is
+essential.
 \end{itemize}
 
 \begin{thebibliography}{9}

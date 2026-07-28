@@ -1,0 +1,4 @@
+k = 5   nullity target 12   threshold n >= 26.0 (dimension 3n - 78)
+
+--- P(31,5)  prime  variety dimension 15 ---
+P(31,5)   target nullity 2k+2 = 12

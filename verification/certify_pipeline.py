@@ -31,21 +31,51 @@ def to_full(w1, n, sign):
     return np.concatenate([a, d, b, np.ones(n), e])
 
 
-def certify(n, k, digits=4, tries=40, iters=400, seed=0, verbose=True):
+def certify(n, k, digits=4, tries=40, iters=400, seed=0, verbose=True,
+            warm=None):
+    """warm = (w_prev, n_prev, sign) from an earlier certified n, or None."""
     r = 2 * k + 2
     N = 2 * n
     if verbose:
         print(f"P({n},{k})   target nullity 2k+2 = {r}")
-    best = None
+    from gauge_fixed import resample
+    # Stage 1 yields CANDIDATES, and stage 2 is attempted on each in turn.  A
+    # warm start that returns a mediocre point (say 1e-3) used to suppress the
+    # cold solve and then fail stage 2, losing n that a cold solve certifies.
+    cands = []
+    if warm is not None:
+        wp, npv, sp = warm
+        try:
+            obj0, me0, w1 = gf_solve(n, k, sign=sp, iters=iters, seed=seed,
+                                     w0=resample(wp, npv, n))
+            if np.isfinite(obj0):
+                cands.append((obj0, me0, w1, sp, f"warm from n={npv}"))
+        except Exception:
+            pass
     for sign in (+1, -1):
         obj0, me0, w1 = gf_solve(n, k, sign=sign, tries=tries, iters=iters,
                                  seed=seed)
-        if best is None or obj0 < best[0]:
-            best = (obj0, me0, w1, sign)
-    obj0, me0, w1, sign = best
-    if verbose:
-        print(f"  stage 1 (gauge-fixed, outer sign {sign:+d}): "
-              f"r-th sv/scale = {obj0:.3e}, min|inner|/scale = {me0:.4f}")
+        if np.isfinite(obj0):
+            cands.append((obj0, me0, w1, sign, f"cold, sign {sign:+d}"))
+    cands.sort(key=lambda c: c[0])
+    if not cands:
+        if verbose: print("  stage 1 found nothing")
+        return False, None, None
+    for ci, (obj0, me0, w1, sign, tag) in enumerate(cands):
+        if verbose:
+            print(f"  stage 1 [{tag}]: r-th sv/scale = {obj0:.3e}, "
+                  f"min|inner|/scale = {me0:.4f}")
+        ok, info, zn = _finish(n, k, w1, sign, digits, verbose)
+        if ok:
+            return ok, info, zn
+        if verbose and ci + 1 < len(cands):
+            print("  -> stage 2/3 failed; trying the next stage-1 candidate")
+    return False, None, None
+
+
+def _finish(n, k, w1, sign, digits, verbose):
+    r = 2 * k + 2
+    N = 2 * n
     w = to_full(w1, n, sign)
     cells = pattern_cells(n, k)
     nw = len(cells)
@@ -151,7 +181,11 @@ def certify(n, k, digits=4, tries=40, iters=400, seed=0, verbose=True):
               f"{sv2[-r-1]/sv2.max():.4f}, min|edge|/scale "
               f"{edges.min()/np.abs(zn[:nw]).max():.4f}")
         print(f"  VERDICT: {'PROVED null A = %d' % r if ok and nul == r else 'NOT proved'}")
-    return ok and nul == r, (Ynorm, alpha0, eta), zn
+    # hand back the gauge-fixed weights so the next n can warm-start from them
+    wgf = np.concatenate([zn[:n], zn[n:2*n], zn[4*n:5*n]])
+    if n % 2 == 0:
+        wgf = np.concatenate([wgf, [zn[2*n]]])
+    return ok and nul == r, (wgf, n, sign), zn
 
 
 if __name__ == "__main__":
