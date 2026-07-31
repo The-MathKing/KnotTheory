@@ -1,4 +1,20 @@
 k = 3   nullity target 8   threshold n >= 12.0 (dimension 3n - 36)
 
+--- P(17,3)  prime  variety dimension 15 ---
+P(17,3)   target nullity 2k+2 = 8
+  stage 1 [cold, sign +1]: r-th sv/scale = 3.956e-04, min|inner|/scale = 0.1447
+  293 unknowns, 272 equations, 244 structural, 28 dependent; fixing 49 at rationals
+  stage 2 (double): max|f| structural = 9.470e-16, dependent = 3.397e-15
+  stage 2b (60 digits): structural 1.945e-61, dependent 1.556e-61
+  ||Y||=2.145e+02  ||I-YJ||=5.883e-13  ||Yf||=6.737e-61
+  stage 3 KRAWCZYK PASSES at delta = 1e-13: alpha = 2.580e-10
+  certified matrix: nullity 8, gap 0.1666, min|edge|/scale 0.1462
+  VERDICT: PROVED null A = 8
+
 --- P(18,3)         variety dimension 18 ---
 P(18,3)   target nullity 2k+2 = 8
+  stage 1 [warm from n=17]: r-th sv/scale = 2.468e-03, min|inner|/scale = 0.0035
+  314 unknowns, 288 equations, 260 structural, 28 dependent; fixing 54 at rationals
+  stage 2 (double): max|f| structural = 1.415e-02, dependent = 3.415e-02
+  did not converge; stopping
+  -> stage 2/3 failed here; trying the next candidate

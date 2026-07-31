@@ -39,37 +39,39 @@ def certify(n, k, digits=4, tries=40, iters=400, seed=0, verbose=True,
     if verbose:
         print(f"P({n},{k})   target nullity 2k+2 = {r}")
     from gauge_fixed import resample
-    # Stage 1 yields CANDIDATES, and stage 2 is attempted on each in turn.  A
-    # warm start that returns a mediocre point (say 1e-3) used to suppress the
-    # cold solve and then fail stage 2, losing n that a cold solve certifies.
-    cands = []
-    if warm is not None:
-        wp, npv, sp = warm
-        try:
-            obj0, me0, w1 = gf_solve(n, k, sign=sp, iters=iters, seed=seed,
+    # Candidates are generated LAZILY and stage 2/3 is attempted on each in
+    # turn, stopping at the first that certifies.  Generating all of them up
+    # front means always paying for both cold gauge slices even when the warm
+    # start would have sufficed, which triples the cost per n.
+    def gen():
+        if warm is not None:
+            wp, npv, sp = warm
+            try:
+                o, m_, w_ = gf_solve(n, k, sign=sp, iters=iters, seed=seed,
                                      w0=resample(wp, npv, n))
-            if np.isfinite(obj0):
-                cands.append((obj0, me0, w1, sp, f"warm from n={npv}"))
-        except Exception:
-            pass
-    for sign in (+1, -1):
-        obj0, me0, w1 = gf_solve(n, k, sign=sign, tries=tries, iters=iters,
+                if np.isfinite(o):
+                    yield o, m_, w_, sp, f"warm from n={npv}"
+            except Exception:
+                pass
+        for sign in (+1, -1):
+            o, m_, w_ = gf_solve(n, k, sign=sign, tries=tries, iters=iters,
                                  seed=seed)
-        if np.isfinite(obj0):
-            cands.append((obj0, me0, w1, sign, f"cold, sign {sign:+d}"))
-    cands.sort(key=lambda c: c[0])
-    if not cands:
-        if verbose: print("  stage 1 found nothing")
-        return False, None, None
-    for ci, (obj0, me0, w1, sign, tag) in enumerate(cands):
+            if np.isfinite(o):
+                yield o, m_, w_, sign, f"cold, sign {sign:+d}"
+
+    any_cand = False
+    for obj0, me0, w1, sign, tag in gen():
+        any_cand = True
         if verbose:
             print(f"  stage 1 [{tag}]: r-th sv/scale = {obj0:.3e}, "
                   f"min|inner|/scale = {me0:.4f}")
         ok, info, zn = _finish(n, k, w1, sign, digits, verbose)
         if ok:
             return ok, info, zn
-        if verbose and ci + 1 < len(cands):
-            print("  -> stage 2/3 failed; trying the next stage-1 candidate")
+        if verbose:
+            print("  -> stage 2/3 failed here; trying the next candidate")
+    if not any_cand and verbose:
+        print("  stage 1 found nothing")
     return False, None, None
 
 

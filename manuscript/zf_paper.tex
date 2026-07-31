@@ -11,6 +11,7 @@
 \theoremstyle{definition}
 \newtheorem{remark}[theorem]{Remark}
 \newtheorem{observation}[theorem]{Observation}
+\newtheorem{definition}[theorem]{Definition}
 
 \title{Maximum Nullity of Cyclic Covers of Graphs,\\
 and Exact Zero Forcing Numbers of Generalized Petersen Graphs}
@@ -105,8 +106,32 @@ the symbol has rank $\min(2d+1,k+1)$ in every case computed, so every symbol
 becomes reachable exactly when $d\ge\lceil k/2\rceil$. This yields
 $Z(P(n,6))=14$ at $n=60,72,84,90,96,108,120$, $Z(P(96,7))=16$ and
 $Z(P(96,8))=18$, though these certificates are verified numerically rather than
-in exact arithmetic. We state throughout which claims are proved, which are
-computations, and which earlier claims of ours are corrected.
+in exact arithmetic. Every exact value above holds for $n$ in a divisibility class, and we prove that
+this is forced: a period-one symbol is a fixed polynomial, its roots are fixed
+algebraic numbers, and a fixed algebraic number lies on $\Gamma_n$ only for $n$
+in one divisibility class --- which contains at most one prime. For $k\ge3$ an
+$n$-dependent choice of roots is constrained by the identity $e_2=-k$, a
+Conway--Jones relation on the grid; for $k=2$ that condition is vacuous, which is
+exactly why $k=2$ is general in $n$ and no other $k$ is.
+
+Escaping this needs the non-invariant matrices, and the ceiling corollary
+supplies the criterion: $\operatorname{null}A=2k+2$ if and only if the monodromy
+is the identity, a condition with no arithmetic in it. We certify that condition
+rigorously, not numerically, by recasting it as the bilinear system $A(w)K(X)=0$
+with $K$ in graph form and applying a Krawczyk contraction test; the square
+subsystem must be chosen structurally, since $K^{\!\top}\!AK$ is symmetric and
+its antisymmetric part accounts for exactly $\binom{2k+2}2$ dependencies. This
+gives $Z(P(n,3))=M(P(n,3))=8$ at $n=17,19,21,23,25,27$, the primes $17,19,23$
+among them --- values that no period-one certificate can reach, and the first in
+this paper not lying on a congruence class. Finally we show that a construction
+valid for \emph{all} large $n$ reduces to a finite list of finite problems: tiles
+carrying a fixed docking pattern at both ends have transfer products depending
+only on their interiors, so identity tiles of every length in $[L,2L)$ would give
+$Z(P(n,k))=2k+2$ for every $n\ge L$.
+
+We state throughout which claims are proved, which rest on exact certificates,
+which on interval certification, which are numerical, and which earlier claims of
+ours are corrected or withdrawn.
 \end{abstract}
 
 \section{Background}
@@ -1813,6 +1838,80 @@ Theorem~\ref{thm:k3} and, in the \emph{symmetric} class, by the method of this
 section. It was collapsing onto the degenerate strata --- all spokes zero, or
 all edges zero --- that the formulations here exclude by construction.
 \end{remark}
+
+\subsection*{A route to all large $n$}
+Conjecture~\ref{conj:generaln} asks for one construction covering every large
+$n$. Certifying $n$ one at a time cannot do that. But the condition $T=I$ is
+multiplicative along the cycle, and that suggests assembling the weight sequence
+from pieces each of which contributes the identity. The obstacle is that $T_i$ is
+built from the weights in a window of width about $2k+2$ around position $i$, so
+pieces interact across their boundaries and the product does not factorise. The
+following removes the obstacle.
+
+\begin{definition}
+Fix a \emph{docking pattern}: values of $(b,c,e,a,d)$ at $k+1$ consecutive
+positions. A \emph{tile} of length $\ell\ge2(k+1)$ is a weight sequence of
+length $\ell$ whose first $k+1$ and last $k+1$ positions carry the docking
+pattern. Its \emph{interior} is the remaining $\ell-2(k+1)$ positions.
+\end{definition}
+
+\begin{lemma}[Tile independence]\label{lem:tile}
+Let the weight sequence on $\mathbb Z_n$ be a concatenation of tiles sharing one
+docking pattern. Then for each tile the product of the transfer matrices over
+its positions depends only on that tile's interior weights, and the monodromy is
+the product of these tile products.
+\end{lemma}
+
+\begin{proof}
+By Theorem~\ref{thm:red}, $T_i$ is determined by the coefficients of the
+$i$th reduced equation, which involve $b$ at indices in $[i-k-1,i+k]$, $c$ and
+$a$ at $i-k,i,i+k$, $e$ at $i-k$ and $i$, and $d$ at $i$. So $T_i$ depends only
+on weights at indices in $[i-k-1,i+k]$. If the tile occupies $[s,s+\ell)$ and
+$i\in[s,s+\ell)$, this window is contained in
+$[s-k-1,\,s+\ell+k-1]$. The part below $s$ lies in the preceding tile's final
+$k+1$ positions and the part at or above $s+\ell$ lies in the following tile's
+first $k+1$ positions; both carry the docking pattern, as do $[s,s+k]$ and
+$[s+\ell-k-1,s+\ell)$. Hence every weight $T_i$ sees is either docking or in
+this tile's interior. The second statement is associativity of the product
+$T=T_{n-1}\cdots T_0$ regrouped along the tiles.
+\end{proof}
+
+\begin{theorem}[Tiling]\label{thm:tiling}
+Fix $k$ and $L\ge2(k+1)$. Suppose that for every $\ell$ with $L\le\ell<2L$ there
+are interior weights, all of the required entries nonzero, making the tile
+product of length $\ell$ equal to the identity. Then
+\[
+  Z(P(n,k))=M(P(n,k))=2k+2\qquad\text{for every }n\ge L,
+\]
+with no congruence condition.
+\end{theorem}
+
+\begin{proof}
+Every $n\ge L$ is a sum of integers from $[L,2L)$: if $n<2L$ take the single
+term $n$, and if $n\ge2L$ take a term $L$ and recurse on $n-L\ge L$.
+Concatenating the corresponding tiles gives a weight sequence on $\mathbb Z_n$
+whose monodromy is, by Lemma~\ref{lem:tile}, the product of the tile products,
+hence $I$. All required weights are nonzero, so the matrix carries the pattern
+of $P(n,k)$ and Theorem~\ref{thm:red} applies; by
+Corollary~\ref{cor:ceiling}, $\operatorname{null}A=2k+2$. With $M\le Z$ and the
+rotation bootstrap $Z\le2k+2$, both are equal to $2k+2$.
+\end{proof}
+
+\noindent
+Lemma~\ref{lem:tile} was checked before use: perturbing one tile's interior
+leaves the other tiles' products unchanged to the last bit, $0$ exactly, for
+$k=2,3,4$ (\texttt{verification/tiles.py}). Two remarks on the shape of
+Theorem~\ref{thm:tiling}. First, the hypothesis over a full interval $[L,2L)$ is
+what makes the conclusion gapless; using two tile lengths $a,b$ with
+$\gcd(a,b)=1$ instead would give only $n$ of the form $ia+jb$, leaving every
+$n<(a-1)(b-1)$ uncovered, which for the smallest solvable lengths at $k=3$ is
+already several hundred. Second, the hypothesis is a \emph{finite} list of
+independent finite problems: a tile of length $\ell$ has $5(\ell-2(k+1))$ free
+weights and the requirement is $(2k+2)^2$ equations, so it is solvable on
+parameter count once $\ell$ is a little above $2(k+1)+(2k+2)^2/5$. For $k=3$
+that is $\ell\ge21$, and $L=21$ would give every $n\ge21$. Whether those systems
+admit solutions with all weights nonzero is a computation we have not completed,
+and we make no claim about it here.
 
 \section{Why lower bounds resist standard methods}\label{sec:resist}
 A set is zero forcing iff it meets every \emph{fort} --- a nonempty $F$ such
