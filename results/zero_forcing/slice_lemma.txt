@@ -1,0 +1,8 @@
+Lemma (a complete slice): spokes -> +1, |outer| -> 1 (one free when n is even)
+   n  parity  spokes=+1   max||b_i|-1|   b_0        nullity kept
+  17  odd     True       7.77e-16      -1.0000    True
+  18  even    True       2.00e-15      -1.0461    True
+  19  odd     True       8.88e-16      +1.0000    True
+  20  even    True       2.55e-15      -1.0412    True
+  21  odd     True       2.66e-15      +1.0000    True
+  22  even    True       1.78e-15      -0.7737    True

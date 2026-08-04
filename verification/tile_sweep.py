@@ -36,8 +36,13 @@ def main():
     sols = {}
     for l in range(lo, hi + 1):
         nint = l - 2 * (k + 1)
-        if 5 * nint < r * r - 20:
-            print(f" {l:5d}{5*nint:10d}   too few unknowns; skipped")
+        # A tile needs at least as many free weights as the condition T = I
+        # imposes.  The reachable set of monodromies is smaller than the full
+        # matrix space, so the sharp count is unknown; require at least r*r - 13
+        # (the deficiency measured at k=3) and report the margin.
+        if 5 * nint < r * r - 13:
+            print(f" {l:5d}{5*nint:10d}   only {5*nint} unknowns for "
+                  f"{r*r} equations; skipped")
             continue
         b = solve_tile(l, k, tries=60, seed=l)
         if b is None:

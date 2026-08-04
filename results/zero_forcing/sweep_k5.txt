@@ -2,3 +2,8 @@ k = 5   nullity target 12   threshold n >= 26.0 (dimension 3n - 78)
 
 --- P(31,5)  prime  variety dimension 15 ---
 P(31,5)   target nullity 2k+2 = 12
+  stage 1 [cold, sign +1]: r-th sv/scale = 1.654e-03, min|inner|/scale = 0.0006
+  755 unknowns, 744 equations, 678 structural, 66 dependent; fixing 77 at rationals
+  stage 2 (double): max|f| structural = 4.484e-04, dependent = 4.484e-04
+  did not converge; stopping
+  -> stage 2/3 failed here; trying the next candidate

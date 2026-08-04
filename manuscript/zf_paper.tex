@@ -1786,15 +1786,44 @@ $n=13<15$. Independently, at $n=17$, $k=3$ the solution variety of $f=0$ has
 dimension $293-244=49=5n-\binom{2k+3}2$, exactly the codimension count for
 symmetric matrices on the pattern with nullity $2k+2$.
 
-There is also a hard \emph{necessary} condition, from spending the gauge. The
-conjugation $A\mapsto DAD$ by a positive diagonal matrix has $2n$ parameters and
-preserves symmetry, the pattern and the nullity; the $n$ inner parameters
-normalise every spoke to $1$, and for odd $n$ the $n$ outer ones normalise every
-outer weight to $\pm1$, since $u_i+u_{i+1}=-\log|b_i|$ is uniquely solvable on an
-odd cycle. (The product of the signs around the cycle is a gauge invariant, so
-there are exactly two slices.) What remains is $2n$ diagonal entries and $n$
-inner weights, with no residual gauge, and the solution variety of $f=0$ has
-dimension
+There is also a hard \emph{necessary} condition, from spending the gauge, and it
+pays to be careful about what the gauge can and cannot do.
+
+\begin{lemma}[A complete slice]\label{lem:slice}
+Every symmetric matrix on the pattern of $P(n,k)$ with all weights nonzero is
+carried, by a conjugation preserving symmetry, the pattern and the nullity, to
+one with every spoke equal to $+1$ and every outer weight equal to $\pm1$ --- for
+even $n$, with a single outer weight left arbitrary. The signs may be taken to
+be $+1$ except possibly one, so for odd $n$ there are two such slices and for
+even $n$ one.
+\end{lemma}
+
+\begin{proof}
+Two conjugations are available. Positive diagonal $A\mapsto DAD$ scales
+$b_i\mapsto d_id_{i+1}b_i$, $c_i\mapsto d_id_{n+i}c_i$, and sign diagonal
+$A\mapsto SAS$ with $S=\operatorname{diag}(\pm1)$ sends
+$b_i\mapsto s_is_{i+1}b_i$, $c_i\mapsto s_is_{n+i}c_i$. Since $d_id_{n+i}>0$,
+each spoke's \emph{sign} is invariant under the first and must be fixed by the
+second: taking $s_{n+i}=s_i\operatorname{sign}(c_i)$ makes every spoke positive,
+and choosing the inner $d_{n+i}$ makes every spoke $1$. The outer $d_i$ then
+satisfy $u_i+u_{i+1}=-\log|b_i|$ with $u_i=\log d_i$, a cyclic system whose
+matrix is invertible for odd $n$ and has corank $1$ for even $n$; in the latter
+case drop one equation, leaving one outer weight unnormalised. Finally
+$s_is_{i+1}\operatorname{sign}(b_i)=1$ is solvable exactly when
+$\prod_i\operatorname{sign}(b_i)=1$, giving the two sign classes for odd $n$,
+while for even $n$ the unnormalised weight absorbs the invariant.
+\end{proof}
+
+\noindent
+We verified Lemma~\ref{lem:slice} numerically before relying on it: random
+matrices on the pattern are carried into the slice with the spokes exactly $+1$
+and $|b_i|=1$ to $10^{-15}$, and the nullity unchanged, for both parities of $n$
+(\texttt{verification/gauge\_fixed.py}). The point of the lemma is that a search
+restricted to the slice is not restricted at all, so a failure inside it is a
+failure of the search and not evidence that no matrix exists.
+
+What remains after the fixing is $2n$ diagonal entries and $n$ inner weights,
+with no residual gauge, and the solution variety of $f=0$ has dimension
 \[
   \bigl[3n+(2n-r)r\bigr]-\bigl[(2n-r)r+\tbinom{r+1}2\bigr]
   =3n-(k+1)(2k+3),

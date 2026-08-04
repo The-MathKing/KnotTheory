@@ -168,7 +168,7 @@ def is_prime(m):
     return m > 1 and all(m % d for d in range(2, int(m ** 0.5) + 1))
 
 
-if __name__ == "__main__":
+if __name__ == "__main__" and sys.argv[1:2] != ["verify"]:
     k = int(sys.argv[1]); ns = [int(x) for x in sys.argv[2:]]
     r = 2 * k + 2
     thr = (k + 1) * (2 * k + 3) / 3
@@ -186,3 +186,52 @@ if __name__ == "__main__":
             print(f" {n:4d}   {'yes' if is_prime(n) else ' no'}"
                   f"{int(3*n-(k+1)*(2*k+3)):13d}  {sign:+d}   {obj:14.3e}"
                   f"{me:12.4f}{nul:9d}   {'CEILING' if nul >= r else ''}")
+
+
+def verify_slice(k=3, ns=(17, 18, 19, 20, 21, 22), seed=5):
+    """Check Lemma (a complete slice): every symmetric matrix on the pattern is
+    gauge-equivalent to one with all spokes +1 and all |outer| = 1, except that
+    for even n one outer weight is left free.  Positive diagonal conjugation
+    cannot change a spoke's sign (d_i d_{n+i} > 0), so the sign diagonal is
+    needed as well; and the cyclic system u_i + u_{i+1} = -log|b_i| is invertible
+    for odd n but has corank 1 for even n, which is why one weight survives."""
+    import numpy as _np
+    sys.path.insert(0, "/Volumes/2TB/scifair/verification")
+    from certify_general import pattern_cells, assemble
+    rng = _np.random.default_rng(seed)
+    rows = []
+    for n in ns:
+        w = rng.standard_normal(5 * n)
+        w[2*n:5*n] += 1.5 * _np.sign(w[2*n:5*n])
+        b, c = w[2*n:3*n], w[3*n:4*n]
+        idx = list(range(n)) if n % 2 else list(range(1, n))
+        M = _np.zeros((len(idx), n)); rhs = []
+        for r_, i in enumerate(idx):
+            M[r_, i] = 1; M[r_, (i + 1) % n] = 1
+            rhs.append(-_np.log(abs(b[i])))
+        u, *_ = _np.linalg.lstsq(M, _np.array(rhs), rcond=None)
+        du = _np.exp(u); dv = 1.0 / (du * _np.abs(c))
+        D = _np.concatenate([du, dv])
+        A = assemble(w, pattern_cells(n, k), 2 * n)
+        A2 = _np.diag(D) @ A @ _np.diag(D)
+        s = _np.ones(2 * n)
+        for i in range(n):
+            if A2[i, n + i] < 0:
+                s[n + i] = -1
+        A3 = _np.diag(s) @ A2 @ _np.diag(s)
+        sp = _np.array([A3[i, n + i] for i in range(n)])
+        ob = _np.array([A3[i, (i + 1) % n] for i in range(n)])
+        rows.append((n, bool(_np.allclose(sp, 1.0)),
+                     float(_np.abs(_np.abs(ob[idx]) - 1).max()),
+                     float(ob[0]),
+                     _np.linalg.matrix_rank(A) == _np.linalg.matrix_rank(A3)))
+    return rows
+
+
+if __name__ == "__main__" and len(sys.argv) > 1 and sys.argv[1] == "verify":
+    print("Lemma (a complete slice): spokes -> +1, |outer| -> 1 (one free when "
+          "n is even)")
+    print("   n  parity  spokes=+1   max||b_i|-1|   b_0        nullity kept")
+    for n, spok, dev, b0, rk in verify_slice():
+        print(f" {n:3d}  {'odd ' if n % 2 else 'even'}    {str(spok):5s}"
+              f"      {dev:.2e}      {b0:+.4f}    {rk}")

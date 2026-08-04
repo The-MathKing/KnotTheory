@@ -1,0 +1,5 @@
+fast scan: where does tile_product = I become solvable?
+  (5 tries, short budget, just to locate the threshold)
+    l  unknowns  vs eqs   best max|T-I|   min|edge|
+    19        55 vs 64        4.18e-01     0.0120  (107s)  
+    20        60 vs 64        4.68e-01     0.0229  (127s)  
