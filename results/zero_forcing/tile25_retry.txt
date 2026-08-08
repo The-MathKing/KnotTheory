@@ -1,0 +1,2 @@
+seed 101: max|T-I| = 2.287e-14, min|edge|/scale = 0.1500 IDENTITY TILE
+  saved

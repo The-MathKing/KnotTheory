@@ -171,7 +171,8 @@ def tile_product(w, l, k):
     return monodromy_range(n, k, W, 0, l)
 
 
-def solve_tile(l, k, tries=200, seed=0, tau=0.15):
+def solve_tile(l, k, tries=200, seed=0, tau=0.15, nfev=900,
+               accept=1e-11):
     """Solve tile_product = I for the interior weights."""
     from scipy.optimize import least_squares
     r = 2 * k + 2
@@ -198,7 +199,7 @@ def solve_tile(l, k, tries=200, seed=0, tau=0.15):
             return np.concatenate([(T - np.eye(r)).ravel(), bar])
 
         s = least_squares(res, w0, method="trf", xtol=1e-15, ftol=1e-15,
-                          gtol=1e-15, max_nfev=3000)
+                          gtol=1e-15, max_nfev=nfev)
         try:
             T = tile_product(s.x, l, k)
             err = np.abs(T - np.eye(r)).max()
@@ -211,6 +212,8 @@ def solve_tile(l, k, tries=200, seed=0, tau=0.15):
         cand = (err, -me, s.x.copy())
         if best is None or cand[:2] < best[:2]:
             best = cand
-        if err < 1e-13 and me > tau * 0.5:
+        # stop as soon as a usable tile appears: the scan's first success was
+        # 2.95e-12, so a 1e-13 gate would have run every remaining restart
+        if err < accept and me > tau * 0.5:
             break
     return best

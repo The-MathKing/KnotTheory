@@ -16,3 +16,50 @@ P(24,4)   target nullity 2k+2 = 10
 
 --- P(25,4)         variety dimension 20 ---
 P(25,4)   target nullity 2k+2 = 10
+  stage 1 [cold, sign +1]: r-th sv/scale = 1.403e-03, min|inner|/scale = 0.0058
+  525 unknowns, 500 equations, 455 structural, 45 dependent; fixing 70 at rationals
+  stage 2 (double): max|f| structural = 4.734e-04, dependent = 5.461e-04
+  did not converge; stopping
+  -> stage 2/3 failed here; trying the next candidate
+  stage 1 [cold, sign -1]: r-th sv/scale = 7.961e-04, min|inner|/scale = 0.0002
+  525 unknowns, 500 equations, 455 structural, 45 dependent; fixing 70 at rationals
+  stage 2 (double): max|f| structural = 2.668e-03, dependent = 8.664e-03
+  did not converge; stopping
+  -> stage 2/3 failed here; trying the next candidate
+  not certified at this n
+
+--- P(26,4)         variety dimension 23 ---
+P(26,4)   target nullity 2k+2 = 10
+  stage 1 [cold, sign +1]: r-th sv/scale = 1.434e-03, min|inner|/scale = 0.0176
+  550 unknowns, 520 equations, 475 structural, 45 dependent; fixing 75 at rationals
+  stage 2 (double): max|f| structural = 4.705e-04, dependent = 5.908e-04
+  did not converge; stopping
+  -> stage 2/3 failed here; trying the next candidate
+  stage 1 [cold, sign -1]: r-th sv/scale = 1.434e-03, min|inner|/scale = 0.0176
+  550 unknowns, 520 equations, 475 structural, 45 dependent; fixing 75 at rationals
+  stage 2 (double): max|f| structural = 4.705e-04, dependent = 5.908e-04
+  did not converge; stopping
+  -> stage 2/3 failed here; trying the next candidate
+  not certified at this n
+
+--- P(27,4)         variety dimension 26 ---
+P(27,4)   target nullity 2k+2 = 10
+  stage 1 [cold, sign +1]: r-th sv/scale = 1.265e-03, min|inner|/scale = 0.0045
+  575 unknowns, 540 equations, 495 structural, 45 dependent; fixing 80 at rationals
+  stage 2 (double): max|f| structural = 2.493e-04, dependent = 2.493e-04
+  did not converge; stopping
+  -> stage 2/3 failed here; trying the next candidate
+  stage 1 [cold, sign -1]: r-th sv/scale = 1.896e-03, min|inner|/scale = 0.0060
+  575 unknowns, 540 equations, 495 structural, 45 dependent; fixing 80 at rationals
+  stage 2 (double): max|f| structural = 1.761e-03, dependent = 1.798e-03
+  did not converge; stopping
+  -> stage 2/3 failed here; trying the next candidate
+  not certified at this n
+
+--- P(28,4)         variety dimension 29 ---
+P(28,4)   target nullity 2k+2 = 10
+  stage 1 [cold, sign +1]: r-th sv/scale = 1.247e-03, min|inner|/scale = 0.0010
+  600 unknowns, 560 equations, 515 structural, 45 dependent; fixing 85 at rationals
+  stage 2 (double): max|f| structural = 8.128e-05, dependent = 1.227e-04
+  did not converge; stopping
+  -> stage 2/3 failed here; trying the next candidate

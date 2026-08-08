@@ -1691,11 +1691,12 @@ is \emph{exactly equivalent} to $AK=0$. Selecting rows by pivoting instead would
 leave $\binom r2$ equations unproved.
 
 \begin{theorem}[Certified values off every congruence class]\label{thm:p17}
-For each odd $n$ with $17\le n\le27$,
+For every $n$ with $17\le n\le31$ except $n=18$,
 \[
   Z(P(n,3))=M(P(n,3))=8 .
 \]
-In particular this holds at the primes $n=17,19,23$.
+In particular this holds at the primes $n=17,19,23,29,31$, and at every $n$ in
+$19\le n\le31$ without exception.
 \end{theorem}
 
 \begin{proof}
@@ -1724,7 +1725,7 @@ $0.05$ times the matrix scale and the ninth singular value exceeds $0.126$ times
 it, so the box is far from any degenerate stratum and the pattern is exactly
 that of $P(17,3)$.
 
-The cases $n=19,21,23,25,27$ are identical in structure and each passes the same
+The remaining $n$ are identical in structure and each passes the same
 test; for $n=19$, to give one more set of numbers, there are $335$ unknowns and
 $304$ equations of which $276$ are structural and $28$ dependent, $59$ unknowns
 are fixed at rationals, and
@@ -1736,11 +1737,13 @@ and $\alpha=5.25\times10^{-10}$. See \texttt{verification/krawczyk.py} and
 
 \noindent
 Together with Theorem~\ref{thm:k3} this gives $Z(P(n,3))=8$ at
-$n=10,17,19,20,21,23,25,27,30,40,\dots$ --- a set that no single divisibility
-condition describes. The construction fails at $n=13$ and $n=15$, where by
-\eqref{eq:thresh} the solution variety has dimension only $3$ and $9$; it
-succeeds from $n=17$, where the dimension is $15$. We have not tested even $n$
-in this range, since the gauge fixing used here is cleanest for $n$ odd.
+$n=10$, every $n$ with $17\le n\le31$ except $18$, and every multiple of $10$ ---
+a set that no single divisibility condition describes. The search fails at
+$n=13,15$ and $18$. At $n=13$ and $15$ the solution variety has dimension only
+$3$ and $9$ by \eqref{eq:thresh}, against $15$ at $n=17$ where it first
+succeeds; $n=18$ has dimension $18$ and we have no explanation for it. By
+Lemma~\ref{lem:slice} the slice searched is complete, so these are failures of
+the search and not evidence that no matrix of nullity $8$ exists there.
 
 \begin{remark}[Three independent numerical routes, one certificate]
 The certificate at $n=17$ was located three separate ways --- by minimising
@@ -1938,9 +1941,53 @@ already several hundred. Second, the hypothesis is a \emph{finite} list of
 independent finite problems: a tile of length $\ell$ has $5(\ell-2(k+1))$ free
 weights and the requirement is $(2k+2)^2$ equations, so it is solvable on
 parameter count once $\ell$ is a little above $2(k+1)+(2k+2)^2/5$. For $k=3$
-that is $\ell\ge21$, and $L=21$ would give every $n\ge21$. Whether those systems
-admit solutions with all weights nonzero is a computation we have not completed,
-and we make no claim about it here.
+that is $\ell\ge21$, and $L=22$ would give every $n\ge22$.
+
+\subsection*{The tiles exist, numerically}
+We carried the computation out for $k=3$. The parameter count is sharp in
+practice: at $\ell=19,20$ the systems are underdetermined ($55$ and $60$
+unknowns against $64$ equations) and the residual stalls near $4\times10^{-1}$;
+at $\ell=21$, the first length with more unknowns than equations, it falls to
+$5.6\times10^{-2}$; and from $\ell=22$ onward identity tiles are found. A Newton
+solve produced them for \emph{every} length in the required range,
+\[
+  22\le\ell\le43,
+\]
+with $\|T_{\text{tile}}-I\|_\infty$ between $7\times10^{-15}$ and
+$2\times10^{-13}$ and every weight at least $0.15$ of the tile scale. ($\ell=25$
+needed a larger restart budget than the rest; nothing else did.)
+
+The composition was then tested end to end rather than assumed: for each such
+$\ell$ we built the matrix on $P(\ell,3)$ from the single tile and found nullity
+exactly $8$ with the ninth singular value between $0.06$ and $0.24$ of the
+matrix scale; and for $n=44,45,46$ we built it from \emph{two} concatenated
+tiles and again found nullity exactly $8$. That is Lemma~\ref{lem:tile} and
+Theorem~\ref{thm:tiling} operating as stated.
+
+The range $22\le\ell\le43$ is exactly $[L,2L)$ for $L=22$, so
+Theorem~\ref{thm:tiling} applies with no gaps and with no appeal to the
+individual values of Theorem~\ref{thm:p17}. At the standard of a floating-point
+computation rather than a proof,
+\[
+  Z(P(n,3))=M(P(n,3))=8\qquad\text{for every }n\ge22,
+\]
+and, with Theorem~\ref{thm:p17}, for every $n\ge17$ except $n=18$. We label this
+\emph{numerical}: Theorem~\ref{thm:tiling} is proved, but its hypothesis is here
+verified only in floating point, so the conclusion inherits that standard. What
+is missing is interval certification of the $22$ tiles, which is a finite
+computation of the same kind as Theorem~\ref{thm:p17} but on a rational rather
+than a bilinear map, so the cheap Lipschitz bound is unavailable and interval
+matrix products are needed. We have not done it.
+
+\begin{remark}[What would and would not follow]
+If those $22$ tiles were certified, Theorem~\ref{thm:tiling} would give
+$Z(P(n,3))=2k+2$ for \emph{all} $n\ge22$ from a finite computation, which is the
+form Conjecture~\ref{conj:generaln} asks for, and the first statement in this
+paper about all large $n$ for any $k\ge3$. It would not settle
+$n\in\{13,15,18\}$, nor say anything about $k\ne3$: the tile lengths and the
+docking pattern depend on $k$, and for $k=6$ the count gives $\ell\ge2(k+1)+
+(2k+2)^2/5\approx54$, so $L=54$ and $32$ tiles.
+\end{remark}
 
 \section{Why lower bounds resist standard methods}\label{sec:resist}
 A set is zero forcing iff it meets every \emph{fort} --- a nonempty $F$ such
@@ -2010,7 +2057,15 @@ all, so this is the only route to them that we know.
 \item \textbf{Proved (finite).} Every tabulated value of $Z$, by exhaustive
 search over vertex subsets.
 
-\item \textbf{Numerical, not exact.} Theorem~\ref{thm:k6}: $Z(P(n,6))=14$ at
+\item \textbf{Numerical, not exact.} $Z(P(n,3))=M(P(n,3))=8$ for \emph{every}
+$n\ge22$, via Theorem~\ref{thm:tiling} with identity tiles of every length
+$22\le\ell\le43$. The theorem is proved; the tiles are located by a Newton solve
+and verified in floating point, with $\|T_{\text{tile}}-I\|_\infty\le
+2\times10^{-13}$, every weight at least $0.15$ of the tile scale, and the
+composition checked end to end (nullity exactly $8$ on single tiles for
+$22\le n\le43$ and on two-tile concatenations at $n=44,45,46$). Certifying the
+$22$ tiles would upgrade this to a proof for all $n\ge22$; we have not done it.
+Also Theorem~\ref{thm:k6}: $Z(P(n,6))=14$ at
 $n=60,72,84,90,96,108,120$ and $Z(P(96,8))=18$. The certificates are period-three
 matrices whose weights come from a Newton solve, verified on the full
 $2n\times2n$ matrix with a wide spectral separation and every required entry a

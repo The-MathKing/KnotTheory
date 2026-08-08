@@ -44,12 +44,12 @@ def main():
             print(f" {l:5d}{5*nint:10d}   only {5*nint} unknowns for "
                   f"{r*r} equations; skipped")
             continue
-        b = solve_tile(l, k, tries=60, seed=l)
+        b = solve_tile(l, k, tries=4, seed=l, nfev=700)
         if b is None:
             print(f" {l:5d}{5*nint:10d}   nothing found")
             continue
         err, negme, w = b
-        ok = err < 1e-11 and -negme > 1e-3
+        ok = err < 1e-10 and -negme > 1e-3
         if ok:
             sols[l] = w
             np.save(f"/Volumes/2TB/scifair/results/zero_forcing/"

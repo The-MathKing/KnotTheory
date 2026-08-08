@@ -64,3 +64,169 @@ P(21,3)   target nullity 2k+2 = 8
   stage 2 (double): max|f| structural = 8.877e-03, dependent = 2.157e-02
   did not converge; stopping
   -> stage 2/3 failed here; trying the next candidate
+  stage 1 [cold, sign +1]: r-th sv/scale = 3.213e-05, min|inner|/scale = 0.3062
+  377 unknowns, 336 equations, 308 structural, 28 dependent; fixing 69 at rationals
+  stage 2 (double): max|f| structural = 2.476e-14, dependent = 7.699e-14
+  stage 2b (60 digits): structural 1.556e-61, dependent 1.799e-61
+  ||Y||=2.971e+02  ||I-YJ||=1.343e-12  ||Yf||=5.343e-61
+  stage 3 KRAWCZYK PASSES at delta = 1e-13: alpha = 3.578e-10
+  certified matrix: nullity 8, gap 0.1422, min|edge|/scale 0.3059
+  VERDICT: PROVED null A = 8
+
+--- P(22,3)         variety dimension 30 ---
+P(22,3)   target nullity 2k+2 = 8
+  stage 1 [warm from n=21]: r-th sv/scale = 6.696e-03, min|inner|/scale = 0.1476
+  398 unknowns, 352 equations, 324 structural, 28 dependent; fixing 74 at rationals
+  stage 2 (double): max|f| structural = 4.863e-04, dependent = 1.354e-03
+  did not converge; stopping
+  -> stage 2/3 failed here; trying the next candidate
+  stage 1 [cold, sign +1]: r-th sv/scale = 5.242e-04, min|inner|/scale = 0.1331
+  398 unknowns, 352 equations, 324 structural, 28 dependent; fixing 74 at rationals
+  stage 2 (double): max|f| structural = 7.715e-14, dependent = 3.324e-13
+  stage 2b (60 digits): structural 3.85e-60, dependent 4.317e-60
+  ||Y||=5.326e+02  ||I-YJ||=1.584e-12  ||Yf||=3.551e-59
+  stage 3 KRAWCZYK PASSES at delta = 1e-13: alpha = 6.407e-10
+  certified matrix: nullity 8, gap 0.0730, min|edge|/scale 0.0878
+  VERDICT: PROVED null A = 8
+
+--- P(23,3)  prime  variety dimension 33 ---
+P(23,3)   target nullity 2k+2 = 8
+  stage 1 [warm from n=22]: r-th sv/scale = 1.467e-03, min|inner|/scale = 0.1202
+  419 unknowns, 368 equations, 340 structural, 28 dependent; fixing 79 at rationals
+  stage 2 (double): max|f| structural = 1.005e-14, dependent = 3.349e-14
+  stage 2b (60 digits): structural 1.75e-61, dependent 1.313e-61
+  ||Y||=1.093e+03  ||I-YJ||=5.083e-12  ||Yf||=1.780e-60
+  stage 3 KRAWCZYK PASSES at delta = 1e-13: alpha = 1.317e-09
+  certified matrix: nullity 8, gap 0.0867, min|edge|/scale 0.0647
+  VERDICT: PROVED null A = 8
+
+--- P(24,3)         variety dimension 36 ---
+P(24,3)   target nullity 2k+2 = 8
+  stage 1 [warm from n=23]: r-th sv/scale = 1.501e-03, min|inner|/scale = 0.0325
+  440 unknowns, 384 equations, 356 structural, 28 dependent; fixing 84 at rationals
+  stage 2 (double): max|f| structural = 2.781e-04, dependent = 1.533e-03
+  did not converge; stopping
+  -> stage 2/3 failed here; trying the next candidate
+  stage 1 [cold, sign +1]: r-th sv/scale = 1.857e-04, min|inner|/scale = 0.1369
+  440 unknowns, 384 equations, 356 structural, 28 dependent; fixing 84 at rationals
+  stage 2 (double): max|f| structural = 8.993e-15, dependent = 5.879e-14
+  stage 2b (60 digits): structural 2.334e-60, dependent 3.491e-60
+  ||Y||=5.210e+02  ||I-YJ||=1.319e-12  ||Yf||=1.535e-59
+  stage 3 KRAWCZYK PASSES at delta = 1e-13: alpha = 6.265e-10
+  certified matrix: nullity 8, gap 0.0751, min|edge|/scale 0.0405
+  VERDICT: PROVED null A = 8
+
+--- P(25,3)         variety dimension 39 ---
+P(25,3)   target nullity 2k+2 = 8
+  stage 1 [warm from n=24]: r-th sv/scale = 2.725e-03, min|inner|/scale = 0.0274
+  461 unknowns, 400 equations, 372 structural, 28 dependent; fixing 89 at rationals
+  stage 2 (double): max|f| structural = 7.129e-04, dependent = 3.186e-03
+  did not converge; stopping
+  -> stage 2/3 failed here; trying the next candidate
+  stage 1 [cold, sign +1]: r-th sv/scale = 5.247e-04, min|inner|/scale = 0.1703
+  461 unknowns, 400 equations, 372 structural, 28 dependent; fixing 89 at rationals
+  stage 2 (double): max|f| structural = 4.744e-16, dependent = 2.096e-15
+  stage 2b (60 digits): structural 3.804e-61, dependent 7.001e-61
+  ||Y||=5.057e+02  ||I-YJ||=1.125e-12  ||Yf||=2.235e-60
+  stage 3 KRAWCZYK PASSES at delta = 1e-13: alpha = 6.080e-10
+  certified matrix: nullity 8, gap 0.0552, min|edge|/scale 0.1584
+  VERDICT: PROVED null A = 8
+
+--- P(26,3)         variety dimension 42 ---
+P(26,3)   target nullity 2k+2 = 8
+  stage 1 [warm from n=25]: r-th sv/scale = 7.252e-04, min|inner|/scale = 0.0995
+  482 unknowns, 416 equations, 388 structural, 28 dependent; fixing 94 at rationals
+  stage 2 (double): max|f| structural = 1.776e-14, dependent = 8.286e-14
+  stage 2b (60 digits): structural 2.334e-61, dependent 3.112e-61
+  ||Y||=4.914e+02  ||I-YJ||=4.030e-12  ||Yf||=4.017e-61
+  stage 3 KRAWCZYK PASSES at delta = 1e-13: alpha = 5.937e-10
+  certified matrix: nullity 8, gap 0.0581, min|edge|/scale 0.0859
+  VERDICT: PROVED null A = 8
+
+--- P(27,3)         variety dimension 45 ---
+P(27,3)   target nullity 2k+2 = 8
+  stage 1 [warm from n=26]: r-th sv/scale = 1.170e-03, min|inner|/scale = 0.0413
+  503 unknowns, 432 equations, 404 structural, 28 dependent; fixing 99 at rationals
+  stage 2 (double): max|f| structural = 4.557e-03, dependent = 1.148e-02
+  did not converge; stopping
+  -> stage 2/3 failed here; trying the next candidate
+  stage 1 [cold, sign +1]: r-th sv/scale = 8.712e-05, min|inner|/scale = 0.2457
+  503 unknowns, 432 equations, 404 structural, 28 dependent; fixing 99 at rationals
+  stage 2 (double): max|f| structural = 4.884e-14, dependent = 1.503e-13
+  stage 2b (60 digits): structural 1.945e-61, dependent 8.751e-62
+  ||Y||=4.411e+02  ||I-YJ||=2.214e-12  ||Yf||=4.997e-61
+  stage 3 KRAWCZYK PASSES at delta = 1e-13: alpha = 5.316e-10
+  certified matrix: nullity 8, gap 0.0867, min|edge|/scale 0.2439
+  VERDICT: PROVED null A = 8
+
+--- P(28,3)         variety dimension 48 ---
+P(28,3)   target nullity 2k+2 = 8
+  stage 1 [warm from n=27]: r-th sv/scale = 1.384e-03, min|inner|/scale = 0.0550
+  524 unknowns, 448 equations, 420 structural, 28 dependent; fixing 104 at rationals
+  stage 2 (double): max|f| structural = 5.681e-03, dependent = 3.368e-02
+  did not converge; stopping
+  -> stage 2/3 failed here; trying the next candidate
+  stage 1 [cold, sign +1]: r-th sv/scale = 2.002e-04, min|inner|/scale = 0.3201
+  524 unknowns, 448 equations, 420 structural, 28 dependent; fixing 104 at rationals
+  stage 2 (double): max|f| structural = 1.245e-15, dependent = 7.008e-15
+  stage 2b (60 digits): structural 1.595e-60, dependent 2.917e-60
+  ||Y||=4.784e+02  ||I-YJ||=2.504e-12  ||Yf||=1.354e-59
+  stage 3 KRAWCZYK PASSES at delta = 1e-13: alpha = 5.766e-10
+  certified matrix: nullity 8, gap 0.1067, min|edge|/scale 0.0296
+  VERDICT: PROVED null A = 8
+
+--- P(29,3)  prime  variety dimension 51 ---
+P(29,3)   target nullity 2k+2 = 8
+  stage 1 [warm from n=28]: r-th sv/scale = 3.364e-03, min|inner|/scale = 0.1598
+  545 unknowns, 464 equations, 436 structural, 28 dependent; fixing 109 at rationals
+  stage 2 (double): max|f| structural = 6.271e-03, dependent = 2.074e-02
+  did not converge; stopping
+  -> stage 2/3 failed here; trying the next candidate
+  stage 1 [cold, sign +1]: r-th sv/scale = 4.999e-04, min|inner|/scale = 0.2740
+  545 unknowns, 464 equations, 436 structural, 28 dependent; fixing 109 at rationals
+  stage 2 (double): max|f| structural = 9.576e-15, dependent = 4.968e-14
+  stage 2b (60 digits): structural 1.556e-61, dependent 1.945e-61
+  ||Y||=6.367e+02  ||I-YJ||=2.344e-12  ||Yf||=1.071e-60
+  stage 3 KRAWCZYK PASSES at delta = 1e-13: alpha = 7.664e-10
+  certified matrix: nullity 8, gap 0.1074, min|edge|/scale 0.2612
+  VERDICT: PROVED null A = 8
+
+--- P(30,3)         variety dimension 54 ---
+P(30,3)   target nullity 2k+2 = 8
+  stage 1 [warm from n=29]: r-th sv/scale = 1.997e-03, min|inner|/scale = 0.0868
+  566 unknowns, 480 equations, 452 structural, 28 dependent; fixing 114 at rationals
+  stage 2 (double): max|f| structural = 4.026e-03, dependent = 2.745e-02
+  did not converge; stopping
+  -> stage 2/3 failed here; trying the next candidate
+  stage 1 [cold, sign +1]: r-th sv/scale = 1.339e-04, min|inner|/scale = 0.3665
+  566 unknowns, 480 equations, 452 structural, 28 dependent; fixing 114 at rationals
+  stage 2 (double): max|f| structural = 6.266e-15, dependent = 1.990e-14
+  stage 2b (60 digits): structural 1.556e-61, dependent 2.139e-61
+  ||Y||=3.239e+02  ||I-YJ||=1.196e-12  ||Yf||=8.366e-61
+  stage 3 KRAWCZYK PASSES at delta = 1e-13: alpha = 3.899e-10
+  certified matrix: nullity 8, gap 0.1258, min|edge|/scale 0.3665
+  VERDICT: PROVED null A = 8
+
+--- P(31,3)  prime  variety dimension 57 ---
+P(31,3)   target nullity 2k+2 = 8
+  stage 1 [warm from n=30]: r-th sv/scale = 2.862e-03, min|inner|/scale = 0.1174
+  587 unknowns, 496 equations, 468 structural, 28 dependent; fixing 119 at rationals
+  stage 2 (double): max|f| structural = 5.678e-03, dependent = 2.591e-02
+  did not converge; stopping
+  -> stage 2/3 failed here; trying the next candidate
+  stage 1 [cold, sign +1]: r-th sv/scale = 1.738e-04, min|inner|/scale = 0.2351
+  587 unknowns, 496 equations, 468 structural, 28 dependent; fixing 119 at rationals
+  stage 2 (double): max|f| structural = 1.861e-16, dependent = 3.504e-16
+  stage 2b (60 digits): structural 2.042e-61, dependent 1.556e-61
+  ||Y||=7.517e+02  ||I-YJ||=2.279e-12  ||Yf||=1.184e-60
+  stage 3 KRAWCZYK PASSES at delta = 1e-13: alpha = 9.043e-10
+  certified matrix: nullity 8, gap 0.0703, min|edge|/scale 0.2290
+  VERDICT: PROVED null A = 8
+
+--- P(32,3)         variety dimension 60 ---
+P(32,3)   target nullity 2k+2 = 8
+  stage 1 [warm from n=31]: r-th sv/scale = 4.168e-03, min|inner|/scale = 0.2280
+  608 unknowns, 512 equations, 484 structural, 28 dependent; fixing 124 at rationals
+  stage 2 (double): max|f| structural = 9.569e-03, dependent = 5.040e-02
+  did not converge; stopping
+  -> stage 2/3 failed here; trying the next candidate

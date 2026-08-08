@@ -1,1 +1,7 @@
 P(45,6)   target nullity 2k+2 = 14
+  stage 1 (gauge-fixed, outer sign -1): r-th sv/scale = 1.217e-03, min|inner|/scale = 0.0056
+  1289 unknowns, 1260 equations, 1169 structural, 91 dependent; fixing 120 at rationals
+  stage 2 (double): max|f| structural = 1.888e-04, dependent = 1.995e-04
+  did not converge; stopping
+
+P(49,6)   target nullity 2k+2 = 14

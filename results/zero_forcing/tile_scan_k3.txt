@@ -3,3 +3,5 @@ fast scan: where does tile_product = I become solvable?
     l  unknowns  vs eqs   best max|T-I|   min|edge|
     19        55 vs 64        4.18e-01     0.0120  (107s)  
     20        60 vs 64        4.68e-01     0.0229  (127s)  
+    21        65 vs 64        5.62e-02     0.1370  (169s)  
+    22        70 vs 64        2.95e-12     0.1500  (140s)  SOLVABLE

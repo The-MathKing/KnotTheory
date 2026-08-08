@@ -2,3 +2,17 @@ k = 6   nullity target 14   threshold n >= 35.0 (dimension 3n - 105)
 
 --- P(41,6)  prime  variety dimension 18 ---
 P(41,6)   target nullity 2k+2 = 14
+  stage 1 [cold, sign +1]: r-th sv/scale = 1.306e-03, min|inner|/scale = 0.0012
+  1157 unknowns, 1148 equations, 1057 structural, 91 dependent; fixing 100 at rationals
+  stage 2 (double): max|f| structural = 3.407e-04, dependent = 6.831e-04
+  did not converge; stopping
+  -> stage 2/3 failed here; trying the next candidate
+  stage 1 [cold, sign -1]: r-th sv/scale = 1.196e-03, min|inner|/scale = 0.0015
+  1157 unknowns, 1148 equations, 1057 structural, 91 dependent; fixing 100 at rationals
+  stage 2 (double): max|f| structural = 4.344e-04, dependent = 1.260e-03
+  did not converge; stopping
+  -> stage 2/3 failed here; trying the next candidate
+  not certified at this n
+
+--- P(43,6)  prime  variety dimension 24 ---
+P(43,6)   target nullity 2k+2 = 14
