@@ -63,3 +63,12 @@ P(28,4)   target nullity 2k+2 = 10
   stage 2 (double): max|f| structural = 8.128e-05, dependent = 1.227e-04
   did not converge; stopping
   -> stage 2/3 failed here; trying the next candidate
+  stage 1 [cold, sign -1]: r-th sv/scale = 1.247e-03, min|inner|/scale = 0.0010
+  600 unknowns, 560 equations, 515 structural, 45 dependent; fixing 85 at rationals
+  stage 2 (double): max|f| structural = 8.128e-05, dependent = 1.227e-04
+  did not converge; stopping
+  -> stage 2/3 failed here; trying the next candidate
+  not certified at this n
+
+--- P(29,4)  prime  variety dimension 32 ---
+P(29,4)   target nullity 2k+2 = 10

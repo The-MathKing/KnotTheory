@@ -1,0 +1,3 @@
+k = 4   nullity target 10   tile lengths 31..61
+  a tile of length l has 5(l - 10) free weights against 100 equations
+    l  unknowns   max|T - I|   min|edge|/scale   verdict

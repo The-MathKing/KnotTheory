@@ -1,0 +1,3 @@
+retry P(18,3): the sole gap in [17,33], with a much larger restart budget
+--- tries = 150 ---
+P(18,3)   target nullity 2k+2 = 8

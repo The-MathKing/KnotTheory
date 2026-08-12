@@ -1691,12 +1691,12 @@ is \emph{exactly equivalent} to $AK=0$. Selecting rows by pivoting instead would
 leave $\binom r2$ equations unproved.
 
 \begin{theorem}[Certified values off every congruence class]\label{thm:p17}
-For every $n$ with $17\le n\le31$ except $n=18$,
+For every $n$ with $17\le n\le33$ except $n=18$,
 \[
   Z(P(n,3))=M(P(n,3))=8 .
 \]
 In particular this holds at the primes $n=17,19,23,29,31$, and at every $n$ in
-$19\le n\le31$ without exception.
+$19\le n\le33$ without exception.
 \end{theorem}
 
 \begin{proof}
@@ -1737,7 +1737,7 @@ and $\alpha=5.25\times10^{-10}$. See \texttt{verification/krawczyk.py} and
 
 \noindent
 Together with Theorem~\ref{thm:k3} this gives $Z(P(n,3))=8$ at
-$n=10$, every $n$ with $17\le n\le31$ except $18$, and every multiple of $10$ ---
+$n=10$, every $n$ with $17\le n\le33$ except $18$, and every multiple of $10$ ---
 a set that no single divisibility condition describes. The search fails at
 $n=13,15$ and $18$. At $n=13$ and $15$ the solution variety has dimension only
 $3$ and $9$ by \eqref{eq:thresh}, against $15$ at $n=17$ where it first
@@ -2047,8 +2047,8 @@ previously made at a single $n$. In the $k=2$ ($7\mid n$), $k=3$ and $k=7$ cases
 the certificate is an integer matrix with entries in $\{0,\pm1\}$.
 
 \item \textbf{Proved by interval certification.} $Z(P(n,3))=M(P(n,3))=8$ at the
-values of $n$ listed in Theorem~\ref{thm:p17}, including the primes $17$, $19$
-and $23$. Each rests on a Krawczyk contraction bound for the bilinear system
+$16$ values of $n$ listed in Theorem~\ref{thm:p17} --- $n=17$ and every
+$19\le n\le33$ --- including the primes $17,19,23,29,31$. Each rests on a Krawczyk contraction bound for the bilinear system
 $A(w)K(X)=0$, with the square subsystem chosen structurally so that it is
 equivalent to $AK=0$ rather than merely a maximal-rank selection of it. By
 Theorem~\ref{thm:congbound} no period-one certificate can reach these $n$ at
