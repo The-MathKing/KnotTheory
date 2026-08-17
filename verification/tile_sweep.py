@@ -12,7 +12,7 @@ import numpy as np
 
 sys.path.insert(0, "/Volumes/2TB/scifair/verification")
 from tiles import (solve_tile, tile_product, tile_sequence, dock_weights,
-                   build_matrix, monodromy_range)
+                   build_matrix, monodromy_range, extend_tile)
 
 
 def tile_dict(w, l, k):
@@ -44,7 +44,11 @@ def main():
             print(f" {l:5d}{5*nint:10d}   only {5*nint} unknowns for "
                   f"{r*r} equations; skipped")
             continue
-        b = solve_tile(l, k, tries=4, seed=l, nfev=700)
+        warm = None
+        if sols:
+            lp = max(sols)
+            warm = extend_tile(sols[lp], lp, l, k)
+        b = solve_tile(l, k, tries=4, seed=l, nfev=700, w0=warm)
         if b is None:
             print(f" {l:5d}{5*nint:10d}   nothing found")
             continue

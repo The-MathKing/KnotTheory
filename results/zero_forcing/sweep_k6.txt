@@ -16,3 +16,8 @@ P(41,6)   target nullity 2k+2 = 14
 
 --- P(43,6)  prime  variety dimension 24 ---
 P(43,6)   target nullity 2k+2 = 14
+  stage 1 [cold, sign +1]: r-th sv/scale = 1.281e-03, min|inner|/scale = 0.0013
+  1223 unknowns, 1204 equations, 1113 structural, 91 dependent; fixing 110 at rationals
+  stage 2 (double): max|f| structural = 1.968e-02, dependent = 2.488e-02
+  did not converge; stopping
+  -> stage 2/3 failed here; trying the next candidate

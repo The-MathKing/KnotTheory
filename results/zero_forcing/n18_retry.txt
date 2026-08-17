@@ -1,3 +1,12 @@
 retry P(18,3): the sole gap in [17,33], with a much larger restart budget
 --- tries = 150 ---
 P(18,3)   target nullity 2k+2 = 8
+  stage 1 [cold, sign +1]: r-th sv/scale = 2.021e-04, min|inner|/scale = 0.1540
+  314 unknowns, 288 equations, 260 structural, 28 dependent; fixing 54 at rationals
+  stage 2 (double): max|f| structural = 2.220e-16, dependent = 2.776e-16
+  stage 2b (60 digits): structural 2.139e-61, dependent 7.779e-62
+  ||Y||=4.473e+02  ||I-YJ||=1.127e-12  ||Yf||=7.178e-61
+  stage 3 KRAWCZYK PASSES at delta = 1e-13: alpha = 5.379e-10
+  certified matrix: nullity 8, gap 0.1383, min|edge|/scale 0.1489
+  VERDICT: PROVED null A = 8
+CERTIFIED at tries = 150

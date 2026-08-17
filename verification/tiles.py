@@ -172,7 +172,7 @@ def tile_product(w, l, k):
 
 
 def solve_tile(l, k, tries=200, seed=0, tau=0.15, nfev=900,
-               accept=1e-11):
+               accept=1e-11, w0=None):
     """Solve tile_product = I for the interior weights."""
     from scipy.optimize import least_squares
     r = 2 * k + 2
@@ -182,8 +182,11 @@ def solve_tile(l, k, tries=200, seed=0, tau=0.15, nfev=900,
     rng = np.random.default_rng(seed)
     best = None
     for t in range(tries):
-        w0 = rng.standard_normal(P)
-        w0[:3 * nint] += 1.3 * np.sign(w0[:3 * nint])   # b, c, e away from zero
+        if w0 is not None and t == 0:
+            start = w0
+        else:
+            start = rng.standard_normal(P)
+            start[:3 * nint] += 1.3 * np.sign(start[:3 * nint])  # b,c,e off zero
 
         def res(w):
             sc = max(np.abs(w).max(), 1e-12)
@@ -198,7 +201,7 @@ def solve_tile(l, k, tries=200, seed=0, tau=0.15, nfev=900,
             bar = 2.0 * np.maximum(0.0, tau - np.abs(w[:3 * nint]) / sc)
             return np.concatenate([(T - np.eye(r)).ravel(), bar])
 
-        s = least_squares(res, w0, method="trf", xtol=1e-15, ftol=1e-15,
+        s = least_squares(res, start, method="trf", xtol=1e-15, ftol=1e-15,
                           gtol=1e-15, max_nfev=nfev)
         try:
             T = tile_product(s.x, l, k)
@@ -217,3 +220,20 @@ def solve_tile(l, k, tries=200, seed=0, tau=0.15, nfev=900,
         if err < accept and me > tau * 0.5:
             break
     return best
+
+
+def extend_tile(w_prev, l_prev, l_new, k):
+    """Carry a tile solution of length l_prev to a start for length l_new by
+    resampling each of the five interior weight sequences in the position index.
+    Consecutive lengths have similar solutions, so this usually converges in a
+    few Newton steps instead of a few hundred."""
+    m = k + 1
+    np_ = l_prev - 2 * m
+    nn = l_new - 2 * m
+    xs_o = np.linspace(0.0, 1.0, np_)
+    xs_n = np.linspace(0.0, 1.0, nn)
+    out = []
+    for idx in range(5):
+        blk = w_prev[idx * np_:(idx + 1) * np_]
+        out.append(np.interp(xs_n, xs_o, blk))
+    return np.concatenate(out)
