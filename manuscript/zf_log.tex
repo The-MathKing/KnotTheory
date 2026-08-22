@@ -1092,6 +1092,77 @@ Restructured so stage~1 produces candidates and stage~2 is attempted on each in
 turn. Worth recording because the failure mode was silent: the sweep looked like
 a clean negative result.
 
+\section*{Entry 27: all large $n$, for one $k$}
+\textbf{Date:} September 27, 2026 \\
+\textbf{Commands:} {\small\texttt{tiles.py}, \texttt{tile\_sweep.py},
+\texttt{certify\_sweep.py},}\\
+{\small\texttt{gauge\_fixed.py}}
+
+The per-$n$ certification of Entry~26 settles individual $n$ and will never
+settle all of them. The fix is to make the weight sequence out of pieces that
+each contribute the identity to the monodromy, since $T=I$ is multiplicative
+around the cycle.
+
+Pieces do not compose naively: $T_i$ is built from the weights within about
+$2k+2$ of position $i$, so neighbouring pieces interfere. Giving every tile a
+fixed docking pattern on its first and last $k+1$ positions removes the
+interference, and I checked that rather than assuming it --- perturbing one
+tile's interior leaves every other tile's product identical to the last bit,
+$0$ exactly, at $k=2,3,4$.
+
+The other correction was to the combinatorics. My first plan was two tile
+lengths with $\gcd=1$, giving $n=ia+jb$. That is useless: it covers nothing
+below $(a-1)(b-1)$, which for the smallest solvable lengths here is several
+hundred. Using \emph{every} length in $[L,2L)$ instead makes every $n\ge L$ a
+sum, with no gap, and turns the problem into a finite list of finite problems.
+
+\textbf{For $k=3$ it works.} The parameter count is sharp in practice: at
+$\ell=19,20$ the systems are underdetermined and stall near $4\times10^{-1}$;
+$\ell=21$, the first with more unknowns than equations, falls to
+$5.6\times10^{-2}$; from $\ell=22$ identity tiles appear. I found one for every
+length $22\le\ell\le43$ --- exactly $[L,2L)$ for $L=22$ --- with
+$\|T_{\text{tile}}-I\|_\infty\le2\times10^{-13}$ and every weight at least
+$0.15$ of the tile scale. Then I tested the composition instead of trusting it:
+nullity exactly $8$ on single tiles for $22\le n\le43$, and on two-tile
+concatenations at $n=44,45,46$. So
+\[
+  Z(P(n,3))=M(P(n,3))=8\qquad\text{for every }n\ge22,
+\]
+the first statement in this project about all large $n$ at any $k\ge3$. It is
+numerical, not proved: the theorem is proved but its hypothesis is verified in
+floating point, and certifying the $22$ tiles needs Krawczyk on a rational
+rather than a bilinear map, so interval matrix products rather than the cheap
+Lipschitz bound. I have not done it, and I am labelling the conclusion
+accordingly rather than letting the proved theorem launder the numerics.
+
+\textbf{And the per-$n$ range closed up.} Sweeping $k=3$ certified every
+$17\le n\le33$ --- seventeen consecutive values, primes $17,19,23,29,31$ among
+them. $n=18$ was the last holdout and it certified once I raised the restart
+budget from $40$ to $150$. Worth dwelling on: I had reported $n=18$ as a
+failure, and it was only a failure of effort. The slice lemma is what told me
+not to read it as anything more --- every symmetric matrix on the pattern is
+gauge-equivalent to one in the slice searched, so a failure inside the slice
+measures the search and nothing else. I nearly wrote the opposite before proving
+that lemma.
+
+\textbf{Two of my own bugs, both silent.} Warm-starting the $n$-sweep from the
+previous certified solution made it affordable, but I gated the cold fallback on
+the warm start being worse than $10^{-2}$; a warm start returning $10^{-3}$ then
+suppressed the cold solve and failed, and the sweep reported certifying only
+$n=17,19$ while losing $21,23,25,27$, which I had already certified by hand. It
+looked exactly like a clean negative result. And in the tile sweep my
+feasibility guard was $5(\ell-2k-2)<(2k+2)^2-20$, loose enough to admit
+$\ell=20$ at $k=3$, where $60$ unknowns cannot meet $64$ equations; the job spent
+almost two hours on a length that was impossible by counting.
+
+\textbf{Where $k\ge4$ stands.} The method is not specific to $k=3$: an identity
+tile exists at $k=4$, $\ell=34$, to $2.5\times10^{-14}$ with healthy weights. But
+convergence is erratic --- $\ell=35$ failed despite having more unknowns than
+$\ell=34$ and despite being warm-started from it --- so I have not completed a
+range for $k=4$ and am claiming nothing for it beyond that one tile. The per-$n$
+sweeps at $k=4,5,6$ failed at every $n$ they reached, and by the slice lemma
+that too is a statement about the search rather than about the graphs.
+
 \begin{thebibliography}{9}
 \bibitem{RST} S. Rashidi, N. Shajareh Poursalavati, M. Tavakkoli,
 \emph{J. Algebra Combin. Discrete Struct. Appl.} 7(2) (2020), 183--193.

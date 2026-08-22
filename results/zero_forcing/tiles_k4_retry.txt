@@ -1,0 +1,2 @@
+retry k=4 tiles at l=31,32,33 with a larger restart budget
+  (l=32 reached 6.2e-7 on 4 restarts, so this is likely restart luck)
