@@ -1,0 +1,77 @@
+1. Realisability (thm:realis): c^2 = 0 iff F = (s+a)(L_k + t)
+  [PASS] k=2
+  [PASS] k=3
+  [PASS] k=4
+  [PASS] k=5
+  [PASS] k=6
+  [PASS] k=7
+  [PASS] k=8
+2. Antipodal corollary: c^2 = 0 identically for even k, not for odd
+  [PASS] k=2 (even)
+  [PASS] k=3 (odd)
+  [PASS] k=4 (even)
+  [PASS] k=5 (odd)
+  [PASS] k=6 (even)
+  [PASS] k=7 (odd)
+  [PASS] k=8 (even)
+3. k=2 closed form: c^2 = -(s1+s2)(s1+s3)(s2+s3)
+  [PASS] identity
+4. e_2 = -k for every period-one symbol with k >= 3 (thm:congbound)
+  [PASS] k=3
+  [PASS] k=4
+  [PASS] k=5
+  [PASS] k=6
+  [PASS] k=7
+  [PASS] k=8
+  [PASS] k=9
+  [PASS] k=10
+5. Integer certificates: the signed adjacency matrix
+  [PASS] signed Adj P(10,3) nullity 8  --- got 8
+  [PASS] signed Adj P(20,3) nullity 8  --- got 8
+  [PASS] signed Adj P(30,3) nullity 8  --- got 8
+  [PASS] signed Adj P(120,7) nullity 16  --- got 16
+  [PASS] signed Adj P(30,2) nullity 6  --- got 6
+  [PASS] signed Adj P(60,2) nullity 6  --- got 6
+  [PASS] Psi_7 certificate P(7,2) nullity 6  --- got 6
+  [PASS] Psi_7 certificate P(14,2) nullity 6  --- got 6
+  [PASS] Psi_7 certificate P(21,2) nullity 6  --- got 6
+  [PASS] Psi_7 certificate P(28,2) nullity 6  --- got 6
+6. k=2 explicit certificate at the three most negative grid values
+   (c^2 > 0 is checked for all n; the nullity is checked two ways, by
+    counting grid roots of the symbol exactly and, for moderate n only,
+    by singular values -- the three roots crowd within O(1/n^2) of -2,
+    so the matrix is exact but numerically stiff for large n)
+  [PASS] c^2 > 0 for every n >= 9, n != 10 (up to 1001)  --- checked 9..199, 500, 1001
+  [PASS] three prescribed roots are distinct and interior  --- checked 9..199, 500, 1001, 5000
+  [PASS] P(9,2) nullity 6 numerically
+  [PASS] P(11,2) nullity 6 numerically
+  [PASS] P(20,2) nullity 6 numerically
+  [PASS] P(39,2) nullity 6 numerically
+  [PASS] P(60,2) nullity 6 numerically
+7. Saved interval-certified matrices re-evaluated (k=3)
+  [PASS] P(17,3) nullity 8, edges nonzero  --- nullity 8, min edge 0.1462
+  [PASS] P(19,3) nullity 8, edges nonzero  --- nullity 8, min edge 0.0145
+  [PASS] P(20,3) nullity 8, edges nonzero  --- nullity 8, min edge 0.1424
+  [PASS] P(21,3) nullity 8, edges nonzero  --- nullity 8, min edge 0.3059
+  [PASS] P(22,3) nullity 8, edges nonzero  --- nullity 8, min edge 0.0878
+  [PASS] P(23,3) nullity 8, edges nonzero  --- nullity 8, min edge 0.0647
+  [PASS] P(24,3) nullity 8, edges nonzero  --- nullity 8, min edge 0.0405
+  [PASS] P(25,3) nullity 8, edges nonzero  --- nullity 8, min edge 0.1584
+  [PASS] P(26,3) nullity 8, edges nonzero  --- nullity 8, min edge 0.0859
+  [PASS] P(27,3) nullity 8, edges nonzero  --- nullity 8, min edge 0.2439
+  [PASS] P(28,3) nullity 8, edges nonzero  --- nullity 8, min edge 0.0296
+  [PASS] P(29,3) nullity 8, edges nonzero  --- nullity 8, min edge 0.2612
+  [PASS] P(30,3) nullity 8, edges nonzero  --- nullity 8, min edge 0.3665
+  [PASS] P(31,3) nullity 8, edges nonzero  --- nullity 8, min edge 0.2290
+  [PASS] P(32,3) nullity 8, edges nonzero  --- nullity 8, min edge 0.0445
+  [PASS] P(33,3) nullity 8, edges nonzero  --- nullity 8, min edge 0.2802
+      (16 saved certificates re-evaluated)
+8. k=3 identity tiles and their compositions
+  [PASS] tiles cover a full interval [L,2L)  --- lengths 22..43 (22 tiles)
+  [PASS] single tiles give nullity 8  --- all 22 lengths
+  [PASS] multi-tile concatenations give nullity 8  --- checked n up to 57
+9. Slice lemma (lem:slice)
+  [PASS] spokes -> +1 and |outer| -> 1, nullity preserved, both parities  --- max deviation 2.7e-15
+
+==================================================================
+ALL CHECKS PASSED

@@ -750,6 +750,21 @@ negative, read in the combinatorially symmetric class where the two spoke
 weights need only have the prescribed product.
 \end{proof}
 
+\begin{remark}[Exact but stiff]
+The certificate of Theorem~\ref{thm:k2all} is exact for every admissible $n$,
+but it is numerically delicate for large $n$, and it is worth saying why so that
+a floating-point check is not misread. The three prescribed roots are
+$-2\cos(\pi/n)$, $-2\cos(3\pi/n)$, $-2\cos(5\pi/n)$ for odd $n$, all within
+$O(1/n^{2})$ of $-2$: at $n=1001$ they span $2.4\times10^{-4}$. So $F$ is close
+to having a triple root, the matrix is ill-conditioned, and grid values merely
+\emph{near} the roots produce small singular values --- at $n=1001$ the true
+roots give $9\times10^{-16}$ and the nearest non-roots $4\times10^{-11}$, so a
+fixed relative threshold over-counts the nullity. None of this touches the
+proof, which is symbolic: $c^{2}>0$ follows from the product-to-sum identity and
+the nullity is exactly $6$ because $F$ has exactly three distinct interior roots
+on $\Gamma_n$, each met by two Fourier indices.
+\end{remark}
+
 \begin{remark}[What the two exceptions mean]
 At $n=8$ and $n=10$ the grid is too small to avoid antipodal pairs --
 $\Gamma^{\circ}_8=\{\sqrt2,0,-\sqrt2\}$ and $\Gamma^{\circ}_{10}$ has four
