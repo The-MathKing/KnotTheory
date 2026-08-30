@@ -40,6 +40,6 @@ def simulate_exhaustion(knot):
         print("Hanaki (2012) Conjecture is DEFINITIVELY FALSE.")
 
 if __name__ == "__main__":
-    # T(3,4) is classically the 8-crossing knot 8_19
-    t34 = KnotProjection("T(3,4) [8_19]", crossings=8, unknotting_number=2)
-    simulate_exhaustion(t34)
+    # 10_139 is a 10-crossing knot with unknotting number 4
+    k10_139 = KnotProjection("10_139", crossings=10, unknotting_number=4)
+    simulate_exhaustion(k10_139)
