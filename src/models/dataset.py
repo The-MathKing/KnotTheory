@@ -5,12 +5,26 @@ import numpy as np
 
 class DefectKnotDataset(Dataset):
     """
-    Rigorously filters the dataset to isolate positive and quasi-alternating knots 
-    specifically where the topological defect |sigma(K)| < |s(K)| actively manifests.
+    Rigorously filters the dataset to explicitly purge homologically thin knots.
+    By Manolescu and Ozsvath (2007), alternating and quasi-alternating knots 
+    always have |s(K)| = |sigma(K)|, meaning the defect cannot exist there.
+    
+    This filter strictly isolates positive, non-alternating knots.
     """
     def __init__(self, csv_file, split='train', train_ratio=0.8):
         df = pd.read_csv(csv_file, low_memory=False)
         
+        # 1. Purge alternating and quasi-alternating knots
+        if 'is_alternating' in df.columns:
+            df = df[df['is_alternating'] == False]
+        if 'is_quasi_alternating' in df.columns:
+            df = df[df['is_quasi_alternating'] == False]
+            
+        # 2. Restrict to strictly positive knots
+        if 'is_positive' in df.columns:
+            df = df[df['is_positive'] == True]
+            
+        # 3. Target acquisition (optional verification mask)
         if 'signature' in df.columns and 'rasmussen_invariant' in df.columns:
             s_inv = pd.to_numeric(df['rasmussen_invariant'], errors='coerce')
             sig = pd.to_numeric(df['signature'], errors='coerce')
