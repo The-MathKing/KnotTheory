@@ -12,14 +12,17 @@ class AdversarialSaliencyObjective(nn.Module):
         super(AdversarialSaliencyObjective, self).__init__()
         self.linear_penalty = linear_penalty
 
-    def forward(self, predicted_delta, true_delta, linear_features_weight):
+    def forward(self, predicted_delta, true_delta, correlation_vector):
         """
         Penalizes the network heavily for relying on linear correlations 
         to ensure it hunts for topological blind spots (the defect).
+        
+        The penalty is defined as the L2 norm of the correlation vector
+        across all 46 established linear bounds.
         """
         mse_loss = F.mse_loss(predicted_delta, true_delta)
         
-        # Penalize reliance on linear features (Pearson correlation masking equivalent)
-        linearity_loss = self.linear_penalty * torch.norm(linear_features_weight, p=1)
+        # L2 norm penalty on the 46-dimensional correlation vector
+        linearity_loss = self.linear_penalty * torch.norm(correlation_vector, p=2)
         
         return mse_loss + linearity_loss
