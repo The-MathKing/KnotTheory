@@ -1,0 +1,54 @@
+\documentclass[12pt]{article}
+
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{graphicx}
+\usepackage{hyperref}
+
+\title{Adversarial Machine Learning Frameworks for Empirical Exploration of Topological Conjectures}
+\author{Aryan Padarthi}
+\date{August 2026}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Mathematical databases inherently prioritize linear transitivity, creating a "triviality trap" where algorithmic approaches frequently rediscover known classical bounds. We present a strictly partitioned "Zero-Trust" machine learning framework designed to empirically explore open questions in knot theory, specifically targeting the Trivializing Number Conjecture and open inequalities cataloged in modern databases like KnotInfo and NewDB. By deploying a Lasso ($L_1$) regularized heuristic penalized against known classical invariants, we establish an exploratory pipeline capable of mining topological datasets for novel, nonlinear bounding relationships. This paper outlines the architecture of the proposed adversarial methodology and defines the theoretical challenges required to formalize empirical discoveries in algebraic topology.
+\end{abstract}
+
+\section{Introduction}
+\label{sec:intro}
+The rapid expansion of topological databases has catalyzed algorithmic exploration of knot invariants. However, machine learning frameworks consistently fall into the "triviality trap," converging on known classical bounds (e.g., $|\sigma(K)| \leq 2g_4(K)$). To discover genuinely novel mathematical relationships, computational models must be actively penalized for rediscovering established topology.
+
+This paper proposes a multi-disciplinary framework to rigorously generate and empirically validate novel topological inequalities, setting the stage for future data-driven exploration of the Trivializing Number Conjecture.
+
+\section{Proposed Adversarial Architecture}
+\label{sec:methodology}
+The objective of this framework is to extract high-dimensional integer invariants and established inequalities from knot databases. To avoid the dimensionality trap inherent in evaluating a massive feature space over small datasets, deep neural networks are discarded in favor of a Lasso ($L_1$) Regularized Linear Model evaluated via rigorous 10-fold cross-validation. 
+
+To prevent structural leakage from known classical bounds, we explicitly define an adversarial loss function. The network is trained to minimize prediction error while being heavily penalized for correlations with established linear bounds $\mathcal{F}_{linear}$:
+\begin{equation}
+\mathcal{L} = \frac{1}{N} \sum_{i=1}^{N} \left( y_{true}^{(i)} - y_{pred}^{(i)} \right)^2 + \lambda \| \text{Corr}(y_{pred}, \mathcal{F}_{linear}) \|_2
+\end{equation}
+where $\lambda$ governs the adversarial penalty and $\| \cdot \|_2$ computes the $L_2$ norm of the Pearson correlation vector against known inequalities. 
+
+This pipeline is engineered to sequentially target open inequalities or conjectural bounds (such as those regarding $tr(K)$), isolating candidate invariant combinations that strictly avoid classical dependencies.
+
+\section{Theoretical Grounding and Definitional Challenges}
+\label{sec:theory}
+While machine learning can identify strong statistical bounds, translating these correlations into formal proofs presents a significant theoretical gap. For example, attempting to bound the trivializing number $tr(K)$ using Khovanov homology invariants like the Rasmussen $s$-invariant requires overcoming severe definitional roadblocks.
+
+It is a standard fact that a single crossing change on a knot diagram shifts the Lee filtration grading (and hence the $s$-invariant) by at most 1 \cite{rasmussen2010}. However, this fact constrains how $s(K)$ behaves under a crossing change to an \textit{existing diagram}. It does not trivially dictate the behavior of $tr(K)$, which is a combinatorial minimum over a specific sequence of trivializing changes. 
+
+Bridging the gap between an abstract homological shift (like the $s$-invariant) and a physical, diagrammatic trivializing sequence requires rigorous definitional grounding. The empirical framework proposed in this paper aims to identify specific knot families where this bounding behavior exhibits statistical anomalies, thereby guiding topologists toward tractable sub-cases where formal algebraic connections might be established.
+
+\section{Conclusion and Future Work}
+\label{sec:conclusion}
+By explicitly penalizing algorithmic convergence on known classical bounds, the "Zero-Trust" adversarial framework provides a statistically sound method for exploring knot databases. The immediate next steps for this project involve acquiring the primary definitions of $tr(K)$ from Hanaki (2014), pulling the raw KnotInfo CSV data for positive knots, and conducting honest exploratory analysis. By identifying empirical patterns before attempting generalized proofs, this methodology adheres to the highest standards of verifiable computational mathematics.
+
+\begin{thebibliography}{9}
+\bibitem{rasmussen2010}
+Rasmussen, J. (2010). Khovanov homology and the slice genus. \textit{Inventiones mathematicae}, 182(2), 419-447.
+\end{thebibliography}
+
+\end{document}
