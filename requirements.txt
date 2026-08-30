@@ -1,0 +1,9 @@
+pandas
+numpy
+torch
+scikit-learn
+snappy
+xlrd
+openpyxl
+requests
+matplotlib
