@@ -21,3 +21,12 @@ P(43,6)   target nullity 2k+2 = 14
   stage 2 (double): max|f| structural = 1.968e-02, dependent = 2.488e-02
   did not converge; stopping
   -> stage 2/3 failed here; trying the next candidate
+  stage 1 [cold, sign -1]: r-th sv/scale = 1.171e-03, min|inner|/scale = 0.0002
+  1223 unknowns, 1204 equations, 1113 structural, 91 dependent; fixing 110 at rationals
+  stage 2 (double): max|f| structural = 5.399e-04, dependent = 1.047e-03
+  did not converge; stopping
+  -> stage 2/3 failed here; trying the next candidate
+  not certified at this n
+
+--- P(45,6)         variety dimension 30 ---
+P(45,6)   target nullity 2k+2 = 14

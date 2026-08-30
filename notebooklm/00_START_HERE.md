@@ -46,13 +46,14 @@ Read in order. Each file assumes only the ones before it.
 | `17_anticipated_questions.md` | hard questions a judge or referee would ask, with answers | 11 |
 | `18_isef_context.md` | competition landscape and requirements | — |
 | `23_antipodal_obstruction.md` | exactly when a certificate exists; the signed adjacency matrix; $k=3,7$ | 08, 10, 11 |
+| `24_general_n.md` | escaping the congruence classes; certified primes; all $n\ge22$ for $k=3$ | 09, 23 |
 
 Four PDFs are also included:
 
 | File | What it is |
 |---|---|
-| `19_research_paper.pdf` | the research paper itself (23 pp) — the primary document |
-| `20_research_log.pdf` | the dated research log (18 pp), including every dead end |
+| `19_research_paper.pdf` | the research paper itself (31 pp) — the primary document |
+| `20_research_log.pdf` | the dated research log (21 pp), including every dead end |
 | `21_foundations_guide.pdf` | a foundations guide (14 pp) built from high-school level |
 | `22_abandoned_investigation.pdf` | the log of an abandoned target (4 pp); read it for how a project gets killed |
 
