@@ -196,7 +196,47 @@ check("multi-tile concatenations give nullity 8", not bad,
       f"failures {bad}" if bad else "checked n up to "
       f"{2*min(have)+13}")
 
-print("9. Slice lemma (lem:slice)")
+print("9. Certified tiles: nullity, docking exactness, interval coverage")
+certs = {}
+for f in sorted(glob.glob(f"{ROOT}/tilecert_*_3.npy")):
+    l = int(os.path.basename(f).split("_")[1])
+    certs[l] = np.load(f)
+cl = sorted(certs)
+check("certified lengths form [L, 2L)",
+      cl == list(range(min(cl), max(cl)+1)) and max(cl) >= 2*min(cl)-1,
+      f"{min(cl)}..{max(cl)} ({len(cl)} tiles)")
+from tiles import dock_weights
+D = dock_weights(3)
+bad_n, bad_d = [], []
+for l in cl:
+    z = certs[l]
+    A = assemble(z[:5*l], pattern_cells(l, 3), 2*l)
+    sv = np.linalg.svd(A, compute_uv=False)
+    if int(np.sum(sv < 1e-9*sv.max())) != 8:
+        bad_n.append(l)
+    for blk, key in enumerate("adbce"):
+        for j, pos in enumerate(list(range(4)) + list(range(l-4, l))):
+            if abs(z[blk*l+pos] - D[key][j % 4]) > 1e-13:
+                bad_d.append((l, key)); break
+check("every certified tile has nullity exactly 8", not bad_n,
+      f"failures {bad_n}" if bad_n else f"all {len(cl)} tiles")
+check("docking weights exact in every certified tile", not bad_d,
+      f"failures {bad_d[:3]}" if bad_d else "all tiles, to 1e-13")
+# every n >= L is a sum of certified lengths
+NMAX = 300
+cov = [False]*(NMAX+1)
+for a in cl:
+    if a <= NMAX: cov[a] = True
+for _ in range(8):
+    for i in range(NMAX+1):
+        if cov[i]:
+            for a in cl:
+                if i+a <= NMAX: cov[i+a] = True
+gaps = [n for n in range(min(cl), NMAX+1) if not cov[n]]
+check(f"every n in [{min(cl)}, {NMAX}] is a sum of certified lengths",
+      not gaps, f"gaps {gaps}" if gaps else "no gaps")
+
+print("10. Slice lemma (lem:slice)")
 from gauge_fixed import verify_slice
 rows = verify_slice()
 check("spokes -> +1 and |outer| -> 1, nullity preserved, both parities",

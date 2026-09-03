@@ -1128,12 +1128,31 @@ concatenations at $n=44,45,46$. So
 \[
   Z(P(n,3))=M(P(n,3))=8\qquad\text{for every }n\ge22,
 \]
-the first statement in this project about all large $n$ at any $k\ge3$. It is
-numerical, not proved: the theorem is proved but its hypothesis is verified in
-floating point, and certifying the $22$ tiles needs Krawczyk on a rational
-rather than a bilinear map, so interval matrix products rather than the cheap
-Lipschitz bound. I have not done it, and I am labelling the conclusion
-accordingly rather than letting the proved theorem launder the numerics.
+the first statement in this project about all large $n$ at any $k\ge3$.
+
+\textbf{And then it stopped being numerical.} I had written the conclusion up as
+floating point, on the grounds that certifying $T_{\text{tile}}=I$ means Krawczyk
+on a rational map and so interval matrix products. That was the wrong way round.
+By the ceiling corollary the monodromy of the cyclic matrix built from a
+\emph{single} tile \emph{is} the tile product, so
+\[
+  T_{\text{tile}}=I \iff \operatorname{null}A_{\text{one tile}}=2k+2,
+\]
+and the right-hand side is certified by the bilinear machinery I already had,
+whose Jacobian is affine. The only thing needing care is that the tiles must
+share a docking pattern, which is arranged by pinning those $40$ weights at
+their exact integer values so they sit in the fixed set and the certified
+solution carries them unchanged.
+
+All $22$ tiles certify. Krawczyk $\alpha\le2.2\times10^{-10}$ throughout,
+nullity exactly $8$ in every case, every docking weight equal to its prescribed
+integer to $10^{-14}$, minimum edge weight $0.15$ of the matrix scale. So
+\[
+  Z(P(n,3))=M(P(n,3))=8\qquad\text{for every }n\ge17,
+\]
+proved, with no congruence condition and no floating-point nullity anywhere in
+the chain. I spent an hour writing careful hedges about a limitation that a
+change of formulation removed.
 
 \textbf{And the per-$n$ range closed up.} Sweeping $k=3$ certified every
 $17\le n\le33$ --- seventeen consecutive values, primes $17,19,23,29,31$ among

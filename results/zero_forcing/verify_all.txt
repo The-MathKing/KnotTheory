@@ -70,7 +70,12 @@
   [PASS] tiles cover a full interval [L,2L)  --- lengths 22..43 (22 tiles)
   [PASS] single tiles give nullity 8  --- all 22 lengths
   [PASS] multi-tile concatenations give nullity 8  --- checked n up to 57
-9. Slice lemma (lem:slice)
+9. Certified tiles: nullity, docking exactness, interval coverage
+  [PASS] certified lengths form [L, 2L)  --- 22..43 (22 tiles)
+  [PASS] every certified tile has nullity exactly 8  --- all 22 tiles
+  [PASS] docking weights exact in every certified tile  --- all tiles, to 1e-13
+  [PASS] every n in [22, 300] is a sum of certified lengths  --- no gaps
+10. Slice lemma (lem:slice)
   [PASS] spokes -> +1 and |outer| -> 1, nullity preserved, both parities  --- max deviation 2.7e-15
 
 ==================================================================

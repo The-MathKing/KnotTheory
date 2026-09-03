@@ -1,0 +1,49 @@
+certifying 22 identity tiles at k=3
+  l=22: 398 unknowns, 352 equations, 324 structural, 28 dependent; 40 docking pins, 74 fixed total
+    structural 3.11e-61, dependent 2.72e-61, ||Y||=5.39e+02, alpha=6.70e-11, nullity 8, docking exact True, min|edge| 0.1500  CERTIFIED
+  l=23: 419 unknowns, 368 equations, 340 structural, 28 dependent; 40 docking pins, 79 fixed total
+    structural 3.11e-61, dependent 4.67e-61, ||Y||=7.55e+02, alpha=9.25e-11, nullity 8, docking exact True, min|edge| 0.1500  CERTIFIED
+  l=24: 440 unknowns, 384 equations, 356 structural, 28 dependent; 40 docking pins, 84 fixed total
+    structural 6.22e-61, dependent 1.94e-61, ||Y||=2.48e+03, alpha=3.24e-10, nullity 8, docking exact True, min|edge| 0.1500  CERTIFIED
+  l=25: 461 unknowns, 400 equations, 372 structural, 28 dependent; 40 docking pins, 89 fixed total
+    structural 6.22e-61, dependent 2.24e-61, ||Y||=9.96e+02, alpha=1.23e-10, nullity 8, docking exact True, min|edge| 0.1500  CERTIFIED
+  l=26: 482 unknowns, 416 equations, 388 structural, 28 dependent; 40 docking pins, 94 fixed total
+    structural 3.5e-61, dependent 1.94e-61, ||Y||=5.16e+02, alpha=6.88e-11, nullity 8, docking exact True, min|edge| 0.1500  CERTIFIED
+  l=27: 503 unknowns, 432 equations, 404 structural, 28 dependent; 40 docking pins, 99 fixed total
+    structural 6.22e-61, dependent 1.56e-61, ||Y||=1.51e+03, alpha=1.89e-10, nullity 8, docking exact True, min|edge| 0.1500  CERTIFIED
+  l=28: 524 unknowns, 448 equations, 420 structural, 28 dependent; 40 docking pins, 104 fixed total
+    structural 6.22e-61, dependent 2.48e-61, ||Y||=1.04e+03, alpha=1.31e-10, nullity 8, docking exact True, min|edge| 0.1500  CERTIFIED
+  l=29: 545 unknowns, 464 equations, 436 structural, 28 dependent; 40 docking pins, 109 fixed total
+    structural 3.31e-61, dependent 1.56e-61, ||Y||=3.84e+02, alpha=4.77e-11, nullity 8, docking exact True, min|edge| 0.1500  CERTIFIED
+  l=30: 566 unknowns, 480 equations, 452 structural, 28 dependent; 40 docking pins, 114 fixed total
+    structural 6.22e-61, dependent 3.69e-61, ||Y||=5.86e+02, alpha=7.43e-11, nullity 8, docking exact True, min|edge| 0.1500  CERTIFIED
+  l=31: 587 unknowns, 496 equations, 468 structural, 28 dependent; 40 docking pins, 119 fixed total
+    structural 4.67e-61, dependent 6.51e-61, ||Y||=6.67e+02, alpha=8.49e-11, nullity 8, docking exact True, min|edge| 0.1500  CERTIFIED
+  l=32: 608 unknowns, 512 equations, 484 structural, 28 dependent; 40 docking pins, 124 fixed total
+    structural 3.11e-61, dependent 2.14e-61, ||Y||=6.86e+02, alpha=8.71e-11, nullity 8, docking exact True, min|edge| 0.1500  CERTIFIED
+  l=33: 629 unknowns, 528 equations, 500 structural, 28 dependent; 40 docking pins, 129 fixed total
+    structural 2.53e-61, dependent 2.33e-61, ||Y||=5.64e+02, alpha=7.14e-11, nullity 8, docking exact True, min|edge| 0.1500  CERTIFIED
+  l=34: 650 unknowns, 544 equations, 516 structural, 28 dependent; 40 docking pins, 134 fixed total
+    structural 4.76e-61, dependent 4.08e-61, ||Y||=2.88e+02, alpha=3.66e-11, nullity 8, docking exact True, min|edge| 0.1500  CERTIFIED
+  l=35: 671 unknowns, 560 equations, 532 structural, 28 dependent; 40 docking pins, 139 fixed total
+    structural 3.11e-61, dependent 5.25e-61, ||Y||=1.43e+03, alpha=1.77e-10, nullity 8, docking exact True, min|edge| 0.1500  CERTIFIED
+  l=36: 692 unknowns, 576 equations, 548 structural, 28 dependent; 40 docking pins, 144 fixed total
+    structural 7.0e-61, dependent 3.11e-61, ||Y||=2.17e+03, alpha=2.79e-10, nullity 8, docking exact True, min|edge| 0.1500  CERTIFIED
+  l=37: 713 unknowns, 592 equations, 564 structural, 28 dependent; 40 docking pins, 149 fixed total
+    structural 3.11e-61, dependent 3.4e-61, ||Y||=8.29e+02, alpha=1.06e-10, nullity 8, docking exact True, min|edge| 0.1500  CERTIFIED
+  l=38: 734 unknowns, 608 equations, 580 structural, 28 dependent; 40 docking pins, 154 fixed total
+    structural 3.11e-61, dependent 2.14e-61, ||Y||=8.16e+02, alpha=1.01e-10, nullity 8, docking exact True, min|edge| 0.1502  CERTIFIED
+  l=39: 755 unknowns, 624 equations, 596 structural, 28 dependent; 40 docking pins, 159 fixed total
+    structural 3.11e-61, dependent 4.67e-61, ||Y||=5.92e+02, alpha=7.70e-11, nullity 8, docking exact True, min|edge| 0.1500  CERTIFIED
+  l=40: 776 unknowns, 640 equations, 612 structural, 28 dependent; 40 docking pins, 164 fixed total
+    structural 3.69e-61, dependent 1.94e-61, ||Y||=1.15e+03, alpha=1.43e-10, nullity 8, docking exact True, min|edge| 0.1500  CERTIFIED
+  l=41: 797 unknowns, 656 equations, 628 structural, 28 dependent; 40 docking pins, 169 fixed total
+    structural 6.22e-61, dependent 5.45e-61, ||Y||=8.81e+02, alpha=1.11e-10, nullity 8, docking exact True, min|edge| 0.1500  CERTIFIED
+  l=42: 818 unknowns, 672 equations, 644 structural, 28 dependent; 40 docking pins, 174 fixed total
+    structural 6.22e-61, dependent 3.11e-61, ||Y||=1.65e+03, alpha=2.12e-10, nullity 8, docking exact True, min|edge| 0.1500  CERTIFIED
+  l=43: 839 unknowns, 688 equations, 660 structural, 28 dependent; 40 docking pins, 179 fixed total
+    structural 3.11e-61, dependent 1.75e-61, ||Y||=1.09e+03, alpha=1.40e-10, nullity 8, docking exact True, min|edge| 0.1500  CERTIFIED
+
+CERTIFIED tile lengths: [22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43]
+not certified: []
+=> the certified lengths cover [22, 44), so Z(P(n,3)) = 8 is PROVED for every n >= 22

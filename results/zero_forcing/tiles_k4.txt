@@ -7,4 +7,6 @@ k = 4   nullity target 10   tile lengths 31..61
     34       120     2.49e-14            0.1500   IDENTITY TILE
     35       125     8.36e-03            0.1492   no
     36       130     3.09e-13            0.1500   IDENTITY TILE
-    37       135     5.65e-06            0.1500   no
+    37       135     1.85e-13            0.1500   IDE    38         38       140     1.31e-01            0.0345   no
+  145     3.18e-14            0.1500   IDENTITY TILE
+    40       150     8.88e-14            0.1500   IDENTITY TILE

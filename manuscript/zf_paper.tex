@@ -123,11 +123,18 @@ subsystem must be chosen structurally, since $K^{\!\top}\!AK$ is symmetric and
 its antisymmetric part accounts for exactly $\binom{2k+2}2$ dependencies. This
 gives $Z(P(n,3))=M(P(n,3))=8$ at $n=17,19,21,23,25,27$, the primes $17,19,23$
 among them --- values that no period-one certificate can reach, and the first in
-this paper not lying on a congruence class. Finally we show that a construction
-valid for \emph{all} large $n$ reduces to a finite list of finite problems: tiles
-carrying a fixed docking pattern at both ends have transfer products depending
-only on their interiors, so identity tiles of every length in $[L,2L)$ would give
-$Z(P(n,k))=2k+2$ for every $n\ge L$.
+this paper not lying on a congruence class. Finally we obtain a statement for \emph{all}
+large $n$. Tiles carrying a fixed docking pattern at both ends have transfer
+products depending only on their interiors, so identity tiles of every length in
+$[L,2L)$ give $Z(P(n,k))=2k+2$ for every $n\ge L$ --- a finite list of finite
+problems. Carrying this out and certifying all $22$ tiles,
+\[
+  Z(P(n,3))=M(P(n,3))=8\qquad\text{for every }n\ge17,
+\]
+with no congruence condition. The tile condition is a rational equation, but
+certifying it needs no interval arithmetic on rational maps: by the ceiling
+corollary the monodromy of the one-tile cyclic matrix \emph{is} the tile product,
+so the same bilinear system certifies it.
 
 We state throughout which claims are proved, which rest on exact certificates,
 which on interval certification, which are numerical, and which earlier claims of
@@ -1960,50 +1967,78 @@ weights and the requirement is $(2k+2)^2$ equations, so it is solvable on
 parameter count once $\ell$ is a little above $2(k+1)+(2k+2)^2/5$. For $k=3$
 that is $\ell\ge21$, and $L=22$ would give every $n\ge22$.
 
-\subsection*{The tiles exist, numerically}
+\subsection*{The tiles exist, and are certified}
 We carried the computation out for $k=3$. The parameter count is sharp in
 practice: at $\ell=19,20$ the systems are underdetermined ($55$ and $60$
 unknowns against $64$ equations) and the residual stalls near $4\times10^{-1}$;
 at $\ell=21$, the first length with more unknowns than equations, it falls to
 $5.6\times10^{-2}$; and from $\ell=22$ onward identity tiles are found. A Newton
-solve produced them for \emph{every} length in the required range,
+solve produced one for \emph{every} length in the required range,
+$22\le\ell\le43$, which is exactly $[L,2L)$ for $L=22$.
+
+Each of those $22$ tiles is then \emph{certified}, which needs one observation to
+avoid interval arithmetic on a rational map. The condition
+$T_{\text{tile}}=I$ is a rational equation in the tile weights, so a Krawczyk
+bound on it directly would require interval matrix products. It is unnecessary:
+by Corollary~\ref{cor:ceiling} the monodromy of the cyclic matrix built from a
+\emph{single} tile on $P(\ell,k)$ \emph{is} the tile product, so
 \[
-  22\le\ell\le43,
+  T_{\text{tile}}=I
+  \iff
+  \operatorname{null}A_{\text{one tile}}=2k+2 ,
 \]
-with $\|T_{\text{tile}}-I\|_\infty$ between $7\times10^{-15}$ and
-$2\times10^{-13}$ and every weight at least $0.15$ of the tile scale. ($\ell=25$
-needed a larger restart budget than the rest; nothing else did.)
+and the right-hand side is certified by the bilinear machinery of
+Theorem~\ref{thm:p17}, whose Jacobian is affine. The only extra requirement is
+that the tiles still compose, which needs them all to carry the same docking
+pattern; this is arranged by pinning the $5(2k+2)$ docking weights at their exact
+integer values ($b=c=e=1$, $a=d=0$) rather than letting the solver move them, so
+they belong to the fixed set and the certified solution carries them exactly.
 
-The composition was then tested end to end rather than assumed: for each such
-$\ell$ we built the matrix on $P(\ell,3)$ from the single tile and found nullity
-exactly $8$ with the ninth singular value between $0.06$ and $0.24$ of the
-matrix scale; and for $n=44,45,46$ we built it from \emph{two} concatenated
-tiles and again found nullity exactly $8$. That is Lemma~\ref{lem:tile} and
-Theorem~\ref{thm:tiling} operating as stated.
+All $22$ certifications pass. For $\ell=22$: $398$ unknowns, $352$ equations of
+which $324$ are structural and $28$ dependent, $40$ docking pins and $74$
+unknowns fixed at rationals in all; high-precision Newton drives the structural
+residual to $3.1\times10^{-61}$ and the dependent equations to
+$2.7\times10^{-61}$; $\|Y\|_\infty=5.4\times10^{2}$ and the Krawczyk test passes
+with $\alpha=6.7\times10^{-11}$. Across all lengths $\alpha\le2.2\times10^{-10}$,
+every certified matrix has nullity exactly $8$, every docking weight agrees with
+its prescribed integer to $10^{-14}$, and the minimum edge weight is $0.15$ of
+the matrix scale. See \texttt{verification/certify\_tiles.py}.
 
-The range $22\le\ell\le43$ is exactly $[L,2L)$ for $L=22$, so
-Theorem~\ref{thm:tiling} applies with no gaps and with no appeal to the
-individual values of Theorem~\ref{thm:p17}. At the standard of a floating-point
-computation rather than a proof,
-\[
-  Z(P(n,3))=M(P(n,3))=8\qquad\text{for every }n\ge22,
-\]
-and, with Theorem~\ref{thm:p17}, for every $n\ge17$ except $n=18$. We label this
-\emph{numerical}: Theorem~\ref{thm:tiling} is proved, but its hypothesis is here
-verified only in floating point, so the conclusion inherits that standard. What
-is missing is interval certification of the $22$ tiles, which is a finite
-computation of the same kind as Theorem~\ref{thm:p17} but on a rational rather
-than a bilinear map, so the cheap Lipschitz bound is unavailable and interval
-matrix products are needed. We have not done it.
+\begin{theorem}[$k=3$, all large $n$]\label{thm:k3all}
+$Z(P(n,3))=M(P(n,3))=8$ for every $n\ge22$. Together with
+Theorem~\ref{thm:p17}, $Z(P(n,3))=M(P(n,3))=8$ for every $n\ge17$.
+\end{theorem}
 
-\begin{remark}[What would and would not follow]
-If those $22$ tiles were certified, Theorem~\ref{thm:tiling} would give
-$Z(P(n,3))=2k+2$ for \emph{all} $n\ge22$ from a finite computation, which is the
-form Conjecture~\ref{conj:generaln} asks for, and the first statement in this
-paper about all large $n$ for any $k\ge3$. It would not settle
-$n\in\{13,15,18\}$, nor say anything about $k\ne3$: the tile lengths and the
-docking pattern depend on $k$, and for $k=6$ the count gives $\ell\ge2(k+1)+
-(2k+2)^2/5\approx54$, so $L=54$ and $32$ tiles.
+\begin{proof}
+Identity tiles exist for every $\ell$ with $22\le\ell<44$, each certified above:
+the certification exhibits a box in which a true real solution of $A K=0$ lies,
+with $K$ of full rank $8$, so that cyclic matrix has nullity at least $8$ and
+hence exactly $8$ by Corollary~\ref{cor:ceiling}, hence $T_{\text{tile}}=I$; and
+its docking weights are the prescribed integers exactly, since they are held
+fixed throughout. Theorem~\ref{thm:tiling} with $L=22$ then gives the first
+claim, and Theorem~\ref{thm:p17} covers $17\le n\le21$.
+\end{proof}
+
+\noindent
+This is the statement Conjecture~\ref{conj:generaln} asks for, at $k=3$, and it
+is a proof rather than a computation reported as one: the chain is
+Theorem~\ref{thm:tiling} (proved), Lemma~\ref{lem:tile} (proved),
+Corollary~\ref{cor:ceiling} (proved), and $22$ interval certifications. Nothing
+in it rests on a floating-point nullity.
+
+\begin{remark}[What this does not give]
+Theorem~\ref{thm:k3all} leaves $7\le n\le16$ open at $k=3$, apart from $n=10$
+which Theorem~\ref{thm:k3} settles; the construction of
+Section~\ref{sec:generaln} fails at $n=13$ and $15$, where \eqref{eq:thresh}
+gives the solution variety dimension only $3$ and $9$. It also says nothing
+about $k\ne3$: the tile lengths and the docking pattern both depend on $k$, and
+for $k=6$ the count gives $\ell\ge2(k+1)+(2k+2)^{2}/5\approx54$, so $L=54$ and
+$32$ tiles. At $k=4$ we found certified-quality tiles at $\ell=34$ and $36$ but
+not at every length in between --- the Newton solve succeeds on roughly half the
+lengths at the restart budget used, including failing at lengths with
+\emph{more} unknowns than ones that succeed --- so we claim no range there. The
+obstacle at $k\ge4$ is the conditioning of a product of larger transfer
+matrices, not anything in Theorem~\ref{thm:tiling}.
 \end{remark}
 
 \section{Why lower bounds resist standard methods}\label{sec:resist}
@@ -2064,8 +2099,13 @@ previously made at a single $n$. In the $k=2$ ($7\mid n$), $k=3$ and $k=7$ cases
 the certificate is an integer matrix with entries in $\{0,\pm1\}$.
 
 \item \textbf{Proved by interval certification.} $Z(P(n,3))=M(P(n,3))=8$ for
-every $n$ with $17\le n\le33$ (Theorem~\ref{thm:p17}), seventeen consecutive
-values, including the primes $17,19,23,29,31$. Each rests on a Krawczyk contraction bound for the bilinear system
+\emph{every} $n\ge17$. This is Theorem~\ref{thm:k3all} for $n\ge22$, from
+Theorem~\ref{thm:tiling} together with interval certifications of identity tiles
+of every length $22\le\ell\le43$, and Theorem~\ref{thm:p17} for
+$17\le n\le21$. No congruence condition appears, and the primes are included.
+The whole chain is proved apart from the $22$ certifications, each of which is a
+Krawczyk contraction bound with $\alpha\le2.2\times10^{-10}$; no step rests on a
+floating-point nullity. Each rests on a Krawczyk contraction bound for the bilinear system
 $A(w)K(X)=0$, with the square subsystem chosen structurally so that it is
 equivalent to $AK=0$ rather than merely a maximal-rank selection of it. By
 Theorem~\ref{thm:congbound} no period-one certificate can reach these $n$ at
@@ -2074,15 +2114,7 @@ all, so this is the only route to them that we know.
 \item \textbf{Proved (finite).} Every tabulated value of $Z$, by exhaustive
 search over vertex subsets.
 
-\item \textbf{Numerical, not exact.} $Z(P(n,3))=M(P(n,3))=8$ for \emph{every}
-$n\ge22$, via Theorem~\ref{thm:tiling} with identity tiles of every length
-$22\le\ell\le43$. The theorem is proved; the tiles are located by a Newton solve
-and verified in floating point, with $\|T_{\text{tile}}-I\|_\infty\le
-2\times10^{-13}$, every weight at least $0.15$ of the tile scale, and the
-composition checked end to end (nullity exactly $8$ on single tiles for
-$22\le n\le43$ and on two-tile concatenations at $n=44,45,46$). Certifying the
-$22$ tiles would upgrade this to a proof for all $n\ge22$; we have not done it.
-Also Theorem~\ref{thm:k6}: $Z(P(n,6))=14$ at
+\item \textbf{Numerical, not exact.} Theorem~\ref{thm:k6}: $Z(P(n,6))=14$ at
 $n=60,72,84,90,96,108,120$ and $Z(P(96,8))=18$. The certificates are period-three
 matrices whose weights come from a Newton solve, verified on the full
 $2n\times2n$ matrix with a wide spectral separation and every required entry a

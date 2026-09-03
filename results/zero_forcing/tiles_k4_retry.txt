@@ -1,2 +1,4 @@
 retry k=4 tiles at l=31,32,33 with a larger restart budget
   (l=32 reached 6.2e-7 on 4 restarts, so this is likely restart luck)
+  l=32 seed=11: max|T-I| = 8.486e-14, min|edge| = 0.1500 IDENTITY TILE
+    saved
