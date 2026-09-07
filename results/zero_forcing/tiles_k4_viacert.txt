@@ -1,0 +1,24 @@
+feeding non-converged starts straight into certify_tile, whose damped LM
+Newton is far stronger than the least_squares inside solve_tile
+  l=35 from neighbour 34:
+  l=35: 775 unknowns, 700 equations, 655 structural, 45 dependent; 50 docking pins, 120 fixed total
+  l=35 from neighbour 36:
+  l=35: 775 unknowns, 700 equations, 655 structural, 45 dependent; 50 docking pins, 120 fixed total
+    double Newton stalled at 6.59e-02
+  l=35 from neighbour 33:
+  l=35: 775 unknowns, 700 equations, 655 structural, 45 dependent; 50 docking pins, 120 fixed total
+    double Newton stalled at 1.32e-01
+  l=35 from neighbour 37:
+  l=35: 775 unknowns, 700 equations, 655 structural, 45 dependent; 50 docking pins, 120 fixed total
+  l=38 from neighbour 37:
+  l=38: 850 unknowns, 760 equations, 715 structural, 45 dependent; 50 docking pins, 135 fixed total
+    double Newton stalled at 1.49e-02
+  l=38 from neighbour 39:
+  l=38: 850 unknowns, 760 equations, 715 structural, 45 dependent; 50 docking pins, 135 fixed total
+    double Newton stalled at 6.51e-02
+  l=38 from neighbour 36:
+  l=38: 850 unknowns, 760 equations, 715 structural, 45 dependent; 50 docking pins, 135 fixed total
+    double Newton stalled at 2.79e-02
+  l=38 from neighbour 40:
+  l=38: 850 unknowns, 760 equations, 715 structural, 45 dependent; 50 docking pins, 135 fixed total
+    double Newton stalled at 2.96e-03

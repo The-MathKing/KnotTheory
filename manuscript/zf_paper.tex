@@ -2033,12 +2033,24 @@ Section~\ref{sec:generaln} fails at $n=13$ and $15$, where \eqref{eq:thresh}
 gives the solution variety dimension only $3$ and $9$. It also says nothing
 about $k\ne3$: the tile lengths and the docking pattern both depend on $k$, and
 for $k=6$ the count gives $\ell\ge2(k+1)+(2k+2)^{2}/5\approx54$, so $L=54$ and
-$32$ tiles. At $k=4$ we found certified-quality tiles at $\ell=34$ and $36$ but
-not at every length in between --- the Newton solve succeeds on roughly half the
-lengths at the restart budget used, including failing at lengths with
-\emph{more} unknowns than ones that succeed --- so we claim no range there. The
-obstacle at $k\ge4$ is the conditioning of a product of larger transfer
-matrices, not anything in Theorem~\ref{thm:tiling}.
+$32$ tiles. The situation at $k=4$ is more encouraging than it first
+looked, and worth reporting precisely because it is incomplete. There
+$(2k+2)^{2}=100$ and $2(k+1)=10$, so the count gives $\ell\ge31$ and the required
+range is $[31,62)$. Identity tiles have been found at every length in
+$31\le\ell\le37$ and $39\le\ell\le54$, and two of them, $\ell=31$ and $\ell=40$,
+have been put through the certification of this section and pass --- nullity
+exactly $10$, docking weights exact, $\alpha\le2.2\times10^{-10}$, and the
+dependent-equation count $\binom{10}{2}=45$ as the structural argument predicts.
+So neither the construction nor the certification is special to $k=3$.
+
+What is missing is $\ell=38$ and $55\le\ell\le61$, and the reason is solver
+variance rather than anything structural: at the restart budget we first used,
+roughly half the lengths failed, including lengths with \emph{more} unknowns than
+ones that succeeded, and every failure we have since retried with a larger budget
+($\ell=31,32,33,35$) then solved, to $10^{-14}$. We therefore expect the range to
+close, but until it does Theorem~\ref{thm:tiling} does not apply at $k=4$ and we
+claim nothing for it. For $k=6$ the count gives $\ell\ge54$, so $L=54$ and $54$
+tiles would be needed; we have not attempted it.
 \end{remark}
 
 \section{Why lower bounds resist standard methods}\label{sec:resist}
@@ -2176,7 +2188,10 @@ method of Section~\ref{sec:generaln}. It collapses onto the degenerate strata
 evidence, and the conclusion we drew from them, that exactness for $k\ge6$ was
 unlikely, was not supported.
 
-\item \textbf{Open.} Conjecture~\ref{conj:generaln} for $k\ge3$; whether
+\item \textbf{Open.} Conjecture~\ref{conj:generaln} for $k\ge4$ --- at $k=4$
+the tiling hypothesis is verified at every length in $[31,37]\cup[39,54]$ with
+two of them certified, and the missing lengths appear to be solver variance, but
+the range is not closed and no claim is made; whether
 $M=Z$ in general; exact rather than interval certification at the $n$ of
 Theorem~\ref{thm:p17}; and the rank law. We expect
 $M(P(10,2))<Z(P(10,2))=6$, a strict gap, since the search fails there even

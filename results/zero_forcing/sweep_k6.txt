@@ -30,3 +30,22 @@ P(43,6)   target nullity 2k+2 = 14
 
 --- P(45,6)         variety dimension 30 ---
 P(45,6)   target nullity 2k+2 = 14
+  stage 1 [cold, sign +1]: r-th sv/scale = 1.525e-03, min|inner|/scale = 0.0005
+  1289 unknowns, 1260 equations, 1169 structural, 91 dependent; fixing 120 at rationals
+  stage 2 (double): max|f| structural = 4.867e-04, dependent = 4.867e-04
+  did not converge; stopping
+  -> stage 2/3 failed here; trying the next candidate
+  stage 1 [cold, sign -1]: r-th sv/scale = 1.217e-03, min|inner|/scale = 0.0056
+  1289 unknowns, 1260 equations, 1169 structural, 91 dependent; fixing 120 at rationals
+  stage 2 (double): max|f| structural = 1.888e-04, dependent = 1.995e-04
+  did not converge; stopping
+  -> stage 2/3 failed here; trying the next candidate
+  not certified at this n
+
+--- P(47,6)  prime  variety dimension 36 ---
+P(47,6)   target nullity 2k+2 = 14
+  stage 1 [cold, sign +1]: r-th sv/scale = 1.682e-03, min|inner|/scale = 0.0004
+  1355 unknowns, 1316 equations, 1225 structural, 91 dependent; fixing 130 at rationals
+  stage 2 (double): max|f| structural = 2.549e-04, dependent = 5.279e-04
+  did not converge; stopping
+  -> stage 2/3 failed here; trying the next candidate

@@ -1,0 +1,4 @@
+retry k=4 at the interior gaps l=35,38 (l=31,32,33 all solved on retry,
+so these are restart luck as well)
+  l=35 seed=11: max|T-I| = 1.954e-14, min|edge| = 0.1500  IDENTITY TILE
+    saved
