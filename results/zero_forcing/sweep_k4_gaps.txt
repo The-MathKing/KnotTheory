@@ -7,3 +7,27 @@ P(35,4)   target nullity 2k+2 = 10
   stage 2 (double): max|f| structural = 4.667e-04, dependent = 1.803e-03
   did not converge; stopping
   -> stage 2/3 failed here; trying the next candidate
+  stage 1 [cold, sign -1]: r-th sv/scale = 1.723e-03, min|inner|/scale = 0.0307
+  775 unknowns, 700 equations, 655 structural, 45 dependent; fixing 120 at rationals
+  stage 2 (double): max|f| structural = 6.039e-03, dependent = 3.029e-02
+  did not converge; stopping
+  -> stage 2/3 failed here; trying the next candidate
+  not certified at this n
+
+--- P(38,4)         variety dimension 59 ---
+P(38,4)   target nullity 2k+2 = 10
+  stage 1 [cold, sign +1]: r-th sv/scale = 1.019e-03, min|inner|/scale = 0.0891
+  850 unknowns, 760 equations, 715 structural, 45 dependent; fixing 135 at rationals
+  stage 2 (double): max|f| structural = 2.986e-03, dependent = 1.104e-02
+  did not converge; stopping
+  -> stage 2/3 failed here; trying the next candidate
+  stage 1 [cold, sign -1]: r-th sv/scale = 1.019e-03, min|inner|/scale = 0.0891
+  850 unknowns, 760 equations, 715 structural, 45 dependent; fixing 135 at rationals
+  stage 2 (double): max|f| structural = 2.986e-03, dependent = 1.104e-02
+  did not converge; stopping
+  -> stage 2/3 failed here; trying the next candidate
+  not certified at this n
+
+================================================================
+k = 4: CERTIFIED null A = 10 at n = []
+   of which prime: []

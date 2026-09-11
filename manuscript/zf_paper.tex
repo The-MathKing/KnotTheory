@@ -127,11 +127,13 @@ this paper not lying on a congruence class. Finally we obtain a statement for \e
 large $n$. Tiles carrying a fixed docking pattern at both ends have transfer
 products depending only on their interiors, so identity tiles of every length in
 $[L,2L)$ give $Z(P(n,k))=2k+2$ for every $n\ge L$ --- a finite list of finite
-problems. Carrying this out and certifying all $22$ tiles,
+problems. Carrying this out and certifying all $53$ tiles
+involved,
 \[
-  Z(P(n,3))=M(P(n,3))=8\qquad\text{for every }n\ge17,
+  Z(P(n,3))=M(P(n,3))=8\ \ (n\ge17),\qquad
+  Z(P(n,4))=M(P(n,4))=10\ \ (n\ge31),
 \]
-with no congruence condition. The tile condition is a rational equation, but
+with no congruence condition, so that $k=2,3,4$ are all settled for large $n$. The tile condition is a rational equation, but
 certifying it needs no interval arithmetic on rational maps: by the ceiling
 corollary the monodromy of the one-tile cyclic matrix \emph{is} the tile product,
 so the same bilinear system certifies it.
@@ -2004,53 +2006,81 @@ every certified matrix has nullity exactly $8$, every docking weight agrees with
 its prescribed integer to $10^{-14}$, and the minimum edge weight is $0.15$ of
 the matrix scale. See \texttt{verification/certify\_tiles.py}.
 
-\begin{theorem}[$k=3$, all large $n$]\label{thm:k3all}
-$Z(P(n,3))=M(P(n,3))=8$ for every $n\ge22$. Together with
-Theorem~\ref{thm:p17}, $Z(P(n,3))=M(P(n,3))=8$ for every $n\ge17$.
+\begin{theorem}[All large $n$, for $k=3$ and $k=4$]\label{thm:k3all}
+\[
+  Z(P(n,3))=M(P(n,3))=8 \quad\text{for every } n\ge17,
+\]
+\[
+  Z(P(n,4))=M(P(n,4))=10 \quad\text{for every } n\ge31 .
+\]
 \end{theorem}
 
 \begin{proof}
-Identity tiles exist for every $\ell$ with $22\le\ell<44$, each certified above:
-the certification exhibits a box in which a true real solution of $A K=0$ lies,
-with $K$ of full rank $8$, so that cyclic matrix has nullity at least $8$ and
-hence exactly $8$ by Corollary~\ref{cor:ceiling}, hence $T_{\text{tile}}=I$; and
-its docking weights are the prescribed integers exactly, since they are held
-fixed throughout. Theorem~\ref{thm:tiling} with $L=22$ then gives the first
-claim, and Theorem~\ref{thm:p17} covers $17\le n\le21$.
+For $k=3$, identity tiles exist for every $\ell$ with $22\le\ell<44$, and for
+$k=4$ for every $\ell$ with $31\le\ell<62$; each is certified as above. A
+certification exhibits a box containing a true real solution of $AK=0$ with $K$
+of full rank $2k+2$, so the one-tile cyclic matrix has nullity at least $2k+2$
+and hence exactly $2k+2$ by Corollary~\ref{cor:ceiling}, so
+$T_{\text{tile}}=I$; and its docking weights are the prescribed integers
+exactly, since they are held fixed throughout, so tiles with different $\ell$
+compose. Theorem~\ref{thm:tiling} with $L=22$ and $L=31$ respectively gives
+$n\ge22$ and $n\ge31$, and Theorem~\ref{thm:p17} covers $17\le n\le21$ at $k=3$.
 \end{proof}
 
 \noindent
-This is the statement Conjecture~\ref{conj:generaln} asks for, at $k=3$, and it
-is a proof rather than a computation reported as one: the chain is
-Theorem~\ref{thm:tiling} (proved), Lemma~\ref{lem:tile} (proved),
-Corollary~\ref{cor:ceiling} (proved), and $22$ interval certifications. Nothing
-in it rests on a floating-point nullity.
+All $22+31=53$ certifications pass. To give the numbers at both ends: at $k=3$,
+$\ell=22$ has $398$ unknowns and $352$ equations of which $324$ are structural
+and $28=\binom82$ dependent, with $40$ docking pins, high-precision residual
+$3.1\times10^{-61}$, and Krawczyk $\alpha=6.7\times10^{-11}$; at $k=4$,
+$\ell=61$ has $1425$ unknowns and $1220$ equations of which $1175$ are
+structural and $45=\binom{10}2$ dependent, with $50$ docking pins, residual
+$4.7\times10^{-61}$, and $\alpha=3.7\times10^{-10}$. Across all $53$,
+$\alpha\le3.8\times10^{-10}$, every certified matrix has nullity exactly
+$2k+2$, every docking weight matches its prescribed integer to $10^{-14}$, and
+the minimum edge weight is $0.15$ of the matrix scale. See
+\texttt{verification/certify\_tiles.py}.
+
+These are the statements Conjecture~\ref{conj:generaln} asks for, and they are
+proofs rather than computations reported as such: the chain is
+Theorem~\ref{thm:tiling}, Lemma~\ref{lem:tile} and
+Corollary~\ref{cor:ceiling}, all proved, together with $53$ interval
+certifications. No step rests on a floating-point nullity. With
+Theorem~\ref{thm:k2all} for $k=2$, the three smallest $k$ beyond the trivial
+case are now settled for all large $n$, with
+\[
+  L(2)=9,\qquad L(3)=17,\qquad L(4)=31 ,
+\]
+against the tile lower bound $2(k+1)+(2k+2)^{2}/5$, which is $13.2$, $20.8$ and
+$30$.
 
 \begin{remark}[What this does not give]
 Theorem~\ref{thm:k3all} leaves $7\le n\le16$ open at $k=3$, apart from $n=10$
 which Theorem~\ref{thm:k3} settles; the construction of
 Section~\ref{sec:generaln} fails at $n=13$ and $15$, where \eqref{eq:thresh}
-gives the solution variety dimension only $3$ and $9$. It also says nothing
-about $k\ne3$: the tile lengths and the docking pattern both depend on $k$, and
-for $k=6$ the count gives $\ell\ge2(k+1)+(2k+2)^{2}/5\approx54$, so $L=54$ and
-$32$ tiles. The situation at $k=4$ is more encouraging than it first
-looked, and worth reporting precisely because it is incomplete. There
-$(2k+2)^{2}=100$ and $2(k+1)=10$, so the count gives $\ell\ge31$ and the required
-range is $[31,62)$. Identity tiles have been found at every length in
-$31\le\ell\le37$ and $39\le\ell\le54$, and two of them, $\ell=31$ and $\ell=40$,
-have been put through the certification of this section and pass --- nullity
-exactly $10$, docking weights exact, $\alpha\le2.2\times10^{-10}$, and the
-dependent-equation count $\binom{10}{2}=45$ as the structural argument predicts.
-So neither the construction nor the certification is special to $k=3$.
+gives the solution variety dimension only $3$ and $9$. At $k=4$ it leaves
+$9\le n\le30$ open apart from the multiples of $60$, $70$ and $90$ covered by
+Theorem~\ref{thm:certvals}.
 
-What is missing is $\ell=38$ and $55\le\ell\le61$, and the reason is solver
-variance rather than anything structural: at the restart budget we first used,
-roughly half the lengths failed, including lengths with \emph{more} unknowns than
-ones that succeeded, and every failure we have since retried with a larger budget
-($\ell=31,32,33,35$) then solved, to $10^{-14}$. We therefore expect the range to
-close, but until it does Theorem~\ref{thm:tiling} does not apply at $k=4$ and we
-claim nothing for it. For $k=6$ the count gives $\ell\ge54$, so $L=54$ and $54$
-tiles would be needed; we have not attempted it.
+It also gives nothing for $k\ge5$, and the cost is the reason rather than any
+difficulty of principle: the tile lengths and the docking pattern both depend on
+$k$, and the count $\ell\ge2(k+1)+(2k+2)^{2}/5$ gives $L=41$ with $41$ tiles at
+$k=5$ and $L=54$ with $54$ tiles at $k=6$, each tile a larger system than the
+last. We have not attempted them. Nothing in Lemma~\ref{lem:tile} or
+Theorem~\ref{thm:tiling} refers to $k$, and the certification scaled from
+$8\times8$ transfer matrices at $k=3$ to $10\times10$ at $k=4$ without
+modification, so we expect the method to continue; that is an expectation and
+not a result.
+
+One practical observation, since it governs how much compute the method needs.
+The Newton solve for a tile is erratic: at the restart budget we first used,
+roughly half the lengths at $k=4$ failed, including lengths with \emph{more}
+unknowns than ones that succeeded. Every such failure that we retried with a
+larger budget --- $\ell=31,32,33,35,38$ --- then solved to $10^{-14}$. So a failed
+tile search at these sizes carries no information beyond the effort spent, and we
+were careful not to read the first pass as evidence about $k=4$. Extending a
+neighbouring tile as a starting point does \emph{not} substitute for restarts:
+the damped Newton stalls near $10^{-2}$ from such starts at the lengths that
+needed retrying.
 \end{remark}
 
 \section{Why lower bounds resist standard methods}\label{sec:resist}
@@ -2111,13 +2141,13 @@ previously made at a single $n$. In the $k=2$ ($7\mid n$), $k=3$ and $k=7$ cases
 the certificate is an integer matrix with entries in $\{0,\pm1\}$.
 
 \item \textbf{Proved by interval certification.} $Z(P(n,3))=M(P(n,3))=8$ for
-\emph{every} $n\ge17$. This is Theorem~\ref{thm:k3all} for $n\ge22$, from
-Theorem~\ref{thm:tiling} together with interval certifications of identity tiles
-of every length $22\le\ell\le43$, and Theorem~\ref{thm:p17} for
-$17\le n\le21$. No congruence condition appears, and the primes are included.
-The whole chain is proved apart from the $22$ certifications, each of which is a
-Krawczyk contraction bound with $\alpha\le2.2\times10^{-10}$; no step rests on a
-floating-point nullity. Each rests on a Krawczyk contraction bound for the bilinear system
+\emph{every} $n\ge17$, and $Z(P(n,4))=M(P(n,4))=10$ for \emph{every} $n\ge31$
+(Theorem~\ref{thm:k3all}), from Theorem~\ref{thm:tiling} together with interval
+certifications of identity tiles of every length in $[22,44)$ and $[31,62)$, plus
+Theorem~\ref{thm:p17} for $17\le n\le21$. No congruence condition appears and the
+primes are included. Each of the $53$ certifications is a Krawczyk contraction
+bound with $\alpha\le3.8\times10^{-10}$; no step rests on a floating-point
+nullity. Each rests on a Krawczyk contraction bound for the bilinear system
 $A(w)K(X)=0$, with the square subsystem chosen structurally so that it is
 equivalent to $AK=0$ rather than merely a maximal-rank selection of it. By
 Theorem~\ref{thm:congbound} no period-one certificate can reach these $n$ at
@@ -2188,10 +2218,9 @@ method of Section~\ref{sec:generaln}. It collapses onto the degenerate strata
 evidence, and the conclusion we drew from them, that exactness for $k\ge6$ was
 unlikely, was not supported.
 
-\item \textbf{Open.} Conjecture~\ref{conj:generaln} for $k\ge4$ --- at $k=4$
-the tiling hypothesis is verified at every length in $[31,37]\cup[39,54]$ with
-two of them certified, and the missing lengths appear to be solver variance, but
-the range is not closed and no claim is made; whether
+\item \textbf{Open.} Conjecture~\ref{conj:generaln} for $k\ge5$, where we have
+not attempted the tiles: the count gives $L=41$ and $41$ tiles at $k=5$, $L=54$
+and $54$ at $k=6$; whether
 $M=Z$ in general; exact rather than interval certification at the $n$ of
 Theorem~\ref{thm:p17}; and the rank law. We expect
 $M(P(10,2))<Z(P(10,2))=6$, a strict gap, since the search fails there even

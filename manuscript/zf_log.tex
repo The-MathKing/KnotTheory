@@ -1154,6 +1154,34 @@ proved, with no congruence condition and no floating-point nullity anywhere in
 the chain. I spent an hour writing careful hedges about a limitation that a
 change of formulation removed.
 
+\textbf{Then $k=4$ went the same way.} I had written that the $k=4$ tile search
+succeeded on only about half the lengths and that I was claiming nothing for it.
+That was the right thing to write at the time and the wrong conclusion to keep:
+every failure I retried with a larger restart budget --- $\ell=31,32,33,35,38$ ---
+solved to $10^{-14}$. The variance was in my solver, not in the problem. With the
+main sweep reaching $\ell=61$ the range $[31,62)$ closed, all $31$ tiles
+certified, and
+\[
+  Z(P(n,4))=M(P(n,4))=10\qquad\text{for every }n\ge31 .
+\]
+The certification needed no change at all going from $8\times8$ transfer matrices
+to $10\times10$; the dependent-equation count moved from $\binom82=28$ to
+$\binom{10}2=45$ exactly as the symmetry argument says it should, which is the
+best evidence I have that the structural reduction is right rather than lucky.
+
+So $L(2)=9$, $L(3)=17$, $L(4)=31$, against the tile lower bound
+$2(k+1)+(2k+2)^2/5$ of $13.2$, $20.8$, $30$. $k=5$ needs $41$ tiles and $k=6$
+needs $54$, each individually larger; I have not attempted them, and the reason
+is compute rather than any obstacle I can identify.
+
+One thing I want on the record about my own reporting. Twice today I wrote a
+careful, hedged, accurate-at-the-time statement that a case was out of reach ---
+the $k=3$ tiles as numerical, then $k=4$ as unclaimable --- and both times the
+limitation was in how I had set the problem up. The hedges were honest and I
+would write them again. But "I could not do it with the budget I used" is a very
+different claim from "it cannot be done," and the gap between them is where I
+have been losing ground all day.
+
 \textbf{And the per-$n$ range closed up.} Sweeping $k=3$ certified every
 $17\le n\le33$ --- seventeen consecutive values, primes $17,19,23,29,31$ among
 them. $n=18$ was the last holdout and it certified once I raised the restart
