@@ -1,0 +1,4 @@
+the rank discovery says only C(r+1,2) = 36 equations are independent,
+so the count needs 5(l-8) >= 36, i.e. l >= 16 -- not l >= 22.
+is the count the binding constraint, or is short-tile I unreachable?
+    l  unknowns  vs 36  best max|T-I|   min|edge|

@@ -2006,6 +2006,34 @@ every certified matrix has nullity exactly $8$, every docking weight agrees with
 its prescribed integer to $10^{-14}$, and the minimum edge weight is $0.15$ of
 the matrix scale. See \texttt{verification/certify\_tiles.py}.
 
+\begin{remark}[The tile equations are degenerate, and by how much]
+\label{rem:tilerank}
+The system $T_{\text{tile}}=I$ has $(2k+2)^{2}$ equations but they are not
+independent. Measuring the rank of the Jacobian of $w\mapsto T_{\text{tile}}$ at
+a solution gives exactly
+\[
+  \operatorname{rank}=\binom{2k+3}{2},\qquad
+  \text{deficiency}=\binom{2k+2}{2},
+\]
+namely $36$ and $28$ at $k=3$ and $55$ and $45$ at $k=4$, at every tile length
+tested. Two consequences. First, it explains the behaviour of the solve: the
+residual has $\binom{2k+2}2$ components that vanish automatically near a
+solution, so a least-squares step is working on a degenerate system, and that is
+consistent with the erratic convergence reported in the remark below. Second,
+the count that a tile must satisfy is $5(\ell-2(k+1))\ge\binom{2k+3}2$ rather
+than $\ge(2k+2)^{2}$, which for $k=3$ would permit $\ell\ge16$ rather than
+$\ell\ge22$ and so a smaller $L$. Whether short tiles exist is a separate
+question from whether the count allows them --- $I$ may simply not be a product
+of few transfer matrices --- and we have not settled it.
+
+We note that $\binom{2k+3}2=\dim Sp(2k+2)$, and that the space of skew forms $B$
+with $T^{\!\top}BT=B$ has dimension $k+1$. It is tempting to conclude that $T$ is
+symplectic with respect to a weight-dependent form. We do not claim it: our
+attempts to exhibit a nondegenerate invariant form were numerically unstable,
+giving residuals of $10^{-12}$ at $k=2,4,5$ but $10^{-1}$ at $k=3$, so the
+coincidence of dimensions is suggestive and no more.
+\end{remark}
+
 \begin{theorem}[All large $n$, for $k=3$ and $k=4$]\label{thm:k3all}
 \[
   Z(P(n,3))=M(P(n,3))=8 \quad\text{for every } n\ge17,
