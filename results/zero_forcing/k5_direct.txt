@@ -1,0 +1,11 @@
+skip T_tile=I entirely: run the full-rank structural LM from random starts
+(if this works, k=5 and k=6 become tractable without a new solver)
+  l=44: 1132 unknowns, 1056 equations, 990 structural, 66 dependent; 60 docking pins, 142 fixed total
+    double Newton stalled at 3.70e-01
+  l=44 start 0: no
+  l=44: 1132 unknowns, 1056 equations, 990 structural, 66 dependent; 60 docking pins, 142 fixed total
+  l=44 start 1: no
+  l=44 start 2: no
+  l=44 start 3: no
+  l=44 start 4: no
+  l=44 start 5: no

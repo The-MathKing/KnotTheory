@@ -1,0 +1,3 @@
+k=5: solve_tile gets to ~1e-1 on the degenerate system (144 equations,
+rank 78).  Feed that partial result into certify_tile, whose LM works on
+the FULL-RANK structural system, and see if it finishes the job.

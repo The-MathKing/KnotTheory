@@ -1,3 +1,9 @@
 k = 5   nullity target 12   tile lengths 41..81
   a tile of length l has 5(l - 12) free weights against 144 equations
     l  unknowns   max|T - I|   min|edge|/scale   verdict
+    41       145     2.87e-01            0.0578   no
+    42       150     2.51e-01            0.0127   no
+    43       155     2.21e-01            0.0154   no
+    44       160     7.15e-02            0.1278   no
+    45       165     8.55e-02            0.0732   no
+    46       170     1.74e-01            0.1115   no

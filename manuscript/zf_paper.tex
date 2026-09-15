@@ -2023,8 +2023,15 @@ consistent with the erratic convergence reported in the remark below. Second,
 the count that a tile must satisfy is $5(\ell-2(k+1))\ge\binom{2k+3}2$ rather
 than $\ge(2k+2)^{2}$, which for $k=3$ would permit $\ell\ge16$ rather than
 $\ell\ge22$ and so a smaller $L$. Whether short tiles exist is a separate
-question from whether the count allows them --- $I$ may simply not be a product
-of few transfer matrices --- and we have not settled it.
+question from whether the count allows them, and here the count is \emph{not} the
+binding constraint: searching $\ell=16,17,18$ at $k=3$ with a generous restart
+budget leaves the residual at $8.3\times10^{-1}$, $7.8\times10^{-1}$ and
+$8.2\times10^{-1}$, which is qualitatively unlike the near-misses at $\ell=21$
+($5.6\times10^{-2}$) that a larger budget does resolve. So the identity appears
+genuinely not to be a product of that few transfer matrices, and the $L$ we use
+is close to the smallest this construction admits. We record this as a
+computation, not a proof: we have no lower bound on the number of factors needed
+to write $I$.
 
 We note that $\binom{2k+3}2=\dim Sp(2k+2)$, and that the space of skew forms $B$
 with $T^{\!\top}BT=B$ has dimension $k+1$. It is tempting to conclude that $T$ is
@@ -2089,15 +2096,26 @@ gives the solution variety dimension only $3$ and $9$. At $k=4$ it leaves
 $9\le n\le30$ open apart from the multiples of $60$, $70$ and $90$ covered by
 Theorem~\ref{thm:certvals}.
 
-It also gives nothing for $k\ge5$, and the cost is the reason rather than any
-difficulty of principle: the tile lengths and the docking pattern both depend on
-$k$, and the count $\ell\ge2(k+1)+(2k+2)^{2}/5$ gives $L=41$ with $41$ tiles at
-$k=5$ and $L=54$ with $54$ tiles at $k=6$, each tile a larger system than the
-last. We have not attempted them. Nothing in Lemma~\ref{lem:tile} or
-Theorem~\ref{thm:tiling} refers to $k$, and the certification scaled from
-$8\times8$ transfer matrices at $k=3$ to $10\times10$ at $k=4$ without
-modification, so we expect the method to continue; that is an expectation and
-not a result.
+It also gives nothing for $k\ge5$, and here we are less able to say why than we
+would like. The count $\ell\ge2(k+1)+(2k+2)^{2}/5$ gives $L=41$ at $k=5$ and
+$L=54$ at $k=6$. We searched $41\le\ell\le45$ at $k=5$ and found no identity
+tile: the residual stalls between $7\times10^{-2}$ and $2\times10^{-1}$, both from
+the degenerate system $T_{\text{tile}}=I$ and from the full-rank structural system
+started at random. Nothing in Lemma~\ref{lem:tile} or Theorem~\ref{thm:tiling}
+refers to $k$, and the certification scaled from $8\times8$ transfer matrices at
+$k=3$ to $10\times10$ at $k=4$ with no modification at all, so we see no obstacle
+of principle.
+
+We considered the natural explanation --- that the product of $\ell$ transfer
+matrices becomes too ill-conditioned for the residual $T-I$ to carry
+information --- and it does not survive contact with the numbers: at $k=5$,
+$\ell=44$ the product has condition number about $2.5\times10^{6}$, whereas at
+$k=4$, $\ell=61$, which \emph{does} yield a certified tile, it is about
+$1.1\times10^{10}$. So conditioning is not the discriminating factor and we do not
+have a diagnosis. The most likely mundane explanation is restart budget: we gave
+each $k=5$ length four to six restarts, and at $k=4$ every length that failed at
+that budget succeeded when given fifteen to sixty. On the evidence we have, the
+right statement is that we did not find $k=5$ tiles, not that they do not exist.
 
 One practical observation, since it governs how much compute the method needs.
 The Newton solve for a tile is erratic: at the restart budget we first used,
