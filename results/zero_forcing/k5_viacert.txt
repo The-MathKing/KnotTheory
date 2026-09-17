@@ -1,3 +1,9 @@
 k=5: solve_tile gets to ~1e-1 on the degenerate system (144 equations,
 rank 78).  Feed that partial result into certify_tile, whose LM works on
 the FULL-RANK structural system, and see if it finishes the job.
+  l=44: solve_tile reached 7.46e-02 (min|edge| 0.0716); handing to certify_tile
+  l=44: 1132 unknowns, 1056 equations, 990 structural, 66 dependent; 60 docking pins, 142 fixed total
+    double Newton stalled at 6.05e-03
+  l=46: solve_tile reached 9.54e-02 (min|edge| 0.0329); handing to certify_tile
+  l=46: 1190 unknowns, 1104 equations, 1038 structural, 66 dependent; 60 docking pins, 152 fixed total
+    double Newton stalled at 2.58e-04

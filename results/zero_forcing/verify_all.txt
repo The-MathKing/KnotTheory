@@ -67,14 +67,14 @@
   [PASS] P(33,3) nullity 8, edges nonzero  --- nullity 8, min edge 0.2802
       (16 saved certificates re-evaluated)
 8. k=3 identity tiles and their compositions
-  [PASS] tiles cover a full interval [L,2L)  --- lengths 22..43 (22 tiles)
-  [PASS] single tiles give nullity 8  --- all 22 lengths
-  [PASS] multi-tile concatenations give nullity 8  --- checked n up to 57
+  [PASS] tiles cover a full interval [L,2L)  --- lengths 21..43 (23 tiles)
+  [PASS] single tiles give nullity 8  --- all 23 lengths
+  [PASS] multi-tile concatenations give nullity 8  --- checked n up to 55
 9. Certified tiles: nullity, docking exactness, interval coverage
-  [PASS] k=3: certified lengths form [L, 2L)  --- 22..43 (22 tiles)
-  [PASS] k=3: every certified tile has nullity exactly 8  --- all 22 tiles
+  [PASS] k=3: certified lengths form [L, 2L)  --- 21..43 (23 tiles)
+  [PASS] k=3: every certified tile has nullity exactly 8  --- all 23 tiles
   [PASS] k=3: docking weights exact in every certified tile  --- all tiles, to 1e-13
-  [PASS] k=3: every n in [22, 400] is a sum of certified lengths  --- no gaps
+  [PASS] k=3: every n in [21, 400] is a sum of certified lengths  --- no gaps
   [PASS] k=4: certified lengths form [L, 2L)  --- 31..61 (31 tiles)
   [PASS] k=4: every certified tile has nullity exactly 10  --- all 31 tiles
   [PASS] k=4: docking weights exact in every certified tile  --- all tiles, to 1e-13

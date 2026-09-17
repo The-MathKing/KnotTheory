@@ -5,3 +5,7 @@ is the count the binding constraint, or is short-tile I unreachable?
     16        40      4        8.31e-01     0.1389
     17        45      9        7.77e-01     0.0743
     18        50     14        8.19e-01     0.0662
+    19        55     19        1.42e-01     0.0159
+    20        60     24        3.74e-01     0.0222
+    21        65     29        1.42e-14     0.1500   IDENTITY TILE
+    22        70     34        3.32e-15     0.1500   IDENTITY TILE
