@@ -1174,13 +1174,40 @@ $2(k+1)+(2k+2)^2/5$ of $13.2$, $20.8$, $30$. $k=5$ needs $41$ tiles and $k=6$
 needs $54$, each individually larger; I have not attempted them, and the reason
 is compute rather than any obstacle I can identify.
 
-One thing I want on the record about my own reporting. Twice today I wrote a
-careful, hedged, accurate-at-the-time statement that a case was out of reach ---
-the $k=3$ tiles as numerical, then $k=4$ as unclaimable --- and both times the
-limitation was in how I had set the problem up. The hedges were honest and I
-would write them again. But "I could not do it with the budget I used" is a very
+\textbf{Then a third time, with the same shape.} The rank measurement said the
+tile count only needs $5(\ell-8)\ge\binom92=36$, so $\ell\ge16$ rather than
+$\ell\ge22$. I tested $16\le\ell\le22$ and reported that short tiles do not
+exist, citing $\ell=16,17,18$ stalling near $8\times10^{-1}$ against the
+$\ell=21$ near-miss at $5.6\times10^{-2}$ as the contrast. Given $25$ restarts
+instead of $4$, $\ell=21$ produced a tile at $1.4\times10^{-14}$. So $L(3)=21$,
+and my contrast case was itself an under-budgeted search.
+
+What survives is narrower and more useful than what I claimed: every length I
+eventually solved first appeared at a residual of $10^{-2}$ or below, and the
+ones that never solved sat at $10^{-1}$ or above. The residual magnitude is the
+signal; success against failure at a fixed budget is not. Below $\ell\approx20$
+the identity does appear not to be a product of that few transfer matrices, but I
+have no lower bound and I should not have written "genuinely."
+
+\textbf{And a hypothesis of mine that the numbers killed.} Asked why $k=5$ finds
+nothing, I proposed that the product of $\ell$ transfer matrices becomes too
+ill-conditioned for $T-I$ to carry information. At $k=5$, $\ell=44$ the condition
+number is about $2.5\times10^{6}$; at $k=4$, $\ell=61$, which yields a certified
+tile, it is about $1.1\times10^{10}$. Worse conditioning, and it works. So
+conditioning is not the discriminating factor and I have no diagnosis for $k=5$.
+The $k=6$ per-$n$ sweep also came back empty at $n=41,43,45,47,49,51$, at the
+same default budget that wrongly condemned $\ell=21$, so I am recording it as
+inconclusive rather than as evidence.
+
+\textbf{What I want on the record about my own reporting.} Three times today I
+wrote a careful, hedged, accurate-at-the-time statement that a case was out of
+reach --- the $k=3$ tiles as numerical, $k=4$ as unclaimable, short tiles as
+nonexistent --- and all three times the limitation was in how I had set the
+problem up or how much compute I had spent. The hedges were honest and I would
+write them again. But "I could not do it with the budget I used" is a very
 different claim from "it cannot be done," and the gap between them is where I
-have been losing ground all day.
+lost ground repeatedly. The fix I have adopted is to quote the residual and the
+budget every time, so that a reader can see which of the two I am entitled to.
 
 \textbf{And the per-$n$ range closed up.} Sweeping $k=3$ certified every
 $17\le n\le33$ --- seventeen consecutive values, primes $17,19,23,29,31$ among
