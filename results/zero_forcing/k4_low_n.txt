@@ -1,0 +1,23 @@
+k=4 below the tile threshold: eq:thresh permits n >= 55/3 = 18.4, so
+n = 19..30 are candidates.  Earlier failures there used 40 restarts,
+the budget that wrongly condemned l=21 at k=3.  Retrying at 200.
+--- P(19,4)  dim 2 ---
+P(19,4)   target nullity 2k+2 = 10
+  stage 1 [cold, sign +1]: r-th sv/scale = 4.865e-04, min|inner|/scale = 0.0000
+  375 unknowns, 380 equations, 335 structural, 45 dependent; fixing 40 at rationals
+  stage 2 (double): max|f| structural = 4.297e-04, dependent = 4.298e-04
+  did not converge; stopping
+  -> stage 2/3 failed here; trying the next candidate
+  stage 1 [cold, sign -1]: r-th sv/scale = 3.590e-04, min|inner|/scale = 0.0002
+  375 unknowns, 380 equations, 335 structural, 45 dependent; fixing 40 at rationals
+  stage 2 (double): max|f| structural = 5.654e-04, dependent = 5.704e-04
+  did not converge; stopping
+  -> stage 2/3 failed here; trying the next candidate
+    no   so far: []
+--- P(20,4)  dim 5 ---
+P(20,4)   target nullity 2k+2 = 10
+  stage 1 [cold, sign +1]: r-th sv/scale = 5.745e-04, min|inner|/scale = 0.0000
+  400 unknowns, 400 equations, 355 structural, 45 dependent; fixing 45 at rationals
+  stage 2 (double): max|f| structural = 1.637e-04, dependent = 1.714e-04
+  did not converge; stopping
+  -> stage 2/3 failed here; trying the next candidate

@@ -6,6 +6,8 @@ such n and Z(P(n,k)) = M(P(n,k)) = 2k+2 for all n >= L, with no congruence
 condition.  This script does the solving and then the end-to-end test: build the
 actual matrix on P(n,k) from a tiling and check its nullity.
 """
+import glob as glob_mod
+import os
 import sys
 
 import numpy as np
@@ -34,7 +36,18 @@ def main():
           f"{r*r} equations")
     print("    l  unknowns   max|T - I|   min|edge|/scale   verdict")
     sols = {}
+    # reuse tiles already on disk: a sweep restarted over a wider range should
+    # not re-solve lengths that are done
+    for f in glob_mod.glob(f"/Volumes/2TB/scifair/results/zero_forcing/"
+                           f"tile_*_{k}.npy"):
+        ll = int(os.path.basename(f).split("_")[1])
+        if lo <= ll <= hi:
+            sols[ll] = np.load(f)
+    if sols:
+        print(f"  reusing {len(sols)} tiles already solved: {sorted(sols)}")
     for l in range(lo, hi + 1):
+        if l in sols:
+            continue
         nint = l - 2 * (k + 1)
         # A tile needs at least as many free weights as the condition T = I
         # imposes.  The reachable set of monodromies is smaller than the full
@@ -48,7 +61,7 @@ def main():
         if sols:
             lp = max(sols)
             warm = extend_tile(sols[lp], lp, l, k)
-        b = solve_tile(l, k, tries=4, seed=l, nfev=700, w0=warm)
+        b = solve_tile(l, k, tries=20, seed=l, nfev=1200, w0=warm)
         if b is None:
             print(f" {l:5d}{5*nint:10d}   nothing found")
             continue

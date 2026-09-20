@@ -170,3 +170,70 @@ ax.set_xlim(-0.01, 4 * W + 3 * GAP + 0.01); ax.set_ylim(0, 0.9)
 fig.savefig(f"{OUT}/fig_chain.pdf"); plt.close(fig)
 
 print("wrote:", sorted(f for f in os.listdir(OUT) if f.startswith("fig_")))
+
+# ---- F7: which n are settled, for each k  (the new headline visual) -------
+# The point of the picture is the contrast: the cyclotomic layer settles a
+# sparse set of n (multiples of some lcm), the tiling construction settles
+# every n past a threshold.
+fig, ax = plt.subplots(figsize=(7.2, 3.5))
+NMAX = 130
+rows = [
+    (2, "all $n\\geq9$, $n\\neq10$", [n for n in range(9, NMAX+1) if n != 10], []),
+    (3, "all $n\\geq17$", list(range(17, NMAX+1)),
+     [n for n in range(1, NMAX+1) if n % 10 == 0]),
+    (4, "all $n\\geq31$", list(range(31, NMAX+1)),
+     [n for n in range(1, NMAX+1) if n % 60 == 0 or n % 70 == 0 or n % 90 == 0]),
+    (5, "$24\\mid n$ only", [],
+     [n for n in range(1, NMAX+1) if n % 24 == 0]),
+    (7, "$120\\mid n$ only", [],
+     [n for n in range(1, NMAX+1) if n % 120 == 0]),
+]
+for i, (k, lab, dense, sparse) in enumerate(rows):
+    y = len(rows) - 1 - i
+    ax.hlines(y, 5, NMAX, color="0.86", lw=9, zorder=1)
+    if dense:
+        ax.hlines(y, min(dense), NMAX, color=GREEN, lw=9, zorder=2)
+        for n in range(5, NMAX+1):
+            if n not in dense and n >= min(dense):
+                ax.plot([n], [y], marker="|", color="white", ms=9, mew=2.2,
+                        zorder=3)
+    if sparse:
+        ax.plot(sparse, [y]*len(sparse), "o", color=BLUE, ms=6.5, zorder=4)
+    ax.text(NMAX + 3, y, lab, va="center", fontsize=9.5,
+            color=GREEN if dense else BLUE)
+    ax.text(1.5, y, f"$k={k}$", va="center", ha="right", fontsize=10.5,
+            color=BLUE, weight="bold")
+ax.set_xlim(-14, NMAX + 42); ax.set_ylim(-0.8, len(rows) - 0.2)
+ax.set_yticks([]); ax.set_xlabel("$n$")
+ax.spines[["left", "right", "top"]].set_visible(False)
+ax.set_title("Which $n$ are settled: sparse congruence classes (blue) against\n"
+             "every $n$ past a threshold (green)", fontsize=11, color=BLUE,
+             weight="bold")
+fig.savefig(f"{OUT}/fig_coverage.pdf"); plt.close(fig)
+
+# ---- F8: the tiling construction -----------------------------------------
+fig, ax = plt.subplots(figsize=(8.8, 2.5))
+ax.axis("off")
+def tile(x0, w, lab, col):
+    ax.add_patch(plt.Rectangle((x0, 0.42), w, 0.30, fc=col, ec=BLUE, lw=1.6))
+    ax.add_patch(plt.Rectangle((x0, 0.42), 0.055, 0.30, fc="#f0d9a8", ec=BLUE,
+                               lw=1.2))
+    ax.add_patch(plt.Rectangle((x0+w-0.055, 0.42), 0.055, 0.30, fc="#f0d9a8",
+                               ec=BLUE, lw=1.2))
+    ax.text(x0 + w/2, 0.57, lab, ha="center", va="center", fontsize=9.5,
+            color=BLUE)
+tile(0.02, 0.30, "tile, $\\ell_1$\n$T_{\\rm tile}=I$", LIGHT)
+tile(0.34, 0.26, "tile, $\\ell_2$\n$T_{\\rm tile}=I$", LIGHT)
+tile(0.62, 0.34, "tile, $\\ell_3$\n$T_{\\rm tile}=I$", LIGHT)
+ax.text(0.5, 0.29, "$n=\\ell_1+\\ell_2+\\ell_3$, and $T=\\prod T_{\\rm tile}=I$, "
+        "so $\\mathrm{null}\\,A=2k+2$", ha="center", fontsize=10.5, color=RED,
+        weight="bold")
+ax.text(0.5, 0.14, "shaded ends: the fixed docking pattern of $k+1$ positions, "
+        "which makes each tile's product depend on its interior alone",
+        ha="center", fontsize=8.6, color="0.25")
+ax.text(0.5, 0.86, "tiles of every length in $[L,2L)$ $\\Rightarrow$ every "
+        "$n\\geq L$ is a sum of them", ha="center", fontsize=10.5, color=BLUE,
+        weight="bold")
+ax.set_xlim(0, 1); ax.set_ylim(0.05, 0.98)
+fig.savefig(f"{OUT}/fig_tiling.pdf"); plt.close(fig)
+print("wrote coverage and tiling figures")

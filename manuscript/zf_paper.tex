@@ -170,7 +170,9 @@ $Z(P(n,3))=8$ for $n\ge12$, is false: Krishnan \cite{K} exhibits
 $Z(P(12,3))=7$, the flaw being a case analysis that never excludes $7$-vertex
 sets. That note closes by recording that determining $Z(P(n,k))$ for general
 $k$ --- the stabilization threshold and a rigorous lower bound for $k\ge4$ ---
-remains open.
+remains open. We settle both: the threshold for $k=3$ is exactly $13$
+(Theorem~\ref{thm:k3krishnan}), and Theorems~\ref{thm:certvals} and
+\ref{thm:k3all} give rigorous lower bounds, indeed exact values, for $k=4$.
 
 \section{The rotation bootstrap}
 The following two lemmas are elementary; the point is that together they
@@ -321,18 +323,21 @@ drops at $n=12,16$ and $k=6$ at $n=23,25$.}
 \begin{table}[h]\centering
 \begin{tabular}{llll}
 \toprule
-$k$ & bound $2k+2$ & least $n$ attaining it & source \\
+$k$ & bound $2k+2$ & least $n$ attaining it & least $n$ from which it holds always \\
 \midrule
-2 & 6  & 10 & \cite{RST} \\
-3 & 8  & 13 & \cite{K} \\
-4 & 10 & 18 & this work \\
-5 & 12 & 23 & this work \\
-6 & 14 & first at $n=28$; not stable ($Z(P(29,6))=12$) & this work \\
+2 & 6  & 7  & $9$ \ (it fails at $n=8$) \\
+3 & 8  & 10 & $13$ \ (it fails at $n=11,12$) \\
+4 & 10 & 18 & not determined \\
+5 & 12 & 23 & not determined \\
+6 & 14 & 28 & not determined; $Z(P(29,6))=12$ \\
 \bottomrule
 \end{tabular}
-\caption{Least $n$ attaining the bound. For $k=3,4,5$ these are $5k-2$, but
-see Conjecture~\ref{conj}: at $k=6$ the value is attained at $n=28$ and then
-lost again at $n=29$, so these are not stabilization thresholds.}
+\caption{The bound is attained well before it is attained \emph{always}: at
+$k=3$ it first holds at $n=10$, fails again at $n=11$ and $12$, and holds for
+every $n\ge13$ (Theorem~\ref{thm:k3krishnan}). The two columns are different
+quantities and conflating them is easy; at $k=6$ the bound is attained at
+$n=28$ and lost at $n=29$, so no stabilization threshold is known there.
+All values by exhaustive search.}
 \end{table}
 
 \begin{conjecture}\label{conj}
@@ -452,7 +457,7 @@ with diagonals $a_i$ at $u_i$ and $d_i$ at $v_i$; all of $b,b',c,c',e,e'$ are
 nonzero.
 
 \begin{theorem}[Reduction]\label{thm:red}
-Let $2k<n$. For $x\in\mathbb R^{\mathbb Z_n}$ put
+Let $n\ge2k+3$. For $x\in\mathbb R^{\mathbb Z_n}$ put
 $(Lx)_i=-(b'_{i-1}x_{i-1}+a_ix_i+b_ix_{i+1})/c_i$. Then $x\mapsto(x,Lx)$ is a
 linear bijection from
 \[
@@ -495,7 +500,7 @@ system and the stated formula follows.
 \end{proof}
 
 \begin{corollary}\label{cor:ceiling}
-$M(P(n,k))\le M_{\mathrm{cs}}(P(n,k))\le 2k+2$ for $2k<n$.
+$M(P(n,k))\le M_{\mathrm{cs}}(P(n,k))\le 2k+2$ for $n\ge2k+3$.
 \end{corollary}
 
 \noindent
@@ -971,7 +976,7 @@ $G=F-sL_k$, let $a$ be the coefficient of $s^{k}$ in $G$, and suppose
 $G-aL_k$ has degree at most $1$, say $G-aL_k=\alpha s+\beta$; that is
 $k-2$ linear conditions with integer coefficients. Put $e=1$, $d=\alpha$,
 $c^{2}=a\alpha-\beta$, and suppose $c^{2}>0$. Then for every $n$ divisible by
-$\operatorname{lcm}(D)$ with $2k<n$, the matrix
+$\operatorname{lcm}(D)$ with $n\ge2k+3$, the matrix
 \[
   A=\begin{pmatrix} aI+P+P^{-1} & cI\\ cI & \alpha I+P^{k}+P^{-k}\end{pmatrix}
 \]
@@ -1967,16 +1972,17 @@ already several hundred. Second, the hypothesis is a \emph{finite} list of
 independent finite problems: a tile of length $\ell$ has $5(\ell-2(k+1))$ free
 weights and the requirement is $(2k+2)^2$ equations, so it is solvable on
 parameter count once $\ell$ is a little above $2(k+1)+(2k+2)^2/5$. For $k=3$
-that is $\ell\ge21$, and $L=22$ would give every $n\ge22$.
+that is $\ell\ge21$, and $L=21$ gives every $n\ge21$.
 
 \subsection*{The tiles exist, and are certified}
 We carried the computation out for $k=3$. The parameter count is sharp in
 practice: at $\ell=19,20$ the systems are underdetermined ($55$ and $60$
 unknowns against $64$ equations) and the residual stalls near $4\times10^{-1}$;
-at $\ell=21$, the first length with more unknowns than equations, it falls to
-$5.6\times10^{-2}$; and from $\ell=22$ onward identity tiles are found. A Newton
+and from $\ell=21$, the first length with more unknowns than equations,
+identity tiles are found. A Newton
 solve produced one for \emph{every} length in the required range,
-$22\le\ell\le43$, which is exactly $[L,2L)$ for $L=22$.
+$21\le\ell\le41$, which is exactly $[L,2L)$ for $L=21$; we in fact have tiles
+for every $21\le\ell\le43$.
 
 Each of those $22$ tiles is then \emph{certified}, which needs one observation to
 avoid interval arithmetic on a rational map. The condition
@@ -2075,7 +2081,7 @@ and $28=\binom82$ dependent, with $40$ docking pins, high-precision residual
 $3.1\times10^{-61}$, and Krawczyk $\alpha=6.7\times10^{-11}$; at $k=4$,
 $\ell=61$ has $1425$ unknowns and $1220$ equations of which $1175$ are
 structural and $45=\binom{10}2$ dependent, with $50$ docking pins, residual
-$4.7\times10^{-61}$, and $\alpha=3.7\times10^{-10}$. Across all $53$,
+$4.7\times10^{-61}$, and $\alpha=3.7\times10^{-10}$. Across all $54$,
 $\alpha\le3.8\times10^{-10}$, every certified matrix has nullity exactly
 $2k+2$, every docking weight matches its prescribed integer to $10^{-14}$, and
 the minimum edge weight is $0.15$ of the matrix scale. See
@@ -2084,7 +2090,7 @@ the minimum edge weight is $0.15$ of the matrix scale. See
 These are the statements Conjecture~\ref{conj:generaln} asks for, and they are
 proofs rather than computations reported as such: the chain is
 Theorem~\ref{thm:tiling}, Lemma~\ref{lem:tile} and
-Corollary~\ref{cor:ceiling}, all proved, together with $53$ interval
+Corollary~\ref{cor:ceiling}, all proved, together with $54$ interval
 certifications. No step rests on a floating-point nullity. With
 Theorem~\ref{thm:k2all} for $k=2$, the three smallest $k$ beyond the trivial
 case are now settled for all large $n$, with
@@ -2093,6 +2099,30 @@ case are now settled for all large $n$, with
 \]
 against the tile lower bound $2(k+1)+(2k+2)^{2}/5$, which is $13.2$, $20.8$ and
 $30$.
+
+\begin{theorem}[$k=3$ completely, and the stabilization threshold]
+\label{thm:k3krishnan}
+\[
+  Z(P(n,3))=8\qquad\text{for every } n\ge13,
+\]
+and $13$ is optimal: $Z(P(11,3))=Z(P(12,3))=7$. Moreover
+$Z(P(n,3))=M(P(n,3))=8$ for every $n\ge17$ and for every $n$ divisible by $10$.
+\end{theorem}
+
+\begin{proof}
+For $n\ge17$ this is Theorem~\ref{thm:k3all}. For $n=13,14,15,16$ exhaustive
+search over vertex subsets shows no forcing set of size $7$ exists, so
+$Z=8$ by the bound $Z\le2k+2$. The values $Z(P(11,3))=Z(P(12,3))=7$ are
+likewise exhaustive.
+\end{proof}
+
+\noindent
+This settles, for $k=3$, the \emph{stabilization threshold} that
+\cite{K} records as open alongside a rigorous lower bound for $k\ge4$: the
+threshold is exactly $13$. The sequence is genuinely non-monotone below it ---
+$Z(P(n,3))$ runs $6,6,6,8,7,7,8,8,\dots$ for $n=7,\dots,14$ --- which is why
+the threshold is not simply the first $n$ attaining the bound, and why
+Conjecture~\ref{conj} is stated in the form it is.
 
 \begin{remark}[What this does not give]
 Theorem~\ref{thm:k3all} leaves $7\le n\le16$ open at $k=3$, apart from $n=10$
@@ -2221,10 +2251,11 @@ $\operatorname{rank}=\min(2d+1,k+1)$, verified for $3\le k\le13$ and
 $1\le d\le7$. Also the saturation of the reachable set of monodromies, at
 dimension $31$ for $k=2$ and $51$ for $k=3$.
 
-\item \textbf{Conjectural.} Conjectures~\ref{conj} and \ref{conj:generaln}. For
-\ref{conj:generaln} we prove the necessary condition \eqref{eq:thresh} and
-verify the conclusion at the $n$ of Theorem~\ref{thm:p17}, but the statement for
-all large $n$ is not proved for any $k\ge3$.
+\item \textbf{Conjectural.} Conjecture~\ref{conj}, and
+Conjecture~\ref{conj:generaln} \emph{for $k\ge5$}. For $k=3$ and $k=4$ the
+conjecture is now a theorem (Theorem~\ref{thm:k3all}); what remains open is
+whether $N(k)$ exists for every $k$, for which we prove only the necessary
+condition \eqref{eq:thresh}.
 
 \item \textbf{Refuted (ours).} That the period-one construction ``never exceeds
 $6$ for every $k\ge2$''. Three roots can be prescribed and no more, but the

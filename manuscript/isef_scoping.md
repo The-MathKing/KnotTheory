@@ -1,3 +1,16 @@
+> **STALE — superseded 2026-09-27.** This document was written before the
+> general-$n$ results and is wrong in three load-bearing ways. (1) It states
+> that $k=3,6,7,8,9$ "cannot attain $2k+2$, and that is a theorem about
+> rational symbols": false. That enumeration imposed $c^2>0$ (a *symmetric*
+> certificate) where $c^2\neq0$ suffices; six symbols survive at $k=3$ and one
+> at $k=7$. (2) It says a period-$d$ symbol carries $5d-1$ free ratios; the
+> count is $2d+1$. (3) Its central recommendation, "General $n$, not more
+> special $n$", has been executed: $Z(P(n,k))$ is now determined for all large
+> $n$ at $k=2,3,4$ with no congruence conditions, so the stated gap against the
+> 2026 first-place project is closed for those $k$. Its "second-award shaped"
+> verdict predates the project's strongest results. Read `zf_paper.tex`
+> Status section for the current position.
+
 # Scoping the ISEF Mathematics category, and what the project must produce
 
 Two things are assembled here. **Part 1** is the actual ISEF 2026 Mathematics

@@ -1,354 +1,328 @@
 \documentclass[final]{beamer}
-\usepackage[size=custom,width=121.92,height=121.92,scale=1.17]{beamerposter}
-% 121.92 cm = 48 in: the ISEF maximum side-to-side display width.
+\usepackage[size=custom,width=121.92,height=121.92,scale=1.02]{beamerposter}
+% 121.92 cm = 48 in, the ISEF maximum display width.
 \usepackage[utf8]{inputenc}
-\usepackage{amsmath,amssymb,booktabs,graphicx,tcolorbox}
-\tcbuselibrary{skins}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm,booktabs,graphicx,multicol,microtype}
+\renewcommand{\familydefault}{\rmdefault}   % a typeset paper, not a slide
 
-\definecolor{myblue}{RGB}{18,52,102}
-\definecolor{mymid}{RGB}{42,86,150}
-\definecolor{mylight}{RGB}{226,234,246}
-\definecolor{panelbg}{RGB}{238,243,251}
-\definecolor{provedc}{RGB}{28,100,52}
-\definecolor{openc}{RGB}{160,42,42}
+\definecolor{ink}{RGB}{16,22,38}
+\definecolor{rule}{RGB}{16,22,38}
+\definecolor{accent}{RGB}{124,26,30}
+\definecolor{soft}{RGB}{247,247,243}
 
-\setbeamercolor{block title}{bg=myblue, fg=white}
-\setbeamercolor{block body}{bg=mylight, fg=black}
+\setbeamercolor{background canvas}{bg=white}
 \setbeamertemplate{navigation symbols}{}
-\setbeamertemplate{itemize items}[circle]
-\setbeamerfont{block title}{size=\Large,series=\bfseries}
-\setbeamerfont{block body}{size=\normalsize}
-\setlength{\parskip}{5pt}
+\setbeamercolor{normal text}{fg=ink}
+\usebeamercolor[fg]{normal text}
 
-% a captioned figure panel, as in the methodology grid
-\newcommand{\panel}[3]{%
-  \begin{tcolorbox}[colback=panelbg,colframe=mymid,boxrule=0.9pt,
-      arc=2pt,left=3pt,right=3pt,top=3pt,bottom=3pt,
-      fontupper=\footnotesize]
-    \centering
-    {\color{myblue}\bfseries\footnotesize #1}\\[3pt]
-    \includegraphics[width=#3\linewidth]{#2}
-  \end{tcolorbox}}
+% --- section heading: small caps over a rule, no fill ---------------------
+\newcommand{\shead}[1]{%
+  \par\vspace{2.5ex}%
+  {\normalsize\scshape\bfseries\color{ink}#1}\par\vspace{-0.4ex}%
+  {\color{rule}\rule{\linewidth}{0.9pt}}\vspace{0.6ex}}
 
-\newcommand{\keybox}[1]{%
-  \begin{tcolorbox}[colback=white,colframe=openc,boxrule=1.1pt,arc=2pt,
-      left=5pt,right=5pt,top=4pt,bottom=4pt]
-    #1
-  \end{tcolorbox}}
+% --- numbered statements, set like a paper --------------------------------
+\newcounter{res}
+\newcommand{\thmn}[2]{%
+  \refstepcounter{res}\par\vspace{0.7ex}%
+  \noindent\textbf{#1 \theres.}\ \emph{#2}\par\vspace{0.5ex}}
+\newcommand{\proofn}[1]{%
+  \par\noindent{\itshape Proof.}\ #1\hfill$\square$\par\vspace{0.5ex}}
+
+% --- a result worth framing, thin rule only -------------------------------
+\newcommand{\headline}[1]{%
+  \par\vspace{0.8ex}\noindent
+  \begin{minipage}{\linewidth}%
+    {\color{accent}\rule{\linewidth}{1.1pt}}\par\vspace{0.6ex}
+    #1\par\vspace{0.4ex}
+    {\color{accent}\rule{\linewidth}{1.1pt}}%
+  \end{minipage}\par\vspace{0.8ex}}
+
+\newcommand{\figrow}[3]{%
+  \par\vspace{0.6ex}\centering\includegraphics[width=#3\linewidth]{#1}\par
+  {\footnotesize\itshape #2\par}\vspace{0.6ex}\raggedright}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.55ex}
 
 \begin{document}
 \begin{frame}[t]
-
-%% ============================ HEADER ============================
-\begin{beamercolorbox}[wd=\paperwidth,sep=14pt]{block title}
-\begin{columns}[c]
-  \begin{column}{0.17\textwidth}\centering
-    {\footnotesize\color{white} Beal Bank Dallas Regional\\ Science and
-     Engineering Fair\\[4pt] Mathematics}
-  \end{column}
-  \begin{column}{0.64\textwidth}\centering
-    {\Huge\bfseries MAXIMUM NULLITY OF CYCLIC COVERS OF GRAPHS\par}
-    \vspace{6pt}
-    {\Large\itshape A monodromy ceiling, cyclotomic matrix certificates, and the
-     first exact zero forcing numbers $Z(P(n,k))$ for $k\ge4$\par}
-    \vspace{10pt}
-    {\large Aryan Padarthi\par}
-  \end{column}
-  \begin{column}{0.17\textwidth}\centering
-    {\footnotesize\color{white} Category: Mathematics\\[4pt]
-     All code and certificates\\ are open and reproducible\\[4pt]
-     Every claim is labelled\\ proved / computed / open}
-  \end{column}
-\end{columns}
-\end{beamercolorbox}
-
-\vspace{12pt}
-
-\begin{columns}[t]
-
-%% ======================= COLUMN 1 =======================
-\begin{column}{0.265\textwidth}
-
-\begin{block}{VISUAL ABSTRACT}
-\centering
-\includegraphics[width=\linewidth]{figures/fig_chain.pdf}\\[6pt]
-\includegraphics[width=\linewidth]{figures/fig_status.pdf}
-\vspace{2pt}
-\raggedright\footnotesize
-Any matrix carrying the graph's pattern collapses to one linear recurrence.
-Its order is $2k+2$ --- the same number as the best known upper bound --- so the
-whole matrix method has a ceiling that exactly meets the target. This work
-reaches that ceiling for $k=4$ and $k=5$.
-\end{block}
-
-\begin{block}{INTRODUCTION}
-\textbf{The forcing rule.} Colour some vertices of a graph. If a coloured
-vertex has exactly one uncoloured neighbour, that neighbour becomes coloured.
-Repeat. $Z(G)$ is the size of the smallest starting set that eventually
-colours everything.
-
-\textbf{Why it matters.} $Z(G)$ bounds the \emph{maximum nullity} $M(G)$: the
-largest null space of a symmetric matrix carrying the graph's pattern. The
-parameter arose independently in quantum control and in power-network sensor
-placement.
-
-\textbf{The family.} $P(n,k)$: outer $n$-cycle $u_iu_{i+1}$, inner edges
-$v_iv_{i+k}$, spokes $u_iv_i$. Cubic on $2n$ vertices, rotation
-$\rho: i\mapsto i+1$.
-
-\textbf{The general object.} $P(n,k)$ is a \emph{cyclic cover}: a base graph
-$B$ with edge voltages in $\mathbb Z_n$ lifts to $V(B)\times\mathbb Z_n$. Two
-vertices, loops of voltage $1$ and $k$, a spoke of voltage $0$ --- that is
-$P(n,k)$. Everything below is really about covers.
-\end{block}
-
-\begin{block}{PROBLEM FRAMING}
-Exact values of $Z(P(n,k))$ were known only for $k=2$ and $k=3$. A
-\textbf{July 2026} correction note (arXiv:2607.19412) exists because a
-published 2020 theorem is \emph{false}: it claimed $Z(P(n,3))=8$ for $n\ge12$,
-but $Z(P(12,3))=7$ --- the case analysis never tested $7$-vertex sets. That note
-closes with:
-\vspace{4pt}
-\keybox{\itshape ``Determining $Z(P(n,k))$ for general $k$ --- the stabilization
-threshold and a rigorous lower bound for $k\ge4$ --- remains open.''}
-\vspace{4pt}
-
-\textbf{The asymmetry.} Upper bounds are easy --- exhibit one forcing set. Lower
-bounds must rule out \emph{every} smaller set.
-\end{block}
-
-\begin{block}{RESEARCH OBJECTIVES}
-\begin{enumerate}\setlength{\itemsep}{4pt}
-\item Find the exact ceiling of the matrix-certificate method here.
-\item Decide whether it can be attained, and construct certificates that do.
-\item Make every certificate checkable in \textbf{exact arithmetic}.
-\item Report which $k$ and $n$ are settled, and which are not.
-\end{enumerate}
-\end{block}
-
-\begin{block}{WHY STANDARD METHODS FAIL}
-A set is forcing iff it meets every \emph{fort}. Three standard consequences
-all fail here, and all degrade as $k$ grows:
-\begin{itemize}\setlength{\itemsep}{3pt}
-\item \textbf{Disjoint forts:} at most \emph{two} exist in any case tested.
-\item \textbf{Fort LP:} integrality gap $\approx2$ ($\mathrm{LP}=3.21$ against
-      $Z=10$ for $P(18,4)$) --- which also explains why fort-based solvers
-      scale poorly here.
-\item \textbf{Spectral:} Hoffman-type bound gives $1.2$--$2.9$ against true $Z$
-      of $6$--$12$.
-\end{itemize}
-Insufficient \emph{in principle}, not merely in practice --- which is what
-motivated changing the category of argument.
-\end{block}
-
-\end{column}
-
-%% ======================= COLUMN 2 =======================
-\begin{column}{0.435\textwidth}
-
-\begin{block}{MATHEMATICAL METHODOLOGY}
-
-\begin{columns}[t]
-\begin{column}{0.49\textwidth}
-\panel{1. The colour change rule and the rotation bootstrap}{figures/fig_forcing.pdf}{1.0}
-\end{column}
-\begin{column}{0.49\textwidth}
-\panel{2. Support of the reduced recurrence: nine terms, order $2k+2$}{figures/fig_recurrence.pdf}{1.0}
-\end{column}
-\end{columns}
-
-\vspace{6pt}
-\textbf{Step 1 --- Reduction.} Every spoke weight $c_i$ is nonzero, so the kernel
-equation at $u_i$ solves for $y_i=-(b'_{i-1}x_{i-1}+a_ix_i+b_ix_{i+1})/c_i$.
-Substituting into the equation at $v_i$ leaves \emph{one scalar recurrence} in
-$x$, supported on nine indices with both end coefficients nonzero.
-
-\keybox{\textbf{Theorem 1 (Reduction).} For every matrix $A$ whose off-diagonal
-support is exactly $E(P(n,k))$ --- symmetric \emph{or not} ---
-\[
-  \operatorname{null}A=\dim\ker(T-I)\ \le\ 2k+2 ,
-\]
-$T$ the monodromy of that order-$(2k+2)$ recurrence, with equality iff $T=I$.
-The order $2k+2$ is exactly the size of the forcing set the rotation bootstrap
-produces: \textbf{the ceiling of the method equals the upper bound it is trying
-to match.}}
-
-\vspace{6pt}
-\textbf{Step 2 --- The symbol.} For $A$ invariant under $\rho$, the Fourier
-blocks are $M_m=\left(\begin{smallmatrix}a+s_m&c\\ c&d+et_m\end{smallmatrix}\right)$
-with $s_m=2\cos\frac{2\pi m}{n}$. Since $t=L_k(s)$ exactly, where $L_k$ is the
-monic integer polynomial with $L_k(z+z^{-1})=z^k+z^{-k}$,
-\[
-  \operatorname{null}A=\#\{m: F(s_m)=0\},\qquad
-  F(s)=(s+a)L_k(s)+\alpha s+\beta .
-\]
-$F$ is monic of degree $k+1$ but carries \textbf{exactly three free
-parameters, for every $k$}.
-
-\vspace{4pt}
-\keybox{\textbf{The key idea.} Three roots can be prescribed and no more --- but
-prescribing three \emph{determines the other $k-2$}, and those land on the grid
-$\Gamma_n=\{2\cos(2\pi m/n)\}$ by themselves whenever arithmetic puts them
-there. If $F$ has \textbf{rational coefficients} its roots form Galois orbits,
-and the Galois orbit of $2\cos(2\pi m/n)$ stays inside $\Gamma_n$. One rational
-$F$ places all $k+1$ roots at once.}
-
-\vspace{6pt}
-\panel{3. The mechanism: every root of the symbol lands on the grid}{figures/fig_symbol.pdf}{1.0}
-
-\vspace{6pt}
-\textbf{Step 3 --- Cyclotomic construction.} Let $\Psi_d$ be the minimal
-polynomial of $2\cos(2\pi/d)$, degree $\varphi(d)/2$. Choose distinct $d$'s with
-$\sum\deg\Psi_d=k+1$, put $F=\prod\Psi_d$, and impose the $k-2$ integer
-membership conditions. Every root then lies in $\Gamma_n$ for \emph{every} $n$
-divisible by $\operatorname{lcm}(D)$.
-\end{block}
-
-\begin{block}{RESULTS \& COMPUTATIONAL VALIDATION}
-\begin{columns}[t]
-\begin{column}{0.48\textwidth}
-\panel{4. Certificate spectrum: $12$ exact zeros}{figures/fig_spectrum.pdf}{1.0}
-\end{column}
-\begin{column}{0.50\textwidth}
 \footnotesize
-\centering
-\begin{tabular}{@{}clll@{}}
+
+%% =========================== TITLE ===============================
+\begin{center}
+{\color{rule}\rule{\linewidth}{2pt}}\vspace{2.2ex}
+{\LARGE\bfseries Maximum Nullity of Cyclic Covers of Graphs\par}
+\vspace{1.4ex}
+{\large A monodromy ceiling, and the zero forcing number of $P(n,k)$
+determined for \emph{every} large $n$ when $k=2,3,4$\par}
+\vspace{1.4ex}
+{\normalsize Aryan Padarthi \quad$\cdot$\quad Category: Mathematics
+\quad$\cdot$\quad Beal Bank Dallas Regional Science and Engineering Fair\par}
+\vspace{1.0ex}
+{\footnotesize\itshape Every claim below is labelled proved / certified /
+numerical. All code, certificates and the dated research log are open.\par}
+\vspace{2.0ex}{\color{rule}\rule{\linewidth}{2pt}}
+\end{center}
+
+\vspace{1.5ex}
+\begin{columns}[t]
+
+%% ============================ COLUMN 1 ============================
+\begin{column}{0.315\textwidth}
+
+\shead{1. The problem}
+For a graph $G$, colour a set $S$ of vertices. If a coloured vertex has exactly
+one uncoloured neighbour, that neighbour becomes coloured; repeat. $Z(G)$ is the
+least $|S|$ that eventually colours everything. $Z$ bounds the \emph{maximum
+nullity} $M(G)$, the largest null space among symmetric matrices whose
+off-diagonal support is exactly $E(G)$:
+\[ M(G)\le Z(G). \]
+The \emph{generalized Petersen graph} $P(n,k)$ has outer cycle $u_iu_{i+1}$,
+inner edges $v_iv_{i+k}$ and spokes $u_iv_i$: cubic on $2n$ vertices, with the
+rotation $\rho:i\mapsto i+1$.
+
+More generally $P(n,k)$ is a \emph{cyclic cover}: a base graph with edge
+voltages in $\mathbb Z_n$, lifted to $V(B)\times\mathbb Z_n$. Two vertices,
+loops of voltage $1$ and $k$, a spoke of voltage $0$. Everything below is really
+about covers.
+
+\shead{2. What was open}
+Rashidi, Shajareh Poursalavati and Tavakkoli~[1] proved $Z(P(n,k))\le2k+2$ and
+$Z(P(n,2))=6$ for $n\ge10$. Their Theorem 3.6, claiming $Z(P(n,3))=8$ for
+$n\ge12$, is \emph{false}: Krishnan~[2] exhibits $Z(P(12,3))=7$, the flaw being
+a case analysis that never excludes $7$-vertex sets. That July 2026 note closes
+by recording as open
+
+\vspace{0.4ex}
+\hspace{1em}\emph{the stabilization threshold, and a rigorous lower bound for
+$k\ge4$.}
+\vspace{0.4ex}
+
+Lower bounds are the hard direction: an upper bound exhibits one forcing set, a
+lower bound must exclude \emph{every} smaller one.
+
+\shead{3. Why the standard tools fail}
+A set is forcing iff it meets every \emph{fort}. All three standard
+consequences degrade as $k$ grows, and are insufficient \emph{in principle}:
+\begin{itemize}\setlength{\itemsep}{0.2ex}
+\item disjoint forts: at most \emph{two} exist in any case tested;
+\item fort LP: integrality gap $\approx2$ ($\mathrm{LP}=3.21$ against $Z=10$ for
+      $P(18,4)$), which also explains why fort solvers scale poorly here;
+\item spectral: Hoffman-type bounds give $1.2$--$2.9$ against true $Z$ of
+      $6$--$12$.
+\end{itemize}
+This is what motivated changing the \emph{category} of argument, from
+combinatorial to matrix-analytic.
+
+\shead{4. The ceiling}
+Every spoke weight $c_i$ is nonzero, so the kernel equation at $u_i$ solves for
+$y_i=-(b'_{i-1}x_{i-1}+a_ix_i+b_ix_{i+1})/c_i$. Substituting into the equation
+at $v_i$ eliminates $y$ entirely and leaves \emph{one scalar recurrence} in $x$,
+supported on nine indices, with both end coefficients
+$\gamma_{i,\pm(k+1)}\neq0$.
+
+\thmn{Theorem}{Let $n\ge2k+3$ and let $A$ have off-diagonal support exactly
+$E(P(n,k))$ --- symmetric \emph{or not}. Then
+$\operatorname{null}A=\dim\ker(T-I)\le 2k+2$, where $T$ is the monodromy of that
+order-$(2k+2)$ recurrence, with equality \emph{iff} $T=I$.}
+
+The hypothesis is sharp: at $n=2k+1,2k+2$ the offsets $\pm(k+1)$ collide modulo
+$n$ and the order drops.
+
+\headline{The order $2k+2$ is exactly the size of the forcing set the rotation
+bootstrap produces. \textbf{The ceiling of the matrix method equals the upper
+bound it is trying to match} --- so either the method settles $Z$ completely, or
+nothing does.}
+
+\figrow{figures/fig_chain.pdf}{Figure 1. The reduction, and where the ceiling
+comes from.}{1.0}
+
+\end{column}
+
+%% ============================ COLUMN 2 ============================
+\begin{column}{0.345\textwidth}
+
+\shead{5. Reaching the ceiling: the symbol}
+For $A$ invariant under $\rho$ the Fourier blocks are
+$M_m=\left(\begin{smallmatrix}a+s_m&c\\ c&d+et_m\end{smallmatrix}\right)$,
+$s_m=2\cos\frac{2\pi m}{n}$. Since $t=L_k(s)$ exactly, with $L_k$ the monic
+integer polynomial satisfying $L_k(z+z^{-1})=z^k+z^{-k}$,
+\[
+ \operatorname{null}A=\#\{m: F(s_m)=0\},\quad
+ F(s)=(s+a)L_k(s)+\alpha s+\beta,
+\]
+monic of degree $k+1$ but carrying \emph{exactly three} free parameters, for
+every $k$. Three roots may be prescribed and no more --- but prescribing three
+\emph{determines the other $k-2$}, and if $F$ is rational its roots form Galois
+orbits, which stay inside the grid $\Gamma_n=\{2\cos(2\pi m/n)\}$. One rational
+$F$ places all $k+1$ roots at once. Taking $F=\prod_{d\in D}\Psi_d$, a product
+of minimal polynomials of $2\cos(2\pi/d)$, gives \emph{integer} certificates.
+
+\thmn{Theorem}{Realisability is a factorisation: $c^2=a\alpha-\beta=0$ if and
+only if $F=(s+a)\bigl(L_k(s)+t\bigr)$. Over $\mathbb Q$, Niven's theorem forces
+$a,t\in\{0,\pm1,\pm2\}$, so at most $25$ degenerate symbols exist for each $k$.}
+
+Only $c^2=0$ is fatal: $c^2$ is the \emph{product} of the two spoke weights, so
+$c^2<0$ is realisable once they may differ. Imposing $c^2>0$ instead --- our own
+earlier error --- wrongly ruled out $k=3$ and $k=7$.
+
+\shead{6. Why congruence conditions are forced}
+Every certificate above holds only for $n$ in a divisibility class. That is not
+a shortfall in the search:
+
+\thmn{Theorem}{A period-one symbol is a \emph{fixed} polynomial; its roots are
+fixed algebraic numbers, and $2\cos(2\pi j/d)\in\Gamma_n$ iff $d\mid n$. So one
+such matrix settles exactly $\{n:\operatorname{lcm}(D)\mid n\}$ --- a single
+class, containing \textbf{at most one prime}. For $k\ge3$ every symbol obeys
+$e_2=-k$, a Conway--Jones relation on the grid.}
+
+For $k=2$ that coefficient is free, \emph{which is exactly why $k=2$ alone was
+ever general in $n$}. Escaping the classes therefore requires abandoning
+rotation-invariance altogether --- and Theorem 1 characterises the ceiling for
+\emph{every} matrix on the pattern by $T=I$, a condition with no arithmetic in
+it.
+
+\shead{7. Tiling: all large $n$}
+Build the weight sequence out of pieces. Pieces do not compose naively, since
+$T_i$ depends on weights within $2k+2$ of position $i$; so pin a \emph{docking
+pattern} on the first and last $k+1$ positions of every tile.
+
+\thmn{Lemma}{Each tile's transfer product then depends only on its own interior,
+and $T=\prod T_{\mathrm{tile}}$.}
+
+\thmn{Theorem}{If identity tiles exist for every length in $[L,2L)$, then
+$Z(P(n,k))=M(P(n,k))=2k+2$ for \emph{every} $n\ge L$.}
+
+\proofn{Every $n\ge L$ is a sum of lengths drawn from $[L,2L)$: take one tile if
+$n<2L$, else remove a tile of length $L$ and recurse. The monodromy is the
+product of the tile products, hence $I$; apply Theorem 1.}
+
+A full interval is what makes this gapless. Two coprime lengths $a,b$ would give
+only $n=ia+jb$, leaving every $n<(a-1)(b-1)$ uncovered --- several hundred at
+the smallest solvable lengths.
+
+\figrow{figures/fig_tiling.pdf}{Figure 2. Tiles compose because their ends are
+pinned; all large $n$ becomes a finite list of finite problems.}{1.0}
+
+\shead{8. Certifying a tile}
+$T_{\mathrm{tile}}=I$ is \emph{rational} in the weights, so a Krawczyk bound on
+it would need interval matrix products. It is unnecessary: by Theorem 1 the
+monodromy of the \emph{one-tile} cyclic matrix \emph{is} the tile product, so
+\[
+ T_{\mathrm{tile}}=I \iff \operatorname{null}A_{\text{one tile}}=2k+2,
+\]
+and a nullity is certified by the \textbf{bilinear} system $A(w)K(X)=0$, whose
+Jacobian is affine and whose Lipschitz constant is an explicit integer.
+
+$AK=0$ has rank $2nr-\binom r2$, and the deficiency is structural:
+$K^{\!\top}\!AK$ is symmetric because $A$ is, and $\binom r2$ is its
+antisymmetric part. Choosing the square subsystem \emph{structurally} ---
+non-pivot rows plus the upper triangle of the pivot block --- makes it
+\emph{equivalent} to $AK=0$; choosing it by pivoting leaves $\binom r2$
+equations unproved and the Krawczyk test still passes. Those equations fall to
+$10^{-61}$ without being solved for.
+
+\end{column}
+
+%% ============================ COLUMN 3 ============================
+\begin{column}{0.315\textwidth}
+
+\shead{9. Results}
+\refstepcounter{res}
+\headline{\textbf{Theorem \theres.} \emph{With no congruence condition:}
+\vspace{-0.8ex}
+\[\begin{array}{ll}
+ Z(P(n,2))=M(P(n,2))=6  & \text{for all } n\ge9,\ n\ne10,\\[1pt]
+ Z(P(n,3))=M(P(n,3))=8  & \text{for all } n\ge17,\\[1pt]
+ Z(P(n,4))=M(P(n,4))=10 & \text{for all } n\ge31 .
+\end{array}\]
+\vspace{-2.2ex}}
+
+\thmn{Theorem}{$Z(P(n,3))=8$ for every $n\ge13$, and $13$ is optimal:
+$Z(P(11,3))=Z(P(12,3))=7$.}
+
+This determines the \textbf{stabilization threshold for $k=3$} --- one of the
+two problems [2] records as open --- and the exact values for $k=4$ answer the
+other. The sequence is genuinely non-monotone below the threshold:
+$Z(P(n,3))=6,6,6,8,7,7,8,8,\dots$ for $n=7,\dots,14$.
+
+\figrow{figures/fig_coverage.pdf}{Figure 3. Sparse congruence classes (dots)
+against every $n$ past a threshold (bars).}{1.0}
+
+\shead{10. How each is proved}
+$k=2$: a closed form. Matching coefficients gives
+$c^2=-(s_1+s_2)(s_1+s_3)(s_2+s_3)$, so $c^2=0$ iff two roots are antipodal; the
+three most negative grid values make it positive for all $n\ge9$, $n\ne10$.
+
+$k=3,4$: the tiling theorem with $L=21$ and $L=31$, from \textbf{54 certified
+identity tiles} covering $[21,43]$ and $[31,61]$. Below $L$, $k=3$ is closed by
+$17$ consecutive individually certified values, $17\le n\le33$.
+
+\begin{center}\footnotesize
+\begin{tabular}{@{}clccc@{}}
 \toprule
-$k$ & $D$ & $F$ & result \\
+$k$ & settles & $L$ & tiles & $\max\alpha$\\
 \midrule
-2 & $\{3,10\}$   & $sL_2-1$ & $6=2k+2$\\
-4 & $\{4,30\}$   & $\Psi_4\Psi_{30}$ & $10=2k+2$\\
-4 & $\{5,14\}$   & $\Psi_5\Psi_{14}$ & $10=2k+2$\\
-4 & $\{5,18\}$   & $\Psi_5\Psi_{18}$ & $10=2k+2$\\
-5 & $\{3,6,24\}$ & $sL_5-1$ & $12=2k+2$\\
+$2$ & $n\ge9$, $n\ne10$ & --- & closed form & ---\\
+$3$ & $n\ge17$ & $21$ & $23$ & $2.1\times10^{-10}$\\
+$4$ & $n\ge31$ & $31$ & $31$ & $3.8\times10^{-10}$\\
 \bottomrule
 \end{tabular}
-\vspace{6pt}
+\end{center}
 
-\raggedright
-All have $a,\alpha,c\in\mathbb Z$: each certificate is an \textbf{integer
-matrix}, and its nullity is confirmed by \textbf{exact rational Gaussian
-elimination}, not by floating point.
-\end{column}
-\end{columns}
+Each tile is an independent Krawczyk contraction with its own unknown count,
+$\|Y\|_\infty$ and residual; nothing is copied between them. At $k=4$,
+$\ell=61$: $1425$ unknowns, $1220$ equations of which $1175$ are structural and
+$45=\binom{10}2$ dependent, high-precision residual $4.7\times10^{-61}$.
 
-\vspace{6pt}
-\keybox{\textbf{Main result.} With $Z(P(n,k))\le 2k+2$ from the bootstrap and
-the certificates above,
-\[
-\begin{array}{ll}
- Z(P(n,4))=M(P(n,4))=10 & \text{for every }n\text{ divisible by }60,\ 70\text{ or }90,\\[2pt]
- Z(P(n,5))=M(P(n,5))=12 & \text{for every }n\text{ divisible by }24 .
-\end{array}
-\]
-These are the \textbf{first exact values of $Z(P(n,k))$ for $k\ge4$}, the range
-the 2026 note records as open. Both rest on \textbf{integer} matrices whose
-nullity is confirmed by exact rational elimination.}
+\shead{11. Verification}
+One script re-derives everything: \texttt{verify\_all.py}, \textbf{69 checks,
+all passing} --- the realisability theorem symbolically for $k=2..10$, every
+integer certificate, all $54$ tiles re-evaluated for nullity \emph{and} exact
+docking, and the claim that every $n$ in range is a sum of certified lengths.
+The structural theorem was checked on $189$ random matrices over $63$ pairs
+$(n,k)$. The exhaustive $Z$ solver reproduced every published value first,
+including the corrected $Z(P(12,3))=7$.
 
-\vspace{5pt}
-\textbf{Beyond $k=5$.} For $k\ge6$ the rotation-invariant symbol provably
-cannot reach the ceiling: the enumeration of rational symbols is \emph{finite
-and complete} and returns nothing. Relaxing to period $d$, the map from weights
-to the $k+1$ symbol coefficients has $\operatorname{rank}=\min(2d+1,k+1)$ in
-every case computed ($3\le k\le13$, $1\le d\le7$, returning the known $3$ at
-$d=1$). Most weights are gauge, so every symbol becomes reachable exactly when
-$d\ge\lceil k/2\rceil$ --- not the $d\ge(k+2)/5$ a naive count suggests.
-\keybox{Taking $d=\lceil k/2\rceil$, the ceiling is attained for
-\textbf{every $k$ tested}:
-\[
- Z(P(60,6))=Z(P(72,6))=\mathbf{14},\quad
- Z(P(96,7))=\mathbf{16},\quad Z(P(96,8))=\mathbf{18},
-\]
-the first exact values for $k\ge6$. The required period was predicted in
-advance by the rank law; $d=3$ then failed for $k=7,8$ where $d=4$ succeeded.
-All verified on the full $2n\times2n$ matrix: correct cubic pattern, every
-required entry $0.11$--$0.36$ of scale, and a spectral separation of eleven to
-thirteen orders. \emph{Numerically certified; exact arithmetic pending.}}
+The $n=17$ certificate was found three independent ways --- minimising
+$\|T-I\|$, an alternating solve, a gauge-fixed search --- all yielding a
+certified matrix. Stage 1 is only a search; stages 2--3 are the proof.
 
-\vspace{6pt}
-\textbf{The $k=5$ certificate is the plain adjacency matrix:} $a=d=0$, $c=1$,
-$sL_5-1=\Psi_6\Psi_3\Psi_{24}$. Its nullity we classify \emph{completely}: with
-$P_k(z)=z^{2k+2}+z^{2k}-z^{k+1}+z^2+1$,
-\[
- \operatorname{null}(\mathrm{Adj}\,P(n,k))=\!\!\sum_{\Phi_d\mid P_k,\ d\mid n}\!\!\varphi(d),
-\]
-a Conway--Jones phenomenon (rational relations among cosines of rational
-angles). So $\mathrm{Adj}\,P(n,k)$ is \textbf{never} singular for $k=3,6,9$,
-and attains the full ceiling only at $k=2$ and $k=5$. Checked against a direct
-count for $k=2,5,8$ at every $13\le n<200$.
-\end{block}
+\headline{\textbf{Why a failed search proves nothing here.} Every symmetric
+matrix on the pattern is gauge-equivalent to one in the slice we search, so a
+failure inside it measures effort, not impossibility. $P(18,3)$ and the tile
+$\ell=21$ were both reported as failures and both succeeded once the restart
+budget was raised. \emph{Working rule: quote the residual and the budget, never
+just ``failed''.}}
 
-\end{column}
+\shead{12. Limits, and what is not proved}
+$k\ge5$ is \emph{not} settled: tiles exist at $k=5$ from $\ell\approx54$, but
+$[54,108)$ needs $54$ of them and is incomplete. $7\le n\le12$ at $k=3$ and
+$9\le n\le30$ at $k=4$ are open. The $k\ge6$ congruence-class values remain
+numerical. The rank law is verified over a range, not proved.
 
-%% ======================= COLUMN 3 =======================
-\begin{column}{0.265\textwidth}
+We first searched $k=5$ over $41\le\ell\le45$, the parameter count's bound,
+found nothing, and later found tiles starting near $54$: the count is a lower
+bound, \emph{not} a predictor of where tiles begin, and we cannot explain the
+gap. Among claims we have withdrawn: an unconditional cover bound
+($Z(P(8,2))=5$ refutes it); the threshold $(2k+2)^2/5$; $N(k)=O(k)$; and an
+eigenvalue search whose negative results we retracted after it reported nullity
+$7$ at $P(20,3)$ where $8$ is attained.
 
-\begin{block}{VERIFICATION \& CERTIFICATION}
-No result here rests on floating point.
-
-\textbf{Structural theorem:} $189$ random matrices over $63$ pairs $(n,k)$, plus
-$60$ more for the determinant formula and product form. All pass.
-
-\textbf{Cyclotomic certificates:} integer matrices; nullity by exact rational
-elimination.
-
-\textbf{Irrational certificates:} verified in $\mathbb Q(\zeta_n)$, with
-$2\cos(2\pi m/n)$ as $x^m+x^{n-m}$ mod $\Phi_n(x)$ --- membership, reality, and
-$c^2\ne0$ all decided exactly.
-
-\textbf{Engine validation:} the exhaustive $Z$ solver reproduced \emph{every}
-published value first, including the corrected $Z(P(12,3))=7$.
-
-\vspace{4pt}
-\keybox{\textbf{Two numerical traps, both caught by the ceiling.} A loose
-tolerance reported nullity $7$ for $k=2$; a badly scaled candidate reported
-nullity $48$ at $(n,k)=(48,7)$. Both are impossible by Theorem 1. \emph{Working
-rule: wrap every numerical search in a bound it cannot legally violate} --- that
-bound is the only thing that tells you an answer is wrong when it looks right.}
-\end{block}
-
-\begin{block}{CONCLUSIONS}
-\begin{enumerate}\setlength{\itemsep}{4pt}
-\item The method has an \textbf{exact ceiling of $2k+2$}, coinciding with the
-      best known upper bound: either it settles $Z$ completely or nothing does.
-\item The ceiling is \textbf{attained}, by rational symbols whose Galois orbits
-      fall on the Fourier grid.
-\item {\color{provedc}\bfseries Proved:} $Z(P(n,4))=10$ for $60,70,90\mid n$;
-      $Z(P(n,5))=12$ for $24\mid n$; $Z(P(n,3))=8$ at $n=40,60,80,120$;
-      $Z(P(n,2))=6$ for $9\le n\le130$, $n\ne10$.
-\item {\color{openc}\bfseries Corrected (my own):} the claim that this
-      construction ``never exceeds $6$'' was wrong, and the elaborate
-      period-two machinery built to escape that cap was unnecessary.
-\end{enumerate}
-\end{block}
-
-\begin{block}{FUTURE WORK}
-\textbf{Honest limits.} The $k\ge6$ certificates are numerical, not exact ---
-a weaker standard than $k=4,5$. The rank law is verified over a range, not
-proved. At $n=48,54$, where the root set has no slack, every solution collapses
-a spoke; we observe this rather than prove it. And exact certification via
-\emph{rational} targets is closed: all eight Galois-closed root sets at $n=72$
-hit the symbol to $10^{-15}$ with nullity $14$ and all eight degenerate.
-
-\textbf{Next.} (i) Exact certification for $k\ge6$ by interval Newton --- the
-ceiling theorem makes this tractable, since certifying the \emph{equation}
-exactly gives the nullity as a discrete consequence; (ii) proving the rank law;
-(iii) a construction valid for every $n$, not one $n$ at a time, which the
-ceiling theorem would turn into a complete solution.
-\end{block}
-
-\begin{block}{KEY REFERENCES}
-\footnotesize
-[1] S. Rashidi, N. Shajareh Poursalavati, M. Tavakkoli, \emph{Computing the
-zero forcing number for generalized Petersen graphs}, J. Algebra Combin.
-Discrete Struct. Appl. \textbf{7}(2) (2020) 183--193.
-
-[2] A. Krishnan, \emph{A correction to the zero forcing number of the
-generalized Petersen graphs $P(n,3)$}, arXiv:2607.19412 (2026).
-
+\shead{References}
+{\scriptsize
+[1] Rashidi, Shajareh Poursalavati, Tavakkoli, \emph{Computing the zero forcing
+number for generalized Petersen graphs}, J.\ Algebra Combin.\ Discrete Struct.\
+Appl.\ \textbf{7}(2) (2020) 183--193.\par
+[2] Krishnan, \emph{A correction to the zero forcing number of the generalized
+Petersen graphs $P(n,3)$}, arXiv:2607.19412 (2026).\par
 [3] AIM Minimum Rank Special Graphs Work Group, \emph{Zero forcing sets and the
-minimum rank of graphs}, Linear Algebra Appl. \textbf{428} (2008) 1628--1648.
-\end{block}
+minimum rank of graphs}, Linear Algebra Appl.\ \textbf{428} (2008) 1628--1648.\par
+[4] Conway, Jones, \emph{Trigonometric diophantine equations}, Acta Arith.\
+\textbf{30} (1976) 229--240.\par}
 
 \end{column}
 \end{columns}
