@@ -21,3 +21,11 @@ P(20,4)   target nullity 2k+2 = 10
   stage 2 (double): max|f| structural = 1.637e-04, dependent = 1.714e-04
   did not converge; stopping
   -> stage 2/3 failed here; trying the next candidate
+  stage 1 [cold, sign -1]: r-th sv/scale = 5.745e-04, min|inner|/scale = 0.0000
+  400 unknowns, 400 equations, 355 structural, 45 dependent; fixing 45 at rationals
+  stage 2 (double): max|f| structural = 1.637e-04, dependent = 1.714e-04
+  did not converge; stopping
+  -> stage 2/3 failed here; trying the next candidate
+    no   so far: []
+--- P(21,4)  dim 8 ---
+P(21,4)   target nullity 2k+2 = 10

@@ -133,7 +133,16 @@ involved,
   Z(P(n,3))=M(P(n,3))=8\ \ (n\ge17),\qquad
   Z(P(n,4))=M(P(n,4))=10\ \ (n\ge31),
 \]
-with no congruence condition, so that $k=2,3,4$ are all settled for large $n$. The tile condition is a rational equation, but
+with no congruence condition. Together with exhaustive search on the finitely
+many smaller $n$, this determines $Z(P(n,k))$ for \emph{every} $n$ when $k=2$
+and when $k=3$ --- the latter for the first time, since the previously published
+value for $k=3$ is false. In particular $Z(P(n,3))=8$ for every $n\ge13$ and
+$13$ is optimal, which settles the stabilization threshold that~\cite{K}
+records as open.
+With four exhaustive searches at $n=13,14,15,16$ this closes the $k=3$ case
+outright: $Z(P(n,3))=8$ for every $n\ge13$, and $13$ is optimal since
+$Z(P(11,3))=Z(P(12,3))=7$, so the stabilization threshold that the 2026
+correction note leaves open is exactly $13$. The tile condition is a rational equation, but
 certifying it needs no interval arithmetic on rational maps: by the ceiling
 corollary the monodromy of the one-tile cyclic matrix \emph{is} the tile product,
 so the same bilinear system certifies it.
@@ -1984,7 +1993,7 @@ solve produced one for \emph{every} length in the required range,
 $21\le\ell\le41$, which is exactly $[L,2L)$ for $L=21$; we in fact have tiles
 for every $21\le\ell\le43$.
 
-Each of those $22$ tiles is then \emph{certified}, which needs one observation to
+Each of those $23$ tiles is then \emph{certified}, which needs one observation to
 avoid interval arithmetic on a rational map. The condition
 $T_{\text{tile}}=I$ is a rational equation in the tile weights, so a Krawczyk
 bound on it directly would require interval matrix products. It is unnecessary:
@@ -2002,7 +2011,7 @@ pattern; this is arranged by pinning the $5(2k+2)$ docking weights at their exac
 integer values ($b=c=e=1$, $a=d=0$) rather than letting the solver move them, so
 they belong to the fixed set and the certified solution carries them exactly.
 
-All $22$ certifications pass. For $\ell=22$: $398$ unknowns, $352$ equations of
+All $23$ certifications pass. For $\ell=22$: $398$ unknowns, $352$ equations of
 which $324$ are structural and $28$ dependent, $40$ docking pins and $74$
 unknowns fixed at rationals in all; high-precision Newton drives the structural
 residual to $3.1\times10^{-61}$ and the dependent equations to
@@ -2099,6 +2108,38 @@ case are now settled for all large $n$, with
 \]
 against the tile lower bound $2(k+1)+(2k+2)^{2}/5$, which is $13.2$, $20.8$ and
 $30$.
+
+\begin{theorem}[Complete determination for $k=2$ and $k=3$]\label{thm:complete}
+For every $n$ with $2k<n$, the value $Z(P(n,k))$ is now known when $k=2$ or
+$k=3$:
+\[
+\begin{array}{r|cccccccc}
+ n            & 5 & 6 & 7 & 8 & 9 & 10 & 11 & \ge12\\ \hline
+ Z(P(n,2))    & 5 & 4 & 6 & 5 & 6 & 6  & 6  & 6
+\end{array}
+\qquad
+\begin{array}{r|ccccccc}
+ n            & 7 & 8 & 9 & 10 & 11 & 12 & \ge13\\ \hline
+ Z(P(n,3))    & 6 & 6 & 6 & 8  & 7  & 7  & 8
+\end{array}
+\]
+No value is left open in either row.
+\end{theorem}
+
+\begin{proof}
+The tails are Theorem~\ref{thm:k2all} for $k=2$ and
+Theorem~\ref{thm:k3krishnan} for $k=3$; the finitely many remaining values are
+exhaustive searches over vertex subsets.
+\end{proof}
+
+\noindent
+For $k=2$ this completes what~\cite{RST} began, which gave $Z(P(n,2))=6$ only
+for $n\ge10$. For $k=3$ it is the first determination of any kind: the value
+claimed in~\cite{RST} for that case is false, and~\cite{K}, which found the
+error, leaves the threshold open. Note that neither row is monotone and neither
+is eventually constant from the first time the bound is attained --- $k=3$
+reaches $8$ at $n=10$, drops to $7$ at $n=11,12$, and only then settles. Any
+argument that assumed monotonicity would have got this wrong, and one did.
 
 \begin{theorem}[$k=3$ completely, and the stabilization threshold]
 \label{thm:k3krishnan}
@@ -2236,7 +2277,15 @@ Theorem~\ref{thm:congbound} no period-one certificate can reach these $n$ at
 all, so this is the only route to them that we know.
 
 \item \textbf{Proved (finite).} Every tabulated value of $Z$, by exhaustive
-search over vertex subsets.
+search over vertex subsets. Combined with the above this gives
+Theorem~\ref{thm:complete}: $Z(P(n,k))$ is determined for \emph{every}
+admissible $n$ when $k=2$ and when $k=3$, with no value left open in either
+case. In particular Theorem~\ref{thm:k3krishnan},
+$Z(P(n,3))=8$ for every $n\ge13$ with $13$ optimal: the four values
+$n=13,14,15,16$ are exhaustive searches and the rest is
+Theorem~\ref{thm:k3all}, so the stabilization threshold at $k=3$ --- recorded
+as open in \cite{K} --- is exactly $13$. This is the one result here whose
+statement needs no matrix theory to check.
 
 \item \textbf{Numerical, not exact.} Theorem~\ref{thm:k6}: $Z(P(n,6))=14$ at
 $n=60,72,84,90,96,108,120$ and $Z(P(96,8))=18$. The certificates are period-three
