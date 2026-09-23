@@ -131,7 +131,7 @@ problems. Carrying this out and certifying all $54$ tiles
 involved,
 \[
   Z(P(n,3))=M(P(n,3))=8\ \ (n\ge17),\qquad
-  Z(P(n,4))=M(P(n,4))=10\ \ (n\ge31),
+  Z(P(n,4))=M(P(n,4))=10\ \ (n\ge30),
 \]
 with no congruence condition. Together with exhaustive search on the finitely
 many smaller $n$, this determines $Z(P(n,k))$ for \emph{every} $n$ when $k=2$
@@ -2066,21 +2066,21 @@ coincidence of dimensions is suggestive and no more.
   Z(P(n,3))=M(P(n,3))=8 \quad\text{for every } n\ge17,
 \]
 \[
-  Z(P(n,4))=M(P(n,4))=10 \quad\text{for every } n\ge31 .
+  Z(P(n,4))=M(P(n,4))=10 \quad\text{for every } n\ge30 .
 \]
 \end{theorem}
 
 \begin{proof}
 For $k=3$, identity tiles exist for every $\ell$ with $21\le\ell<42$, and for
-$k=4$ for every $\ell$ with $31\le\ell<62$; each is certified as above.
+$k=4$ for every $\ell$ with $30\le\ell<60$; each is certified as above.
 (At $k=3$ we in fact have certified tiles for every $21\le\ell\le43$.) A
 certification exhibits a box containing a true real solution of $AK=0$ with $K$
 of full rank $2k+2$, so the one-tile cyclic matrix has nullity at least $2k+2$
 and hence exactly $2k+2$ by Corollary~\ref{cor:ceiling}, so
 $T_{\text{tile}}=I$; and its docking weights are the prescribed integers
 exactly, since they are held fixed throughout, so tiles with different $\ell$
-compose. Theorem~\ref{thm:tiling} with $L=21$ and $L=31$ respectively gives
-$n\ge21$ and $n\ge31$, and Theorem~\ref{thm:p17} covers $17\le n\le20$ at $k=3$.
+compose. Theorem~\ref{thm:tiling} with $L=21$ and $L=30$ respectively gives
+$n\ge21$ and $n\ge30$, and Theorem~\ref{thm:p17} covers $17\le n\le20$ at $k=3$.
 \end{proof}
 
 \noindent
@@ -2104,7 +2104,7 @@ certifications. No step rests on a floating-point nullity. With
 Theorem~\ref{thm:k2all} for $k=2$, the three smallest $k$ beyond the trivial
 case are now settled for all large $n$, with
 \[
-  L(2)=9,\qquad L(3)=17,\qquad L(4)=31 ,
+  L(2)=9,\qquad L(3)=17,\qquad L(4)=30 ,
 \]
 against the tile lower bound $2(k+1)+(2k+2)^{2}/5$, which is $13.2$, $20.8$ and
 $30$.
@@ -2140,6 +2140,19 @@ error, leaves the threshold open. Note that neither row is monotone and neither
 is eventually constant from the first time the bound is attained --- $k=3$
 reaches $8$ at $n=10$, drops to $7$ at $n=11,12$, and only then settles. Any
 argument that assumed monotonicity would have got this wrong, and one did.
+
+\noindent
+The same exhaustive computation at $k=4$ gives
+\[
+\begin{array}{r|cccccccccccccc}
+ n & 9 & 10 & 11 & 12 & 13 & 14 & 15 & 16 & 17 & 18 & 19 & 20 & 21 & 22\\ \hline
+ Z(P(n,4)) & 6 & 6 & 7 & 6 & 8 & 8 & 9 & 8 & 9 & 10 & 10 & 10 & 10 & 10
+\end{array}
+\]
+which is more erratic still: the value falls at $n=12$ and again at $n=16$, and
+the bound $10$ is first attained at $n=18$. With
+Theorem~\ref{thm:k3all} for $n\ge30$ and certificates at $n=26,27$, the only
+values of $Z(P(n,4))$ not determined are $n\in\{23,24,25,28,29\}$.
 
 \begin{theorem}[$k=3$ completely, and the stabilization threshold]
 \label{thm:k3krishnan}
@@ -2264,7 +2277,7 @@ previously made at a single $n$. In the $k=2$ ($7\mid n$), $k=3$ and $k=7$ cases
 the certificate is an integer matrix with entries in $\{0,\pm1\}$.
 
 \item \textbf{Proved by interval certification.} $Z(P(n,3))=M(P(n,3))=8$ for
-\emph{every} $n\ge17$, and $Z(P(n,4))=M(P(n,4))=10$ for \emph{every} $n\ge31$
+\emph{every} $n\ge17$, and $Z(P(n,4))=M(P(n,4))=10$ for \emph{every} $n\ge30$
 (Theorem~\ref{thm:k3all}), from Theorem~\ref{thm:tiling} together with interval
 certifications of identity tiles of every length in $[21,44)$ and $[31,62)$, plus
 Theorem~\ref{thm:p17} for $17\le n\le20$. No congruence condition appears and the

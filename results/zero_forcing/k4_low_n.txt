@@ -29,3 +29,95 @@ P(20,4)   target nullity 2k+2 = 10
     no   so far: []
 --- P(21,4)  dim 8 ---
 P(21,4)   target nullity 2k+2 = 10
+  stage 1 [cold, sign +1]: r-th sv/scale = 6.863e-04, min|inner|/scale = 0.0003
+  425 unknowns, 420 equations, 375 structural, 45 dependent; fixing 50 at rationals
+  stage 2 (double): max|f| structural = 5.090e-04, dependent = 1.412e-03
+  did not converge; stopping
+  -> stage 2/3 failed here; trying the next candidate
+  stage 1 [cold, sign -1]: r-th sv/scale = 6.669e-04, min|inner|/scale = 0.0004
+  425 unknowns, 420 equations, 375 structural, 45 dependent; fixing 50 at rationals
+  stage 2 (double): max|f| structural = 4.590e-04, dependent = 4.589e-04
+  did not converge; stopping
+  -> stage 2/3 failed here; trying the next candidate
+    no   so far: []
+--- P(22,4)  dim 11 ---
+P(22,4)   target nullity 2k+2 = 10
+  stage 1 [cold, sign +1]: r-th sv/scale = 2.829e-04, min|inner|/scale = 0.0006
+  450 unknowns, 440 equations, 395 structural, 45 dependent; fixing 55 at rationals
+  stage 2 (double): max|f| structural = 3.254e-04, dependent = 5.205e-04
+  did not converge; stopping
+  -> stage 2/3 failed here; trying the next candidate
+  stage 1 [cold, sign -1]: r-th sv/scale = 2.829e-04, min|inner|/scale = 0.0006
+  450 unknowns, 440 equations, 395 structural, 45 dependent; fixing 55 at rationals
+  stage 2 (double): max|f| structural = 3.254e-04, dependent = 5.205e-04
+  did not converge; stopping
+  -> stage 2/3 failed here; trying the next candidate
+    no   so far: []
+--- P(23,4)  dim 14 ---
+P(23,4)   target nullity 2k+2 = 10
+  stage 1 [cold, sign +1]: r-th sv/scale = 7.357e-04, min|inner|/scale = 0.0002
+  475 unknowns, 460 equations, 415 structural, 45 dependent; fixing 60 at rationals
+  stage 2 (double): max|f| structural = 2.381e-04, dependent = 4.555e-04
+  did not converge; stopping
+  -> stage 2/3 failed here; trying the next candidate
+  stage 1 [cold, sign -1]: r-th sv/scale = 7.003e-04, min|inner|/scale = 0.0000
+  475 unknowns, 460 equations, 415 structural, 45 dependent; fixing 60 at rationals
+  stage 2 (double): max|f| structural = 3.481e-04, dependent = 3.483e-04
+  did not converge; stopping
+  -> stage 2/3 failed here; trying the next candidate
+    no   so far: []
+--- P(24,4)  dim 17 ---
+P(24,4)   target nullity 2k+2 = 10
+  stage 1 [cold, sign +1]: r-th sv/scale = 4.288e-04, min|inner|/scale = 0.0001
+  500 unknowns, 480 equations, 435 structural, 45 dependent; fixing 65 at rationals
+  stage 2 (double): max|f| structural = 4.968e-05, dependent = 8.237e-05
+  did not converge; stopping
+  -> stage 2/3 failed here; trying the next candidate
+  stage 1 [cold, sign -1]: r-th sv/scale = 4.288e-04, min|inner|/scale = 0.0001
+  500 unknowns, 480 equations, 435 structural, 45 dependent; fixing 65 at rationals
+  stage 2 (double): max|f| structural = 4.968e-05, dependent = 8.237e-05
+  did not converge; stopping
+  -> stage 2/3 failed here; trying the next candidate
+    no   so far: []
+--- P(25,4)  dim 20 ---
+P(25,4)   target nullity 2k+2 = 10
+  stage 1 [cold, sign +1]: r-th sv/scale = 7.188e-04, min|inner|/scale = 0.0001
+  525 unknowns, 500 equations, 455 structural, 45 dependent; fixing 70 at rationals
+  stage 2 (double): max|f| structural = 4.420e-04, dependent = 4.426e-04
+  did not converge; stopping
+  -> stage 2/3 failed here; trying the next candidate
+  stage 1 [cold, sign -1]: r-th sv/scale = 4.984e-04, min|inner|/scale = 0.0000
+  525 unknowns, 500 equations, 455 structural, 45 dependent; fixing 70 at rationals
+  stage 2 (double): max|f| structural = 2.382e-03, dependent = 5.048e-03
+  did not converge; stopping
+  -> stage 2/3 failed here; trying the next candidate
+    no   so far: []
+--- P(26,4)  dim 23 ---
+P(26,4)   target nullity 2k+2 = 10
+  stage 1 [cold, sign +1]: r-th sv/scale = 9.833e-05, min|inner|/scale = 0.1591
+  550 unknowns, 520 equations, 475 structural, 45 dependent; fixing 75 at rationals
+  stage 2 (double): max|f| structural = 1.524e-15, dependent = 8.214e-15
+  stage 2b (60 digits): structural 1.945e-61, dependent 1.945e-61
+  ||Y||=5.106e+02  ||I-YJ||=3.446e-12  ||Yf||=8.988e-61
+  stage 3 KRAWCZYK PASSES at delta = 1e-13: alpha = 6.161e-10
+  certified matrix: nullity 10, gap 0.1429, min|edge|/scale 0.1589
+  VERDICT: PROVED null A = 10
+    CERTIFIED   so far: [26]
+--- P(27,4)  dim 26 ---
+P(27,4)   target nullity 2k+2 = 10
+  stage 1 [cold, sign +1]: r-th sv/scale = 3.852e-04, min|inner|/scale = 0.1771
+  575 unknowns, 540 equations, 495 structural, 45 dependent; fixing 80 at rationals
+  stage 2 (double): max|f| structural = 2.907e-15, dependent = 1.060e-14
+  stage 2b (60 digits): structural 8.557e-61, dependent 9.578e-61
+  ||Y||=6.257e+02  ||I-YJ||=4.488e-12  ||Yf||=4.402e-60
+  stage 3 KRAWCZYK PASSES at delta = 1e-13: alpha = 7.553e-10
+  certified matrix: nullity 10, gap 0.0841, min|edge|/scale 0.1797
+  VERDICT: PROVED null A = 10
+    CERTIFIED   so far: [26, 27]
+--- P(28,4)  dim 29 ---
+P(28,4)   target nullity 2k+2 = 10
+  stage 1 [cold, sign +1]: r-th sv/scale = 4.786e-04, min|inner|/scale = 0.0002
+  600 unknowns, 560 equations, 515 structural, 45 dependent; fixing 85 at rationals
+  stage 2 (double): max|f| structural = 7.017e-05, dependent = 1.346e-04
+  did not converge; stopping
+  -> stage 2/3 failed here; trying the next candidate

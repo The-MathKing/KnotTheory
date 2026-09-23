@@ -5,3 +5,10 @@ k = 5   nullity target 12   tile lengths 54..107
     57       225     2.49e-12            0.1500   IDENTITY TILE
     58       230     1.11e-12            0.1500   IDENTITY TILE
     59       235     7.18e-14            0.1500   IDENTITY TILE
+    60       240     2.18e-13            0.1500   IDENTITY TILE
+    61       245     1.76e-12            0.1500   IDENTITY TILE
+    63       255     6.50e-13            0.1500   IDENTITY TILE
+    64       260     2.32e-12            0.1500   IDENTITY TILE
+    67       275     4.59e-13            0.1500   IDENTITY TILE
+    68       280     1.74e-13            0.1500   IDENTITY TILE
+    69       285     1.17e-12            0.1500   IDENTITY TILE

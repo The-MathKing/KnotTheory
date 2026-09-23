@@ -1,0 +1,4 @@
+retry k=4 per-n at 24 and 25 with a much larger budget
+(dims 17 and 20; at k=3 the first success came at dim 15)
+--- P(25,4) dim 20 ---
+P(25,4)   target nullity 2k+2 = 10

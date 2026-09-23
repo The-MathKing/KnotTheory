@@ -75,10 +75,10 @@
   [PASS] k=3: every certified tile has nullity exactly 8  --- all 23 tiles
   [PASS] k=3: docking weights exact in every certified tile  --- all tiles, to 1e-13
   [PASS] k=3: every n in [21, 400] is a sum of certified lengths  --- no gaps
-  [PASS] k=4: certified lengths form [L, 2L)  --- 31..61 (31 tiles)
-  [PASS] k=4: every certified tile has nullity exactly 10  --- all 31 tiles
+  [PASS] k=4: certified lengths form [L, 2L)  --- 30..61 (32 tiles)
+  [PASS] k=4: every certified tile has nullity exactly 10  --- all 32 tiles
   [PASS] k=4: docking weights exact in every certified tile  --- all tiles, to 1e-13
-  [PASS] k=4: every n in [31, 400] is a sum of certified lengths  --- no gaps
+  [PASS] k=4: every n in [30, 400] is a sum of certified lengths  --- no gaps
 10. Slice lemma (lem:slice)
   [PASS] spokes -> +1 and |outer| -> 1, nullity preserved, both parities  --- max deviation 2.7e-15
 

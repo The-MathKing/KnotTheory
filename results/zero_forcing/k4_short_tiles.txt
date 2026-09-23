@@ -1,0 +1,14 @@
+k=4 tiles BELOW 31.  The (2k+2)^2=100 count says l>=31, but only
+C(11,2)=55 equations are independent, which permits l>=21.
+At k=3 the true start was 21 against a count of 16.
+    l  unknowns  vs 55  best max|T-I|  min|edge|
+    30       100     45       1.69e-14     0.1500   IDENTITY TILE
+    29        95     40       1.45e-02     0.1359
+    28        90     35       1.96e-02     0.1218
+    27        85     30       2.87e-01     0.0719
+    26        80     25       3.12e-01     0.0210
+    25        75     20       3.60e-01     0.1315
+    24        70     15       4.72e-01     0.0082
+    23        65     10       5.40e-01     0.1232
+    22        60      5       7.24e-01     0.0035
+    21        55      0       6.67e-01     0.0466
