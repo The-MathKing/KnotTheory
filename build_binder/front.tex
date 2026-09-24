@@ -1,0 +1,169 @@
+\documentclass[11pt]{article}
+\usepackage[letterpaper,margin=1in]{geometry}
+\usepackage{lmodern}\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,microtype,fancyhdr}
+\pagestyle{fancy}\fancyhf{}
+\fancyhead[L]{\footnotesize Research Binder}
+\fancyhead[R]{\footnotesize\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\setlength{\parindent}{0pt}\setlength{\parskip}{0.55em}
+\begin{document}
+\thispagestyle{empty}
+\vspace*{1.9in}
+\begin{center}
+{\Huge\bfseries Maximum Nullity of\\[0.25em] Cyclic Covers of Graphs\par}
+\vspace{1.1em}
+{\Large A monodromy ceiling, and the zero forcing\\number of $P(n,k)$\par}
+\vspace{2.2em}
+{\large\bfseries Research Binder\par}
+\vspace{0.7em}
+{\large Aryan Padarthi \quad$\cdot$\quad Mathematics\par}
+\vspace{0.5em}
+{\normalsize Compiled 27 September 2026\par}
+\end{center}
+\vfill
+\begin{center}\begin{minipage}{0.86\textwidth}\small
+\textbf{Contents}\par\vspace{0.4em}
+\begin{tabular}{@{}rl@{}}
+I.   & Official Abstract\\
+II.  & Research Plan\\
+III. & Research Paper\\
+IV.  & Research Log, dated, including every dead end\\
+V.   & Verification Output, 69 checks\\
+VI.  & A Certification Transcript\\
+\end{tabular}
+\par\vspace{0.9em}
+Every claim in the paper is labelled by the standard it meets: proved, proved by
+an exact certificate, proved by interval certification, or numerical. Claims that
+have been refuted or withdrawn, including the author's own, are listed explicitly
+in the paper's Status section and dated in the log.
+\end{minipage}\end{center}
+\vfill
+\newpage
+\section*{I.\quad Official Abstract}
+
+
+Zero forcing is a colouring process on a graph: a coloured vertex with exactly
+one uncoloured neighbour forces that neighbour to colour. The zero forcing
+number Z(G) is the size of the smallest starting set that eventually colours
+everything, and it bounds the maximum nullity M(G) over symmetric matrices whose
+off-diagonal pattern is the graph. For the generalized Petersen graphs P(n,k), a
+2020 paper claimed Z(P(n,3))=8 for all n at least 12. A July 2026 correction note
+showed this is false, and recorded two open problems: the stabilization
+threshold, and any rigorous lower bound for k at least 4.
+
+I prove that eliminating the inner coordinates of any matrix carrying the P(n,k)
+pattern leaves a single linear recurrence of order exactly 2k+2. Its nullity is
+therefore at most 2k+2 — the same number as the best known upper bound on Z. The
+matrix method thus either settles Z completely or cannot settle it at all.
+
+Reaching that ceiling with a rotation-invariant matrix provably confines n to one
+divisibility class, containing at most one prime. Assembling the matrix instead
+from tiles that each contribute the identity to the monodromy removes the
+restriction: tiles of every length in [L,2L) settle every n at least L. I
+certified 55 such tiles by interval arithmetic.
+
+Consequently Z(P(n,2)) and Z(P(n,3)) are now determined for every n, the latter
+for the first time; Z(P(n,3))=8 exactly for n at least 13, settling the
+threshold; and Z(P(n,4))=10 for every n at least 30.
+
+\newpage
+\section*{II.\quad Research Plan}
+
+\textbf{Project.} Maximum Nullity of Cyclic Covers of Graphs: A Monodromy Ceiling and
+the Zero Forcing Number of Generalized Petersen Graphs
+\textbf{Category.} Mathematics · \textbf{Finalist.} Aryan Padarthi
+
+\vspace{0.5em}\hrule\vspace{0.7em}
+
+\subsection*{A. Rationale}
+
+Zero forcing began in two unrelated places: controllability of quantum spin
+systems, and placement of phasor measurement units in electrical grids. It was
+then connected to linear algebra by the inequality M(G) ≤ Z(G), where M(G) is
+the largest nullity attainable by a symmetric matrix whose off-diagonal support
+is the edge set of G. The inequality makes Z a combinatorial ceiling on a purely
+algebraic quantity, and makes lower bounds on Z obtainable by exhibiting a
+matrix.
+
+The generalized Petersen graphs P(n,k) are a standard cubic test family. Rashidi,
+Shajareh Poursalavati and Tavakkoli (2020) proved Z(P(n,k)) ≤ 2k+2 and determined
+Z(P(n,2)). Their Theorem 3.6, asserting Z(P(n,3)) = 8 for n ≥ 12, is false:
+Krishnan's July 2026 correction note (arXiv:2607.19412) exhibits Z(P(12,3)) = 7,
+the error being a case analysis that never excludes 7-vertex sets. That note
+leaves open the stabilization threshold and any rigorous lower bound for k ≥ 4.
+
+This project addresses those two open problems.
+
+\subsection*{B. Research question}
+
+\par\hangindent=1.4em\hangafter=1 1.~Is there an intrinsic ceiling on what a matrix certificate can prove about
+   Z(P(n,k)), and where does it sit relative to the known upper bound?
+\par\hangindent=1.4em\hangafter=1 2.~Can that ceiling be attained, and by an explicitly checkable matrix?
+\par\hangindent=1.4em\hangafter=1 3.~Can Z(P(n,k)) be determined for \textbf{all} n rather than for sparse families of n?
+
+\subsection*{C. Procedures}
+
+This is a theoretical mathematics project. There are no human participants, no
+vertebrate animals, no potentially hazardous biological agents, and no hazardous
+chemicals, activities or devices. All work is proof and computation performed by
+the finalist on a personal computer.
+
+\textbf{C1 — Structure.} Eliminate the inner coordinates from the kernel equations of
+an arbitrary matrix carrying the P(n,k) pattern and identify the resulting scalar
+recurrence, its order, and the leading coefficients. Establish when the nullity
+equals the recurrence order.
+
+\textbf{C2 — Construction.} For rotation-invariant matrices, reduce singularity to a
+polynomial condition on a discrete grid and construct matrices meeting the
+ceiling. Determine exactly when such a matrix is admissible.
+
+\textbf{C3 — Obstruction.} Determine whether the divisibility conditions arising in C2
+are intrinsic, and prove the answer rather than observing it.
+
+\textbf{C4 — General n.} Construct matrices from repeated blocks whose contributions
+compose, so that one finite family of blocks settles an infinite set of n.
+
+\textbf{C5 — Certification.} Verify every constructed matrix at the highest standard
+available: exact integer or rational arithmetic where possible, and otherwise an
+interval (Krawczyk) contraction proof that a true real solution exists. Record
+which standard each claim meets.
+
+\textbf{C6 — Independent checking.} Compute Z directly by exhaustive search over
+vertex subsets for all sizes reachable, validate that solver against every
+published value, and reproduce each theorem numerically before relying on it.
+
+\subsection*{D. Data analysis}
+
+Results are theorems and explicit matrices, not measurements, so analysis is
+verification rather than statistics. Every computational claim is re-derived by a
+single script that reports pass or fail per check. Numerical searches are always
+wrapped in a bound they cannot legally exceed (the ceiling of C1), so that an
+impossible answer is detected rather than believed. Where a search fails, the
+residual and the computational budget are both recorded, because a failure at a
+small budget is not evidence of impossibility.
+
+\subsection*{E. Risk and safety}
+
+None. No laboratory work, no fieldwork, no subjects of any kind.
+
+\subsection*{F. Bibliography}
+
+\par\hangindent=1.4em\hangafter=1 1.~S. Rashidi, N. Shajareh Poursalavati, M. Tavakkoli. Computing the zero forcing
+   number for generalized Petersen graphs. *J. Algebra Combin. Discrete Struct.
+   Appl.* 7(2) (2020) 183–193.
+\par\hangindent=1.4em\hangafter=1 2.~A. Krishnan. A correction to the zero forcing number of the generalized
+   Petersen graphs P(n,3). arXiv:2607.19412 (2026).
+\par\hangindent=1.4em\hangafter=1 3.~AIM Minimum Rank Special Graphs Work Group. Zero forcing sets and the minimum
+   rank of graphs. \emph{Linear Algebra Appl.} 428 (2008) 1628–1648.
+\par\hangindent=1.4em\hangafter=1 4.~J. H. Conway, A. J. Jones. Trigonometric diophantine equations. \emph{Acta Arith.}
+   30 (1976) 229–240.
+\par\hangindent=1.4em\hangafter=1 5.~I. Niven. \emph{Irrational Numbers.} Carus Mathematical Monographs 11, MAA, 1956.
+\par\hangindent=1.4em\hangafter=1 6.~R. E. Moore, R. B. Kearfott, M. J. Cloud. \emph{Introduction to Interval Analysis.}
+   SIAM, 2009. (Krawczyk existence test.)
+
+\newpage
+\section*{III.\quad Research Paper}
+The full paper follows this page. It states, for every claim, which of four standards it meets: proved; proved by an exact certificate; proved by interval certification; or numerical. Its Status section lists every claim of the author's own that has been refuted or withdrawn.
+
+\end{document}

@@ -1,0 +1,152 @@
+\documentclass[11pt]{article}
+\usepackage[letterpaper,margin=1in]{geometry}
+\usepackage{lmodern}\usepackage[T1]{fontenc}\usepackage{fancyhdr}
+\pagestyle{fancy}\fancyhf{}\fancyhead[L]{\footnotesize Research Binder}
+\fancyhead[R]{\footnotesize\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\setlength{\parindent}{0pt}\setlength{\parskip}{0.55em}
+\begin{document}
+\section*{V.\quad Verification Output}
+One script re-derives every computational claim in the paper from scratch and
+reports pass or fail per check. Its current output follows, unedited.
+\begingroup\footnotesize\begin{verbatim}
+1. Realisability (thm:realis): c^2 = 0 iff F = (s+a)(L_k + t)
+  [PASS] k=2
+  [PASS] k=3
+  [PASS] k=4
+  [PASS] k=5
+  [PASS] k=6
+  [PASS] k=7
+  [PASS] k=8
+2. Antipodal corollary: c^2 = 0 identically for even k, not for odd
+  [PASS] k=2 (even)
+  [PASS] k=3 (odd)
+  [PASS] k=4 (even)
+  [PASS] k=5 (odd)
+  [PASS] k=6 (even)
+  [PASS] k=7 (odd)
+  [PASS] k=8 (even)
+3. k=2 closed form: c^2 = -(s1+s2)(s1+s3)(s2+s3)
+  [PASS] identity
+4. e_2 = -k for every period-one symbol with k >= 3 (thm:congbound)
+  [PASS] k=3
+  [PASS] k=4
+  [PASS] k=5
+  [PASS] k=6
+  [PASS] k=7
+  [PASS] k=8
+  [PASS] k=9
+  [PASS] k=10
+5. Integer certificates: the signed adjacency matrix
+  [PASS] signed Adj P(10,3) nullity 8  --- got 8
+  [PASS] signed Adj P(20,3) nullity 8  --- got 8
+  [PASS] signed Adj P(30,3) nullity 8  --- got 8
+  [PASS] signed Adj P(120,7) nullity 16  --- got 16
+  [PASS] signed Adj P(30,2) nullity 6  --- got 6
+  [PASS] signed Adj P(60,2) nullity 6  --- got 6
+  [PASS] Psi_7 certificate P(7,2) nullity 6  --- got 6
+  [PASS] Psi_7 certificate P(14,2) nullity 6  --- got 6
+  [PASS] Psi_7 certificate P(21,2) nullity 6  --- got 6
+  [PASS] Psi_7 certificate P(28,2) nullity 6  --- got 6
+6. k=2 explicit certificate at the three most negative grid values
+   (c^2 > 0 is checked for all n; the nullity is checked two ways, by
+    counting grid roots of the symbol exactly and, for moderate n only,
+    by singular values -- the three roots crowd within O(1/n^2) of -2,
+    so the matrix is exact but numerically stiff for large n)
+  [PASS] c^2 > 0 for every n >= 9, n != 10 (up to 1001)  --- checked 9..199, 500, 1001
+  [PASS] three prescribed roots are distinct and interior  --- checked 9..199, 500, 1001, 5000
+  [PASS] P(9,2) nullity 6 numerically
+  [PASS] P(11,2) nullity 6 numerically
+  [PASS] P(20,2) nullity 6 numerically
+  [PASS] P(39,2) nullity 6 numerically
+  [PASS] P(60,2) nullity 6 numerically
+7. Saved interval-certified matrices re-evaluated (k=3)
+  [PASS] P(17,3) nullity 8, edges nonzero  --- nullity 8, min edge 0.1462
+  [PASS] P(19,3) nullity 8, edges nonzero  --- nullity 8, min edge 0.0145
+  [PASS] P(20,3) nullity 8, edges nonzero  --- nullity 8, min edge 0.1424
+  [PASS] P(21,3) nullity 8, edges nonzero  --- nullity 8, min edge 0.3059
+  [PASS] P(22,3) nullity 8, edges nonzero  --- nullity 8, min edge 0.0878
+  [PASS] P(23,3) nullity 8, edges nonzero  --- nullity 8, min edge 0.0647
+  [PASS] P(24,3) nullity 8, edges nonzero  --- nullity 8, min edge 0.0405
+  [PASS] P(25,3) nullity 8, edges nonzero  --- nullity 8, min edge 0.1584
+  [PASS] P(26,3) nullity 8, edges nonzero  --- nullity 8, min edge 0.0859
+  [PASS] P(27,3) nullity 8, edges nonzero  --- nullity 8, min edge 0.2439
+  [PASS] P(28,3) nullity 8, edges nonzero  --- nullity 8, min edge 0.0296
+  [PASS] P(29,3) nullity 8, edges nonzero  --- nullity 8, min edge 0.2612
+  [PASS] P(30,3) nullity 8, edges nonzero  --- nullity 8, min edge 0.3665
+  [PASS] P(31,3) nullity 8, edges nonzero  --- nullity 8, min edge 0.2290
+  [PASS] P(32,3) nullity 8, edges nonzero  --- nullity 8, min edge 0.0445
+  [PASS] P(33,3) nullity 8, edges nonzero  --- nullity 8, min edge 0.2802
+      (16 saved certificates re-evaluated)
+8. k=3 identity tiles and their compositions
+  [PASS] tiles cover a full interval [L,2L)  --- lengths 21..43 (23 tiles)
+  [PASS] single tiles give nullity 8  --- all 23 lengths
+  [PASS] multi-tile concatenations give nullity 8  --- checked n up to 55
+9. Certified tiles: nullity, docking exactness, interval coverage
+  [PASS] k=3: certified lengths form [L, 2L)  --- 21..43 (23 tiles)
+  [PASS] k=3: every certified tile has nullity exactly 8  --- all 23 tiles
+  [PASS] k=3: docking weights exact in every certified tile  --- all tiles, to 1e-13
+  [PASS] k=3: every n in [21, 400] is a sum of certified lengths  --- no gaps
+  [PASS] k=4: certified lengths form [L, 2L)  --- 30..61 (32 tiles)
+  [PASS] k=4: every certified tile has nullity exactly 10  --- all 32 tiles
+  [PASS] k=4: docking weights exact in every certified tile  --- all tiles, to 1e-13
+  [PASS] k=4: every n in [30, 400] is a sum of certified lengths  --- no gaps
+10. Slice lemma (lem:slice)
+  [PASS] spokes -> +1 and |outer| -> 1, nullity preserved, both parities  --- max deviation 2.7e-15
+
+==================================================================
+ALL CHECKS PASSED
+
+\end{verbatim}\endgroup
+\newpage
+\section*{VI.\quad A Certification Transcript}
+What ``interval-certified'' means in practice, for one family of tiles. Each
+entry is an independent Krawczyk contraction proof with its own unknown count,
+matrix norm and residual; nothing is shared between them.
+\begingroup\scriptsize\begin{verbatim}
+certifying 22 identity tiles at k=3
+  l=22: 398 unknowns, 352 equations, 324 structural, 28 dependent; 40 docking pins, 74 fixed total
+    structural 3.11e-61, dependent 2.72e-61, ||Y||=5.39e+02, alpha=6.70e-11, nullity 8, docking exact True, min|edge| 0.1500  CERTIFIED
+  l=23: 419 unknowns, 368 equations, 340 structural, 28 dependent; 40 docking pins, 79 fixed total
+    structural 3.11e-61, dependent 4.67e-61, ||Y||=7.55e+02, alpha=9.25e-11, nullity 8, docking exact True, min|edge| 0.1500  CERTIFIED
+  l=24: 440 unknowns, 384 equations, 356 structural, 28 dependent; 40 docking pins, 84 fixed total
+    structural 6.22e-61, dependent 1.94e-61, ||Y||=2.48e+03, alpha=3.24e-10, nullity 8, docking exact True, min|edge| 0.1500  CERTIFIED
+  l=25: 461 unknowns, 400 equations, 372 structural, 28 dependent; 40 docking pins, 89 fixed total
+    structural 6.22e-61, dependent 2.24e-61, ||Y||=9.96e+02, alpha=1.23e-10, nullity 8, docking exact True, min|edge| 0.1500  CERTIFIED
+  l=26: 482 unknowns, 416 equations, 388 structural, 28 dependent; 40 docking pins, 94 fixed total
+    structural 3.5e-61, dependent 1.94e-61, ||Y||=5.16e+02, alpha=6.88e-11, nullity 8, docking exact True, min|edge| 0.1500  CERTIFIED
+  l=27: 503 unknowns, 432 equations, 404 structural, 28 dependent; 40 docking pins, 99 fixed total
+    structural 6.22e-61, dependent 1.56e-61, ||Y||=1.51e+03, alpha=1.89e-10, nullity 8, docking exact True, min|edge| 0.1500  CERTIFIED
+  l=28: 524 unknowns, 448 equations, 420 structural, 28 dependent; 40 docking pins, 104 fixed total
+    structural 6.22e-61, dependent 2.48e-61, ||Y||=1.04e+03, alpha=1.31e-10, nullity 8, docking exact True, min|edge| 0.1500  CERTIFIED
+  l=29: 545 unknowns, 464 equations, 436 structural, 28 dependent; 40 docking pins, 109 fixed total
+    structural 3.31e-61, dependent 1.56e-61, ||Y||=3.84e+02, alpha=4.77e-11, nullity 8, docking exact True, min|edge| 0.1500  CERTIFIED
+  l=30: 566 unknowns, 480 equations, 452 structural, 28 dependent; 40 docking pins, 114 fixed total
+    structural 6.22e-61, dependent 3.69e-61, ||Y||=5.86e+02, alpha=7.43e-11, nullity 8, docking exact True, min|edge| 0.1500  CERTIFIED
+  l=31: 587 unknowns, 496 equations, 468 structural, 28 dependent; 40 docking pins, 119 fixed total
+    structural 4.67e-61, dependent 6.51e-61, ||Y||=6.67e+02, alpha=8.49e-11, nullity 8, docking exact True, min|edge| 0.1500  CERTIFIED
+  l=32: 608 unknowns, 512 equations, 484 structural, 28 dependent; 40 docking pins, 124 fixed total
+    structural 3.11e-61, dependent 2.14e-61, ||Y||=6.86e+02, alpha=8.71e-11, nullity 8, docking exact True, min|edge| 0.1500  CERTIFIED
+  l=33: 629 unknowns, 528 equations, 500 structural, 28 dependent; 40 docking pins, 129 fixed total
+    structural 2.53e-61, dependent 2.33e-61, ||Y||=5.64e+02, alpha=7.14e-11, nullity 8, docking exact True, min|edge| 0.1500  CERTIFIED
+  l=34: 650 unknowns, 544 equations, 516 structural, 28 dependent; 40 docking pins, 134 fixed total
+    structural 4.76e-61, dependent 4.08e-61, ||Y||=2.88e+02, alpha=3.66e-11, nullity 8, docking exact True, min|edge| 0.1500  CERTIFIED
+  l=35: 671 unknowns, 560 equations, 532 structural, 28 dependent; 40 docking pins, 139 fixed total
+    structural 3.11e-61, dependent 5.25e-61, ||Y||=1.43e+03, alpha=1.77e-10, nullity 8, docking exact True, min|edge| 0.1500  CERTIFIED
+  l=36: 692 unknowns, 576 equations, 548 structural, 28 dependent; 40 docking pins, 144 fixed total
+    structural 7.0e-61, dependent 3.11e-61, ||Y||=2.17e+03, alpha=2.79e-10, nullity 8, docking exact True, min|edge| 0.1500  CERTIFIED
+  l=37: 713 unknowns, 592 equations, 564 structural, 28 dependent; 40 docking pins, 149 fixed total
+    structural 3.11e-61, dependent 3.4e-61, ||Y||=8.29e+02, alpha=1.06e-10, nullity 8, docking exact True, min|edge| 0.1500  CERTIFIED
+  l=38: 734 unknowns, 608 equations, 580 structural, 28 dependent; 40 docking pins, 154 fixed total
+    structural 3.11e-61, dependent 2.14e-61, ||Y||=8.16e+02, alpha=1.01e-10, nullity 8, docking exact True, min|edge| 0.1502  CERTIFIED
+  l=39: 755 unknowns, 624 equations, 596 structural, 28 dependent; 40 docking pins, 159 fixed total
+    structural 3.11e-61, dependent 4.67e-61, ||Y||=5.92e+02, alpha=7.70e-11, nullity 8, docking exact True, min|edge| 0.1500  CERTIFIED
+  l=40: 776 unknowns, 640 equations, 612 structural, 28 dependent; 40 docking pins, 164 fixed total
+    structural 3.69e-61, dependent 1.94e-61, ||Y||=1.15e+03, alpha=1.43e-10, nullity 8, docking exact True, min|edge| 0.1500  CERTIFIED
+  l=41: 797 unknowns, 656 equations, 628 structural, 28 dependent; 40 docking pins, 169 fixed total
+    structural 6.22e-61, dependent 5.45e-61, ||Y||=8.81e+02, alpha=1.11e-10, nullity 8, docking exact True, min|edge| 0.1500  CERTIFIED
+  l=42: 818 unknowns, 672 equations, 644 structural, 28 dependent; 40 docking pins, 174 fixed total
+    structural 6.22e-61, dependent 3.11e-61, ||Y||=1.65e+03, alpha=2.12e-10, nullity 8, docking exact True, min|edge| 0.1500  CERTIFIED
+  l=43: 839 unknowns, 688 equations, 660 structural, 28 dependent; 40 docking pins, 179 fixed total
+\end{verbatim}\endgroup
+\end{document}
