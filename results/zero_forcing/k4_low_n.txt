@@ -121,3 +121,16 @@ P(28,4)   target nullity 2k+2 = 10
   stage 2 (double): max|f| structural = 7.017e-05, dependent = 1.346e-04
   did not converge; stopping
   -> stage 2/3 failed here; trying the next candidate
+  stage 1 [cold, sign -1]: r-th sv/scale = 4.786e-04, min|inner|/scale = 0.0002
+  600 unknowns, 560 equations, 515 structural, 45 dependent; fixing 85 at rationals
+  stage 2 (double): max|f| structural = 7.017e-05, dependent = 1.346e-04
+  did not converge; stopping
+  -> stage 2/3 failed here; trying the next candidate
+    no   so far: [26, 27]
+--- P(29,4)  dim 32 ---
+P(29,4)   target nullity 2k+2 = 10
+  stage 1 [cold, sign +1]: r-th sv/scale = 3.083e-04, min|inner|/scale = 0.0008
+  625 unknowns, 580 equations, 535 structural, 45 dependent; fixing 90 at rationals
+  stage 2 (double): max|f| structural = 8.752e-03, dependent = 1.344e-02
+  did not converge; stopping
+  -> stage 2/3 failed here; trying the next candidate

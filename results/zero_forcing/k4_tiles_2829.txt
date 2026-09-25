@@ -1,0 +1,4 @@
+retry k=4 tiles at l=28,29 with a large budget.
+Both were near misses at 18 restarts (2.0e-2 and 1.4e-2), and every
+k=4 near miss retried so far (31,32,33,35,38) has solved.
+If both land, L(4)=28 and n=28,29 are covered by tiling directly.
