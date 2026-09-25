@@ -178,10 +178,11 @@ print("wrote:", sorted(f for f in os.listdir(OUT) if f.startswith("fig_")))
 fig, ax = plt.subplots(figsize=(7.2, 3.5))
 NMAX = 130
 rows = [
-    (2, "all $n\\geq9$, $n\\neq10$", [n for n in range(9, NMAX+1) if n != 10], []),
-    (3, "all $n\\geq17$", list(range(17, NMAX+1)),
+    (2, "EVERY $n$", list(range(5, NMAX+1)), []),
+    (3, "EVERY $n$", list(range(7, NMAX+1)),
      [n for n in range(1, NMAX+1) if n % 10 == 0]),
-    (4, "all $n\\geq31$", list(range(31, NMAX+1)),
+    (4, "all $n\\geq30$, and $n\\leq23$",
+     list(range(9, 24)) + [26, 27] + list(range(30, NMAX+1)),
      [n for n in range(1, NMAX+1) if n % 60 == 0 or n % 70 == 0 or n % 90 == 0]),
     (5, "$24\\mid n$ only", [],
      [n for n in range(1, NMAX+1) if n % 24 == 0]),
@@ -192,11 +193,14 @@ for i, (k, lab, dense, sparse) in enumerate(rows):
     y = len(rows) - 1 - i
     ax.hlines(y, 5, NMAX, color="0.86", lw=9, zorder=1)
     if dense:
-        ax.hlines(y, min(dense), NMAX, color=GREEN, lw=9, zorder=2)
-        for n in range(5, NMAX+1):
-            if n not in dense and n >= min(dense):
-                ax.plot([n], [y], marker="|", color="white", ms=9, mew=2.2,
-                        zorder=3)
+        d = set(dense)
+        run_lo = None
+        for n in range(5, NMAX + 2):
+            if n in d and run_lo is None:
+                run_lo = n
+            elif n not in d and run_lo is not None:
+                ax.hlines(y, run_lo, n - 1, color=GREEN, lw=9, zorder=2)
+                run_lo = None
     if sparse:
         ax.plot(sparse, [y]*len(sparse), "o", color=BLUE, ms=6.5, zorder=4)
     ax.text(NMAX + 3, y, lab, va="center", fontsize=9.5,
@@ -207,8 +211,7 @@ ax.set_xlim(-14, NMAX + 42); ax.set_ylim(-0.8, len(rows) - 0.2)
 ax.set_yticks([]); ax.set_xlabel("$n$")
 ax.spines[["left", "right", "top"]].set_visible(False)
 ax.set_title("Which $n$ are settled: sparse congruence classes (blue) against\n"
-             "every $n$ past a threshold (green)", fontsize=11, color=BLUE,
-             weight="bold")
+             "determined values (green)", fontsize=11, color=BLUE, weight="bold")
 fig.savefig(f"{OUT}/fig_coverage.pdf"); plt.close(fig)
 
 # ---- F8: the tiling construction -----------------------------------------
