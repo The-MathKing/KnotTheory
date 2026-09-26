@@ -79,7 +79,11 @@
   [PASS] k=4: every certified tile has nullity exactly 10  --- all 32 tiles
   [PASS] k=4: docking weights exact in every certified tile  --- all tiles, to 1e-13
   [PASS] k=4: every n in [30, 400] is a sum of certified lengths  --- no gaps
-10. Slice lemma (lem:slice)
+10. The paper's own numbers against the computed ones
+  [PASS] paper's certification count matches the 55 certified tiles  --- all say 55
+  [PASS] k=3: paper's L matches the least certified tile length (21)  --- L=21
+  [PASS] k=4: paper's L matches the least certified tile length (30)  --- L=30
+11. Slice lemma (lem:slice)
   [PASS] spokes -> +1 and |outer| -> 1, nullity preserved, both parities  --- max deviation 2.7e-15
 
 ==================================================================

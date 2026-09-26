@@ -127,7 +127,7 @@ this paper not lying on a congruence class. Finally we obtain a statement for \e
 large $n$. Tiles carrying a fixed docking pattern at both ends have transfer
 products depending only on their interiors, so identity tiles of every length in
 $[L,2L)$ give $Z(P(n,k))=2k+2$ for every $n\ge L$ --- a finite list of finite
-problems. Carrying this out and certifying all $54$ tiles
+problems. Carrying this out and certifying all $55$ tiles
 involved,
 \[
   Z(P(n,3))=M(P(n,3))=8\ \ (n\ge17),\qquad
@@ -137,8 +137,9 @@ with no congruence condition. Together with exhaustive search on the finitely
 many smaller $n$, this determines $Z(P(n,k))$ for \emph{every} $n$ when $k=2$
 and when $k=3$ --- the latter for the first time, since the previously published
 value for $k=3$ is false. In particular $Z(P(n,3))=8$ for every $n\ge13$ and
-$13$ is optimal, which settles the stabilization threshold that~\cite{K}
-records as open.
+$13$ is optimal. This proves the conjecture of~\cite{K}, whose stated missing
+ingredient --- ``a lower-bound proof valid for all large $n$'' --- is precisely
+what the tiling construction supplies.
 With four exhaustive searches at $n=13,14,15,16$ this closes the $k=3$ case
 outright: $Z(P(n,3))=8$ for every $n\ge13$, and $13$ is optimal since
 $Z(P(11,3))=Z(P(12,3))=7$, so the stabilization threshold that the 2026
@@ -179,8 +180,10 @@ $Z(P(n,3))=8$ for $n\ge12$, is false: Krishnan \cite{K} exhibits
 $Z(P(12,3))=7$, the flaw being a case analysis that never excludes $7$-vertex
 sets. That note closes by recording that determining $Z(P(n,k))$ for general
 $k$ --- the stabilization threshold and a rigorous lower bound for $k\ge4$ ---
-remains open. We settle both: the threshold for $k=3$ is exactly $13$
-(Theorem~\ref{thm:k3krishnan}), and Theorems~\ref{thm:certvals} and
+remains open, and conjectures that $Z(P(n,3))=8$ for $n\ge13$, identifying
+the missing ingredient as ``a lower-bound proof valid for all large $n$''. We
+settle all three: Theorem~\ref{thm:k3krishnan} proves the conjecture and so
+fixes the threshold at $13$, and Theorems~\ref{thm:certvals} and
 \ref{thm:k3all} give rigorous lower bounds, indeed exact values, for $k=4$.
 
 \section{The rotation bootstrap}
@@ -2011,7 +2014,7 @@ pattern; this is arranged by pinning the $5(2k+2)$ docking weights at their exac
 integer values ($b=c=e=1$, $a=d=0$) rather than letting the solver move them, so
 they belong to the fixed set and the certified solution carries them exactly.
 
-All $23$ certifications pass. For $\ell=22$: $398$ unknowns, $352$ equations of
+All $23$ certifications at $k=3$ pass. For $\ell=22$: $398$ unknowns, $352$ equations of
 which $324$ are structural and $28$ dependent, $40$ docking pins and $74$
 unknowns fixed at rationals in all; high-precision Newton drives the structural
 residual to $3.1\times10^{-61}$ and the dependent equations to
@@ -2084,13 +2087,13 @@ $n\ge21$ and $n\ge30$, and Theorem~\ref{thm:p17} covers $17\le n\le20$ at $k=3$.
 \end{proof}
 
 \noindent
-All $23+31=54$ certifications pass. To give the numbers at both ends: at $k=3$,
+All $23+32=55$ certifications pass. To give the numbers at both ends: at $k=3$,
 $\ell=22$ has $398$ unknowns and $352$ equations of which $324$ are structural
 and $28=\binom82$ dependent, with $40$ docking pins, high-precision residual
 $3.1\times10^{-61}$, and Krawczyk $\alpha=6.7\times10^{-11}$; at $k=4$,
 $\ell=61$ has $1425$ unknowns and $1220$ equations of which $1175$ are
 structural and $45=\binom{10}2$ dependent, with $50$ docking pins, residual
-$4.7\times10^{-61}$, and $\alpha=3.7\times10^{-10}$. Across all $54$,
+$4.7\times10^{-61}$, and $\alpha=3.7\times10^{-10}$. Across all $55$,
 $\alpha\le3.8\times10^{-10}$, every certified matrix has nullity exactly
 $2k+2$, every docking weight matches its prescribed integer to $10^{-14}$, and
 the minimum edge weight is $0.15$ of the matrix scale. See
@@ -2099,7 +2102,7 @@ the minimum edge weight is $0.15$ of the matrix scale. See
 These are the statements Conjecture~\ref{conj:generaln} asks for, and they are
 proofs rather than computations reported as such: the chain is
 Theorem~\ref{thm:tiling}, Lemma~\ref{lem:tile} and
-Corollary~\ref{cor:ceiling}, all proved, together with $54$ interval
+Corollary~\ref{cor:ceiling}, all proved, together with $55$ interval
 certifications. No step rests on a floating-point nullity. With
 Theorem~\ref{thm:k2all} for $k=2$, the three smallest $k$ beyond the trivial
 case are now settled for all large $n$, with
@@ -2171,9 +2174,19 @@ likewise exhaustive.
 \end{proof}
 
 \noindent
-This settles, for $k=3$, the \emph{stabilization threshold} that
-\cite{K} records as open alongside a rigorous lower bound for $k\ge4$: the
-threshold is exactly $13$. The sequence is genuinely non-monotone below it ---
+This proves the conjecture of \cite{K}. That note closes with
+\begin{quote}\itshape
+``We conjecture $Z(P(n,3))=8$ for $n\ge13$; the missing ingredient is a
+lower-bound proof valid for all large $n$.''
+\end{quote}
+Theorem~\ref{thm:k3krishnan} is that statement, and the missing ingredient is
+exactly what Section~\ref{sec:generaln} supplies: $M\le Z$ turns a matrix into a
+lower bound, and the tiling construction produces such matrices for all large
+$n$ at once rather than one $n$ at a time. The upper bound $Z\le8$ for $n\ge9$
+is already in \cite{K}, as are the values for $7\le n\le20$ by exhaustive
+search; what is new here is the lower bound for every $n\ge13$, and with it the
+stabilization threshold, which the same note records as open alongside a
+rigorous lower bound for $k\ge4$. The sequence is genuinely non-monotone below it ---
 $Z(P(n,3))$ runs $6,6,6,8,7,7,8,8,\dots$ for $n=7,\dots,14$ --- which is why
 the threshold is not simply the first $n$ attaining the bound, and why
 Conjecture~\ref{conj} is stated in the form it is.
@@ -2359,7 +2372,7 @@ the certificate is an integer matrix with entries in $\{0,\pm1\}$.
 (Theorem~\ref{thm:k3all}), from Theorem~\ref{thm:tiling} together with interval
 certifications of identity tiles of every length in $[21,44)$ and $[31,62)$, plus
 Theorem~\ref{thm:p17} for $17\le n\le20$. No congruence condition appears and the
-primes are included. Each of the $54$ certifications is a Krawczyk contraction
+primes are included. Each of the $55$ certifications is a Krawczyk contraction
 bound with $\alpha\le3.8\times10^{-10}$; no step rests on a floating-point
 nullity. Each rests on a Krawczyk contraction bound for the bilinear system
 $A(w)K(X)=0$, with the square subsystem chosen structurally so that it is

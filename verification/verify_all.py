@@ -6,6 +6,7 @@ except the saved certificates, which are re-evaluated rather than believed.
 """
 import glob
 import itertools
+import re
 import os
 import sys
 
@@ -240,7 +241,35 @@ for k in (3, 4):
     check(f"k={k}: every n in [{min(cl)}, {NMAX}] is a sum of certified lengths",
           not gaps, f"gaps {gaps[:6]}" if gaps else "no gaps")
 
-print("10. Slice lemma (lem:slice)")
+print("10. The paper's own numbers against the computed ones")
+# Derived counts have gone stale three times: 53 vs 54, then 54 vs 55 after
+# L(4) improved from 31 to 30. Check the manuscript against reality rather
+# than trusting that an edit propagated.
+PAPER = "/Volumes/2TB/scifair/manuscript/zf_paper.tex"
+try:
+    src = open(PAPER).read()
+except OSError:
+    src = None
+if src is not None:
+    ncert = sum(len(glob.glob(f"{ROOT}/tilecert_*_{k}.npy")) for k in (3, 4))
+    # only the TOTAL phrasings; a per-k count such as "23 certifications at
+    # k=3" is a different quantity and must not be swept in
+    pats = [r"all \$(\d+)\$ tiles",
+            r"all \$(\d+)\$ certifications(?! at )",
+            r"together with \$(\d+)\$ interval",
+            r"[Aa]cross all \$(\d+)\$ certif"]
+    stale = sorted({int(m) for pat in pats for m in re.findall(pat, src)})
+    bad = [v for v in stale if v != ncert]
+    check(f"paper's certification count matches the {ncert} certified tiles",
+          not bad, f"paper says {bad}" if bad else f"all say {ncert}")
+    for k, lab in ((3, "L=21"), (4, "L=30")):
+        t = sorted(int(os.path.basename(f).split("_")[1])
+                   for f in glob.glob(f"{ROOT}/tilecert_*_{k}.npy"))
+        check(f"k={k}: paper's L matches the least certified tile length "
+              f"({min(t)})", f"$L={min(t)}$" in src or f"L={min(t)}" in src,
+              lab)
+
+print("11. Slice lemma (lem:slice)")
 from gauge_fixed import verify_slice
 rows = verify_slice()
 check("spokes -> +1 and |outer| -> 1, nullity preserved, both parities",
