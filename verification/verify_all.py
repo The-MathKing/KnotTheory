@@ -156,6 +156,13 @@ for f in sorted(glob.glob(f"{ROOT}/cert_gn_*_3.npy")):
     check(f"P({n},3) nullity 8, edges nonzero", nul == 8 and edges > 1e-3,
           f"nullity {nul}, min edge {edges:.4f}")
 print(f"      ({len(got)} saved certificates re-evaluated)")
+# thm:p17 claims every n in [17,33] with no exceptions.  Globbing whatever
+# happens to be on disk cannot see a MISSING one -- n=18 was certified in a log
+# but never saved, and this check is what would have caught that.
+want = list(range(17, 34))
+check("thm:p17: a saved certificate exists for every n in [17,33]",
+      got == want, f"missing {sorted(set(want) - set(got))}"
+      if set(want) - set(got) else f"all {len(want)} present")
 
 print("8. k=3 identity tiles and their compositions")
 from tiles import tile_sequence, dock_weights, build_matrix
@@ -257,19 +264,44 @@ if src is not None:
     pats = [r"all \$(\d+)\$ tiles",
             r"all \$(\d+)\$ certifications(?! at )",
             r"together with \$(\d+)\$ interval",
-            r"[Aa]cross all \$(\d+)\$ certif"]
+            r"together with \$(\d+)\$ certifications",
+            r"Each of the \$(\d+)\$ certifications",
+            r"All \$(\d+)\$ tile certifications",
+            r"[Aa]cross all \$(\d+)\$ certif",
+            r"\$23\+(?:\d+)=(\d+)\$ certifications"]
     stale = sorted({int(m) for pat in pats for m in re.findall(pat, src)})
     bad = [v for v in stale if v != ncert]
     check(f"paper's certification count matches the {ncert} certified tiles",
           not bad, f"paper says {bad}" if bad else f"all say {ncert}")
-    for k, lab in ((3, "L=21"), (4, "L=30")):
+    for k, lab in ((3, "L=21"), (4, "L=29")):
         t = sorted(int(os.path.basename(f).split("_")[1])
                    for f in glob.glob(f"{ROOT}/tilecert_*_{k}.npy"))
         check(f"k={k}: paper's L matches the least certified tile length "
               f"({min(t)})", f"$L={min(t)}$" in src or f"L={min(t)}" in src,
               lab)
 
-print("11. Slice lemma (lem:slice)")
+print("11. The Krawczyk test itself, re-run in EXACT arithmetic")
+# Sections 7 and 9 re-evaluate saved matrices numerically; neither touches the
+# claim the results actually rest on.  This re-runs the contraction test with
+# every quantity an exact rational, on the two tile lengths the thresholds
+# L(3) and L(4) rest on and on the smallest per-n certificate.
+from exact_certify import rebuild
+from exact_krawczyk import exact_krawczyk
+from certify_tiles import dock_indices
+from krawczyk import L_LIP
+for kind, k, m in (("tile", 3, 21), ("tile", 4, 29), ("gn", 3, 17)):
+    f = (f"{ROOT}/tilecert_{m}_{k}.npy" if kind == "tile"
+         else f"{ROOT}/cert_gn_{m}_{k}.npy")
+    zn = np.load(f)
+    pinned = dock_indices(m, k) if kind == "tile" else []
+    cells, perm, N, r, nw, eqs, free, dev, zn = rebuild(zn, m, k, pinned)
+    ok, info = exact_krawczyk(zn, cells, perm, N, r, nw, eqs, free, L_LIP,
+                              verbose=False)
+    check(f"{kind} {m} at k={k}: exact Krawczyk contraction", ok,
+          f"alpha = {float(info['alpha']):.3e} < 1 exactly" if ok
+          else "did not pass")
+
+print("12. Slice lemma (lem:slice)")
 from gauge_fixed import verify_slice
 rows = verify_slice()
 check("spokes -> +1 and |outer| -> 1, nullity preserved, both parities",

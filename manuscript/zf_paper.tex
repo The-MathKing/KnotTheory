@@ -55,8 +55,7 @@ hence
   Z(P(n,4))=M(P(n,4))=10,\qquad Z(P(n,5))=M(P(n,5))=12,
 \]
 for every $n$ divisible by $60$, $70$ or $90$, respectively by $24$ --- the
-first exact values of $Z(P(n,k))$ for $k\ge4$, a range a 2026 correction note
-records as open. In the second case the certificate is the adjacency matrix
+first exact values of $Z(P(n,k))$ for $k\ge4$. In the second case the certificate is the adjacency matrix
 itself, and we classify its nullity completely: with
 $P_k(z)=z^{2k+2}+z^{2k}-z^{k+1}+z^2+1$,
 $\operatorname{null}(\mathrm{Adj}\,P(n,k))=\sum\varphi(d)$ over those $d$ with
@@ -75,9 +74,12 @@ this is the whole story in closed form:
 so the construction fails precisely when two prescribed roots are antipodal.
 Counting antipodal classes on the grid then settles $k=2$ for all $n$:
 $Z(P(n,2))=M(P(n,2))=6$ for every $n\ge9$ with $n\ne10$, by an explicit
-certificate at the three most negative grid values; for $7\mid n$ no symmetric
-certificate exists and an integer non-symmetric one of nullity $6$ does, the
-one place where the larger matrix class is needed rather than merely available.
+certificate at the three most negative grid values. The rational symbol
+$\Psi_7$ has $c^{2}=-1$, so \emph{that symbol} admits no symmetric certificate,
+while an integer non-symmetric matrix of nullity $6$ exists for every $n$
+divisible by $7$; since the main branch already covers $n\ge9$, $n\ne10$, the
+one value where the larger matrix class is needed rather than merely available
+is $n=7$.
 The two exceptions are of opposite kinds --- $Z(P(8,2))=5$, so there the method
 is right to fail, and $Z(P(10,2))=6$, so there it is the method that falls
 short.
@@ -127,11 +129,11 @@ this paper not lying on a congruence class. Finally we obtain a statement for \e
 large $n$. Tiles carrying a fixed docking pattern at both ends have transfer
 products depending only on their interiors, so identity tiles of every length in
 $[L,2L)$ give $Z(P(n,k))=2k+2$ for every $n\ge L$ --- a finite list of finite
-problems. Carrying this out and certifying all $55$ tiles
+problems. Carrying this out and certifying all $56$ tiles
 involved,
 \[
   Z(P(n,3))=M(P(n,3))=8\ \ (n\ge17),\qquad
-  Z(P(n,4))=M(P(n,4))=10\ \ (n\ge30),
+  Z(P(n,4))=M(P(n,4))=10\ \ (n\ge29),
 \]
 with no congruence condition. Together with exhaustive search on the finitely
 many smaller $n$, this determines $Z(P(n,k))$ for \emph{every} $n$ when $k=2$
@@ -178,13 +180,12 @@ Rashidi, Shajareh Poursalavati and Tavakkoli \cite{RST} proved
 $Z(P(n,k))\le2k+2$ and $Z(P(n,2))=6$ for $n\ge10$. Their Theorem 3.6, claiming
 $Z(P(n,3))=8$ for $n\ge12$, is false: Krishnan \cite{K} exhibits
 $Z(P(12,3))=7$, the flaw being a case analysis that never excludes $7$-vertex
-sets. That note closes by recording that determining $Z(P(n,k))$ for general
-$k$ --- the stabilization threshold and a rigorous lower bound for $k\ge4$ ---
-remains open, and conjectures that $Z(P(n,3))=8$ for $n\ge13$, identifying
-the missing ingredient as ``a lower-bound proof valid for all large $n$''. We
-settle all three: Theorem~\ref{thm:k3krishnan} proves the conjecture and so
-fixes the threshold at $13$, and Theorems~\ref{thm:certvals} and
-\ref{thm:k3all} give rigorous lower bounds, indeed exact values, for $k=4$.
+sets. That note conjectures that $Z(P(n,3))=8$ for $n\ge13$, identifying
+the missing ingredient as ``a lower-bound proof valid for all large $n$''.
+Theorem~\ref{thm:k3krishnan} proves the conjecture and so fixes the threshold
+at $13$. For $k\ge4$ we are not aware of any published exact value of
+$Z(P(n,k))$ at any $n$; Theorems~\ref{thm:certvals} and \ref{thm:k3all} give
+the first ones, and for $k=4$ determine the whole sequence.
 
 \section{The rotation bootstrap}
 The following two lemmas are elementary; the point is that together they
@@ -339,7 +340,7 @@ $k$ & bound $2k+2$ & least $n$ attaining it & least $n$ from which it holds alwa
 \midrule
 2 & 6  & 7  & $9$ \ (it fails at $n=8$) \\
 3 & 8  & 10 & $13$ \ (it fails at $n=11,12$) \\
-4 & 10 & 18 & not determined \\
+4 & 10 & 18 & $18$ \ (Theorem~\ref{thm:complete}) \\
 5 & 12 & 23 & not determined \\
 6 & 14 & 28 & not determined; $Z(P(29,6))=12$ \\
 \bottomrule
@@ -348,7 +349,9 @@ $k$ & bound $2k+2$ & least $n$ attaining it & least $n$ from which it holds alwa
 $k=3$ it first holds at $n=10$, fails again at $n=11$ and $12$, and holds for
 every $n\ge13$ (Theorem~\ref{thm:k3krishnan}). The two columns are different
 quantities and conflating them is easy; at $k=6$ the bound is attained at
-$n=28$ and lost at $n=29$, so no stabilization threshold is known there.
+$n=28$ and lost at $n=29$, so no stabilization threshold is known there. At
+$k=4$ the two columns happen to coincide at $18$, which is not a pattern: they
+differ at $k=2$ and $k=3$.
 All values by exhaustive search.}
 \end{table}
 
@@ -1208,13 +1211,33 @@ do not have the analogue.
 \end{remark}
 
 \begin{remark}[Where this sits]
-The reduction is a discrete Floquet theory. The monodromy of
+The reduction is a discrete Floquet theory, and we claim no novelty for that
+layer. Decomposing an operator on a cyclic cover into a family indexed by the
+characters of the deck group is standard in spectral graph theory and in the
+analysis of periodic and magnetic Laplacians on covering graphs; see
+\cite{FL} and its references. The monodromy of
 Theorem~\ref{thm:red} plays the role of the Hill discriminant for a periodic
 Jacobi operator, and the condition $T=I$ --- all Floquet multipliers roots of
 unity --- is the statement that the operator has purely periodic spectrum at the
 relevant energy. The parameter $M(G)$ itself belongs to the minimum rank
-programme for graphs, and $Z(G)$ arose independently in the controllability of
-quantum spin networks and in sensor placement for power grids.
+programme for graphs \cite{AIM,FH}, and $Z(G)$ arose independently in the
+controllability of quantum spin networks and in sensor placement for power
+grids.
+
+The nearest prior work on a family of this shape is \cite{circ}, which bounds
+and characterises $Z$ and $M$ for several families of circulant graphs,
+including all cubic circulants, and finds $M=Z$ in every case examined, leaving
+open whether that holds for all circulants. The overlap is real and worth
+stating: that is the same pair of parameters on a cyclically symmetric family,
+and the same $M=Z$ question. The differences are that $P(n,k)$ is a $2\times2$
+block circulant rather than a circulant, so those results do not apply to it,
+and that \cite{circ} builds its matrices from orthogonal Hankel blocks, whereas
+our certificates come from prescribing the roots of the symbol $F$ and, beyond
+the period-one range, from solving $T_{\text{tile}}=I$ numerically and certifying
+the solution. What we have not found anywhere is the use of a transfer matrix or
+monodromy to force nullity on $P(n,k)$, nor a certified-tiling argument of the
+kind in Theorem~\ref{thm:tiling}; those, in combination, are what we take to be
+new here.
 \end{remark}
 
 \subsection*{Certificates beyond the rational ones}
@@ -1601,7 +1624,12 @@ $(5,1,24)$ and $(7,4,96)$.
 The obstruction is now visible: exactness requires a Galois-closed root set,
 and Galois-closed root sets are precisely the ones that degenerate. All eight
 at $(k,d,n)=(6,3,72)$ hit the symbol to $10^{-15}$ with nullity $14$ and all
-eight collapse a weight; both at $(6,3,60)$ likewise. So for these parameters \emph{no rational certificate exists}.
+eight collapse a weight; both at $(6,3,60)$ likewise. So for these parameters
+\emph{we found no rational certificate}. We state it that way deliberately: the
+degenerate points are singular points of the map and therefore attractors, which
+is why repeated random starts return to them, so a search collapsing every time
+is exactly the kind of negative evidence we caution against reading as a
+non-existence proof elsewhere in this section.
 
 Relaxing to a subfield does not obviously help, and it is worth being precise
 about why. If the weights lie in $K=\mathbb Q(\zeta_m)^H$ then the singular set
@@ -1761,10 +1789,15 @@ $\alpha=\|I-YJ\|_\infty+\|Y\|_\infty L\delta=1.85\times10^{-8}<1$ and
 $\|Yf\|_\infty+\alpha\delta\le\delta$. So a true zero $(w^\ast,X^\ast)$ exists in
 that box. Then $A(w^\ast)K(X^\ast)=0$ with $\operatorname{rank}K=8$, so
 $\operatorname{null}A(w^\ast)\ge8$, and $\le8$ by
-Corollary~\ref{cor:ceiling}. Every edge weight of $A(w^\ast)$ exceeds
-$0.05$ times the matrix scale and the ninth singular value exceeds $0.126$ times
-it, so the box is far from any degenerate stratum and the pattern is exactly
-that of $P(17,3)$.
+Corollary~\ref{cor:ceiling}. For that last step $A(w^\ast)$ must be a matrix
+\emph{of} $P(17,3)$, i.e.\ every edge weight nonzero, and this has to be known
+for $w^\ast$ rather than for the box centre $w_0$, which is all a direct
+computation gives. It follows from the box: $\|w^\ast-w_0\|_\infty\le\delta$, so
+every edge weight of $A(w^\ast)$ is at least $\min_e|w_0(e)|-\delta$, and here
+$\min_e|w_0(e)|$ exceeds $0.05$ times the matrix scale while
+$\delta=10^{-12}$, so the bound survives with room to spare. The ninth singular
+value exceeds $0.126$ times the scale, so the box is far from any degenerate
+stratum and the pattern is exactly that of $P(17,3)$.
 
 The remaining $n$ are identical in structure and each passes the same
 test; for $n=19$, to give one more set of numbers, there are $335$ unknowns and
@@ -2069,32 +2102,33 @@ coincidence of dimensions is suggestive and no more.
   Z(P(n,3))=M(P(n,3))=8 \quad\text{for every } n\ge17,
 \]
 \[
-  Z(P(n,4))=M(P(n,4))=10 \quad\text{for every } n\ge30 .
+  Z(P(n,4))=M(P(n,4))=10 \quad\text{for every } n\ge29 .
 \]
 \end{theorem}
 
 \begin{proof}
 For $k=3$, identity tiles exist for every $\ell$ with $21\le\ell<42$, and for
-$k=4$ for every $\ell$ with $30\le\ell<60$; each is certified as above.
-(At $k=3$ we in fact have certified tiles for every $21\le\ell\le43$.) A
+$k=4$ for every $\ell$ with $29\le\ell<58$; each is certified as above.
+(We in fact have certified tiles for every $21\le\ell\le43$ at $k=3$ and every
+$29\le\ell\le61$ at $k=4$, comfortably more than $[L,2L)$ requires.) A
 certification exhibits a box containing a true real solution of $AK=0$ with $K$
 of full rank $2k+2$, so the one-tile cyclic matrix has nullity at least $2k+2$
 and hence exactly $2k+2$ by Corollary~\ref{cor:ceiling}, so
 $T_{\text{tile}}=I$; and its docking weights are the prescribed integers
 exactly, since they are held fixed throughout, so tiles with different $\ell$
-compose. Theorem~\ref{thm:tiling} with $L=21$ and $L=30$ respectively gives
-$n\ge21$ and $n\ge30$, and Theorem~\ref{thm:p17} covers $17\le n\le20$ at $k=3$.
+compose. Theorem~\ref{thm:tiling} with $L=21$ and $L=29$ respectively gives
+$n\ge21$ and $n\ge29$, and Theorem~\ref{thm:p17} covers $17\le n\le20$ at $k=3$.
 \end{proof}
 
 \noindent
-All $23+32=55$ certifications pass. To give the numbers at both ends: at $k=3$,
+All $23+33=56$ certifications pass. To give the numbers at both ends: at $k=3$,
 $\ell=22$ has $398$ unknowns and $352$ equations of which $324$ are structural
 and $28=\binom82$ dependent, with $40$ docking pins, high-precision residual
 $3.1\times10^{-61}$, and Krawczyk $\alpha=6.7\times10^{-11}$; at $k=4$,
 $\ell=61$ has $1425$ unknowns and $1220$ equations of which $1175$ are
 structural and $45=\binom{10}2$ dependent, with $50$ docking pins, residual
-$4.7\times10^{-61}$, and $\alpha=3.7\times10^{-10}$. Across all $55$,
-$\alpha\le3.8\times10^{-10}$, every certified matrix has nullity exactly
+$4.7\times10^{-61}$, and $\alpha=3.7\times10^{-10}$. Across all $56$,
+$\alpha\le7.6\times10^{-10}$, every certified matrix has nullity exactly
 $2k+2$, every docking weight matches its prescribed integer to $10^{-14}$, and
 the minimum edge weight is $0.15$ of the matrix scale. See
 \texttt{verification/certify\_tiles.py}.
@@ -2102,19 +2136,21 @@ the minimum edge weight is $0.15$ of the matrix scale. See
 These are the statements Conjecture~\ref{conj:generaln} asks for, and they are
 proofs rather than computations reported as such: the chain is
 Theorem~\ref{thm:tiling}, Lemma~\ref{lem:tile} and
-Corollary~\ref{cor:ceiling}, all proved, together with $55$ interval
-certifications. No step rests on a floating-point nullity. With
+Corollary~\ref{cor:ceiling}, all proved, together with $56$ certifications
+whose Krawczyk hypotheses are verified in exact rational arithmetic
+(Section~\ref{sec:exact}). No step rests on a floating-point nullity. With
 Theorem~\ref{thm:k2all} for $k=2$, the three smallest $k$ beyond the trivial
 case are now settled for all large $n$, with
 \[
-  L(2)=9,\qquad L(3)=17,\qquad L(4)=30 ,
+  L(2)=9,\qquad L(3)=17,\qquad L(4)=29 ,
 \]
 against the tile lower bound $2(k+1)+(2k+2)^{2}/5$, which is $13.2$, $20.8$ and
 $30$.
 
-\begin{theorem}[Complete determination for $k=2$ and $k=3$]\label{thm:complete}
-For every $n$ with $2k<n$, the value $Z(P(n,k))$ is now known when $k=2$ or
-$k=3$:
+\begin{theorem}[Complete determination for $k=2$, $k=3$ and $k=4$]
+\label{thm:complete}
+For every $n$ with $2k<n$, the value $Z(P(n,k))$ is now known when $k=2$, $k=3$
+or $k=4$:
 \[
 \begin{array}{r|cccccccc}
  n            & 5 & 6 & 7 & 8 & 9 & 10 & 11 & \ge12\\ \hline
@@ -2126,13 +2162,21 @@ $k=3$:
  Z(P(n,3))    & 6 & 6 & 6 & 8  & 7  & 7  & 8
 \end{array}
 \]
-No value is left open in either row.
+\[
+\begin{array}{r|ccccccccc|c}
+ n            & 9 & 10 & 11 & 12 & 13 & 14 & 15 & 16 & 17 & \ge18\\ \hline
+ Z(P(n,4))    & 6 & 6  & 7  & 6  & 8  & 8  & 9  & 8  & 9  & 10
+\end{array}
+\]
+No value is left open in any of the three rows.
 \end{theorem}
 
 \begin{proof}
-The tails are Theorem~\ref{thm:k2all} for $k=2$ and
-Theorem~\ref{thm:k3krishnan} for $k=3$; the finitely many remaining values are
-exhaustive searches over vertex subsets.
+The tails are Theorem~\ref{thm:k2all} for $k=2$,
+Theorem~\ref{thm:k3krishnan} for $k=3$, and Theorem~\ref{thm:k3all} for $k=4$,
+which gives $Z(P(n,4))=10$ for every $n\ge29$; the finitely many remaining
+values, including $18\le n\le28$ at $k=4$, are exhaustive searches over vertex
+subsets.
 \end{proof}
 
 \noindent
@@ -2147,15 +2191,33 @@ argument that assumed monotonicity would have got this wrong, and one did.
 \noindent
 The same exhaustive computation at $k=4$ gives
 \[
-\begin{array}{r|cccccccccccccc}
- n & 9 & 10 & 11 & 12 & 13 & 14 & 15 & 16 & 17 & 18 & 19 & 20 & 21 & 22\\ \hline
- Z(P(n,4)) & 6 & 6 & 7 & 6 & 8 & 8 & 9 & 8 & 9 & 10 & 10 & 10 & 10 & 10
+\begin{array}{r|cccccccccc}
+ n & 9 & 10 & 11 & 12 & 13 & 14 & 15 & 16 & 17 & 18\\ \hline
+ Z(P(n,4)) & 6 & 6 & 7 & 6 & 8 & 8 & 9 & 8 & 9 & 10
+\end{array}
+\]
+\[
+\begin{array}{r|cccccccccc}
+ n & 19 & 20 & 21 & 22 & 23 & 24 & 25 & 26 & 27 & 28\\ \hline
+ Z(P(n,4)) & 10 & 10 & 10 & 10 & 10 & 10 & 10 & 10 & 10 & 10
 \end{array}
 \]
 which is more erratic still: the value falls at $n=12$ and again at $n=16$, and
-the bound $10$ is first attained at $n=18$. With
-Theorem~\ref{thm:k3all} for $n\ge30$ and certificates at $n=26,27$, the only
-values of $Z(P(n,4))$ not determined are $n\in\{23,24,25,28,29\}$.
+the bound $10$ is first attained at $n=18$. These reach $n=28$ because the
+rotation $\rho(i)=i+1$ lets the search assume $u_0\in S$, or $v_0\in S$ if $S$ is
+entirely inner, which is exhaustive up to symmetry and so still exact; at
+$n=28$, ruling out every $9$-set takes about $1.2\times10^{9}$ candidates.
+Together with Theorem~\ref{thm:k3all} for $n\ge29$ this leaves \emph{no} value
+of $Z(P(n,4))$ undetermined, which is why $k=4$ appears in
+Theorem~\ref{thm:complete}.
+
+The matrix statement is slightly weaker than the forcing statement at two
+values. $M(P(n,4))=10$ is proved for every $n\ge29$ by
+Theorem~\ref{thm:k3all}, for $n=25,26,27$ by individual certificates, and for
+every $n$ divisible by $60$, $70$ or $90$ by Theorem~\ref{thm:certvals}. At
+$n=24$ and $n=28$ we know $Z=10$ but have no certificate, so $M$ is not
+determined there; nothing suggests $M<Z$ at those two, we simply have not found
+the matrix.
 
 \begin{theorem}[$k=3$ completely, and the stabilization threshold]
 \label{thm:k3krishnan}
@@ -2185,11 +2247,84 @@ lower bound, and the tiling construction produces such matrices for all large
 $n$ at once rather than one $n$ at a time. The upper bound $Z\le8$ for $n\ge9$
 is already in \cite{K}, as are the values for $7\le n\le20$ by exhaustive
 search; what is new here is the lower bound for every $n\ge13$, and with it the
-stabilization threshold, which the same note records as open alongside a
-rigorous lower bound for $k\ge4$. The sequence is genuinely non-monotone below it ---
+stabilization threshold. The sequence is genuinely non-monotone below it ---
 $Z(P(n,3))$ runs $6,6,6,8,7,7,8,8,\dots$ for $n=7,\dots,14$ --- which is why
 the threshold is not simply the first $n$ attaining the bound, and why
 Conjecture~\ref{conj} is stated in the form it is.
+
+\subsection*{The certification is exact, not floating-point}
+\label{sec:exact}
+A Krawczyk bound is a theorem about real numbers, and evaluating its three norms
+in double precision is not a proof of its hypotheses. Our first implementation
+did exactly that: $\|Y\|_\infty$, $\|I-YJ\|_\infty$ and $\|Yf\|_\infty$ were
+computed in float64 with no directed rounding, and $J$ and $f$ were evaluated at
+the double-rounded point rather than at the high-precision one. The margins are
+enormous --- $\alpha$ near $10^{-10}$ against a threshold of $1$ --- so the
+conclusion was surely true, but ``certified'' should not rest on a margin.
+
+It need not. Three observations make the whole test exact at essentially no
+cost.
+
+\begin{enumerate}
+\item \emph{The box centre is exactly rational.} A stored certificate is a
+float64 vector, and every float64 is a dyadic rational, so $z_0$ is known
+exactly. We snap it to the grid $2^{-60}\mathbb Z$, which moves $z_0$ by at most
+$2^{-61}$ and is harmless because $z_0$ is only the centre of the box and the
+test re-measures $f(z_0)$ after the move.
+\item \emph{$f$ and $J$ have integer coefficients.} Since $f(w,X)=A(w)K(X)$ is
+bilinear, $J$ is affine and every entry of $J(z_0)$ is $0$, $1$, or a single
+coordinate of $z_0$. So $J(z_0)$ and $f(z_0)$ are exactly rational with
+denominators $2^{60}$ and $2^{120}$, and are built here as integer matrices.
+\item \emph{$Y$ is arbitrary.} The Krawczyk test holds for \emph{any} matrix
+$Y$; $Y$ has only to make $\|I-YJ\|_\infty$ small, and need not be
+$J(z_0)^{-1}$. So we take the float64 inverse and read it as an exact dyadic
+rational, losing nothing whatsoever.
+\end{enumerate}
+
+\noindent
+Hence $\|Y\|_\infty$, $\|I-YJ(z_0)\|_\infty$ and $\|Yf(z_0)\|_\infty$ are exact
+rationals, and the two comparisons $\alpha<1$ and
+$\|Yf\|_\infty+\alpha\delta\le\delta$ are exact integer comparisons. The one
+obstacle is speed, since $\alpha$ needs every entry of the $\operatorname{rk}
+\times\operatorname{rk}$ product $YJ(z_0)$ with $\operatorname{rk}$ up to
+$1175$. We multiply by \emph{balanced limb decomposition}: each integer is
+written in base $2^{20}$ with digits in $[-2^{19},2^{19})$, each pair of digit
+matrices is multiplied in float64 --- those products stay below $2^{53}$ and are
+therefore themselves exact integers --- and the limb products are recombined
+with exact integer arithmetic. This gives the exact integer product at the speed
+of BLAS; the routine refuses to run if the limb bound is not met, so it cannot
+silently return an inexact answer.
+
+All $56$ tile certifications and all $17$ per-$n$ certifications of
+Theorem~\ref{thm:p17} pass the test evaluated this way, with
+$\alpha\le7.6\times10^{-10}$. To give the two that the thresholds rest on:
+$\ell=21$ at $k=3$ has $\operatorname{rk}=308$,
+$\|Y\|_\infty=1.5743\times10^{3}$, $\alpha_0=2.5071\times10^{-11}$ and
+$\alpha=2.139912\times10^{-10}$; $\ell=29$ at $k=4$ has
+$\operatorname{rk}=535$, $\|Y\|_\infty=1.4416\times10^{3}$,
+$\alpha_0=9.2248\times10^{-12}$ and $\alpha=1.822215\times10^{-10}$. These agree
+with the float64 values to three figures, which is the expected outcome and the
+reason the original conclusion was not in doubt; the point is that they are now
+\emph{bounds} rather than estimates. See
+\texttt{verification/exact\_krawczyk.py} and
+\texttt{verification/exact\_certify.py}.
+
+Two smaller points belong here. First, the Lipschitz constant. Row $(i,t)$ of
+$f$ involves the $\le4$ weights whose cells meet row $i$ --- one diagonal and
+three edges, since $P(n,k)$ is cubic --- each contributing one entry of $K$, and
+the $\le4$ columns $X[m,\cdot]$ for which $A[i,\ell]\ne0$, each contributing one
+weight. Both groups are Lipschitz $1$ in the corresponding coordinate, so the
+row sum of $|J(z_1)-J(z_2)|$ is at most $8\|z_1-z_2\|_\infty$ and $L=8$ is
+valid; it is also attained, in the all-ones direction. We nevertheless run every
+test with $L=12$, which is conservative: a larger $L$ makes $\alpha$ larger and
+the test strictly harder to pass, so using $12$ can only understate the margin.
+
+Second, the nonvanishing of the edge weights is deduced over the whole box
+exactly as in the proof of Theorem~\ref{thm:p17}, and for the tiles the docking
+weights are not perturbed at all: they sit among the fixed coordinates, so they
+are exact integers at $z_0$ and the box moves only the free coordinates. That is
+what lets tiles of different lengths compose --- the certified $w^\ast$ carries
+the docking pattern exactly, not approximately.
 
 \subsection*{What a general existence proof would need, and what it reduces to}
 \label{sec:symplectic}
@@ -2277,15 +2412,26 @@ gives the solution variety dimension only $3$ and $9$. At $k=4$ it leaves
 $9\le n\le30$ open apart from the multiples of $60$, $70$ and $90$ covered by
 Theorem~\ref{thm:certvals}.
 
-It also gives nothing for $k\ge5$, and here we are less able to say why than we
-would like. The count $\ell\ge2(k+1)+(2k+2)^{2}/5$ gives $L=41$ at $k=5$ and
-$L=54$ at $k=6$. We searched $41\le\ell\le45$ at $k=5$ and found no identity
-tile: the residual stalls between $7\times10^{-2}$ and $2\times10^{-1}$, both from
-the degenerate system $T_{\text{tile}}=I$ and from the full-rank structural system
-started at random. Nothing in Lemma~\ref{lem:tile} or Theorem~\ref{thm:tiling}
+At $k=5$ the picture is different from what we first reported, and the
+correction is worth stating plainly. The count $\ell\ge2(k+1)+(2k+2)^{2}/5$ gives
+$\ell\ge41$ at $k=5$ and $\ell\ge54$ at $k=6$, and we initially searched only
+$41\le\ell\le45$ at $k=5$ and found no identity tile, the residual stalling
+between $7\times10^{-2}$ and $2\times10^{-1}$. We drew no conclusion from that,
+correctly: the count is a \emph{lower bound} on where tiles can exist, not a
+prediction of where they start, and at $k=3$ the gap is already large ($21$
+against a count of $20.8$, but nothing at all below $21$). Searching higher, we
+now have identity tiles at $k=5$ for
+\[
+  \ell = 54,55,\dots,72,\ 74,\ 75 ,
+\]
+twenty-one lengths in all, with $\max|T_{\text{tile}}-I|$ between
+$7\times10^{-14}$ and $2.5\times10^{-12}$ and minimum edge weight $0.15$ of the
+matrix scale. \emph{None of these is yet Krawczyk-certified}, so they prove
+nothing as they stand; and $[54,108)$ needs all $54$ lengths, of which we have
+$21$. So $k=5$ is not an obstruction of principle but an unfinished computation.
+Nothing in Lemma~\ref{lem:tile} or Theorem~\ref{thm:tiling}
 refers to $k$, and the certification scaled from $8\times8$ transfer matrices at
-$k=3$ to $10\times10$ at $k=4$ with no modification at all, so we see no obstacle
-of principle.
+$k=3$ to $10\times10$ at $k=4$ with no modification at all.
 
 We considered the natural explanation --- that the product of $\ell$ transfer
 matrices becomes too ill-conditioned for the residual $T-I$ to carry
@@ -2313,7 +2459,8 @@ needed retrying.
 \section{Why lower bounds resist standard methods}\label{sec:resist}
 A set is zero forcing iff it meets every \emph{fort} --- a nonempty $F$ such
 that every vertex outside $F$ has $0$ or $\ge2$ neighbours in $F$ --- so $Z$
-is a minimum hitting set over forts. Three standard consequences all fail
+is a minimum hitting set over forts. Forts, and the covering formulation of $Z$
+they give, are due to Brimkov, Fast and Hicks \cite{BFH}. Three standard consequences all fail
 here, and all degrade as $k$ grows.
 
 \begin{itemize}
@@ -2368,13 +2515,13 @@ previously made at a single $n$. In the $k=2$ ($7\mid n$), $k=3$ and $k=7$ cases
 the certificate is an integer matrix with entries in $\{0,\pm1\}$.
 
 \item \textbf{Proved by interval certification.} $Z(P(n,3))=M(P(n,3))=8$ for
-\emph{every} $n\ge17$, and $Z(P(n,4))=M(P(n,4))=10$ for \emph{every} $n\ge30$
+\emph{every} $n\ge17$, and $Z(P(n,4))=M(P(n,4))=10$ for \emph{every} $n\ge29$
 (Theorem~\ref{thm:k3all}), from Theorem~\ref{thm:tiling} together with interval
-certifications of identity tiles of every length in $[21,44)$ and $[31,62)$, plus
+certifications of identity tiles of every length in $[21,44)$ and $[29,62)$, plus
 Theorem~\ref{thm:p17} for $17\le n\le20$. No congruence condition appears and the
-primes are included. Each of the $55$ certifications is a Krawczyk contraction
-bound with $\alpha\le3.8\times10^{-10}$; no step rests on a floating-point
-nullity. Each rests on a Krawczyk contraction bound for the bilinear system
+primes are included. Each of the $56$ certifications is a Krawczyk contraction
+bound with $\alpha\le7.6\times10^{-10}$, evaluated in exact rational arithmetic
+(Section~\ref{sec:exact}); no step rests on a floating-point nullity. Each rests on a Krawczyk contraction bound for the bilinear system
 $A(w)K(X)=0$, with the square subsystem chosen structurally so that it is
 equivalent to $AK=0$ rather than merely a maximal-rank selection of it. By
 Theorem~\ref{thm:congbound} no period-one certificate can reach these $n$ at
@@ -2461,7 +2608,9 @@ $Sp(2n,\mathbb R)$ need not be the whole group.
 \item \textbf{Inconclusive, not negative (ours).} The per-$n$ search of
 Section~\ref{sec:generaln} at $k=6$ returned nothing at
 $n=41,43,45,47,49,51$, and the tile search at $k=5$ nothing at
-$41\le\ell\le45$. Both ran at a restart budget that we have since seen condemn
+$41\le\ell\le45$ --- the latter now explained: the first $k=5$ tile is at
+$\ell=54$, so that search was below the range where tiles exist. Both ran at a
+restart budget that we have since seen condemn
 a length that does solve: $\ell=21$ at $k=3$ stalled at $5.6\times10^{-2}$ on
 four restarts and produced a tile at $1.4\times10^{-14}$ on twenty-five. We
 therefore record these as searches we did not push far enough, not as evidence
@@ -2478,9 +2627,10 @@ method of Section~\ref{sec:generaln}. It collapses onto the degenerate strata
 evidence, and the conclusion we drew from them, that exactness for $k\ge6$ was
 unlikely, was not supported.
 
-\item \textbf{Open.} Conjecture~\ref{conj:generaln} for $k\ge5$, where we have
-not attempted the tiles: the count gives $L=41$ and $41$ tiles at $k=5$, $L=54$
-and $54$ at $k=6$; whether
+\item \textbf{Open.} Conjecture~\ref{conj:generaln} for $k\ge5$. At $k=5$ we
+have $21$ of the $54$ identity tiles that $[54,108)$ requires, and none of them
+is certified, so the $k=5$ case is open although the computation is well
+started; at $k=6$ we have none, the count giving only $\ell\ge54$. Also whether
 $M=Z$ in general; exact rather than interval certification at the $n$ of
 Theorem~\ref{thm:p17}; and the rank law. We expect
 $M(P(10,2))<Z(P(10,2))=6$, a strict gap, since the search fails there even
@@ -2499,6 +2649,25 @@ essential.
 \end{itemize}
 
 \begin{thebibliography}{9}
+\bibitem{AIM} AIM Minimum Rank -- Special Graphs Work Group,
+Zero forcing sets and the minimum rank of graphs,
+\emph{Linear Algebra Appl.} \textbf{428} (2008) 1628--1648.
+
+\bibitem{FH} S. Fallat and L. Hogben, Variants on the minimum rank problem:
+a survey II, arXiv:1102.5142 (2011).
+
+\bibitem{circ} L. Duong, B. K. Kroschel, M. Riddell, K. N. Vander Meulen,
+A. Van Tuyl, Maximum nullity and zero forcing of circulant graphs,
+\emph{Special Matrices} \textbf{8} (2020), no. 1, 221--234.
+
+\bibitem{BFH} B. Brimkov, C. C. Fast, I. V. Hicks, Computational approaches
+for zero forcing and related problems, \emph{European J. Oper. Res.}
+\textbf{273} (2019) 889--903; arXiv:1704.02065.
+
+\bibitem{FL} J. S. Fabila-Carrasco and F. Lled\'o, Covering graphs, magnetic
+spectral gaps and applications to polymers and nanoribbons,
+\emph{Symmetry} \textbf{11} (2019) 1163.
+
 \bibitem{RST} S. Rashidi, N. Shajareh Poursalavati, M. Tavakkoli,
 Computing the zero forcing number for generalized Petersen graphs,
 \emph{J. Algebra Combin. Discrete Struct. Appl.} 7(2) (2020), 183--193.

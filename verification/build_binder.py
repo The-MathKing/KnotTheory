@@ -97,7 +97,7 @@ I.   & Official Abstract\\
 II.  & Research Plan\\
 III. & Research Paper\\
 IV.  & Research Log, dated, including every dead end\\
-V.   & Verification Output, 69 checks\\
+V.   & Verification Output, 77 checks\\
 VI.  & A Certification Transcript\\
 \end{tabular}
 \par\vspace{0.9em}
@@ -172,6 +172,19 @@ ct = "\n".join(open(f"{ROOT}/results/zero_forcing/certify_tiles_k3.txt")
                .read().split("\n")[:44])
 open(f"{BUILD}/back.tex", "w").write(
     BACK.replace("__VERIFY__", va).replace("__CERT__", ct))
+
+# The binder embeds manuscript/zf_paper.pdf and manuscript/zf_log.pdf.  Those
+# are build products, and assembling them without rebuilding silently ships a
+# binder that disagrees with the .tex sources -- which is exactly what happened
+# once.  Rebuild them here so the binder cannot be stale.
+for src in ("zf_paper", "zf_log"):
+    r = subprocess.run(["tectonic", "-X", "compile", f"{src}.tex"],
+                       cwd=f"{ROOT}/manuscript", capture_output=True, text=True)
+    if r.returncode != 0:
+        raise SystemExit(f"{src}.tex failed to compile:\n{r.stderr[-2000:]}")
+    n = subprocess.run(["pdfinfo", f"{ROOT}/manuscript/{src}.pdf"],
+                       capture_output=True, text=True).stdout
+    print(f"  {src}: {n.split('Pages:')[1].split()[0]} pages (rebuilt)")
 
 for name in ("front", "mid", "back"):
     subprocess.run(["tectonic", "-X", "compile", f"{name}.tex"], cwd=BUILD,

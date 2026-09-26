@@ -1240,6 +1240,92 @@ log.} The per-$n$ sweeps at $k=4,5,6$ failed at every $n$ they reached, and by
 the slice lemma that too is a statement about the search rather than about the
 graphs.
 
+\section*{Entry 28: an external review, and the difference between
+a margin and a bound}
+
+An adversarial review of the whole project came back with eleven findings. Five
+were already fixed in the working tree and the reviewer had read a stale
+checkout, which is itself worth noting --- I wasted no time on those only because
+I checked the current files before acting on the report rather than after. The
+other six were real, and one of them was the most substantive criticism the
+project has received.
+
+\textbf{The one that mattered: a margin is not a bound.} Every tile and every
+per-$n$ value is ``certified'' by a Krawczyk contraction, and I have been
+describing that as interval certification. It was not. The criterion is exact
+mathematics, but my code evaluated its three norms --- $\|Y\|_\infty$,
+$\|I-YJ\|_\infty$, $\|Yf\|_\infty$ --- in float64 with no directed rounding, and
+evaluated $J$ and $f$ at the double-rounded point rather than the $60$-digit one.
+So what I had was a floating-point estimate of a quantity the theorem needs
+bounded. The estimate was $\alpha\approx10^{-10}$ against a threshold of $1$, a
+margin of ten orders of magnitude, and I think the conclusion was never in
+doubt. But ``I am ten orders of magnitude inside the threshold'' is an argument
+about how wrong the arithmetic could plausibly be, and that is exactly the kind
+of argument a proof is supposed to replace.
+
+The fix turned out to be cheap, which is the annoying part --- I could have done
+it at any point. Three facts: the box centre is a float64 vector and every
+float64 is a dyadic rational, so $z_0$ is known exactly; $f$ is bilinear with
+integer coefficients, so $f(z_0)$ and $J(z_0)$ are exactly rational; and $Y$ in
+the Krawczyk test is \emph{arbitrary}, so rounding it to a rational costs
+nothing at all. The only obstacle was speed, since $\alpha$ needs all
+$1175\times1175$ entries of $YJ$ and a \texttt{Fraction} matmul at that size is
+hopeless. Writing each integer in base $2^{20}$ with balanced digits makes every
+digit-pair product exact in float64, so BLAS does the work and the recombination
+is exact integer arithmetic. All $56$ tiles and all $17$ per-$n$ certificates
+pass, with $\alpha$ agreeing with the float64 values to three figures.
+
+I want to be precise about what changed and what did not. No result changed. The
+numbers are the same to three figures. What changed is that ``$\alpha<1$'' is now
+an exact integer comparison instead of a floating-point one, so the word
+``proved'' is doing honest work. If a judge asks me to show them the interval,
+I can.
+
+\textbf{Reporting a search as a negative result when I had stopped looking.} The
+paper said we searched $41\le\ell\le45$ at $k=5$ and found no identity tile, and
+listed $k\ge5$ as ``tiles not attempted''. Meanwhile the repository contained
+twenty-one $k=5$ identity tiles at $\ell=54$ through $75$, found later and never
+written up. The poster knew; the paper did not. This is the same failure as the
+one in Entry~27 --- a count that is a \emph{lower bound} on where tiles can exist
+read as a prediction of where they start --- and it produced the worst kind of
+error, an honest-limitation paragraph that was false in the direction of
+understating the work. The paper now reports the twenty-one tiles and says
+plainly that none of them is certified, so they prove nothing yet, and that
+$[54,108)$ needs fifty-four.
+
+\textbf{Citing a paper for something it does not say.} I had credited
+\cite{K} with recording $k\ge4$ as open. Its abstract is exclusively about
+$k=3$; I had only ever read the abstract, so I had no basis for the claim. It is
+gone. The $k\ge4$ novelty stands without it, and I should not have needed the
+reviewer to tell me that a citation I could not check was a citation I should
+not make.
+
+\textbf{An inference I forbid elsewhere.} The paper asserted that for certain
+parameters ``no rational certificate exists''. The evidence was that every
+Newton solve from an enumerated Galois-closed root set collapsed a weight --- on
+a solution manifold of dimension $8$, where the paper itself notes the
+degenerate points are singular and therefore attractors. That is a search
+failing, not a non-existence proof, and I had already written a section warning
+against reading exactly this kind of evidence this way. Changed to ``we found
+no rational certificate'', with the reason it is not more than that.
+
+\textbf{A certificate that existed only in a log.} $n=18$ at $k=3$ was
+certified, and the log records $\alpha=5.4\times10^{-10}$, but the matrix was
+never saved. The per-$n$ theorem in the paper claims all of $17\le n\le33$, and
+\texttt{verify\_all.py} globbed whatever files were present and cheerfully
+reported ``$16$ saved certificates re-evaluated'' --- a harness that cannot see
+an absence. It now asserts the full range, and it re-runs three Krawczyk
+contractions in exact arithmetic rather than only re-checking nullities, so the
+suite finally touches the claim the results rest on.
+
+\textbf{And $k=4$ closed, which I did not expect today.} The $\ell=29$ tile
+certified, lowering $L(4)$ from $30$ to $29$; the exhaustive solver reaches
+$n=28$ because the rotation symmetry lets it assume $u_0\in S$; and those two
+meet with nothing in between. So $Z(P(n,4))$ is determined for every $n$, and
+$k=4$ joins $k=2$ and $k=3$. The matrix value $M(P(n,4))$ is still open at
+$n=24$ and $n=28$, where I have $Z=10$ but no certificate, and I have said so
+rather than letting the forcing result carry the matrix result along with it.
+
 \begin{thebibliography}{9}
 \bibitem{RST} S. Rashidi, N. Shajareh Poursalavati, M. Tavakkoli,
 \emph{J. Algebra Combin. Discrete Struct. Appl.} 7(2) (2020), 183--193.

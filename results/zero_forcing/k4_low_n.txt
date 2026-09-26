@@ -142,3 +142,15 @@ P(29,4)   target nullity 2k+2 = 10
     no   so far: [26, 27]
 --- P(30,4)  dim 35 ---
 P(30,4)   target nullity 2k+2 = 10
+  stage 1 [cold, sign +1]: r-th sv/scale = 5.779e-04, min|inner|/scale = 0.0038
+  650 unknowns, 600 equations, 555 structural, 45 dependent; fixing 95 at rationals
+  stage 2 (double): max|f| structural = 1.256e-04, dependent = 3.827e-04
+  did not converge; stopping
+  -> stage 2/3 failed here; trying the next candidate
+  stage 1 [cold, sign -1]: r-th sv/scale = 5.779e-04, min|inner|/scale = 0.0038
+  650 unknowns, 600 equations, 555 structural, 45 dependent; fixing 95 at rationals
+  stage 2 (double): max|f| structural = 1.256e-04, dependent = 3.827e-04
+  did not converge; stopping
+  -> stage 2/3 failed here; trying the next candidate
+    no   so far: [26, 27]
+CERTIFIED: [26, 27]

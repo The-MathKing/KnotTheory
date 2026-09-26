@@ -236,11 +236,11 @@ problems.}}
 \keybox{\textbf{Main result.} Every value below is new or corrects a published one.
 \[
 \begin{array}{ll}
- Z(P(n,2))\ \text{determined for \textbf{every} } n, &
- Z(P(n,3))\ \text{determined for \textbf{every} } n,\\[3pt]
+ \multicolumn{2}{l}{Z(P(n,2)),\ Z(P(n,3))\ \text{and}\ Z(P(n,4))\
+   \text{determined for \textbf{every} } n,}\\[3pt]
  \multicolumn{2}{l}{Z(P(n,3))=8 \ \text{exactly for } n\ge13,\ \text{and } 13
    \text{ is optimal}:\ Z(P(11,3))=Z(P(12,3))=7,}\\[3pt]
- \multicolumn{2}{l}{Z(P(n,4))=M(P(n,4))=10 \ \text{for \textbf{every} } n\ge30 .}
+ \multicolumn{2}{l}{Z(P(n,4))=M(P(n,4))=10 \ \text{for \textbf{every} } n\ge29 .}
 \end{array}
 \]
 \textbf{We prove a conjecture stated in a July 2026 arXiv paper.} That note
@@ -252,9 +252,11 @@ $n$.''} The tiling construction is that missing ingredient.}
 \textbf{How the three are proved.} $k=2$: the closed form
 $c^2=-(s_1{+}s_2)(s_1{+}s_3)(s_2{+}s_3)$, positive at the three most negative
 grid values for all $n\ge9$, $n\ne10$. $k=3,4$: Theorem 3 with $L=21$ and
-$L=30$, from \textbf{55 certified identity tiles} covering $[21,43]$ and
-$[30,61]$; below $L$, $k=3$ is closed by $17$ consecutive individually certified
-values, and the remaining small $n$ by exhaustive search.
+$L=29$, from \textbf{56 certified identity tiles} covering $[21,43]$ and
+$[29,61]$; below $L$, $k=3$ is closed by $17$ consecutive individually certified
+values, and the remaining small $n$ by exhaustive search --- at $k=4$ that search
+is exact up to the rotation symmetry and reaches $n=28$, which is what closes the
+last gap.
 
 \vspace{6pt}
 \keybox{\textbf{Certifying a tile without interval arithmetic on a rational
@@ -265,8 +267,10 @@ monodromy of the \emph{one-tile} cyclic matrix \emph{is} the tile product, so
 \]
 and a nullity is certified by the \textbf{bilinear} system $A(w)K(X)=0$, whose
 Jacobian is affine. A \textbf{Krawczyk contraction bound} then proves a true
-real solution exists in an explicit box. All $55$ pass, $\alpha\le3.8\times
-10^{-10}$.}
+real solution exists in an explicit box. All $56$ pass, $\alpha\le7.6\times
+10^{-10}$ --- and the test is evaluated in \textbf{exact rational arithmetic},
+not float: the box centre is dyadic, $f$ and $J$ have integer coefficients, and
+$Y$ may be any matrix, so $\alpha<1$ is an exact integer comparison.}
 
 \vspace{4pt}
 \textbf{The subtlety that makes it a proof.} $AK=0$ has rank $2nr-\binom r2$,
@@ -291,10 +295,13 @@ from a matrix of $0,\pm1$.
 \begin{column}{0.265\textwidth}
 
 \begin{block}{VERIFICATION}
-\textbf{One script re-derives everything.} \texttt{verify\_all.py}: $69$ checks,
+\textbf{One script re-derives everything.} \texttt{verify\_all.py}: $77$ checks,
 all passing --- the realisability theorem symbolically for $k=2..10$, every
-integer certificate, all $54$ tiles re-evaluated for nullity \emph{and} exact
-docking, and the claim that every $n$ in range is a sum of certified lengths.
+integer certificate, all $56$ tiles re-evaluated for nullity \emph{and} exact
+docking, the claim that every $n$ in range is a sum of certified lengths, and
+three Krawczyk contractions \emph{re-run in exact arithmetic}. It also checks the
+poster's and paper's own numbers against the certificates on disk, so a stale
+count fails the suite.
 
 \textbf{Structural theorem:} $189$ random matrices over $63$ pairs $(n,k)$.
 All pass.
@@ -325,7 +332,7 @@ $k$ & settles & $L$ & tiles & $\max\alpha$ \\
 \midrule
 $2$ & $n\ge9$, $n\ne10$ & --- & closed form & --- \\
 $3$ & $n\ge17$          & $21$ & $23$ & $2.1\times10^{-10}$\\
-$4$ & $n\ge31$          & $31$ & $31$ & $3.8\times10^{-10}$\\
+$4$ & $n\ge29$          & $29$ & $33$ & $7.6\times10^{-10}$\\
 \bottomrule
 \end{tabular}
 \vspace{5pt}
@@ -346,7 +353,7 @@ $4.7\times10^{-61}$.
 \item The method has an \textbf{exact ceiling of $2k+2$}, coinciding with the
       best known upper bound: either it settles $Z$ completely or nothing does.
 \item {\color{provedc}\bfseries Proved:} $Z(P(n,2))$ and $Z(P(n,3))$
-      \textbf{determined for every $n$}; $Z(P(n,4))=10$ for every $n\ge30$.
+      and $Z(P(n,4))$ all \textbf{determined for every $n$}.
       \textbf{No divisibility conditions.} The $k=3$ sequence is
       $6,6,6,8,7,7,8,8,\dots$ --- non-monotone, which is how the published
       proof went wrong.
@@ -366,10 +373,11 @@ $4.7\times10^{-61}$.
 
 \begin{block}{FUTURE WORK}
 \textbf{Honest limits.} $k\ge5$ is \emph{not} settled: tiles exist at $k=5$ from
-$\ell\approx54$, but $[54,108)$ needs $54$ of them and we have $19$. Four values
-at $k=4$ remain, $n\in\{24,25,28,29\}$. The $k\ge6$ congruence-class values are
-numerical, a weaker standard than the rest. The rank law is verified over a
-range, not proved.
+$\ell=54$, but $[54,108)$ needs $54$ of them, we have $21$, and \emph{none is yet
+certified}. $Z(P(n,4))$ is now known for every $n$, but the \emph{matrix} value
+$M(P(n,4))$ is still open at $n=24$ and $n=28$. The $k\ge6$ congruence-class
+values are numerical, a weaker standard than the rest. The rank law is verified
+over a range, not proved.
 
 \textbf{What we cannot diagnose.} We first searched $k=5$ over
 $41\le\ell\le45$ --- the parameter count's bound --- and found nothing, then

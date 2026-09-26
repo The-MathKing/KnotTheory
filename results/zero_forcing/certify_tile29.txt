@@ -1,0 +1,5 @@
+certifying the new l=29 tile at k=4 (would give L(4)=29, closing n=29)
+  l=29: 625 unknowns, 580 equations, 535 structural, 45 dependent; 50 docking pins, 90 fixed total
+    structural 3.11e-61, dependent 3.11e-61, ||Y||=1.44e+03, alpha=1.82e-10, nullity 10, docking exact True, min|edge| 0.1500  CERTIFIED
+SAVED tilecert_29_4.npy
+RESULT True

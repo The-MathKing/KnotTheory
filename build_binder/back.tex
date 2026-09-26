@@ -62,6 +62,7 @@ reports pass or fail per check. Its current output follows, unedited.
   [PASS] P(60,2) nullity 6 numerically
 7. Saved interval-certified matrices re-evaluated (k=3)
   [PASS] P(17,3) nullity 8, edges nonzero  --- nullity 8, min edge 0.1462
+  [PASS] P(18,3) nullity 8, edges nonzero  --- nullity 8, min edge 0.2058
   [PASS] P(19,3) nullity 8, edges nonzero  --- nullity 8, min edge 0.0145
   [PASS] P(20,3) nullity 8, edges nonzero  --- nullity 8, min edge 0.1424
   [PASS] P(21,3) nullity 8, edges nonzero  --- nullity 8, min edge 0.3059
@@ -77,7 +78,8 @@ reports pass or fail per check. Its current output follows, unedited.
   [PASS] P(31,3) nullity 8, edges nonzero  --- nullity 8, min edge 0.2290
   [PASS] P(32,3) nullity 8, edges nonzero  --- nullity 8, min edge 0.0445
   [PASS] P(33,3) nullity 8, edges nonzero  --- nullity 8, min edge 0.2802
-      (16 saved certificates re-evaluated)
+      (17 saved certificates re-evaluated)
+  [PASS] thm:p17: a saved certificate exists for every n in [17,33]  --- all 17 present
 8. k=3 identity tiles and their compositions
   [PASS] tiles cover a full interval [L,2L)  --- lengths 21..43 (23 tiles)
   [PASS] single tiles give nullity 8  --- all 23 lengths
@@ -87,11 +89,19 @@ reports pass or fail per check. Its current output follows, unedited.
   [PASS] k=3: every certified tile has nullity exactly 8  --- all 23 tiles
   [PASS] k=3: docking weights exact in every certified tile  --- all tiles, to 1e-13
   [PASS] k=3: every n in [21, 400] is a sum of certified lengths  --- no gaps
-  [PASS] k=4: certified lengths form [L, 2L)  --- 30..61 (32 tiles)
-  [PASS] k=4: every certified tile has nullity exactly 10  --- all 32 tiles
+  [PASS] k=4: certified lengths form [L, 2L)  --- 29..61 (33 tiles)
+  [PASS] k=4: every certified tile has nullity exactly 10  --- all 33 tiles
   [PASS] k=4: docking weights exact in every certified tile  --- all tiles, to 1e-13
-  [PASS] k=4: every n in [30, 400] is a sum of certified lengths  --- no gaps
-10. Slice lemma (lem:slice)
+  [PASS] k=4: every n in [29, 400] is a sum of certified lengths  --- no gaps
+10. The paper's own numbers against the computed ones
+  [PASS] paper's certification count matches the 56 certified tiles  --- all say 56
+  [PASS] k=3: paper's L matches the least certified tile length (21)  --- L=21
+  [PASS] k=4: paper's L matches the least certified tile length (29)  --- L=29
+11. The Krawczyk test itself, re-run in EXACT arithmetic
+  [PASS] tile 21 at k=3: exact Krawczyk contraction  --- alpha = 2.154e-10 < 1 exactly
+  [PASS] tile 29 at k=4: exact Krawczyk contraction  --- alpha = 1.812e-10 < 1 exactly
+  [PASS] gn 17 at k=3: exact Krawczyk contraction  --- alpha = 2.128e-11 < 1 exactly
+12. Slice lemma (lem:slice)
   [PASS] spokes -> +1 and |outer| -> 1, nullity preserved, both parities  --- max deviation 2.7e-15
 
 ==================================================================

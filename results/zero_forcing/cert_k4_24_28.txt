@@ -1,0 +1,4 @@
+Matrix certificates at the two k=4 values that still lack one: n=24, 28.
+Z is settled at both by exhaustive search; what is missing is M=10.
+--- P(24,4) ---
+P(24,4)   target nullity 2k+2 = 10

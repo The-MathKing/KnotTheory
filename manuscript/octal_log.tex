@@ -3,56 +3,225 @@
 \geometry{a4paper, margin=1in}
 \usepackage{hyperref}
 \usepackage{booktabs}
-\usepackage{amsmath}
+\usepackage{amsmath,amsthm}
 \usepackage{xcolor}
 \usepackage{enumitem}
+\newtheorem{theorem}{Theorem}
 
-\title{Investigation Log: Periodicity of the Octal Game 0.45}
+\title{Investigation Log: Periodicity of the Octal Game 0.45\\
+\large (a negative result, and the reading rule it produced)}
 \author{Aryan Padarthi}
-\date{September 23, 2026}
+\date{September 25, 2026}
 
 \begin{document}
 \maketitle
 
 \begin{abstract}
-Following an audit that found four consecutive candidate results in low-dimensional topology already claimed by an active research community (see \texttt{manuscript/log.tex}, Log Entries 17, 19, 23), this log documents a deliberate pivot to a different mathematical neighborhood: combinatorial game theory, specifically the still-open general conjecture that every finite octal game has an eventually periodic Sprague--Grundy sequence. A specific, small, unresolved instance (the octal game \texttt{0.45}) is identified, its periodicity conjecture (preperiod 498, period 20, per A.~Flammenkamp's published database) is independently reproduced from scratch, and a real structural mechanism explaining the period is found: the sequence is confined to a 5-element value set $S=\{1,2,4,7,8\}$ beyond $n=198$, and each term's mex-determining reachable set decomposes into a finite (ten-index) set of exact lookups plus a ``bulk'' contribution provably confined to the complementary 4-element set $C=\{0,3,5,6\}$. This mechanism is formalized as a rigorous strong-induction argument (Lemmas 1--3 and a final periodicity theorem) in \texttt{verification/prove\_octal\_45\_periodicity.py}, with one honestly-identified and independently-confirmed remaining gap: the ``reverse direction'' of Lemma 3 (that the bulk contribution realizes \emph{all} of $C$, not just a subset of it, for every relevant $n$) is verified computationally with zero exceptions to $N=60{,}000$ but not yet closed by a from-scratch inductive argument free of circularity. This is reported at the resolution it has actually reached: the boundedness half of the argument is a complete, gap-free proof; the full periodicity conclusion is extensively verified and structurally well-understood, but not yet a completed formal proof.
+After four consecutive candidate results in low-dimensional topology turned
+out to be already known (\texttt{manuscript/log.tex}, Log Entries 17, 19, 23),
+this log records a deliberate pivot to combinatorial game theory and its
+outcome: a fifth miss, and the sharpest one so far. The octal game
+\texttt{0.45} was selected as a target on the belief that its conjectured
+period-$20$ nim-sequence was unproved. It is not. A.~Flammenkamp's
+octal-game database lists \texttt{.45} in its table of \emph{Nontrivial
+Octal-Games with known Structure} with a ``solved'' date of \textbf{1956} ---
+that is, the game was settled by Guy and Smith in the paper that introduced
+the notation. Independently of that citation, the Guy--Smith periodicity
+theorem closes the game in half a page and requires the nim-sequence to be
+checked only as far as $n=2p+2\ell+t=1038$; that argument is re-derived from
+scratch and verified here. What survives is a fully validated Sprague--Grundy
+engine, which reproduces all four of Flammenkamp's tabulated statistics for
+\texttt{.45} exactly, and a reading rule stated in Entry~5: the failure this
+time was not inferring openness from silence, but misreading a primary source
+that gave the answer in a column I did not parse. Both the wrong claim and its
+correction are left in place below, in order.
 \end{abstract}
 
 \section*{Entry 1: Why This Problem}
 \textbf{Date:} September 23, 2026 \\
-After the knot-theory audit's fourth consecutive miss (\texttt{manuscript/log.tex} Log Entry 23), a genuinely different area was sought, following the same standard applied throughout: find a specific, well-defined, checkably-open target before investing effort, rather than assume openness.
+After the knot-theory audit's fourth consecutive miss, a different area
+was sought, following the standard applied throughout: find a specific,
+well-defined, checkably-open target before committing effort, rather
+than assume openness.
 
-\textbf{The area.} Octal games (Guy--Smith notation \texttt{0.}$d_1d_2d_3\ldots$) are simple take-and-break Nim variants; whether every finite one has an eventually periodic nim-sequence is a major open conjecture in the field. Of 167 inequivalent octal games with at most 3 code digits, only 20 have been rigorously proven periodic despite millions of computed nim-values by A.~Flammenkamp, who maintains the field's reference database.
+\textbf{The area.} Octal games (Guy--Smith notation \texttt{0.}$d_1d_2d_3\ldots$)
+are take-and-break Nim variants; whether every finite one has an eventually
+periodic nim-sequence is a genuine open conjecture in the field, and
+Flammenkamp's page does record $65$ unsettled $2$-place and $8$ unsettled
+$3$-place octal games. That much was right.
 
-\textbf{The candidate.} \texttt{0.45}: remove 1 token from a heap only by splitting the remainder into two nonempty heaps (needs heap $\ge 3$); remove 2 tokens either to end the heap (heap $=2$) or by splitting the remainder (needs heap $\ge 4$). Flammenkamp's database reports a conjectured preperiod of 498 and period of 20 -- by a wide margin the smallest such pair among the unresolved small-code games checked (\texttt{.356}: 7315/142; \texttt{.156}: 3479/349; \texttt{.644}: 3256/442 -- all independently verified, see below). \texttt{0.45} is not among the four games (\texttt{.127}, \texttt{.16}, \texttt{.376}, \texttt{.56}) already proved periodic by Gangolli--Plambeck; no published proof for it was found.
+\textbf{The candidate.} \texttt{0.45}: remove $1$ token from a heap only by
+splitting the remainder into two nonempty heaps (needs heap $\ge3$); remove
+$2$ tokens either to end the heap (heap $=2$) or by splitting the remainder
+(needs heap $\ge4$). Its database entry gives preperiod $498$, period $20$ ---
+by a wide margin the smallest such pair among the small-code games examined
+(\texttt{.356}: 7315/142; \texttt{.156}: 3479/349; \texttt{.644}: 3256/442).
+\texttt{0.45} is not among the four games (\texttt{.127}, \texttt{.16},
+\texttt{.376}, \texttt{.56}) proved periodic by Gangolli--Plambeck, and I read
+its absence from that list, plus the field's ``only about twenty proved
+periodic'' framing, as evidence that it was unproved. \emph{This inference was
+wrong; see Entry~5.}
 
 \section*{Entry 2: A Validated Engine}
-\textbf{Date:} September 23, 2026 \quad \textbf{Command:} \texttt{python src/octal\_games/grundy.py} \\
-\texttt{src/octal\_games/grundy.py} computes Sprague--Grundy sequences for arbitrary octal codes from scratch (a direct mex computation, no special-casing). It is validated two ways:
+\textbf{Date:} September 23, 2026 \quad
+\textbf{Command:} \texttt{python src/octal\_games/grundy.py} \\
+\texttt{src/octal\_games/grundy.py} computes Sprague--Grundy sequences for
+arbitrary octal codes from scratch (a direct mex computation, no
+special-casing). This part of the work stands, and is the most reusable thing
+the investigation produced.
 \begin{itemize}
-\item \textbf{Kayles} (\texttt{0.77}): the engine's own search finds preperiod 71, period 12 -- an \textbf{exact match} to R.~K.~Guy's 1949 hand-proved result, independently cited in secondary literature.
-\item \textbf{Four cross-checks against Flammenkamp's database}: \texttt{0.45} (498, 20), \texttt{0.356} (7315, 142), \texttt{0.156} (3479, 349), \texttt{0.644} (3256, 442) -- all four reproduced exactly by this engine before being trusted for anything further, after an earlier AI-search summary of the same database gave a contradictory status for a related game (\texttt{.16}) that turned out to be wrong on inspection of the primary source.
+\item \textbf{Kayles} (\texttt{0.77}): the engine's own search finds preperiod
+$71$, period $12$ --- an exact match to R.~K.~Guy's 1949 hand-proved result.
+\item \textbf{Four period cross-checks}: \texttt{0.45} (498, 20),
+\texttt{0.356} (7315, 142), \texttt{0.156} (3479, 349), \texttt{0.644}
+(3256, 442), all reproduced exactly.
+\item \textbf{Four statistic cross-checks on \texttt{.45}}, added during the
+audit and stronger than the period check alone, since they test four
+independent columns of the same database row rather than one:
 \end{itemize}
-Full output: \texttt{results/octal\_games/grundy\_selftest.txt}.
+\begin{center}
+\begin{tabular}{lrrl}
+\toprule
+Flammenkamp column & his value & computed & \\
+\midrule
+\texttt{rare} (indices with even $\mathrm{popcount}\,G$) & 11 & 11 & match \\
+\texttt{miss} ($\#\{n: G(n)\ne G(n-20)\}$)              & 67 & 67 & match \\
+\texttt{last+t} (largest rare index $+\,t$)             & 200 & 200 & match \\
+\texttt{maxG}                                            & 8  & 8  & match \\
+\bottomrule
+\end{tabular}
+\end{center}
+A second, independent engine (vectorised, different inner loop) was written
+during the audit and agrees with the first on every value of $G$ for
+$0\le n\le3000$; it extends the computation to $N=200{,}000$, where the
+period-$20$ relation still holds with zero exceptions past $n=517$.
 
-\section*{Entry 3: Three Findings on 0.45}
-\textbf{Date:} September 23, 2026 \quad \textbf{Command:} \texttt{python verification/investigate\_octal\_45.py} \\
-All computed up to $N=60{,}000$ (300$\times$ the last exception found; roughly 3000 periods past the conjectured onset).
-
-\textbf{1. Boundedness.} $G(n) \in \{1,2,4,7,8\}$ for all $199 \le n \le 60{,}000$, with zero exceptions. Below $n=199$ there are exactly 11 exceptions ($n=0,1,6,11,19,31,78,88,98,106,198$), and Flammenkamp's own published bitmask for this game is all-1s, so his ``sparse/rare value'' criterion (\texttt{popcount(G(n) AND m) AND 1 == 0}) reduces exactly to ``$\mathrm{popcount}(G(n))$ is even'' -- which is exactly this set of 11 exceptions and nothing else, matching his database's reported count and largest-rare-index exactly.
-
-\textbf{2. Stabilization.} The mex-determining reachable set at position $n$ draws, in principle, on splits $a+b = n-1$ (or $n-2$) for every $1 \le a \le \lfloor (n-1)/2 \rfloor$ -- a range that grows without bound as $n$ grows. Empirically, restricted to the values $\{0,\ldots,8\}$ that can actually affect the mex (given finding 1), the reachable set is fully determined by only the first $A$ split terms, for a bound $A$ found to be at most $98$ across 416 sampled $n \in [500, 60{,}000]$ (worst case $A=78$ at $n=526$ in a focused re-check). Terms beyond $A$ -- checked out to $a \sim 30{,}000$ for some $n$ -- contribute nothing new.
-
-\textbf{3. Closure.} Combining 1 and 2: for $n$ large enough that its bounded window of relevant recent terms lies entirely past $n=199$ (i.e.\ in the fully-bounded regime), the reachable set restricted to $\{0,\ldots,8\}$ -- and hence $G(n)$ itself -- depends only on $n \bmod 20$. Checked directly, with zero exceptions, across thousands of $(n, n{+}20)$ pairs spanning the full computed range.
-
-\section*{Entry 4: Honest Status}
+\section*{Entry 3: Three Structural Findings}
 \textbf{Date:} September 23, 2026 \\
-This is \textbf{not} a completed formal proof that \texttt{0.45}'s nim-sequence is periodic for all $n$. What it is:
-\begin{itemize}
-\item An original structural account -- not previously found in any source consulted -- of \emph{why} the period-20 pattern holds: a bounded value set plus a bounded effective recursion depth, rather than an unexplained empirical repeat.
-\item Verification far beyond the standard of evidence usually meant by ``observed periodic'' in this literature: 300$\times$ the last exception, with the stabilization bound checked (not merely assumed) across hundreds of large, widely-spaced sample points.
-\item A concrete, stated route to a complete proof: show the stabilization bound (Finding 2) holds for \emph{all} $n$ past some explicit threshold, directly from the recursion's definition -- which would, combined with Finding 1, close the argument by the standard periodicity-certification method used throughout this literature (verify one clean window, then propagate by the bounded-depth structure).
-\end{itemize}
-This is reported at exactly this resolution, per the same policy stated in \texttt{manuscript/log.tex} Log Entry 3: distinguish clearly between what has been shown and what is strongly evidenced but not yet closed, and do not round up.
+Computed to $N=60{,}000$, later extended to $N=200{,}000$.
+\begin{enumerate}[label=\textbf{\arabic*.}]
+\item \textbf{Boundedness.} $G(n)\in S=\{1,2,4,7,8\}$ for all
+$199\le n\le 200{,}000$, with zero exceptions; below $199$ there are
+exactly $11$ exceptions, namely
+$n=0,1,6,11,19,31,$ $78,88,98,106,198$.
+\item \textbf{Stabilization.} The mex-determining reachable set at $n$ draws
+in principle on all splits $a+b=n-1$ or $n-2$, a range growing without bound.
+Restricted to the values $\{0,\dots,8\}$ that can affect the mex, it is
+determined by the first $A$ split terms with $A\le98$ across $416$ sampled
+$n\in[500,60{,}000]$.
+\item \textbf{Closure.} Combining 1 and 2, the mex-relevant reachable set, and
+hence $G(n)$, depends only on $n\bmod 20$ once the relevant window lies past
+$n=199$.
+\end{enumerate}
+Finding 2's bound is worth one remark, because it is the one place where my
+own computation and the database met independently: the widest offset the
+recursion actually needs is $198+t=200$, and $200$ is exactly the value in
+Flammenkamp's \texttt{last+t} column. I computed that number without knowing
+what the column meant.
+
+\section*{Entry 4: The Correct Argument}
+\textbf{Date:} September 25, 2026 \\
+\textbf{Command:}
+{\small\texttt{python verification/prove\_octal\_45\_periodicity.py}} \\
+An earlier version of this log built a bespoke proof on Entry~3: a bounded
+value set $S$, the ten-index exceptional set
+$R=\{1,6,11,19,31,$ $78,88,98,106,198\}$, an XOR-closure lemma
+($x,y\in S$ and $x\oplus y\le8$ imply $x\oplus y\in C=\{0,3,5,6\}$), and a
+reachable-set formula proved by strong induction. That argument had one
+acknowledged gap: that the bulk contribution realises \emph{all} of $C$
+and not merely a subset of it, which I could not establish without
+assuming the very periodicity being proved. The whole apparatus is
+unnecessary. None of $S$, $C$, $R$ or boundedness is needed.
+
+\begin{theorem}[Guy--Smith, specialised to \texttt{0.45}]
+Let $G$ be the nim-sequence of \texttt{0.45}, let $\ell=20$, $p=498$, and let
+$t=2$ be the index of the last nonzero code digit. If $G(m)=G(m-\ell)$ for
+every $m$ with $p+\ell\le m\le 2p+2\ell+t$, then $G(n)=G(n-\ell)$ for all
+$n\ge p+\ell$.
+\end{theorem}
+
+\begin{proof}
+For $n\ge4$ the game's moves give
+$\mathrm{Reach}(n)=\{G(a)\oplus G(b): a+b=n-i,\ a,b\ge1,\ i\in\{1,2\}\}$ and
+$G(n)=\operatorname{mex}\mathrm{Reach}(n)$; there is no move leaving exactly
+one heap, and the move that empties the heap applies only at $n=2$.
+Induct on $n>2p+2\ell+t$, assuming $G(m)=G(m-\ell)$ for all $p+\ell\le m<n$.
+
+\emph{$\mathrm{Reach}(n)\subseteq\mathrm{Reach}(n-\ell)$.} Take $a+b=n-i$ with
+$a\le b$, $a,b\ge1$. Then $b\ge(n-i)/2\ge(n-t)/2\ge p+\ell$ and
+$b\le n-i-1<n$, so the hypothesis gives $G(b)=G(b-\ell)$, and $b-\ell\ge p\ge1$.
+Hence $\{a,b-\ell\}$ is a pair of nonempty heaps summing to $(n-\ell)-i$ with
+the same XOR. Heaps are unordered, so no condition relating $a$ and $b-\ell$
+is required --- this is the step my earlier write-up split into two cases
+unnecessarily.
+
+\emph{$\mathrm{Reach}(n-\ell)\subseteq\mathrm{Reach}(n)$.} Take
+$a+b=(n-\ell)-i$ with $a\le b$. Then $b\ge(n-\ell-i)/2\ge p$ and
+$b+\ell\le n-i-1<n$, so $G(b+\ell)=G(b)$ and $\{a,b+\ell\}$ sums to $n-i$
+with the same XOR.
+
+Neither $n$ nor $n-\ell$ equals $2$ in this range, so the terminal move
+contributes to both or neither. Equal reachable sets have equal mex, so
+$G(n)=G(n-\ell)$.
+\end{proof}
+
+With $p=498$, $\ell=20$, $t=2$ the finite hypothesis runs only to
+$2p+2\ell+t=1038$, which the engine verifies. The last exception to
+$G(n)=G(n-20)$ is at $n=517$, so $498$ is exactly the preperiod.
+Flammenkamp's page states a sharper bound still --- $t+\max\{\texttt{last},
+\texttt{depth}\}=2+\max\{200,37\}=202$ successive values suffice.
+\texttt{verification/prove\_octal\_45\_periodicity.py} checks the hypothesis
+window, both inclusions pair by pair over a band above the bound, the
+preperiod, and the four engine statistics; full output in
+\texttt{results/octal\_games/prove\_045\_periodicity\_output.txt}.
+
+\section*{Entry 5: Audit --- the Fifth Miss, and What Caused It}
+\textbf{Date:} September 25, 2026 \\
+Flammenkamp's page carries two tables. The one I read gives per-game
+sequences and periods. The one I did not read is headed \emph{Nontrivial
+Octal-Games with known Structure} and ends in a \texttt{solved} column. Its
+row for \texttt{.45} is
+\begin{center}\footnotesize\setlength{\tabcolsep}{3.5pt}
+\begin{tabular}{lrrrrrrrrrrrr}
+\toprule
+game & per. & prep. & miss & dens. & ty. & rare & l+t & mxG & dep. & au. & cor. & \textbf{solved} \\
+\midrule
+\texttt{.45} & 20 & 498 & 67 & 0.1345 & 0 & 11 & 200 & 8 & 37 & 1 & 0.4 & \textbf{1956} \\
+\bottomrule
+\end{tabular}
+\end{center}
+so the game was solved in 1956, and the four statistics I had reproduced as
+engine validation (\texttt{miss}, \texttt{rare}, \texttt{last+t},
+\texttt{maxG}) were sitting in the same row as the date that made the project
+pointless. The page's $65$ unsettled $2$-place games are listed separately;
+\texttt{.45} is not among them.
+
+This is the fifth consecutive target that turned out to be known, but the
+failure mode is new and worse. Misses 1--4 came from inferring openness from
+absence of evidence --- nobody had written the result down where I looked. This
+one came from reading a primary source that stated the answer explicitly, in a
+column I did not parse, while extracting four other numbers from the same
+row. Volume of verification did not help: every computational claim in
+Entries 2 and 3 is correct, and two of them agree with the database to the
+digit.
+
+\textbf{Rule adopted.} Before any effort is committed to a target, every
+column of every table in the primary source that names the target must be
+identified by name, including columns not being used. A source consulted for
+one field has not been read. Concretely: if a table has a \texttt{solved}
+column, read it first; if the meaning of a column is unknown, that is a
+blocking question, not a detail. A corollary applies to the literature gate
+generally --- a positive, dated statement of openness must name the specific
+game or parameter, not the family.
+
+\textbf{What survives.} The engine (Entry 2), validated eight independent
+ways. The re-derivation of the Guy--Smith shift argument (Entry 4), which is
+correct mathematics and is now the thing I would cite. The negative record
+itself, which is the reason this log exists.
+
+\textbf{What does not.} Any claim of novelty for \texttt{0.45}; the bespoke
+$S$/$C$/$R$ proof of Entry 4's superseded version; and the framing in the
+previous abstract, which described the boundedness half as ``a complete,
+gap-free proof'' of something already proved in 1956.
 
 \end{document}

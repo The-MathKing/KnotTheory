@@ -1,0 +1,14 @@
+P(18,3): regenerating the certificate so it is ON DISK, not just in a log.
+(R6: thm:p17 claims all of 17<=n<=33; 18 was certified but never saved,
+ so verify_all could not see the gap.)
+P(18,3)   target nullity 2k+2 = 8
+  stage 1 [cold, sign +1]: r-th sv/scale = 1.685e-05, min|inner|/scale = 0.2059
+  314 unknowns, 288 equations, 260 structural, 28 dependent; fixing 54 at rationals
+  stage 2 (double): max|f| structural = 4.108e-15, dependent = 1.445e-14
+  stage 2b (60 digits): structural 1.653e-61, dependent 1.167e-61
+  ||Y||=3.738e+02  ||I-YJ||=6.212e-13  ||Yf||=4.915e-61
+  stage 3 KRAWCZYK PASSES at delta = 1e-13: alpha = 4.492e-10
+  certified matrix: nullity 8, gap 0.1680, min|edge|/scale 0.2058
+  VERDICT: PROVED null A = 8
+SAVED cert_gn_18_3.npy
+RESULT True

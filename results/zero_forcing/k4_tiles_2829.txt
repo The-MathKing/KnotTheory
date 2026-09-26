@@ -4,3 +4,8 @@ k=4 near miss retried so far (31,32,33,35,38) has solved.
 If both land, L(4)=28 and n=28,29 are covered by tiling directly.
   l=29 seed=7: max|T-I| = 8.515e-14, min|edge| = 0.1500  IDENTITY TILE
     saved
+  l=28 seed=7: max|T-I| = 2.035e-01, min|edge| = 0.0292
+  l=28 seed=17: max|T-I| = 2.634e-01, min|edge| = 0.0924
+  l=28 seed=27: max|T-I| = 1.093e-01, min|edge| = 0.0970
+  l=28 seed=37: max|T-I| = 1.436e-01, min|edge| = 0.1159
+  l=28: not solved at this budget

@@ -1,0 +1,167 @@
+exact re-certification of 23 tile certificates at k=3
+using L = 12 (a valid over-estimate; the true row-sum bound is 8, see the paper)
+
+--- tile(21) length=21 ---
+  reconstruction matches the stored certificate to 2.22e-15
+  EXACT: rk=308  ||Y||=1.5743e+03  alpha0=2.5071e-11  eta=8.8754e-16
+  EXACT KRAWCZYK PASSES at delta=1e-14: alpha=2.139912e-10 < 1 and eta+alpha*delta=8.8754e-16 <= 1e-14
+        (all four quantities are exact rationals; the two comparisons are exact integer comparisons)
+  edge weights over the WHOLE box: min|edge| - delta >= 0.890797, / scale = 0.1500 > 0, so A(w*) is a matrix OF the graph
+
+--- tile(22) length=22 ---
+  reconstruction matches the stored certificate to 2.22e-15
+  EXACT: rk=324  ||Y||=5.3852e+02  alpha0=2.3503e-12  eta=4.6286e-16
+  EXACT KRAWCZYK PASSES at delta=1e-14: alpha=6.697218e-11 < 1 and eta+alpha*delta=4.6286e-16 <= 1e-14
+        (all four quantities are exact rationals; the two comparisons are exact integer comparisons)
+  edge weights over the WHOLE box: min|edge| - delta >= 0.462850, / scale = 0.1500 > 0, so A(w*) is a matrix OF the graph
+
+--- tile(23) length=23 ---
+  reconstruction matches the stored certificate to 1.30e-15
+  EXACT: rk=340  ||Y||=7.5475e+02  alpha0=2.3120e-12  eta=4.5717e-16
+  EXACT KRAWCZYK PASSES at delta=1e-14: alpha=9.288220e-11 < 1 and eta+alpha*delta=4.5717e-16 <= 1e-14
+        (all four quantities are exact rationals; the two comparisons are exact integer comparisons)
+  edge weights over the WHOLE box: min|edge| - delta >= 0.619366, / scale = 0.1500 > 0, so A(w*) is a matrix OF the graph
+
+--- tile(24) length=24 ---
+  reconstruction matches the stored certificate to 1.55e-15
+  EXACT: rk=356  ||Y||=2.4849e+03  alpha0=2.6005e-11  eta=7.0545e-16
+  EXACT KRAWCZYK PASSES at delta=1e-14: alpha=3.241878e-10 < 1 and eta+alpha*delta=7.0545e-16 <= 1e-14
+        (all four quantities are exact rationals; the two comparisons are exact integer comparisons)
+  edge weights over the WHOLE box: min|edge| - delta >= 0.842553, / scale = 0.1500 > 0, so A(w*) is a matrix OF the graph
+
+--- tile(25) length=25 ---
+  reconstruction matches the stored certificate to 1.33e-15
+  EXACT: rk=372  ||Y||=9.9608e+02  alpha0=2.9776e-12  eta=3.2497e-16
+  EXACT KRAWCZYK PASSES at delta=1e-14: alpha=1.225070e-10 < 1 and eta+alpha*delta=3.2497e-16 <= 1e-14
+        (all four quantities are exact rationals; the two comparisons are exact integer comparisons)
+  edge weights over the WHOLE box: min|edge| - delta >= 0.561178, / scale = 0.1500 > 0, so A(w*) is a matrix OF the graph
+
+--- tile(26) length=26 ---
+  reconstruction matches the stored certificate to 1.67e-15
+  EXACT: rk=388  ||Y||=5.1590e+02  alpha0=5.9394e-12  eta=3.1758e-16
+  EXACT KRAWCZYK PASSES at delta=1e-14: alpha=6.784777e-11 < 1 and eta+alpha*delta=3.1758e-16 <= 1e-14
+        (all four quantities are exact rationals; the two comparisons are exact integer comparisons)
+  edge weights over the WHOLE box: min|edge| - delta >= 0.530565, / scale = 0.1500 > 0, so A(w*) is a matrix OF the graph
+
+--- tile(27) length=27 ---
+  reconstruction matches the stored certificate to 1.42e-15
+  EXACT: rk=404  ||Y||=1.5090e+03  alpha0=7.8123e-12  eta=3.4704e-16
+  EXACT KRAWCZYK PASSES at delta=1e-14: alpha=1.888961e-10 < 1 and eta+alpha*delta=3.4704e-16 <= 1e-14
+        (all four quantities are exact rationals; the two comparisons are exact integer comparisons)
+  edge weights over the WHOLE box: min|edge| - delta >= 0.663668, / scale = 0.1500 > 0, so A(w*) is a matrix OF the graph
+
+--- tile(28) length=28 ---
+  reconstruction matches the stored certificate to 1.18e-15
+  EXACT: rk=420  ||Y||=1.0423e+03  alpha0=6.3646e-12  eta=3.7494e-16
+  EXACT KRAWCZYK PASSES at delta=1e-14: alpha=1.314460e-10 < 1 and eta+alpha*delta=3.7494e-16 <= 1e-14
+        (all four quantities are exact rationals; the two comparisons are exact integer comparisons)
+  edge weights over the WHOLE box: min|edge| - delta >= 0.579209, / scale = 0.1500 > 0, so A(w*) is a matrix OF the graph
+
+--- tile(29) length=29 ---
+  reconstruction matches the stored certificate to 1.78e-15
+  EXACT: rk=436  ||Y||=3.8426e+02  alpha0=1.5998e-12  eta=4.1526e-16
+  EXACT KRAWCZYK PASSES at delta=1e-14: alpha=4.771132e-11 < 1 and eta+alpha*delta=4.1526e-16 <= 1e-14
+        (all four quantities are exact rationals; the two comparisons are exact integer comparisons)
+  edge weights over the WHOLE box: min|edge| - delta >= 0.530198, / scale = 0.1500 > 0, so A(w*) is a matrix OF the graph
+
+--- tile(30) length=30 ---
+  reconstruction matches the stored certificate to 3.33e-15
+  EXACT: rk=452  ||Y||=5.8597e+02  alpha0=3.4684e-12  eta=3.4857e-16
+  EXACT KRAWCZYK PASSES at delta=1e-14: alpha=7.378442e-11 < 1 and eta+alpha*delta=3.4857e-16 <= 1e-14
+        (all four quantities are exact rationals; the two comparisons are exact integer comparisons)
+  edge weights over the WHOLE box: min|edge| - delta >= 0.656595, / scale = 0.1500 > 0, so A(w*) is a matrix OF the graph
+
+--- tile(31) length=31 ---
+  reconstruction matches the stored certificate to 4.68e-15
+  EXACT: rk=468  ||Y||=6.6735e+02  alpha0=4.5054e-12  eta=4.2635e-16
+  EXACT KRAWCZYK PASSES at delta=1e-14: alpha=8.458727e-11 < 1 and eta+alpha*delta=4.2635e-16 <= 1e-14
+        (all four quantities are exact rationals; the two comparisons are exact integer comparisons)
+  edge weights over the WHOLE box: min|edge| - delta >= 0.666727, / scale = 0.1500 > 0, so A(w*) is a matrix OF the graph
+
+--- tile(32) length=32 ---
+  reconstruction matches the stored certificate to 2.50e-15
+  EXACT: rk=484  ||Y||=6.8629e+02  alpha0=4.9814e-12  eta=4.1493e-16
+  EXACT KRAWCZYK PASSES at delta=1e-14: alpha=8.733676e-11 < 1 and eta+alpha*delta=4.1493e-16 <= 1e-14
+        (all four quantities are exact rationals; the two comparisons are exact integer comparisons)
+  edge weights over the WHOLE box: min|edge| - delta >= 0.590847, / scale = 0.1500 > 0, so A(w*) is a matrix OF the graph
+
+--- tile(33) length=33 ---
+  reconstruction matches the stored certificate to 2.36e-15
+  EXACT: rk=500  ||Y||=5.6442e+02  alpha0=3.5337e-12  eta=4.2080e-16
+  EXACT KRAWCZYK PASSES at delta=1e-14: alpha=7.126447e-11 < 1 and eta+alpha*delta=4.2080e-16 <= 1e-14
+        (all four quantities are exact rationals; the two comparisons are exact integer comparisons)
+  edge weights over the WHOLE box: min|edge| - delta >= 0.483965, / scale = 0.1500 > 0, so A(w*) is a matrix OF the graph
+
+--- tile(34) length=34 ---
+  reconstruction matches the stored certificate to 3.11e-15
+  EXACT: rk=516  ||Y||=2.8848e+02  alpha0=2.0188e-12  eta=2.7113e-16
+  EXACT KRAWCZYK PASSES at delta=1e-14: alpha=3.663692e-11 < 1 and eta+alpha*delta=2.7113e-16 <= 1e-14
+        (all four quantities are exact rationals; the two comparisons are exact integer comparisons)
+  edge weights over the WHOLE box: min|edge| - delta >= 0.478368, / scale = 0.1500 > 0, so A(w*) is a matrix OF the graph
+
+--- tile(35) length=35 ---
+  reconstruction matches the stored certificate to 2.28e-15
+  EXACT: rk=532  ||Y||=1.4251e+03  alpha0=5.9702e-12  eta=6.1899e-16
+  EXACT KRAWCZYK PASSES at delta=1e-14: alpha=1.769789e-10 < 1 and eta+alpha*delta=6.1899e-16 <= 1e-14
+        (all four quantities are exact rationals; the two comparisons are exact integer comparisons)
+  edge weights over the WHOLE box: min|edge| - delta >= 0.515912, / scale = 0.1500 > 0, so A(w*) is a matrix OF the graph
+
+--- tile(36) length=36 ---
+  reconstruction matches the stored certificate to 2.43e-15
+  EXACT: rk=548  ||Y||=2.1674e+03  alpha0=1.9788e-11  eta=1.1942e-15
+  EXACT KRAWCZYK PASSES at delta=1e-14: alpha=2.798722e-10 < 1 and eta+alpha*delta=1.1942e-15 <= 1e-14
+        (all four quantities are exact rationals; the two comparisons are exact integer comparisons)
+  edge weights over the WHOLE box: min|edge| - delta >= 0.948595, / scale = 0.1500 > 0, so A(w*) is a matrix OF the graph
+
+--- tile(37) length=37 ---
+  reconstruction matches the stored certificate to 2.50e-15
+  EXACT: rk=564  ||Y||=8.2916e+02  alpha0=6.7268e-12  eta=7.9736e-16
+  EXACT KRAWCZYK PASSES at delta=1e-14: alpha=1.062256e-10 < 1 and eta+alpha*delta=7.9736e-16 <= 1e-14
+        (all four quantities are exact rationals; the two comparisons are exact integer comparisons)
+  edge weights over the WHOLE box: min|edge| - delta >= 0.494409, / scale = 0.1500 > 0, so A(w*) is a matrix OF the graph
+
+--- tile(38) length=38 ---
+  reconstruction matches the stored certificate to 2.03e-15
+  EXACT: rk=580  ||Y||=8.1561e+02  alpha0=3.0865e-12  eta=8.2928e-16
+  EXACT KRAWCZYK PASSES at delta=1e-14: alpha=1.009593e-10 < 1 and eta+alpha*delta=8.2928e-16 <= 1e-14
+        (all four quantities are exact rationals; the two comparisons are exact integer comparisons)
+  edge weights over the WHOLE box: min|edge| - delta >= 0.592683, / scale = 0.1502 > 0, so A(w*) is a matrix OF the graph
+
+--- tile(39) length=39 ---
+  reconstruction matches the stored certificate to 1.67e-15
+  EXACT: rk=596  ||Y||=5.9152e+02  alpha0=5.8676e-12  eta=4.8263e-16
+  EXACT KRAWCZYK PASSES at delta=1e-14: alpha=7.684974e-11 < 1 and eta+alpha*delta=4.8263e-16 <= 1e-14
+        (all four quantities are exact rationals; the two comparisons are exact integer comparisons)
+  edge weights over the WHOLE box: min|edge| - delta >= 0.621311, / scale = 0.1500 > 0, so A(w*) is a matrix OF the graph
+
+--- tile(40) length=40 ---
+  reconstruction matches the stored certificate to 2.11e-15
+  EXACT: rk=612  ||Y||=1.1498e+03  alpha0=4.6675e-12  eta=3.6773e-16
+  EXACT KRAWCZYK PASSES at delta=1e-14: alpha=1.426386e-10 < 1 and eta+alpha*delta=3.6773e-16 <= 1e-14
+        (all four quantities are exact rationals; the two comparisons are exact integer comparisons)
+  edge weights over the WHOLE box: min|edge| - delta >= 0.527354, / scale = 0.1500 > 0, so A(w*) is a matrix OF the graph
+
+--- tile(41) length=41 ---
+  reconstruction matches the stored certificate to 1.35e-15
+  EXACT: rk=628  ||Y||=8.8093e+02  alpha0=5.5075e-12  eta=4.5816e-16
+  EXACT KRAWCZYK PASSES at delta=1e-14: alpha=1.112191e-10 < 1 and eta+alpha*delta=4.5816e-16 <= 1e-14
+        (all four quantities are exact rationals; the two comparisons are exact integer comparisons)
+  edge weights over the WHOLE box: min|edge| - delta >= 0.589387, / scale = 0.1500 > 0, so A(w*) is a matrix OF the graph
+
+--- tile(42) length=42 ---
+  reconstruction matches the stored certificate to 1.53e-15
+  EXACT: rk=644  ||Y||=1.6534e+03  alpha0=1.2504e-11  eta=4.1754e-16
+  EXACT KRAWCZYK PASSES at delta=1e-14: alpha=2.109114e-10 < 1 and eta+alpha*delta=4.1754e-16 <= 1e-14
+        (all four quantities are exact rationals; the two comparisons are exact integer comparisons)
+  edge weights over the WHOLE box: min|edge| - delta >= 0.490399, / scale = 0.1500 > 0, so A(w*) is a matrix OF the graph
+
+--- tile(43) length=43 ---
+  reconstruction matches the stored certificate to 3.41e-15
+  EXACT: rk=660  ||Y||=1.0870e+03  alpha0=9.1700e-12  eta=4.3892e-16
+  EXACT KRAWCZYK PASSES at delta=1e-14: alpha=1.396100e-10 < 1 and eta+alpha*delta=4.3892e-16 <= 1e-14
+        (all four quantities are exact rationals; the two comparisons are exact integer comparisons)
+  edge weights over the WHOLE box: min|edge| - delta >= 0.573391, / scale = 0.1500 > 0, so A(w*) is a matrix OF the graph
+
+EXACTLY CERTIFIED: [21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43]
+not exactly certified: []
+=> exactly certified lengths cover [21, 42), so Z(P(n,3)) = 8 is PROVED IN EXACT ARITHMETIC for every n >= 21
