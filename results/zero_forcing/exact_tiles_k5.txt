@@ -1,0 +1,152 @@
+exact re-certification of 21 tile certificates at k=5
+using L = 12 (a valid over-estimate; the true row-sum bound is 8, see the paper)
+
+--- tile(54) length=54 ---
+  graph form recomputed from the stored weights (|X_new - X_stored| = 2.05e-15; the pivot set need not match)
+  EXACT: rk=1230  ||Y||=3.1118e+03  alpha0=9.0658e-11  eta=2.0724e-15  ||f(z0)||=3.4976e-15
+  EXACT KRAWCZYK PASSES at delta=1e-14: alpha=4.640785e-10 < 1 and eta+alpha*delta=2.0724e-15 <= 1e-14
+        (all four quantities are exact rationals; the two comparisons are exact integer comparisons)
+  edge weights over the WHOLE box: min|edge| - delta >= 0.493001, / scale = 0.1500 > 0, so A(w*) is a matrix OF the graph
+
+--- tile(55) length=55 ---
+  graph form recomputed from the stored weights (|X_new - X_stored| = 3.83e-15; the pivot set need not match)
+  EXACT: rk=1254  ||Y||=2.7892e+03  alpha0=1.0557e-10  eta=3.7358e-15  ||f(z0)||=4.5128e-15
+  EXACT KRAWCZYK PASSES at delta=1e-14: alpha=4.402685e-10 < 1 and eta+alpha*delta=3.7358e-15 <= 1e-14
+        (all four quantities are exact rationals; the two comparisons are exact integer comparisons)
+  edge weights over the WHOLE box: min|edge| - delta >= 0.576765, / scale = 0.1500 > 0, so A(w*) is a matrix OF the graph
+
+--- tile(56) length=56 ---
+  graph form recomputed from the stored weights (|X_new - X_stored| = 3.00e-15; the pivot set need not match)
+  EXACT: rk=1278  ||Y||=3.4006e+03  alpha0=5.7300e-11  eta=2.9620e-15  ||f(z0)||=3.0289e-15
+  EXACT KRAWCZYK PASSES at delta=1e-14: alpha=4.653669e-10 < 1 and eta+alpha*delta=2.9620e-15 <= 1e-14
+        (all four quantities are exact rationals; the two comparisons are exact integer comparisons)
+  edge weights over the WHOLE box: min|edge| - delta >= 0.495909, / scale = 0.1500 > 0, so A(w*) is a matrix OF the graph
+
+--- tile(57) length=57 ---
+  graph form recomputed from the stored weights (|X_new - X_stored| = 3.11e-15; the pivot set need not match)
+  EXACT: rk=1302  ||Y||=7.2424e+03  alpha0=1.0359e-10  eta=3.2429e-15  ||f(z0)||=4.2609e-15
+  EXACT KRAWCZYK PASSES at delta=1e-14: alpha=9.726798e-10 < 1 and eta+alpha*delta=3.2429e-15 <= 1e-14
+        (all four quantities are exact rationals; the two comparisons are exact integer comparisons)
+  edge weights over the WHOLE box: min|edge| - delta >= 0.579079, / scale = 0.1500 > 0, so A(w*) is a matrix OF the graph
+
+--- tile(58) length=58 ---
+  graph form recomputed from the stored weights (|X_new - X_stored| = 3.50e-15; the pivot set need not match)
+  EXACT: rk=1326  ||Y||=2.0960e+03  alpha0=7.5132e-11  eta=3.2619e-15  ||f(z0)||=3.9771e-15
+  EXACT KRAWCZYK PASSES at delta=1e-14: alpha=3.266564e-10 < 1 and eta+alpha*delta=3.2619e-15 <= 1e-14
+        (all four quantities are exact rationals; the two comparisons are exact integer comparisons)
+  edge weights over the WHOLE box: min|edge| - delta >= 0.560304, / scale = 0.1500 > 0, so A(w*) is a matrix OF the graph
+
+--- tile(59) length=59 ---
+  graph form recomputed from the stored weights (|X_new - X_stored| = 2.28e-15; the pivot set need not match)
+  EXACT: rk=1350  ||Y||=2.9542e+03  alpha0=1.2410e-10  eta=2.3764e-15  ||f(z0)||=3.1613e-15
+  EXACT KRAWCZYK PASSES at delta=1e-14: alpha=4.786018e-10 < 1 and eta+alpha*delta=2.3764e-15 <= 1e-14
+        (all four quantities are exact rationals; the two comparisons are exact integer comparisons)
+  edge weights over the WHOLE box: min|edge| - delta >= 0.578518, / scale = 0.1500 > 0, so A(w*) is a matrix OF the graph
+
+--- tile(60) length=60 ---
+  graph form recomputed from the stored weights (|X_new - X_stored| = 2.55e-15; the pivot set need not match)
+  EXACT: rk=1374  ||Y||=4.5772e+03  alpha0=6.3785e-11  eta=2.5181e-15  ||f(z0)||=3.0556e-15
+  EXACT KRAWCZYK PASSES at delta=1e-14: alpha=6.130526e-10 < 1 and eta+alpha*delta=2.5181e-15 <= 1e-14
+        (all four quantities are exact rationals; the two comparisons are exact integer comparisons)
+  edge weights over the WHOLE box: min|edge| - delta >= 0.523692, / scale = 0.1500 > 0, so A(w*) is a matrix OF the graph
+
+--- tile(61) length=61 ---
+  graph form recomputed from the stored weights (|X_new - X_stored| = 4.49e-15; the pivot set need not match)
+  EXACT: rk=1398  ||Y||=4.1611e+03  alpha0=2.4709e-10  eta=4.5293e-15  ||f(z0)||=3.9892e-15
+  EXACT KRAWCZYK PASSES at delta=1e-14: alpha=7.464180e-10 < 1 and eta+alpha*delta=4.5293e-15 <= 1e-14
+        (all four quantities are exact rationals; the two comparisons are exact integer comparisons)
+  edge weights over the WHOLE box: min|edge| - delta >= 0.738750, / scale = 0.1500 > 0, so A(w*) is a matrix OF the graph
+
+--- tile(62) length=62 ---
+  graph form recomputed from the stored weights (|X_new - X_stored| = 3.36e-15; the pivot set need not match)
+  EXACT: rk=1422  ||Y||=4.7952e+03  alpha0=1.7754e-10  eta=3.4611e-15  ||f(z0)||=3.3622e-15
+  EXACT KRAWCZYK PASSES at delta=1e-14: alpha=7.529594e-10 < 1 and eta+alpha*delta=3.4611e-15 <= 1e-14
+        (all four quantities are exact rationals; the two comparisons are exact integer comparisons)
+  edge weights over the WHOLE box: min|edge| - delta >= 0.438705, / scale = 0.1500 > 0, so A(w*) is a matrix OF the graph
+
+--- tile(63) length=63 ---
+  graph form recomputed from the stored weights (|X_new - X_stored| = 2.94e-15; the pivot set need not match)
+  EXACT: rk=1446  ||Y||=3.9283e+03  alpha0=6.6078e-11  eta=2.8237e-15  ||f(z0)||=3.4795e-15
+  EXACT KRAWCZYK PASSES at delta=1e-14: alpha=5.374763e-10 < 1 and eta+alpha*delta=2.8237e-15 <= 1e-14
+        (all four quantities are exact rationals; the two comparisons are exact integer comparisons)
+  edge weights over the WHOLE box: min|edge| - delta >= 0.462650, / scale = 0.1500 > 0, so A(w*) is a matrix OF the graph
+
+--- tile(64) length=64 ---
+  graph form recomputed from the stored weights (|X_new - X_stored| = 3.77e-15; the pivot set need not match)
+  EXACT: rk=1470  ||Y||=6.3278e+03  alpha0=2.6382e-10  eta=3.7116e-15  ||f(z0)||=5.8261e-15
+  EXACT KRAWCZYK PASSES at delta=1e-14: alpha=1.023155e-09 < 1 and eta+alpha*delta=3.7116e-15 <= 1e-14
+        (all four quantities are exact rationals; the two comparisons are exact integer comparisons)
+  edge weights over the WHOLE box: min|edge| - delta >= 0.675870, / scale = 0.1500 > 0, so A(w*) is a matrix OF the graph
+
+--- tile(65) length=65 ---
+  graph form recomputed from the stored weights (|X_new - X_stored| = 2.66e-15; the pivot set need not match)
+  EXACT: rk=1494  ||Y||=3.2417e+03  alpha0=1.4076e-10  eta=2.5707e-15  ||f(z0)||=3.5629e-15
+  EXACT KRAWCZYK PASSES at delta=1e-14: alpha=5.297630e-10 < 1 and eta+alpha*delta=2.5707e-15 <= 1e-14
+        (all four quantities are exact rationals; the two comparisons are exact integer comparisons)
+  edge weights over the WHOLE box: min|edge| - delta >= 0.585699, / scale = 0.1500 > 0, so A(w*) is a matrix OF the graph
+
+--- tile(66) length=66 ---
+  graph form recomputed from the stored weights (|X_new - X_stored| = 3.66e-15; the pivot set need not match)
+  EXACT: rk=1518  ||Y||=3.5631e+03  alpha0=1.2234e-10  eta=3.7417e-15  ||f(z0)||=6.5604e-15
+  EXACT KRAWCZYK PASSES at delta=1e-14: alpha=5.499190e-10 < 1 and eta+alpha*delta=3.7417e-15 <= 1e-14
+        (all four quantities are exact rationals; the two comparisons are exact integer comparisons)
+  edge weights over the WHOLE box: min|edge| - delta >= 0.627864, / scale = 0.1500 > 0, so A(w*) is a matrix OF the graph
+
+--- tile(67) length=67 ---
+  graph form recomputed from the stored weights (|X_new - X_stored| = 3.05e-15; the pivot set need not match)
+  EXACT: rk=1542  ||Y||=3.4340e+03  alpha0=4.4403e-11  eta=3.1649e-15  ||f(z0)||=3.8326e-15
+  EXACT KRAWCZYK PASSES at delta=1e-14: alpha=4.564850e-10 < 1 and eta+alpha*delta=3.1649e-15 <= 1e-14
+        (all four quantities are exact rationals; the two comparisons are exact integer comparisons)
+  edge weights over the WHOLE box: min|edge| - delta >= 0.530223, / scale = 0.1500 > 0, so A(w*) is a matrix OF the graph
+
+--- tile(68) length=68 ---
+  graph form recomputed from the stored weights (|X_new - X_stored| = 2.97e-15; the pivot set need not match)
+  EXACT: rk=1566  ||Y||=3.7814e+03  alpha0=1.1002e-10  eta=3.1442e-15  ||f(z0)||=4.1535e-15
+  EXACT KRAWCZYK PASSES at delta=1e-14: alpha=5.637870e-10 < 1 and eta+alpha*delta=3.1442e-15 <= 1e-14
+        (all four quantities are exact rationals; the two comparisons are exact integer comparisons)
+  edge weights over the WHOLE box: min|edge| - delta >= 0.564812, / scale = 0.1500 > 0, so A(w*) is a matrix OF the graph
+
+--- tile(69) length=69 ---
+  graph form recomputed from the stored weights (|X_new - X_stored| = 2.78e-15; the pivot set need not match)
+  EXACT: rk=1590  ||Y||=5.5048e+03  alpha0=3.1923e-10  eta=2.8529e-15  ||f(z0)||=4.5645e-15
+  EXACT KRAWCZYK PASSES at delta=1e-14: alpha=9.798047e-10 < 1 and eta+alpha*delta=2.8529e-15 <= 1e-14
+        (all four quantities are exact rationals; the two comparisons are exact integer comparisons)
+  edge weights over the WHOLE box: min|edge| - delta >= 0.640311, / scale = 0.1500 > 0, so A(w*) is a matrix OF the graph
+
+--- tile(70) length=70 ---
+  graph form recomputed from the stored weights (|X_new - X_stored| = 3.61e-15; the pivot set need not match)
+  EXACT: rk=1614  ||Y||=3.9140e+03  alpha0=2.1176e-10  eta=3.5822e-15  ||f(z0)||=5.1107e-15
+  EXACT KRAWCZYK PASSES at delta=1e-14: alpha=6.814333e-10 < 1 and eta+alpha*delta=3.5822e-15 <= 1e-14
+        (all four quantities are exact rationals; the two comparisons are exact integer comparisons)
+  edge weights over the WHOLE box: min|edge| - delta >= 0.608376, / scale = 0.1500 > 0, so A(w*) is a matrix OF the graph
+
+--- tile(71) length=71 ---
+  graph form recomputed from the stored weights (|X_new - X_stored| = 3.11e-15; the pivot set need not match)
+  EXACT: rk=1638  ||Y||=5.8976e+03  alpha0=1.3241e-10  eta=3.5997e-15  ||f(z0)||=3.1560e-15
+  EXACT KRAWCZYK PASSES at delta=1e-14: alpha=8.401200e-10 < 1 and eta+alpha*delta=3.5997e-15 <= 1e-14
+        (all four quantities are exact rationals; the two comparisons are exact integer comparisons)
+  edge weights over the WHOLE box: min|edge| - delta >= 0.494811, / scale = 0.1500 > 0, so A(w*) is a matrix OF the graph
+
+--- tile(72) length=72 ---
+  graph form recomputed from the stored weights (|X_new - X_stored| = 2.87e-15; the pivot set need not match)
+  EXACT: rk=1662  ||Y||=4.8643e+03  alpha0=2.3936e-10  eta=3.0170e-15  ||f(z0)||=4.7998e-15
+  EXACT KRAWCZYK PASSES at delta=1e-14: alpha=8.230812e-10 < 1 and eta+alpha*delta=3.0170e-15 <= 1e-14
+        (all four quantities are exact rationals; the two comparisons are exact integer comparisons)
+  edge weights over the WHOLE box: min|edge| - delta >= 0.506387, / scale = 0.1500 > 0, so A(w*) is a matrix OF the graph
+
+--- tile(74) length=74 ---
+  graph form recomputed from the stored weights (|X_new - X_stored| = 2.66e-15; the pivot set need not match)
+  EXACT: rk=1710  ||Y||=6.3124e+03  alpha0=8.0719e-11  eta=2.8126e-15  ||f(z0)||=3.7816e-15
+  EXACT KRAWCZYK PASSES at delta=1e-14: alpha=8.382123e-10 < 1 and eta+alpha*delta=2.8126e-15 <= 1e-14
+        (all four quantities are exact rationals; the two comparisons are exact integer comparisons)
+  edge weights over the WHOLE box: min|edge| - delta >= 0.525677, / scale = 0.1500 > 0, so A(w*) is a matrix OF the graph
+
+--- tile(75) length=75 ---
+  graph form recomputed from the stored weights (|X_new - X_stored| = 4.05e-15; the pivot set need not match)
+  EXACT: rk=1734  ||Y||=3.2523e+03  alpha0=1.2327e-10  eta=4.1086e-15  ||f(z0)||=4.5351e-15
+  EXACT KRAWCZYK PASSES at delta=1e-14: alpha=5.135476e-10 < 1 and eta+alpha*delta=4.1086e-15 <= 1e-14
+        (all four quantities are exact rationals; the two comparisons are exact integer comparisons)
+  edge weights over the WHOLE box: min|edge| - delta >= 0.646123, / scale = 0.1500 > 0, so A(w*) is a matrix OF the graph
+
+EXACTLY CERTIFIED: [54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 74, 75]
+not exactly certified: []

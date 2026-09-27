@@ -84,15 +84,16 @@ reports pass or fail per check. Its current output follows, unedited.
   [PASS] tiles cover a full interval [L,2L)  --- lengths 21..43 (23 tiles)
   [PASS] single tiles give nullity 8  --- all 23 lengths
   [PASS] multi-tile concatenations give nullity 8  --- checked n up to 55
-9. Certified tiles: nullity, docking exactness, interval coverage
-  [PASS] k=3: certified lengths form [L, 2L)  --- 21..43 (23 tiles)
+9. Certified tiles: nullity, docking exactness, coverage
+  [PASS] k=3: every n >= 21 is a sum of certified lengths  --- 23 tiles, lengths 21..43 (= [L,2L), so L itself)
   [PASS] k=3: every certified tile has nullity exactly 8  --- all 23 tiles
   [PASS] k=3: docking weights exact in every certified tile  --- all tiles, to 1e-13
-  [PASS] k=3: every n in [21, 400] is a sum of certified lengths  --- no gaps
-  [PASS] k=4: certified lengths form [L, 2L)  --- 29..61 (33 tiles)
+  [PASS] k=4: every n >= 29 is a sum of certified lengths  --- 33 tiles, lengths 29..61 (= [L,2L), so L itself)
   [PASS] k=4: every certified tile has nullity exactly 10  --- all 33 tiles
   [PASS] k=4: docking weights exact in every certified tile  --- all tiles, to 1e-13
-  [PASS] k=4: every n in [29, 400] is a sum of certified lengths  --- no gaps
+  [PASS] k=5: every n >= 162 is a sum of certified lengths  --- 21 tiles, lengths 54..75; 44 smaller n not covered
+  [PASS] k=5: every certified tile has nullity exactly 12  --- all 21 tiles
+  [PASS] k=5: docking weights exact in every certified tile  --- all tiles, to 1e-13
 10. The paper's own numbers against the computed ones
   [PASS] paper's certification count matches the 56 certified tiles  --- all say 56
   [PASS] k=3: paper's L matches the least certified tile length (21)  --- L=21
@@ -101,7 +102,14 @@ reports pass or fail per check. Its current output follows, unedited.
   [PASS] tile 21 at k=3: exact Krawczyk contraction  --- alpha = 2.154e-10 < 1 exactly
   [PASS] tile 29 at k=4: exact Krawczyk contraction  --- alpha = 1.812e-10 < 1 exactly
   [PASS] gn 17 at k=3: exact Krawczyk contraction  --- alpha = 2.128e-11 < 1 exactly
-12. Slice lemma (lem:slice)
+12. Z values cross-checked against independent solvers
+  [PASS] Z(P(12,3)) = 7, by every method that completed  --- 2/3 completed: reduced 7, unreduced 7; CP-SAT did not prove optimality in the time limit
+  [PASS] Z(P(8,2)) = 5, by every method that completed  --- 3/3 completed: reduced 5, unreduced 5, CP-SAT 5
+  [PASS] Z(P(12,4)) = 6, by every method that completed  --- 3/3 completed: reduced 6, unreduced 6, CP-SAT 6
+  [PASS] recorded cross-validation sweep has no disagreement  --- 15 rows agree; sweep still in progress
+13. Emit the manuscript's numbers from the certificates on disk
+  [PASS] manuscript numbers emitted from the certificates on disk  --- 56 tiles at k=3,4 + 21 at k=5; L(3)=21, L(4)=29
+14. Slice lemma (lem:slice)
   [PASS] spokes -> +1 and |outer| -> 1, nullity preserved, both parities  --- max deviation 2.7e-15
 
 ==================================================================

@@ -17,7 +17,15 @@ by running the forcing process on the returned set.
 from ortools.sat.python import cp_model
 
 
-def zero_forcing_number(adj, workers=8, verbose=False):
+def zero_forcing_number(adj, workers=8, verbose=False, max_seconds=None,
+                       require_optimal=True):
+    """Z(G) by CP-SAT.
+
+    With max_seconds set, returns None if the solver stops before PROVING
+    optimality.  A feasible-but-unproved answer is an upper bound on Z, not Z,
+    and returning it as if it were Z is exactly the kind of silent weakening a
+    cross-check exists to prevent.
+    """
     N = len(adj)
     nbr = [[u for u in range(N) if (adj[v] >> u) & 1] for v in range(N)]
     m = cp_model.CpModel()
@@ -38,7 +46,11 @@ def zero_forcing_number(adj, workers=8, verbose=False):
     m.Minimize(sum(s))
     sol = cp_model.CpSolver()
     sol.parameters.num_search_workers = workers
+    if max_seconds is not None:
+        sol.parameters.max_time_in_seconds = float(max_seconds)
     st = sol.Solve(m)
+    if require_optimal and st != cp_model.OPTIMAL:
+        return None
     if st not in (cp_model.OPTIMAL, cp_model.FEASIBLE):
         raise RuntimeError("no solution")
     S = 0

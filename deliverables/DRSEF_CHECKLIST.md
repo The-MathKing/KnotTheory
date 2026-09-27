@@ -53,7 +53,7 @@ should be needed — confirm with the adult sponsor.
       listing eleven claims withdrawn or corrected. It is direct evidence for
       two rubric lines the poster cannot address — *degree of independence* and
       *understanding limitations*.
-- [ ] `results/zero_forcing/verify_all.txt` — 77 checks, all passing, one page
+- [ ] `results/zero_forcing/verify_all.txt` — 80 checks, all passing, one page
 - [ ] Printout of `verification/certify_tiles.py` output for one tile, as a
       concrete example of what "certified" means
 

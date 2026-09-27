@@ -22,12 +22,12 @@ graphs `P(n,k)`. Main claims, in the author's own labelling:
 
 - `Z(P(n,2))` and `Z(P(n,3))` are determined for **every** admissible n.
 - `Z(P(n,3)) = 8` for every n >= 13, and 13 is optimal.
-- `Z(P(n,4)) = M(P(n,4)) = 10` for every n >= 29, and `Z(P(n,4))` determined for every n.
+- `Z(P(n,4)) = M(P(n,4)) = 10` for every n >= 29, `Z(P(n,4))` determined for every n, and `Z(P(n,5)) = M(P(n,5)) = 12` for every n >= 162.
 - A "ceiling theorem": for any matrix on the pattern of `P(n,k)`, the nullity is
   at most `2k+2`, with equality iff a monodromy `T = I`.
 - A "tiling theorem": identity tiles of every length in `[L,2L)` give
   `Z(P(n,k)) = 2k+2` for every n >= L.
-- 56 tiles certified by a Krawczyk contraction evaluated in exact rational arithmetic.
+- 77 tiles certified by a Krawczyk contraction evaluated in exact rational arithmetic (23 at k=3, 33 at k=4, 21 at k=5).
 
 ## Tasks
 
@@ -43,7 +43,7 @@ proof actually establishes the statement. Pay particular attention to:
   to `A K = 0` rather than a maximal-rank selection of it.
 
 **2. Re-run the computations.**
-`verification/verify_all.py` claims 77 checks, all passing. Run it. Then write
+`verification/verify_all.py` claims 80 checks, all passing. Run it. Then write
 your **own** independent zero-forcing solver from scratch and check at least
 these against it: `Z(P(12,3))`, `Z(P(13,3))`, `Z(P(10,3))`, `Z(P(8,2))`,
 `Z(P(10,2))`, `Z(P(19,4))`. Report any disagreement immediately.

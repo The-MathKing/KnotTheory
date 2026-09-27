@@ -1,0 +1,11 @@
+Regenerating the odd-n k=6 values, which the paper tabulates but no output
+file in this repo records. The even n are in d2_scan.txt; these were not saved.
+
+  P(13,6) Z=6 witness=0 1 2 3 4 20  real 0.03 user 0.00 sys 0.00 
+  P(15,6) Z=9 witness=0 1 2 3 4 5 6 7 23  real 0.30 user 0.22 sys 0.00 
+  P(17,6) Z=8 witness=0 1 2 3 4 6 7 8  real 0.30 user 0.08 sys 0.00 
+  P(19,6) Z=8 witness=0 1 2 3 4 8 9 10  real 0.12 user 0.13 sys 0.00 
+  P(21,6) Z=12 witness=0 1 2 3 4 5 6 7 8 9 10 14  real 285.37 user 277.99 sys 2.21 
+  P(23,6) Z=10 witness=0 3 4 5 6 7 9 10 17 23  real 20.12 user 21.39 sys 0.19 
+  P(25,6) Z=10 witness=0 6 7 8 9 10 14 19 20 27  real 41.57 user 40.73 sys 0.49 
+  

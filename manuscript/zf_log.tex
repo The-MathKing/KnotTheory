@@ -1326,6 +1326,89 @@ $k=4$ joins $k=2$ and $k=3$. The matrix value $M(P(n,4))$ is still open at
 $n=24$ and $n=28$, where I have $Z=10$ but no certificate, and I have said so
 rather than letting the forcing result carry the matrix result along with it.
 
+\section*{Entry 29: I deleted a correct citation because a summary told me to}
+
+The reviewer retracted one of the eleven findings. Their W3 had said that
+arXiv:2607.19412 says nothing about $k\ge4$, and that our sourcing of the
+$k\ge4$ gap to that note was unsupported. I acted on it and deleted the
+sourcing. Then they pulled the PDF text and found the note's final sentence:
+
+\begin{quote}\itshape
+``Determining $Z(P(n,k))$ for general $k$ --- the stabilization threshold and a
+rigorous lower bound for $k\ge4$ --- remains open.''
+\end{quote}
+
+Our sourcing had been accurate and verbatim. I have restored it, having this
+time downloaded the PDF and read the sentence myself rather than taking anyone's
+word for it, including the retraction's.
+
+What I want on the record is that this was my error too, not only theirs. When
+the report arrived I did check the claim before acting --- but I checked it with
+a page fetch that returned the abstract plus a summarizer's editorial remark
+that ``the paper does not discuss $k\ge4$.'' I treated that sentence as
+evidence. It was not evidence; it was a guess by a tool with no access to the
+body, and the body is where the sentence lives. I then deleted correct text on
+the strength of it. The whole exchange is two parties making the same mistake in
+opposite directions, and the fix in both cases was ten seconds of
+\texttt{pdftotext}.
+
+The rule I am taking from this: a claim about what a source does or does not say
+is a claim about its text, so it needs the text. Not the abstract, not a
+landing page, not a summary of either. I had already written a version of this
+rule for my own numerical results --- quote the residual, not the impression ---
+and I did not apply it to the literature.
+
+Two consequences beyond the restoration. First, the conjecture we prove is
+\emph{Conjecture 5}, numbered, and the note is sharper about it than I had
+conveyed: it says the content is the lower bound $Z(P(n,3))\ge8$ for all
+$n\ge13$, verified only to $n\le20$, that proving it means excluding $7$-vertex
+forcing sets \emph{uniformly in} $n$, and that ``we will not assert it from
+finite computation, which would reproduce the gap this note corrects.'' A paper
+that explicitly declines to extrapolate, and names uniformity in $n$ as the
+missing step, is naming precisely what tiling supplies. The paper now says so
+and quotes it.
+
+Second, I have applied the same standard against myself and \emph{downgraded} a
+prior-art claim of my own. I had written that Duong--Kroschel--Riddell--Vander
+Meulen--Van Tuyl build their circulant matrices from orthogonal Hankel blocks.
+I have not read that paper --- the publisher refused automated access three
+times --- and that characterisation came from a summary of its abstract. So it
+is not a finding. The paper now cites the work as the first place a reader
+should look for overlap, records that we could not obtain the full text, and
+declines to say what is or is not in it. That is a gap in our literature review,
+stated as such.
+
+\textbf{And the bookkeeping, fixed at the root.} The certified tile census has
+been $54$, then $55$, then $56$, and $L(4)$ has been $31$, $30$, $29$ --- six
+numbers, six corrections, and not one of them a change to the theory. Each time
+I fixed the instances and each time it drifted again, because a count typed into
+prose is stale the moment the next tile certifies. So the numbers are no longer
+typed. \texttt{verify\_all.py} now reads the certificates off disk and emits
+\texttt{zf\_numbers.tex}, which the paper and the board both \verb|\input|. The
+count is now a build product. It was right to be told this three times; it was
+wrong of me to keep fixing instances instead of the cause.
+
+\textbf{What the suite was not checking at all.} Seventy-odd checks, and not one
+of them checked a value of $Z$. Every headline claim in this project is a
+statement about $Z(P(n,k))$, and those numbers came out of one C program that
+nothing else ever tested --- and the $k=4$ values at $n=24,\dots,28$ depend on a
+rotation-symmetry reduction inside it that was likewise never tested. That is a
+strange blind spot to have while writing a section on how carefully the matrix
+side is certified. There are now cross-checks against an unreduced enumeration
+and against a CP-SAT integer program that does not enumerate subsets at all,
+over every value the paper prints, with no disagreement anywhere.
+
+\textbf{$k=5$, by a route I had not noticed.} All $21$ identity tiles at
+$\ell=54,\dots,72,74,75$ certified, exactly. That does \emph{not} give
+$[54,108)$ --- $\ell=73$ and $76\le\ell\le107$ are still missing --- so
+the tiling theorem does not apply as stated, and for a while I recorded
+$k=5$ as still open. But $[L,2L)$ is a sufficient condition dressed as the
+hypothesis; what the construction needs is only that $n$ be a \emph{sum} of
+certified lengths. The semigroup generated by those $21$ lengths contains every
+integer $n\ge162$. So $Z(P(n,5))=M(P(n,5))=12$ for every $n\ge162$, a fourth
+value of $k$, from tiles I already had. I had been reading my own hypothesis as
+a requirement.
+
 \begin{thebibliography}{9}
 \bibitem{RST} S. Rashidi, N. Shajareh Poursalavati, M. Tavakkoli,
 \emph{J. Algebra Combin. Discrete Struct. Appl.} 7(2) (2020), 183--193.
