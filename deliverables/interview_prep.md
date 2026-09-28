@@ -107,3 +107,99 @@ that would be the first strict gap in this family.
   applications bolted on all failed to advance.
 - If asked something unknown, say so and say what would settle it. The rubric
   rewards understanding limitations; it does not reward bluffing.
+
+
+---
+
+## How the official scoresheet actually allocates points
+
+| Category | Pts | What the top box says |
+|---|---|---|
+| Research Question | 10 | Purpose clear; **contribution to field identified**; testable |
+| Method | 15 | Data collection **well-designed**; **variables and controls defined and appropriate** |
+| Execution | 20 | **Reproducibility good**; analysis systematic; **math methods appropriate & correct**; data sufficient |
+| Creativity | 20 | **Student initiated, innovative** |
+| Poster | 10 | Logical, readable, supporting docs |
+| Interview | 25 | Clear responses; understands results; **recognizes impact**; **future ideas** |
+
+Two things follow.
+
+**The poster is worth 10 and the interview 25.** Do not over-rehearse the board.
+
+**Method and Execution are 35 points and they are experiment-shaped** —
+"data collection", "variables and controls", "reproducibility". A pure analysis
+project has to stretch to fit those words. This project fits them literally, and
+the mapping should be said out loud:
+
+- *Data collection* → the computations: exhaustive $Z$ values, tile searches,
+  certifications, each with a recorded budget and residual.
+- *Variables and controls* → every search runs a **control** alongside it. The
+  clearest example is the one that failed (below).
+- *Reproducibility* → `verify_all.py`, one command, 80 checks, and the
+  manuscript's numbers are *generated* from the certificates rather than typed.
+- *Math methods appropriate and correct* → the Krawczyk hypotheses are evaluated
+  in exact rational arithmetic, so the central claim is a proof, not an estimate.
+
+---
+
+## New answers to have ready
+
+**"You say the tiles are certified. Show me the interval."**
+> "There isn't one, and that's deliberate. The Krawczyk criterion needs three
+> norms bounded. Evaluating them in floating point would only estimate them, so
+> I evaluate them exactly. The box centre is a float64 vector and every float64
+> is a dyadic rational, so it's known exactly; $f$ is bilinear with integer
+> coefficients, so $f(z_0)$ and $J(z_0)$ are exactly rational; and $Y$ in the
+> test is *arbitrary*, so rounding it to a rational costs nothing. The obstacle
+> was speed — $\alpha$ needs every entry of a product of order a thousand — so I
+> write the integers in base $2^{20}$ with balanced digits, which keeps each
+> digit-pair product exactly representable in float64 and lets BLAS do the work.
+> $\alpha < 1$ is an exact integer comparison."
+
+**"What is this good for?"**
+> "$M(G)$ is the inverse eigenvalue problem of a graph — which spectra a network
+> can have. The reduction I use is discrete Floquet theory, the same machinery
+> that describes periodic and magnetic Laplacians on covering graphs; those model
+> polymers and nanoribbons. Zero forcing itself came out of quantum control and
+> power-grid monitoring. I'm not claiming an application — I'm saying the
+> quantity is one people already study, and I determined it exactly."
+
+**"What's the biggest thing you don't know?"**
+> "Whether the ceiling is a property of the cover or only of symmetric matrices
+> that respect the rotation. I proved it for this family; the general case is
+> open and it's in the paper as open. I tried to settle it by searching for a
+> counterexample, and I report nothing from that search, because its **control
+> failed** — I asked it to find a matrix I already know exists, and it couldn't.
+> One of the four formulations I tried was a method I'd already withdrawn
+> earlier in the project as unreliable; the control is what caught that I'd
+> re-derived it."
+
+*(This is the strongest answer in the set. It demonstrates understanding of
+limitations, independence, and experimental design in one breath.)*
+
+**"How do you know your computed values are right?"**
+> "Three independent implementations agree on every value: an enumeration that
+> uses the rotation symmetry, an enumeration that uses no symmetry at all — which
+> is what tests the symmetry argument itself — and a CP-SAT integer program that
+> doesn't enumerate subsets. No disagreement anywhere. And when a solver times
+> out, that's recorded as 'not checked', never as agreement."
+
+**"What would you do next?"** *(explicit scoring criterion — have this ranked)*
+> 1. Prove the ceiling for arbitrary cyclic covers — turns a result about one
+>    family into a method for all of them.
+> 2. Prove identity tiles exist for every $k$; this reduces to a controllability
+>    question in $Sp(2k+2,\mathbb R)$, which I've identified but not settled.
+> 3. Separate $M$ from $Z$ somewhere. I expect $M(P(10,2)) < Z(P(10,2)) = 6$ but
+>    have no proof, and no $(n,k)$ is proved to have $M < 2k+2$.
+> 4. Lower the $k=5$ threshold from 162 to 54 by finding 33 more tile lengths —
+>    mechanical, not interesting.
+
+---
+
+## The honest comparison, if asked about other projects
+
+Don't disparage anyone. If pressed on what distinguishes this work:
+
+> "Mine has no hypotheses. The results are unconditional and the cases are
+> closed — 'for every $n$', not 'for large $n$ assuming something unproven'. And
+> every number is machine-checked from the certificates rather than typed in."

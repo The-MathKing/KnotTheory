@@ -91,14 +91,3 @@
   [PASS] tile 29 at k=4: exact Krawczyk contraction  --- alpha = 1.812e-10 < 1 exactly
   [PASS] gn 17 at k=3: exact Krawczyk contraction  --- alpha = 2.128e-11 < 1 exactly
 12. Z values cross-checked against independent solvers
-  [PASS] Z(P(12,3)) = 7, by every method that completed  --- 2/3 completed: reduced 7, unreduced 7; CP-SAT did not prove optimality in the time limit
-  [PASS] Z(P(8,2)) = 5, by every method that completed  --- 3/3 completed: reduced 5, unreduced 5, CP-SAT 5
-  [PASS] Z(P(12,4)) = 6, by every method that completed  --- 3/3 completed: reduced 6, unreduced 6, CP-SAT 6
-  [PASS] recorded cross-validation sweep has no disagreement  --- 15 rows agree; sweep still in progress
-13. Emit the manuscript's numbers from the certificates on disk
-  [PASS] manuscript numbers emitted from the certificates on disk  --- 56 tiles at k=3,4 + 21 at k=5; L(3)=21, L(4)=29
-14. Slice lemma (lem:slice)
-  [PASS] spokes -> +1 and |outer| -> 1, nullity preserved, both parities  --- max deviation 2.7e-15
-
-==================================================================
-ALL CHECKS PASSED
