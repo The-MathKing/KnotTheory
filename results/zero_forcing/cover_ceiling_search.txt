@@ -1,0 +1,27 @@
+Is the ceiling a property of the COVER, or only of equivariant matrices?
+
+Theorem thm:cover bounds null A by the degree span of det M(zeta) for matrices
+that commute with the Z_n action.  Theorem thm:red proves the far stronger
+statement -- the bound holds for EVERY matrix carrying the pattern -- but only
+for P(n,k), where the nonzero spoke weight makes the elimination possible.  The
+paper records the general case as open:
+
+    "Whether the corresponding elimination can be carried out over an arbitrary
+     base graph -- and so whether the ceiling is a property of the cover rather
+     than of equivariant matrices on it -- we leave open."
+
+Settling it either way is worth months of proof effort, so before attempting a
+proof we look for a COUNTEREXAMPLE: a cyclic cover and fully non-equivariant
+weights with null A > span.  If one exists the conjecture is dead and we learn
+it in an afternoon.
+
+THE CONTROL MATTERS MORE THAN THE SEARCH.  A search that fails proves nothing
+-- this project has twice mistaken a stalled solve for a negative result.  So
+every cover is run at TWO targets: r = span, which must SUCCEED (showing the
+solver can find nullity when it exists), and r = span + 1, which is the
+violation.  A cover only contributes evidence if its control passes.
+
+==============================================================================
+
+--- n = 9 ---
+  P(n,2) base                        n=9   span=6   CONTROL FAILED (inf) -- this cover proves nothing

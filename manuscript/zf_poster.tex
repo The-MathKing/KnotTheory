@@ -89,15 +89,18 @@ is \textbf{every $n$}.
 \end{block}
 
 \begin{block}{INTRODUCTION}
-\textbf{The forcing rule.} Colour some vertices of a graph. If a coloured
-vertex has exactly one uncoloured neighbour, that neighbour becomes coloured.
-Repeat. $Z(G)$ is the size of the smallest starting set that eventually
-colours everything.
+\textbf{The problem.} Over all symmetric matrices whose off-diagonal pattern is
+a graph $G$ --- Hamiltonians on that network --- how degenerate can the zero
+eigenvalue be? That maximum, the \emph{maximum nullity} $M(G)$, is the central
+quantity of the \textbf{inverse eigenvalue problem of a graph}. Computing it
+exactly is hard: it is a statement about \emph{every} matrix with that pattern.
 
-\textbf{Why it matters.} $Z(G)$ bounds the \emph{maximum nullity} $M(G)$: the
-largest null space of a symmetric matrix carrying the graph's pattern. The
-parameter arose independently in quantum control and in power-network sensor
-placement.
+\textbf{The tool.} $M(G)\le Z(G)$, the \emph{zero forcing number}: colour some
+vertices; a coloured vertex with exactly one uncoloured neighbour forces it;
+$Z(G)$ is the smallest starting set that colours everything. It arose
+independently in quantum control and in power-network sensor placement. A matrix
+bounds $Z$ from below; a forcing set bounds $M$ from above. \textbf{When they
+meet, both are settled exactly.}
 
 \textbf{The family.} $P(n,k)$: outer $n$-cycle $u_iu_{i+1}$, inner edges
 $v_iv_{i+k}$, spokes $u_iv_i$. Cubic on $2n$ vertices, rotation
@@ -106,7 +109,11 @@ $\rho: i\mapsto i+1$.
 \textbf{The general object.} $P(n,k)$ is a \emph{cyclic cover}: a base graph
 $B$ with edge voltages in $\mathbb Z_n$ lifts to $V(B)\times\mathbb Z_n$. Two
 vertices, loops of voltage $1$ and $k$, a spoke of voltage $0$ --- that is
-$P(n,k)$. Everything below is really about covers.
+$P(n,k)$. Everything below is really about covers, so this is the
+\textbf{spectral theory of a periodic structure}, and the reduction we use is
+discrete Floquet theory --- the same machinery that governs periodic and
+magnetic Laplacians on covering graphs. Any answer must therefore hold
+\emph{uniformly in the period $n$}, which is exactly what makes it hard.
 \end{block}
 
 \begin{block}{PROBLEM FRAMING}

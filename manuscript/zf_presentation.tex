@@ -61,28 +61,29 @@ of Generalized Petersen Graphs\par}
 Category: Mathematics \qquad Project ID: \rule{3cm}{0.4pt}
 \end{center}
 \vfill
-\kb{\centering We determine $Z(P(n,k))$ for \key{every} $n$ when $k=2,3,4$,
-and for all $n\ge\SettleFive$ when $k=5$ --- proving a conjecture posed in 2026
-and correcting a published theorem that is false.}
+\kb{\centering How degenerate can the zero energy level of a periodic operator
+on a graph be? We answer it \key{exactly and unconditionally} for infinite
+families of covers --- proving a conjecture posed in 2026, and correcting a
+published theorem that is false.}
 \vfill
 \end{frame}
 
 %% ------------------------------------------------------- 2. INTRODUCTION
 \begin{frame}{INTRODUCTION --- the question}
-\key{Zero forcing.} A coloured vertex with exactly one uncoloured neighbour
-forces it to colour; repeat. $Z(G)$ is the smallest starting set that colours
-everything.
+\key{The problem.} Over all symmetric matrices with off-diagonal pattern $G$ ---
+Hamiltonians on that network --- how degenerate can the zero eigenvalue be? That
+maximum $M(G)$ is the central quantity of the \key{inverse eigenvalue problem of
+a graph}.
 
-\key{Why it matters.} $M(G)$, the largest nullity of a symmetric matrix with
-$G$'s zero pattern, satisfies $M(G)\le Z(G)$. So a \emph{matrix} of large
-nullity is a \emph{lower} bound on $Z$.
+\key{The tool.} $M(G)\le Z(G)$, the \key{zero forcing number}, a colouring game
+from quantum control and power-grid monitoring.
 
-\key{The question.} What is $Z(P(n,k))$?
+\key{The family.} $P(n,k)$ is a \key{cyclic cover}: one base graph repeated $n$
+times with a twist. This is the spectral theory of a periodic structure, so any
+answer must hold \emph{uniformly in the period $n$}.
 
-\kb{\key{What was wrong.} Rashidi et al.\ (2020) proved $Z(P(n,k))\le2k+2$.
-Their Theorem 3.6, claiming $Z(P(n,3))=8$ for $n\ge12$, is \key{false}:
-Krishnan (2026) exhibits $Z(P(12,3))=7$. The flaw is a case analysis that never
-excludes $7$-vertex sets.}
+\kb{\key{What was wrong.} The published value is \key{false}: Rashidi et
+al.\ (2020) claim $Z(P(n,3))=8$ for $n\ge12$, but $Z(P(12,3))=7$.}
 \end{frame}
 
 %% -------------------------------------------------- 3. INTRODUCTION cont.

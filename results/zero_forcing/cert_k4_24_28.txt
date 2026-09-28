@@ -2,3 +2,26 @@ Matrix certificates at the two k=4 values that still lack one: n=24, 28.
 Z is settled at both by exhaustive search; what is missing is M=10.
 --- P(24,4) ---
 P(24,4)   target nullity 2k+2 = 10
+  stage 1 [cold, sign +1]: r-th sv/scale = 3.330e-04, min|inner|/scale = 0.0000
+  500 unknowns, 480 equations, 435 structural, 45 dependent; fixing 65 at rationals
+  stage 2 (double): max|f| structural = 6.985e-03, dependent = 1.552e-02
+  did not converge; stopping
+  -> stage 2/3 failed here; trying the next candidate
+  stage 1 [cold, sign -1]: r-th sv/scale = 3.330e-04, min|inner|/scale = 0.0000
+  500 unknowns, 480 equations, 435 structural, 45 dependent; fixing 65 at rationals
+  stage 2 (double): max|f| structural = 6.985e-03, dependent = 1.552e-02
+  did not converge; stopping
+  -> stage 2/3 failed here; trying the next candidate
+  24: False
+--- P(28,4) ---
+P(28,4)   target nullity 2k+2 = 10
+  stage 1 [cold, sign +1]: r-th sv/scale = 1.794e-04, min|inner|/scale = 0.1843
+  600 unknowns, 560 equations, 515 structural, 45 dependent; fixing 85 at rationals
+  stage 2 (double): max|f| structural = 1.325e-14, dependent = 7.954e-14
+  stage 2b (60 digits): structural 1.75e-61, dependent 2.139e-61
+  ||Y||=9.164e+02  ||I-YJ||=3.143e-12  ||Yf||=1.156e-60
+  stage 3 KRAWCZYK PASSES at delta = 1e-13: alpha = 1.103e-09
+  certified matrix: nullity 10, gap 0.1265, min|edge|/scale 0.0958
+  VERDICT: PROVED null A = 10
+  SAVED cert_gn_28_4.npy
+  28: True

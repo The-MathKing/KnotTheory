@@ -40,3 +40,46 @@
   21   4     10    10       None    None      1  agree
   22   4     10    10       None    None      1  agree
   23   4     10    10       None    None      1  agree
+  24   4     10    10       None    None      1  agree
+  25   4     10    10       None    None      1  agree
+  26   4     10    10       None    None      1  agree
+  27   4     10    10       None    None      1  agree
+  28   4     10    10       None    None      1  agree
+  11   5      6     6          6    None      2  agree
+  12   5      8     8       None    None      1  agree
+  13   5      9     9       None    None      1  agree
+  14   5      8     8       None    None      1  agree
+  15   5      8     8       None    None      1  agree
+  16   5      8     8       None    None      1  agree
+  17   5     10    10       None    None      1  agree
+  18   5     10    10       None    None      1  agree
+  19   5     10    10       None    None      1  agree
+  20   5     10    10       None    None      1  agree
+  21   5     10    10       None    None      1  agree
+  22   5     11    11       None    None      1  agree
+  23   5     12  None       None    None      0  agree
+  13   6   None     6       None    None      1  agree
+  14   6   None     8       None    None      1  agree
+  15   6   None     9       None    None      1  agree
+  16   6   None     9       None    None      1  agree
+  17   6   None     8       None    None      1  agree
+  18   6   None     9       None    None      1  agree
+  19   6   None     8       None    None      1  agree
+  20   6   None    10       None    None      1  agree
+  21   6   None  None       None    None      0  agree
+  22   6   None  None       None    None      0  agree
+  23   6   None    10       None    None      1  agree
+  24   6   None  None       None    None      0  agree
+  25   6   None    10       None    None      1  agree
+  26   6   None  None       None    None      0  agree
+  27   6   None  None       None    None      0  agree
+  28   6   None  None       None    None      0  agree
+  29   6   None  None       None    None      0  agree
+
+   10 values with 3 independent confirmation(s)
+    7 values with 2 independent confirmation(s)
+   51 values with 1 independent confirmation(s): [(12, 2), (13, 2), (14, 2), (15, 2), (16, 2), (12, 3), (13, 3), (14, 3), (15, 3), (16, 3), (17, 3), (18, 3), (19, 3), (20, 3), (13, 4), (14, 4), (15, 4), (16, 4), (17, 4), (18, 4), (19, 4), (20, 4), (21, 4), (22, 4), (23, 4), (24, 4), (25, 4), (26, 4), (27, 4), (28, 4), (12, 5), (13, 5), (14, 5), (15, 5), (16, 5), (17, 5), (18, 5), (19, 5), (20, 5), (21, 5), (22, 5), (13, 6), (14, 6), (15, 6), (16, 6), (17, 6), (18, 6), (19, 6), (20, 6), (23, 6), (25, 6)]
+    8 values with 0 independent confirmation(s): [(23, 5), (21, 6), (22, 6), (24, 6), (26, 6), (27, 6), (28, 6), (29, 6)]
+
+No disagreement anywhere: every method that completed agrees with every other and with the value the paper prints.
+NOTE: the values listed with 0 or 1 confirmations rest on the reference enumeration alone at this problem size. That is a limit of what is computable, not an agreement.
