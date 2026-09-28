@@ -46,6 +46,14 @@ def zero_forcing_number(adj, workers=8, verbose=False, max_seconds=None,
     m.Minimize(sum(s))
     sol = cp_model.CpSolver()
     sol.parameters.num_search_workers = workers
+    # Fixed seed, as a precaution rather than a fix for anything observed.
+    # The 8 s vs >120 s swing that prompted this was NOT nondeterminism: those
+    # two runs used 4 and 2 workers respectively, and worker count alone
+    # explains every timing measured (2 -> timeout, 4 -> 1.5 s, 8 -> 2.2 s,
+    # reproducibly).  Seeded and unseeded were never compared at fixed workers,
+    # so no claim is made that the seed changed behaviour; it is set so that a
+    # future run cannot differ from a recorded one for reasons we can control.
+    sol.parameters.random_seed = 0
     if max_seconds is not None:
         sol.parameters.max_time_in_seconds = float(max_seconds)
     st = sol.Solve(m)

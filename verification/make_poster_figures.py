@@ -176,15 +176,27 @@ print("wrote:", sorted(f for f in os.listdir(OUT) if f.startswith("fig_")))
 # sparse set of n (multiples of some lcm), the tiling construction settles
 # every n past a threshold.
 fig, ax = plt.subplots(figsize=(7.2, 3.5))
-NMAX = 130
+NMAX = 185
+# k=5 is settled at every n that is a SUM of the certified tile lengths
+# {54..72, 74, 75}; the numerical semigroup they generate contains every
+# n >= 162, which is why the row goes solid there.
+_K5 = sorted(list(range(54, 73)) + [74, 75])
+_rep = [False] * (NMAX + 1)
+for _l in _K5:
+    if _l <= NMAX:
+        _rep[_l] = True
+for _m in range(1, NMAX + 1):
+    if _rep[_m]:
+        for _l in _K5:
+            if _m + _l <= NMAX:
+                _rep[_m + _l] = True
 rows = [
     (2, "EVERY $n$", list(range(5, NMAX+1)), []),
     (3, "EVERY $n$", list(range(7, NMAX+1)),
      [n for n in range(1, NMAX+1) if n % 10 == 0]),
-    (4, "all $n\\geq30$, and $n\\leq23$",
-     list(range(9, 24)) + [26, 27] + list(range(30, NMAX+1)),
+    (4, "EVERY $n$", list(range(9, NMAX+1)),
      [n for n in range(1, NMAX+1) if n % 60 == 0 or n % 70 == 0 or n % 90 == 0]),
-    (5, "$24\\mid n$ only", [],
+    (5, "every $n\\geq162$", [n for n in range(1, NMAX+1) if _rep[n]],
      [n for n in range(1, NMAX+1) if n % 24 == 0]),
     (7, "$120\\mid n$ only", [],
      [n for n in range(1, NMAX+1) if n % 120 == 0]),

@@ -1,12 +1,12 @@
 \documentclass[11pt]{article}
 \usepackage[letterpaper,margin=1in]{geometry}
 \usepackage{lmodern}\usepackage[T1]{fontenc}\usepackage{fancyhdr}
-\pagestyle{fancy}\fancyhf{}\fancyhead[L]{\footnotesize Research Binder}
+\pagestyle{fancy}\fancyhf{}\fancyhead[L]{\footnotesize Research Binder: Zero Forcing Numbers of $P(n,k)$}
 \fancyhead[R]{\footnotesize\thepage}
 \renewcommand{\headrulewidth}{0.4pt}
 \setlength{\parindent}{0pt}\setlength{\parskip}{0.55em}
 \begin{document}
-\section*{V.\quad Verification Output}
+\section*{V.\quad Verification Output \hfill\normalsize\normalfont(September 28, 2026)}
 One script re-derives every computational claim in the paper from scratch and
 reports pass or fail per check. Its current output follows, unedited.
 \begingroup\footnotesize\begin{verbatim}
@@ -96,6 +96,7 @@ reports pass or fail per check. Its current output follows, unedited.
   [PASS] k=5: docking weights exact in every certified tile  --- all tiles, to 1e-13
 10. The paper's own numbers against the computed ones
   [PASS] paper's certification count matches the 56 certified tiles  --- all say 56
+  [PASS] Status section names the same k as thm:complete  --- both say [2, 3, 4]
   [PASS] k=3: paper's L matches the least certified tile length (21)  --- L=21
   [PASS] k=4: paper's L matches the least certified tile length (29)  --- L=29
 11. The Krawczyk test itself, re-run in EXACT arithmetic
@@ -103,21 +104,27 @@ reports pass or fail per check. Its current output follows, unedited.
   [PASS] tile 29 at k=4: exact Krawczyk contraction  --- alpha = 1.812e-10 < 1 exactly
   [PASS] gn 17 at k=3: exact Krawczyk contraction  --- alpha = 2.128e-11 < 1 exactly
 12. Z values cross-checked against independent solvers
-  [PASS] Z(P(12,3)) = 7, by every method that completed  --- 2/3 completed: reduced 7, unreduced 7; CP-SAT did not prove optimality in the time limit
+  [PASS] Z(P(12,3)) = 7, by every method that completed  --- 3/3 completed: reduced 7, unreduced 7, CP-SAT 7
   [PASS] Z(P(8,2)) = 5, by every method that completed  --- 3/3 completed: reduced 5, unreduced 5, CP-SAT 5
   [PASS] Z(P(12,4)) = 6, by every method that completed  --- 3/3 completed: reduced 6, unreduced 6, CP-SAT 6
-  [PASS] recorded cross-validation sweep has no disagreement  --- 15 rows agree; sweep still in progress
-13. Emit the manuscript's numbers from the certificates on disk
-  [PASS] manuscript numbers emitted from the certificates on disk  --- 56 tiles at k=3,4 + 21 at k=5; L(3)=21, L(4)=29
-14. Slice lemma (lem:slice)
+  [PASS] recorded cross-validation sweep has no disagreement  --- 79 rows agree
+14. Reduction on every two-vertex cover (thm:red2)
+  [PASS] thm:red2: elimination gives the predicted offsets, ends nonzero  --- 8 bases, incl. p>1 and w!=0 which thm:red does not cover
+  [PASS] thm:red2: x -> (x, Lx) is a bijection onto ker A, and null A <= 2(p+q)  --- null A = null R, lift residual at machine precision
+  [PASS] thm:theta: null A = dim ker(T-I) <= D on theta covers  --- 6 bases incl. four-edge; state dimension equals the degree span
+  [PASS] thm:order: order = p+q+max(p,t_m)+max(q,t_m)  --- 12 bases, measured vs counted
+  [PASS] thm:order: order = D iff t_m <= min(p,q)  --- the characterisation holds on every base tested
+15. Slice lemma (lem:slice)
   [PASS] spokes -> +1 and |outer| -> 1, nullity preserved, both parities  --- max deviation 2.7e-15
+16. Emit the manuscript's numbers from the certificates on disk
+  [PASS] manuscript numbers emitted from the certificates on disk  --- 56 tiles at k=3,4 + 21 at k=5; L(3)=21, L(4)=29; Nchecks=88
 
 ==================================================================
 ALL CHECKS PASSED
 
 \end{verbatim}\endgroup
 \newpage
-\section*{VI.\quad A Certification Transcript}
+\section*{VI.\quad A Certification Transcript \hfill\normalsize\normalfont(September 27, 2026)}
 What ``interval-certified'' means in practice, for one family of tiles. Each
 entry is an independent Krawczyk contraction proof with its own unknown count,
 matrix norm and residual; nothing is shared between them.

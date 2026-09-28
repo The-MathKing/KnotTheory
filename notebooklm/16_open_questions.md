@@ -149,3 +149,30 @@ known exactly, the mechanism that reaches the ceiling is identified, and the
 search over rational symbols is provably exhausted. What remains is to enlarge
 the family — which is a well-posed construction problem with a clear parameter
 count, not a search for inspiration.
+
+
+## The ceiling question, sharpened
+
+Previously stated as: *is the nullity ceiling a property of the cover, or only of
+matrices respecting the rotation?* That is now a better question.
+
+**Settled.** For every two-vertex base B_{p,q,w} — a loop of voltage p, a loop of
+voltage q, one connecting edge of voltage w — the ceiling holds for *every*
+matrix carrying the pattern, not just equivariant ones: null A <= 2(p+q). See
+file 09. P(n,k) is the case p=1, w=0.
+
+**Why it works there.** The outer row meets exactly one inner variable, whose
+coefficient is nowhere-zero and hence a unit in the ring of sequences on Z_n.
+
+**Still open, and now precisely stated.** *Which bases admit that elimination?*
+The condition is a splitting V(B) = S ∪ T under which each S-row meets exactly
+one T-variable. Concretely the first unknown case is the theta base: three edges
+between two vertices, voltages 0,1,2, no loops. Its outer row meets three inner
+variables at once and no single-step elimination exists, so nothing here applies
+and the ceiling is unknown there.
+
+**Why the numerical route is closed.** Four search instruments were built to look
+for a counterexample; all four failed their controls, the last by missing a
+matrix that is explicitly constructible (file 13). A search can establish
+attainment — a found matrix is independently checkable — but only a proof can
+establish a ceiling. Any further progress here is a proof problem.

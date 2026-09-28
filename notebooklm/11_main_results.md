@@ -277,3 +277,24 @@ Full treatment in `23_antipodal_obstruction.md`. In brief:
    $d$ and $2d$ for odd $d$, nor any $d$ with $4 \mid d$ and
    $\varphi(d) \ge 4$. This accounts for every rejection in the $k=2$
    exhaustive enumeration.
+
+
+## Addition: the reduction on every two-vertex cover
+
+The reduction theorem, previously stated for P(n,k), holds on every two-vertex
+base B_{p,q,w} (loop voltage p at u, loop voltage q at v, one uv edge of voltage
+w), for every matrix carrying the pattern:
+
+    null A = dim ker(T - I) <= 2(p+q),
+
+the degree span of det M(zeta), with equality iff T = I. The nine offsets of the
+reduced recurrence are { -(p+q), -q, -(q-p), -p, 0, p, q-p, q, p+q } and both
+extreme coefficients are nonzero.
+
+**The original theorem is the case p = 1, w = 0**, where 2(p+q) = 2k+2. So the
+paper's central structural result is now a corollary of a more general one, and
+the whole family of cubic two-vertex covers is covered rather than one series.
+
+Verified symbolically (offsets and extreme coefficients, 8 bases) and numerically
+(the lift x -> (x, Lx) is a bijection onto ker A, null A = null R, residual at
+machine precision). Both checks are in verify_all.py.

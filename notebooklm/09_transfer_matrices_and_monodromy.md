@@ -165,3 +165,42 @@ statement that no kernel vector vanishes on u_0, ..., u_(2k+1).
 - The order 2k+2 *is* the size of the bootstrap's forcing set — the method's
   ceiling equals the upper bound it is trying to match.
 - Any claimed nullity above 2k+2 is a bug, and that fact is a useful alarm.
+
+
+## The reduction is not special to P(n,k)
+
+The proof of the reduction theorem uses exactly one structural fact: **the row
+at an outer vertex meets exactly one inner variable**, and its coefficient is a
+spoke weight, so it can be divided out. Nothing in it requires the outer cycle
+to have voltage 1.
+
+Why "nonzero" is the wrong word for what matters: the coefficients live in the
+ring of *sequences* on Z_n, which has zero divisors. A sequence that is nonzero
+somewhere is not invertible. What licenses the division is that the spoke weight
+is **nowhere** zero — it is an edge weight, so it is nonzero at every position —
+which makes it a *unit* in that ring.
+
+Let B_{p,q,w} be the two-vertex base with a loop of voltage p at u, a loop of
+voltage q at v, and one edge uv of voltage w. Every such cover is cubic on 2n
+vertices, and P(n,k) = B_{1,k,0}.
+
+**Theorem.** For n > 2(p+q) and every A carrying the pattern, eliminating the
+inner coordinates leaves one recurrence supported on the nine offsets
+
+    { -(p+q), -q, -(q-p), -p, 0, p, q-p, q, p+q }
+
+with both extreme coefficients nonzero. Hence null A = dim ker(T - I) <= 2(p+q),
+which is the degree span of det M(zeta), with equality iff T = I.
+
+The original reduction theorem is the case p = 1, w = 0, where 2(p+q) = 2k+2.
+
+The extreme coefficient is always a product of one inner edge weight, one outer
+edge weight and one spoke weight — all nonzero because they are edges — which is
+why no cancellation can occur there. If p = q the nine offsets collapse to five,
+but the extreme coefficients and the order are unchanged.
+
+**What it does not cover.** The hypothesis is a genuine restriction. On the theta
+base (two vertices joined by three edges, voltages 0,1,2, no loops) the outer row
+reads a_i x_i + c_i y_i + f_i y_{i+1} + g_i y_{i+2} = 0 — three inner variables
+at once — and no single-step elimination exists. Whether the ceiling still holds
+there is open.

@@ -55,7 +55,7 @@ should be needed — confirm with the adult sponsor.
       *understanding limitations*.
 - [ ] `deliverables/presentation_pages/page-01..12.png` — the 12-page ISEF Project
       Presentation, one PNG per page, Mathematics/CS template order
-- [ ] `results/zero_forcing/verify_all.txt` — 80 checks, all passing, one page
+- [ ] `results/zero_forcing/verify_all.txt` — 85 checks, all passing, one page
 - [ ] Printout of `verification/certify_tiles.py` output for one tile, as a
       concrete example of what "certified" means
 

@@ -35,7 +35,7 @@ def run_c(prog, n, k, cap=14, extra=()):
 def run_cpsat(n, k):
     import zf as zfmod, cpsat
     G = zfmod.generalized_petersen(n, k)
-    out = cpsat.zero_forcing_number(G, workers=2, max_seconds=CPSAT_SECS)
+    out = cpsat.zero_forcing_number(G, workers=4, max_seconds=CPSAT_SECS)
     if out is None:          # stopped without proving optimality
         return None
     return out[0] if isinstance(out, tuple) else out

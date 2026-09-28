@@ -43,7 +43,7 @@ proof actually establishes the statement. Pay particular attention to:
   to `A K = 0` rather than a maximal-rank selection of it.
 
 **2. Re-run the computations.**
-`verification/verify_all.py` claims 80 checks, all passing. Run it. Then write
+`verification/verify_all.py` claims 85 checks, all passing. Run it. Then write
 your **own** independent zero-forcing solver from scratch and check at least
 these against it: `Z(P(12,3))`, `Z(P(13,3))`, `Z(P(10,3))`, `Z(P(8,2))`,
 `Z(P(10,2))`, `Z(P(19,4))`. Report any disagreement immediately.

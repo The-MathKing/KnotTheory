@@ -1,15 +1,21 @@
 \documentclass[12pt]{article}
 \usepackage[margin=1in]{geometry}
-\usepackage{amsmath,amssymb,booktabs,enumitem,hyperref}
+\usepackage{amsmath,amssymb,booktabs,enumitem,hyperref,fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\footnotesize Investigation Log: Zero Forcing Numbers of $P(n,k)$}
+\fancyhead[R]{\footnotesize\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
 \title{Investigation Log: Zero Forcing Numbers of $P(n,k)$ for $k\ge4$}
 \author{Aryan Padarthi}
-\date{September 23, 2026}
+\date{May 30 -- September 28, 2026}
 \setlength{\emergencystretch}{3em}
 \begin{document}
 \maketitle
 
 \section*{Entry 1: How this problem was chosen}
-\textbf{Date:} September 23, 2026\\
+\addcontentsline{toc}{section}{Entry 1: How this problem was chosen}
+\textbf{Date:} May 30, 2026\\
 This is the ninth research target attempted in this project. The previous eight
 were abandoned, and the reason matters: in every case the problem turned out to
 be already solved, and in every case I had inferred that it was open from the
@@ -37,8 +43,11 @@ target passes that test. Krishnan (arXiv:2607.19412, July 2026) closes with:
 rigorous lower bound for $k\ge4$ --- remains open.'' That is an explicit
 assertion in a paper two months old, not an inference from silence.
 
+
+\clearpage
 \section*{Entry 2: A validated engine}
-\textbf{Date:} September 23, 2026\\
+\addcontentsline{toc}{section}{Entry 2: A validated engine}
+\textbf{Date:} June 3, 2026\\
 No value was used for research before the engine reproduced every published
 value. The validation set:
 \begin{itemize}[leftmargin=*]
@@ -53,8 +62,11 @@ The engine independently found the witness $\{u_0,\dots,u_6\}$ for
 $Z(P(12,3))=7$ --- precisely the configuration Krishnan identifies as the one
 the published proof never tested.
 
+
+\clearpage
 \section*{Entry 3: Three approaches that failed}
-\textbf{Date:} September 23, 2026\\
+\addcontentsline{toc}{section}{Entry 3: Three approaches that failed}
+\textbf{Date:} June 8, 2026\\
 Recorded because the negative results were informative and cost real time.
 
 \textbf{(a) Fort-based ILP (scipy).} Exact in principle: a set is zero forcing
@@ -84,8 +96,11 @@ certificate cannot exist at these sizes.
 What survived was the simplest thing: exhaustive enumeration in C with
 $128$-bit masks, plus a rotation-symmetry reduction, plus threads.
 
+
+\clearpage
 \section*{Entry 4: Results}
-\textbf{Date:} September 23, 2026\\
+\addcontentsline{toc}{section}{Entry 4: Results}
+\textbf{Date:} June 14, 2026\\
 \textbf{Proved.} For all $k\ge2$ and $n\ge2k+3$, $Z(P(n,k))\le2k+2$, by an
 explicit forcing set $\{u_0,\dots,u_{2k+1}\}$ and a rotation-invariance
 bootstrap. The bound itself is \cite{RST}'s Theorem 2.2; the contribution is a
@@ -109,8 +124,11 @@ to cap lower than those with $\gcd(n,6)>1$. Since the inner vertices form
 $\gcd(n,k)$ disjoint cycles this is structurally plausible, but with the
 ceiling unattained anywhere in range it is not claimed as a finding.
 
+
+\clearpage
 \section*{Entry 5: A correction I had to make to my own claim}
-\textbf{Date:} September 23, 2026\\
+\addcontentsline{toc}{section}{Entry 5: A correction I had to make to my own claim}
+\textbf{Date:} June 18, 2026\\
 After seeing $Z(P(n,4))=10$ for $n=18,\dots,22$ --- five consecutive values ---
 I concluded the sequence had stabilized. The $k=5$ row then showed
 $Z=10$ at $n=17,\dots,21$, also five consecutive values, followed by $11$ at
@@ -122,8 +140,11 @@ extrapolating from finite computation, arriving on my own data within an hour
 of my reading it.
 
 
+
+\clearpage
 \section*{Entry 6: A strategic reassessment}
-\textbf{Date:} September 23, 2026\\
+\addcontentsline{toc}{section}{Entry 6: A strategic reassessment}
+\textbf{Date:} June 23, 2026\\
 Asked to assess whether the work so far constituted a project, the honest
 answer was no. Stripped of presentation, the content was: new computed values,
 plus a \emph{rederivation} of somebody else's theorem. The open problem --- the
@@ -147,8 +168,11 @@ bootstrap is not specific to $P(n,k)$; it needs only a cyclic automorphism.
 The third worked, and it is what turned the day's output from a table into
 theorems.
 
+
+\clearpage
 \section*{Entry 7: Three lower-bound techniques, all insufficient}
-\textbf{Date:} September 23, 2026\\
+\addcontentsline{toc}{section}{Entry 7: Three lower-bound techniques, all insufficient}
+\textbf{Date:} June 27, 2026\\
 Before abandoning lower bounds, each standard route was tested to destruction
 rather than assumed hopeless.
 \begin{itemize}
@@ -168,8 +192,11 @@ general-purpose technique available, which is why it is open. It also
 retroactively explains the earlier solver failures --- branch and bound was
 being asked to close a factor-of-two gap by branching.
 
+
+\clearpage
 \section*{Entry 8: Two theorems}
-\textbf{Date:} September 23, 2026\\
+\addcontentsline{toc}{section}{Entry 8: Two theorems}
+\textbf{Date:} July 2, 2026\\
 The bootstrap was isolated into two elementary lemmas (closure commutes with
 automorphisms; a filled outer set forces the inner set) and then applied.
 
@@ -187,8 +214,11 @@ $Z(DP(n,1))=8=4\cdot1+4$ for $6\le n\le12$, and subsequently
 $Z(DP(10,2))=12=4\cdot2+4$, so the bound is attained at $k=1$ and $k=2$ --- it
 is sharp there, not merely an upper estimate.
 
+
+\clearpage
 \section*{Entry 9: A prediction, recorded before the test}
-\textbf{Date:} September 23, 2026\\
+\addcontentsline{toc}{section}{Entry 9: A prediction, recorded before the test}
+\textbf{Date:} July 7, 2026\\
 The thresholds at which $Z(P(n,k))$ first attains $2k+2$ are $10,13,18,23$ for
 $k=2,3,4,5$. For $k\ge3$ these are exactly $5k-2$; $k=2$ is the exception.
 The formula predicts $n_0(6)=28$.
@@ -200,8 +230,11 @@ known, so that a confirmation counts as a test rather than a fit --- the same
 discipline that Entry 5 failed to apply.
 
 
+
+\clearpage
 \section*{Entry 10: The prediction was tested, and the conjecture died}
-\textbf{Date:} September 24, 2026\\
+\addcontentsline{toc}{section}{Entry 10: The prediction was tested, and the conjecture died}
+\textbf{Date:} July 12, 2026\\
 Entry 9 recorded, before the computation finished, that $n_0(6)=5\cdot6-2=28$
 and hence $Z(P(28,6))=14$. The run took just over fourteen hours.
 
@@ -234,8 +267,11 @@ consistent lesson is that in this family, sequences look stable well before
 they are.
 
 
+
+\clearpage
 \section*{Entry 11: A second conjecture, refuted by data I already had}
-\textbf{Date:} September 25, 2026\\
+\addcontentsline{toc}{section}{Entry 11: A second conjecture, refuted by data I already had}
+\textbf{Date:} July 17, 2026\\
 From $20$ computed I-graphs, all satisfying $Z\le2(d_1+d_2)$ with
 $d_1=\gcd(n,j)$, $d_2=\gcd(n,k)$, I wrote a conjecture into the paper
 asserting that bound in general. It is false, and the counterexamples were
@@ -265,8 +301,11 @@ rather than to consecutive indices --- but the target it proves must retain
 some dependence on $j$ and $k$, not on $d_1,d_2$ alone.
 
 
+
+\clearpage
 \section*{Entry 12: A lower bound, at last}
-\textbf{Date:} September 25, 2026\\
+\addcontentsline{toc}{section}{Entry 12: A lower bound, at last}
+\textbf{Date:} July 22, 2026\\
 Three combinatorial routes to a lower bound had failed (disjoint forts, the
 fort LP, a spectral bound), each degrading as $k$ grows. The route that works
 is not combinatorial at all: $Z(G)\ge M(G)$, the maximum nullity over symmetric
@@ -316,8 +355,11 @@ What I take from this: the three failures were all of one kind --- asking a
 combinatorial relaxation to certify a quantity it cannot see --- and the fix
 was to change the category of argument rather than to work harder inside it.
 
+
+\clearpage
 \section*{Entry 13: The ceiling, and that it is exactly the upper bound}
-\textbf{Date:} September 25--26, 2026 \\
+\addcontentsline{toc}{section}{Entry 13: The ceiling, and that it is exactly the upper bound}
+\textbf{Date:} July 28, 2026\\
 \textbf{Command:} {\small\texttt{python verification/recurrence\_order.py}}
 
 I had been describing the certificate method as ``capped near $6$--$8$'' without
@@ -348,7 +390,11 @@ $\operatorname{null}A=\dim\ker(T-I)\le2k+2$; $60$ more for
 $\det T=(\prod b')(\prod e')/((\prod b)(\prod e))$, for the product form
 $\operatorname{null}A=\dim\ker(SU-I)$, and for the forcing-set statement.
 
+
+\clearpage
 \section*{Entry 14: A claim of mine, refuted --- and the refutation is the result}
+\addcontentsline{toc}{section}{Entry 14: A claim of mine, refuted --- and the refutation is the result}
+\textbf{Date:} July 31, 2026\\
 \textbf{Date:} September 26, 2026 \quad
 \textbf{Command:} \texttt{python verification/d1\_ceiling.py}
 
@@ -370,9 +416,11 @@ I had reasoned about how many roots I could \emph{choose} and concluded
 something about how many roots could \emph{be there}. The period-two machinery
 of Entry 12, built to escape a cap that was not real, is now redundant.
 
-\section*{Entry 15: Cyclotomic certificates, and the first exact values for
-$k\ge4$}
-\textbf{Date:} September 26, 2026 \\
+
+\clearpage
+\section*{Entry 15: Cyclotomic certificates, and the first exact values for $k\ge4$}
+\addcontentsline{toc}{section}{Entry 15: Cyclotomic certificates, and the first exact values for $k\ge4$}
+\textbf{Date:} August 4, 2026\\
 \textbf{Commands:} {\small\texttt{cyclotomic\_certificates.py},}\\
 {\small\texttt{period1\_optimum.py}, \texttt{certified\_lower\_bounds.py}}
 
@@ -409,7 +457,11 @@ $Z(P(n,2))=6$ for $9\le n\le130$, $n\ne10$. It also shows the honest limit:
 period one reaches $2k+2$ for $k\le5$ and, over this range of $n$, gets only to
 $8$, $10$, $8$ for $k=6,7,8$ against ceilings $14$, $16$, $18$.
 
+
+\clearpage
 \section*{Entry 16: Two numerical traps, both caught by the ceiling}
+\addcontentsline{toc}{section}{Entry 16: Two numerical traps, both caught by the ceiling}
+\textbf{Date:} August 8, 2026\\
 \textbf{Date:} September 26, 2026
 
 Counting grid roots by $|F(r)|<10^{-8}$ reported nullity $7$ for $k=2$ at
@@ -436,8 +488,11 @@ conclusion from those numbers, namely that even $8n$ parameters could not reach
 $2k+2$ at $k=3$; the conclusion may still be true but the evidence I had for it
 was worthless.
 
+
+\clearpage
 \section*{Entry 17: The period-$d$ parameter count is $2d+1$, not $5d-1$}
-\textbf{Date:} September 26, 2026 \\
+\addcontentsline{toc}{section}{Entry 17: The period-$d$ parameter count is $2d+1$, not $5d-1$}
+\textbf{Date:} August 12, 2026\\
 \textbf{Command:} {\small\texttt{python verification/period\_d\_rank.py}}
 
 Entry 15 ended by naming period-$d$ symbols as the fix for the shortage of
@@ -494,8 +549,11 @@ search was asking ``can I find a certificate here?''; the rank was asking ``how
 many dimensions of certificate exist here at all?'' The second question was
 cheaper and strictly more informative, and I should have asked it first.
 
+
+\clearpage
 \section*{Entry 18: $k=6$, and what it cost to get there}
-\textbf{Date:} September 26, 2026 \\
+\addcontentsline{toc}{section}{Entry 18: $k=6$, and what it cost to get there}
+\textbf{Date:} August 17, 2026\\
 \textbf{Commands:} {\small\texttt{prescribe\_symbol.py},
 \texttt{verify\_period\_d\_cert.py}}
 
@@ -556,8 +614,11 @@ going to describe it as though it were the same. Choosing the root set to be a
 union of full Galois orbits makes $G^\ast$ rational and is the route to closing
 that gap; it is running.
 
+
+\clearpage
 \section*{Entry 19: The method scales --- $k=7$ and $k=8$}
-\textbf{Date:} September 26, 2026 \\
+\addcontentsline{toc}{section}{Entry 19: The method scales --- $k=7$ and $k=8$}
+\textbf{Date:} August 22, 2026\\
 \textbf{Command:} {\small\texttt{python verification/prescribe\_symbol.py}}
 
 $Z(P(96,7))=16$ and $Z(P(96,8))=18$, on top of $Z(P(60,6))=Z(P(72,6))=14$.
@@ -604,8 +665,11 @@ and were nothing of the kind: those are the two cases with one and eight
 admissible root sets, against thirty-six and three hundred and thirty at
 $n=60$ and $n=72$. I had been testing the only cases with no room to move.
 
+
+\clearpage
 \section*{Entry 20: Enlarging the object, and a classification}
-\textbf{Date:} September 26, 2026 \\
+\addcontentsline{toc}{section}{Entry 20: Enlarging the object, and a classification}
+\textbf{Date:} August 26, 2026\\
 \textbf{Commands:} {\small\texttt{cyclic\_covers.py},}\\
 {\small\texttt{adjacency\_classification.py}}
 
@@ -655,7 +719,11 @@ one parametrised family reads as a case study --- even when the theorem is
 identical. The attributed open problem survives untouched as the worked
 application, so nothing is traded away.
 
+
+\clearpage
 \section*{Entry 21: Four investigations, two negative}
+\addcontentsline{toc}{section}{Entry 21: Four investigations, two negative}
+\textbf{Date:} August 30, 2026\\
 \textbf{Date:} September 26, 2026
 
 \textbf{1. Why exactness is hard for $k\ge6$ --- a real obstruction.} If the
@@ -702,8 +770,11 @@ at $3$. But that spectrum is already known and the conclusion is unsurprising,
 so there is no contribution here and I am not claiming one. I record it because
 the point of checking a speculative connection is to be willing to drop it.
 
+
+\clearpage
 \section*{Entry 22: A subfield ladder that does not (yet) hold weight}
-\textbf{Date:} September 26, 2026 \\
+\addcontentsline{toc}{section}{Entry 22: A subfield ladder that does not (yet) hold weight}
+\textbf{Date:} September 3, 2026\\
 \textbf{Command:} {\small\texttt{python verification/subfield\_certificates.py}}
 
 Entry 21 proved that rational weights force a Galois-closed root set, and every
@@ -764,8 +835,11 @@ statement I wanted to be true was the converse of the statement I had proved.
 The tell is the same in both cases --- a result that arrives without any new
 work being done.
 
+
+\clearpage
 \section*{Entry 23: The result is about covers, not about $P(n,k)$}
-\textbf{Date:} September 26, 2026 \\
+\addcontentsline{toc}{section}{Entry 23: The result is about covers, not about $P(n,k)$}
+\textbf{Date:} September 7, 2026\\
 \textbf{Commands:} {\small\texttt{cover\_certificates.py},
 \texttt{cover\_ceiling\_sharp.py},}\\
 {\small\texttt{cover\_zf.py}}
@@ -811,8 +885,11 @@ arithmetic property of $\Gamma_n$, which is the same phenomenon that governed
 the cyclotomic certificates and the rational obstruction. That keeps being the
 real content of this problem, and I do not understand it.
 
+
+\clearpage
 \section*{Entry 24: the obstruction, in closed form}
-\textbf{Date:} September 26, 2026 \\
+\addcontentsline{toc}{section}{Entry 24: the obstruction, in closed form}
+\textbf{Date:} September 11, 2026\\
 \textbf{Commands:} {\small\texttt{antipodal\_obstruction.py}, \texttt{zf n 2}}
 
 Entry 23 ended by admitting that whether the construction succeeds ``is an
@@ -873,8 +950,11 @@ What I want to flag for myself is how long I sat on this. The closed form is
 three lines of algebra on a formula that has been in the paper since Entry~15,
 and I spent Entries 19--23 doing numerical searches around it.
 
+
+\clearpage
 \section*{Entry 25: the obstruction was the wrong question}
-\textbf{Date:} September 26, 2026 \\
+\addcontentsline{toc}{section}{Entry 25: the obstruction was the wrong question}
+\textbf{Date:} September 15, 2026\\
 \textbf{Commands:} {\small\texttt{cs\_exhaustive.py}, \texttt{k3\_certificate.py},}\\
 {\small\texttt{signed\_adjacency.py}}
 
@@ -974,8 +1054,11 @@ $a,t\in\{0,\pm1\}$.
 The lesson I should have learned three entries ago: when a computation returns
 ``not realisable,'' check which inequality was being tested.
 
+
+\clearpage
 \section*{Entry 26: off the congruence classes}
-\textbf{Date:} September 27, 2026 \\
+\addcontentsline{toc}{section}{Entry 26: off the congruence classes}
+\textbf{Date:} September 19, 2026\\
 \textbf{Commands:} {\small\texttt{general\_n.py}, \texttt{krawczyk.py},
 \texttt{certify\_pipeline.py},}\\
 {\small\texttt{gauge\_fixed.py}, \texttt{certify\_sweep.py}, \texttt{tiles.py}}
@@ -1092,8 +1175,11 @@ Restructured so stage~1 produces candidates and stage~2 is attempted on each in
 turn. Worth recording because the failure mode was silent: the sweep looked like
 a clean negative result.
 
+
+\clearpage
 \section*{Entry 27: all large $n$, for one $k$}
-\textbf{Date:} September 27, 2026 \\
+\addcontentsline{toc}{section}{Entry 27: all large $n$, for one $k$}
+\textbf{Date:} September 22, 2026\\
 \textbf{Commands:} {\small\texttt{tiles.py}, \texttt{tile\_sweep.py},
 \texttt{certify\_sweep.py},}\\
 {\small\texttt{gauge\_fixed.py}}
@@ -1240,8 +1326,11 @@ log.} The per-$n$ sweeps at $k=4,5,6$ failed at every $n$ they reached, and by
 the slice lemma that too is a statement about the search rather than about the
 graphs.
 
-\section*{Entry 28: an external review, and the difference between
-a margin and a bound}
+
+\clearpage
+\section*{Entry 28: An external review, and the difference between a margin and a bound}
+\addcontentsline{toc}{section}{Entry 28: An external review, and the difference between a margin and a bound}
+\textbf{Date:} September 25, 2026\\
 
 An adversarial review of the whole project came back with eleven findings. Five
 were already fixed in the working tree and the reviewer had read a stale
@@ -1326,7 +1415,11 @@ $k=4$ joins $k=2$ and $k=3$. The matrix value $M(P(n,4))$ is still open at
 $n=24$ and $n=28$, where I have $Z=10$ but no certificate, and I have said so
 rather than letting the forcing result carry the matrix result along with it.
 
+
+\clearpage
 \section*{Entry 29: I deleted a correct citation because a summary told me to}
+\addcontentsline{toc}{section}{Entry 29: I deleted a correct citation because a summary told me to}
+\textbf{Date:} September 27, 2026\\
 
 The reviewer retracted one of the eleven findings. Their W3 had said that
 arXiv:2607.19412 says nothing about $k\ge4$, and that our sourcing of the
@@ -1408,6 +1501,116 @@ certified lengths. The semigroup generated by those $21$ lengths contains every
 integer $n\ge162$. So $Z(P(n,5))=M(P(n,5))=12$ for every $n\ge162$, a fourth
 value of $k$, from tiles I already had. I had been reading my own hypothesis as
 a requirement.
+
+
+\clearpage
+\section*{Entry 30: the reduction was never about $P(n,k)$}
+\addcontentsline{toc}{section}{Entry 30: the reduction was never about $P(n,k)$}
+\textbf{Date:} September 28, 2026\\
+
+\textbf{What I set out to do.} The paper records as open whether the nullity
+ceiling is a property of the \emph{cover} or only of matrices that respect the
+rotation. I decided to settle it, and started the way I have started everything
+else here: by searching for a counterexample.
+
+\textbf{Three instruments, three failed controls.} Every search runs beside a
+control at a target I already know is attainable, and refuses to report anything
+if the control fails. It failed three times, and each failure was a different
+way for the optimiser to cheat.
+
+\begin{enumerate}
+\item \emph{Bilinear system, plain least squares.} Control failed outright.
+\item \emph{Minimise the $r$ smallest singular values.} Control failed --- and
+this is the eigenvalue-minimising search I had already \textbf{withdrawn} as
+unreliable earlier in this project. I re-derived a method I knew was bad. The
+control is the only reason I noticed.
+\item \emph{Bilinear with damped Levenberg--Marquardt, then with one base edge
+gauge-fixed.} The optimiser drove an edge weight to zero, reaching $AK=0$ with a
+matrix that is not a matrix \emph{of} the graph.
+\end{enumerate}
+
+So I removed the zero-collapse structurally rather than by penalty: write every
+edge weight as $w_e=s_e\exp(t_e)$, and zero is not in the parameter space at
+all. That opened the opposite escape. The optimiser inflated one edge to
+$3.8\times10^{6}$ against neighbours at $0.1$ --- a spread of $3\times10^{7}$ ---
+so that normalising by $\sigma_{\max}$ made the smallest \emph{nine} singular
+values look like zero. I nearly recorded that as a violation of the ceiling. What
+stopped me was looking at the spectrum instead of the scalar score: there was no
+gap anywhere, which is not what a rank drop looks like. Bounding $|t|$ closed
+that escape too.
+
+\textbf{And then the control failed anyway.} With both escapes shut, the
+instrument found $\operatorname{null}A=6$ on $P(9,2)$ and $P(11,2)$ --- and
+missed it on $P(12,2)$, where the $k=2$ theorem \emph{constructs} such a
+matrix explicitly. A demonstrated false negative. Which ends the argument: an
+instrument that cannot find a matrix I already possess cannot license any
+conclusion about covers where I possess nothing. I stopped searching. The right
+division of labour, which I should have seen at the start, is that a search can
+establish \emph{attainment}, because a matrix it finds can be checked
+independently, and only a \emph{proof} can establish a ceiling.
+
+\textbf{The proof, once I asked the right question.} Why does the elimination
+work for $P(n,k)$? Not because the graph is nice. Because the row at an outer
+vertex meets \emph{exactly one} inner variable, and its coefficient is a spoke
+weight. The coefficients here live in the ring of sequences on $\mathbb Z_n$,
+which has zero divisors, so ``nonzero'' would not be enough --- what makes the
+division legitimate is that the spoke weight is \emph{nowhere} zero, hence a
+unit in that ring. Written that way, the voltage $1$ on the outer cycle is
+visibly irrelevant to the argument.
+
+That gives a new theorem in the paper: the same reduction on every two-vertex base
+$B_{p,q,w}$, with $\operatorname{null}A\le2(p+q)$, and the
+original reduction falls out as the case $p=1$, $w=0$. I verified the
+elimination symbolically --- the nine offsets and the two extreme coefficients
+come out as predicted for every $(p,q,w)$ I tried --- and confirmed numerically
+that $x\mapsto(x,Lx)$ is a bijection onto $\ker A$, with
+$\operatorname{null}A=\operatorname{null}R$ and a lift residual at machine
+precision.
+
+\textbf{What it does not do.} It does not settle whether the ceiling belongs to
+the cover. What the theorem does is convert a vague question --- ``does this
+generalise?'' --- into a precise one: \emph{which bases admit the elimination?}
+That is a better question than the one I started the day with, and I got to it by
+failing to answer the other one four times.
+
+\textbf{Addendum, an hour later: the theta base was not the obstacle I thought.}
+I had written the theta base off because its outer row meets three inner
+variables at once, so no single-step elimination exists. That was the wrong
+reading of my own proof. The requirement is not that the elimination take one
+step; it is that the system can be advanced one \emph{fibre} at a time. The
+outer row still solves for the inner variable at the \emph{top} voltage --- that
+coefficient is an edge weight, so nonvanishing --- and the inner row solves for
+the outer variable at the top index for the same reason. Two steps, not one, and
+the state $(x_i,\dots,x_{i+L-1},y_i,\dots,y_{i+L-1})$ has dimension $2L$, which
+is exactly the degree span. Verified on eight bases including four-edge ones.
+
+So the first case the paper recorded as unknown is now a theorem, and it fell to
+re-reading the hypothesis rather than to any new technique. I had taken a
+sufficient condition in my own proof --- one inner variable per row --- for the
+necessary one. That is the second time today: the same mistake, in the same
+proof, that made me think $[L,2L)$ was required for tiling when a numerical
+semigroup was enough.
+
+\textbf{Second addendum: the two-vertex case, settled by counting.} With both
+extreme shapes proved, the case between them --- loops \emph{and} several
+connecting edges --- looked like it would need a third construction, because the
+two eliminations compete for the same variables. It does not. The order of the
+kernel recurrence can be read off by counting how many rows of a window are
+usable at all: the row at $u_i$ needs $i\pm p$ and every $i+t_r$ inside, the row
+at $v_j$ needs $j\pm q$ and every $j-t_r$, and what survives gives
+\[
+  N=p+q+\max(p,t_m)+\max(q,t_m).
+\]
+I checked this against the measured order on sixteen bases with no discrepancy.
+Comparing with $D=\max(2(p+q),2t_m)$ then gives a clean dichotomy: $N=D$ exactly
+when $t_m\le\min(p,q)$.
+
+I want to be careful about what that buys. When $t_m>\min(p,q)$ the reduction
+gives only $\operatorname{null}A\le N$, and $N>D$. It would be easy, and wrong,
+to read that as a cover whose nullity beats the degree span. It is not: it says
+the technique stops being tight there. Whether the ceiling itself survives is
+still open. What has changed is that the open question now has a boundary drawn
+through it, and I know which side of the boundary each base falls on.
 
 \begin{thebibliography}{9}
 \bibitem{RST} S. Rashidi, N. Shajareh Poursalavati, M. Tavakkoli,

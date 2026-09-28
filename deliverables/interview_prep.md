@@ -203,3 +203,28 @@ Don't disparage anyone. If pressed on what distinguishes this work:
 > "Mine has no hypotheses. The results are unconditional and the cases are
 > closed — 'for every $n$', not 'for large $n$ assuming something unproven'. And
 > every number is machine-checked from the certificates rather than typed in."
+
+
+---
+
+## Read the judge before choosing the opening
+
+The reframing around the inverse eigenvalue problem makes the work legible to a
+mathematician. It does **not** work on a non-specialist grand-award judge: "the
+maximal degeneracy of the zero level of a periodic operator" buys nothing in
+fifteen seconds, whereas the colouring game does. Keep both openings and pick.
+
+**To a mathematician / category judge — lead with the problem:**
+> "Over all symmetric matrices with a given graph's pattern, how degenerate can
+> the zero eigenvalue be? That's the inverse eigenvalue problem of a graph. I
+> determined it exactly for infinite families of periodic covers."
+
+**To a non-specialist judge — lead with the game, then pivot in one step:**
+> "There's a colouring game on a network: a filled node with exactly one empty
+> neighbour fills it. The smallest starting set that fills everything is a number
+> called the zero forcing number — and it turns out to control how many
+> independent zero-energy states the network can support. I worked out that
+> number exactly, for infinitely many networks at once."
+
+The pivot sentence is the whole trick: *the game controls the physics*. Say the
+game first, the consequence second, and never open with "cyclic cover".

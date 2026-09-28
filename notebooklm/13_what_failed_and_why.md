@@ -170,3 +170,45 @@ table has a `solved` column, read it first.
 - A working discipline: falsifiable predictions recorded in advance; searches
   wrapped in bounds they cannot violate; claims labelled proved / computed /
   open; and errors left in the log rather than edited out.
+
+
+## Four search instruments, four failed controls
+
+Trying to settle whether the ceiling is a property of the cover, I built a search
+for a counterexample. Every search here runs beside a **control** at a target
+already known attainable, and reports nothing if the control fails. It failed
+four times, each in a different way, and each failure is worth keeping.
+
+1. **Bilinear system with plain least squares.** Control failed outright.
+
+2. **Minimising the r smallest singular values.** Control failed — and this is
+   the eigenvalue-minimising method already withdrawn earlier in this project as
+   unreliable for collapsing onto degenerate strata. I re-derived a method I knew
+   was bad. Only the control caught it.
+
+3. **Bilinear with damped Levenberg–Marquardt**, then with one base edge
+   gauge-fixed. The optimiser reached AK = 0 by driving an edge weight to zero,
+   leaving a matrix that is not a matrix *of* the graph.
+
+4. **Reparametrised as w_e = s_e·exp(t_e)**, so zero is not in the parameter
+   space at all. This closed the zero-collapse and opened the opposite one: the
+   optimiser inflated one edge to 3.8e6 against neighbours at 0.1 — a spread of
+   3e7 — so that normalising by sigma_max made the smallest **nine** singular
+   values look like zero. That reads exactly like a violated ceiling. What
+   prevented recording it as one was looking at the *spectrum* rather than the
+   scalar score: there was no gap anywhere, and a genuine rank drop has a gap.
+   Bounding |t| closed it.
+
+**And then the control still failed.** With both escapes shut, the instrument
+found nullity 6 on P(9,2) and P(11,2) and **missed it on P(12,2)**, where the
+k=2 theorem constructs such a matrix explicitly. A demonstrated false negative
+ends the argument: an instrument that cannot find a matrix we already possess
+cannot license a conclusion about covers where we possess none.
+
+**The lesson, which is structural.** A search can establish **attainment** — a
+matrix it finds can be verified independently, so a positive result stands on its
+own. Only a **proof** can establish a **ceiling**. Every one of these four
+instruments was built to do the second thing with the first kind of tool.
+
+The proof came from asking why the elimination works at all, rather than whether
+it generalises (see file 09).

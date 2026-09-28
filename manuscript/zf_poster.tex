@@ -9,20 +9,37 @@
 \input{zf_numbers}
 \tcbuselibrary{skins}
 
-\definecolor{myblue}{RGB}{18,52,102}
+\definecolor{myblue}{RGB}{16,48,96}
 \definecolor{mymid}{RGB}{42,86,150}
-\definecolor{mylight}{RGB}{226,234,246}
-\definecolor{panelbg}{RGB}{238,243,251}
+\definecolor{mylight}{RGB}{232,239,250}
+\definecolor{panelbg}{RGB}{245,249,255}
 \definecolor{provedc}{RGB}{28,100,52}
 \definecolor{openc}{RGB}{160,42,42}
+% the board sits on a blue field with white content panels, as on the
+% reference board; header bars are solid navy with centred white text
+\definecolor{pagebg}{RGB}{176,199,233}
 
+\setbeamercolor{background canvas}{bg=pagebg}
 \setbeamercolor{block title}{bg=myblue, fg=white}
-\setbeamercolor{block body}{bg=mylight, fg=black}
+\setbeamercolor{block body}{bg=white, fg=black}
 \setbeamertemplate{navigation symbols}{}
 \setbeamertemplate{itemize items}[circle]
+\setbeamertemplate{blocks}[rounded][shadow=false]
 \setbeamerfont{block title}{size=\Large,series=\bfseries}
 \setbeamerfont{block body}{size=\normalsize}
 \setlength{\parskip}{5pt}
+
+% centred block titles, as on the reference board
+\setbeamertemplate{block begin}{%
+  \vskip4pt
+  \begin{beamercolorbox}[colsep*=0ex,dp=0.7ex,center,rounded=true,
+                         shadow=false]{block title}%
+    \vskip2pt\usebeamerfont{block title}\insertblocktitle\vskip2pt
+  \end{beamercolorbox}%
+  {\parskip0pt\par}\vskip-2pt
+  \begin{beamercolorbox}[colsep*=0ex,vmode,rounded=true,shadow=false]{block body}%
+    \vskip4pt\leftskip8pt\rightskip8pt\relax}
+\setbeamertemplate{block end}{\vskip6pt\end{beamercolorbox}\vskip4pt}
 
 % a captioned figure panel, as in the methodology grid
 \newcommand{\panel}[3]{%
@@ -48,13 +65,14 @@
 \begin{columns}[c]
   \begin{column}{0.17\textwidth}\centering
     {\footnotesize\color{white} Category\\ Mathematics\\[6pt]
-     Pure theory:\\ no applications claimed}
+     Inverse eigenvalue\\ problem of a graph;\\ discrete Floquet theory}
   \end{column}
   \begin{column}{0.64\textwidth}\centering
     {\Huge\bfseries MAXIMUM NULLITY OF CYCLIC COVERS OF GRAPHS\par}
     \vspace{6pt}
     {\Large\itshape A monodromy ceiling, a tiling construction, and the zero
-     forcing number of $P(n,k)$ \textbf{determined completely} for $k=2,3$\par}
+     forcing number of $P(n,k)$ \textbf{determined completely} for
+     $k=2,3,4$\par}
     \vspace{10pt}
     {\large Aryan Padarthi\par}
   \end{column}
@@ -117,10 +135,12 @@ magnetic Laplacians on covering graphs. Any answer must therefore hold
 \end{block}
 
 \begin{block}{PROBLEM FRAMING}
-Exact values of $Z(P(n,k))$ were known only for $k=2$ and $k=3$. A
-\textbf{July 2026} correction note (arXiv:2607.19412) exists because a
-published 2020 theorem is \emph{false}: it claimed $Z(P(n,3))=8$ for $n\ge12$,
-but $Z(P(12,3))=7$ --- the case analysis never tested $7$-vertex sets. That note
+Before this work, the only exact values for \emph{all large} $n$ were at
+$k=2$. At $k=3$ the published value is \emph{false}: a \textbf{July 2026}
+correction note (arXiv:2607.19412) shows the 2020 claim $Z(P(n,3))=8$ for
+$n\ge12$ fails at $Z(P(12,3))=7$ --- the case analysis never tested $7$-vertex
+sets --- and leaves the threshold open, with values known only to $n\le20$ by
+search. For \textbf{every $k\ge4$, no exact value was known at any $n$.} That note
 closes with:
 \vspace{4pt}
 \keybox{\itshape ``Determining $Z(P(n,k))$ for general $k$ --- the stabilization
@@ -306,20 +326,34 @@ from a matrix of $0,\pm1$.
 %% ======================= COLUMN 3 =======================
 \begin{column}{0.265\textwidth}
 
-\begin{block}{VERIFICATION}
-\textbf{One script re-derives everything.} \texttt{verify\_all.py}: $\Nchecks$ checks,
-all passing --- the realisability theorem symbolically for $k=2..10$, every
-integer certificate, all $\NtileAll$ tiles re-evaluated for nullity \emph{and} exact
-docking, the claim that every $n$ in range is a sum of certified lengths, and
-three Krawczyk contractions \emph{re-run in exact arithmetic}. It also checks the
-poster's and paper's own numbers against the certificates on disk, so a stale
-count fails the suite.
+\begin{block}{METHOD, CONTROLS \& REPRODUCIBILITY}
+\textbf{Variables.} \emph{Independent:} the twist $k$, the period $n$, the tile
+length $\ell$, and the restart budget. \emph{Measured:} nullity of $A$, the
+residual $\max|T_{\rm tile}-I|$, the Krawczyk bound $\alpha$, and the smallest
+edge weight relative to matrix scale.
 
-\textbf{Structural theorem:} $189$ random matrices over $63$ pairs $(n,k)$.
-All pass.
+\textbf{Controls.} Every search runs beside a \emph{control} at a target already
+known to be attainable. A search whose control fails reports \textbf{nothing}.
+This is not decorative: it caught a cover search in which I had re-derived a
+method I had previously withdrawn as unreliable, and it is why two earlier
+``negative results'' were withdrawn rather than published.
 
-\textbf{Engine validation:} the exhaustive $Z$ solver reproduced \emph{every}
-published value first, including the corrected $Z(P(12,3))=7$.
+\textbf{Data collected.} $233$ saved matrices, $\NtileAll$ certified tiles,
+$18$ per-$n$ certificates, $89$ exhaustive $Z$ values, $113$ logged runs ---
+each recording its budget and residual, never just ``failed''.
+
+\textbf{Reproducibility: one command.} \texttt{verify\_all.py}: $\Nchecks$
+checks, all passing --- the realisability theorem symbolically for $k=2..10$,
+every integer certificate, all $\NtileAll$ tiles re-evaluated for nullity
+\emph{and} exact docking, and three Krawczyk contractions \emph{re-run in exact
+arithmetic}. It also regenerates every count this board prints, so a stale
+number fails the suite instead of reaching the reader.
+
+\textbf{Cross-checks.} $189$ random matrices over $63$ pairs $(n,k)$ for the
+structural theorem. Every $Z$ value checked against up to three unrelated
+solvers --- symmetry-reduced enumeration, unreduced enumeration, and a CP-SAT
+integer program --- with \textbf{no disagreement anywhere}; a solver that times
+out is recorded as \emph{not checked}, never as agreement.
 
 \textbf{Triangulation.} The $n=17$ certificate was located three independent
 ways --- minimising $\|T-I\|$, an alternating solve, and a fully gauge-fixed
@@ -387,25 +421,27 @@ $4.7\times10^{-61}$.
 
 \begin{block}{FUTURE WORK}
 \textbf{Honest limits.} At $k=5$ the threshold $\SettleFive$ is \emph{not}
-optimal: $\ell=73$ and $76\le\ell\le107$ are still unsolved, and filling them
-would bring it down to $54$. $k\ge6$ has no tiles at all. $Z(P(n,4))$ is known
-for every $n$, but the \emph{matrix} value $M(P(n,4))$ is still open at the
-single value $n=24$, where $Z=10$ but no certificate exists. The $k\ge6$
-congruence-class values are numerical, a weaker standard than the rest. The rank
-law is verified over a range, not proved.
+optimal --- $\ell=73$ and $76\le\ell\le107$ are unsolved, and filling them
+would bring it to $54$. $k\ge6$ has no tiles at all. $Z(P(n,4))$ is known for
+every $n$, but $M(P(n,4))$ is open at the single value $n=24$. The $k\ge6$
+congruence-class values are numerical, and the rank law is verified over a
+range, not proved.
 
-\textbf{What we cannot diagnose.} We first searched $k=5$ over
-$41\le\ell\le45$ --- the parameter count's bound --- and found nothing, then
-found tiles starting near $54$. The count is a lower bound, \emph{not} a
-predictor of where tiles begin ($21$ vs $16$ at $k=3$; $\approx54$ vs $41$ at
-$k=5$), and we cannot explain the gap.
+\textbf{What we cannot diagnose.} The parameter count is a lower bound on where
+tiles can exist, \emph{not} a predictor of where they start ($21$ vs $16$ at
+$k=3$; $54$ vs $41$ at $k=5$), and we cannot explain the gap.
 
-\textbf{Next.} Close $[54,108)$ for $k=5$ (mechanical); prove the rank law;
-decide whether $M<Z$ strictly at $n=10$, $k=2$.
+\textbf{Next.} Close $[54,108)$ at $k=5$; prove the rank law; decide whether
+$M<Z$ strictly at $P(10,2)$; and extend the reduction past two-vertex bases.
 \end{block}
 
 \begin{block}{KEY REFERENCES}
 \footnotesize
+\textbf{All mathematics, code and computation in this project are my own.}
+The problem was self-selected after reading~[2]; figures and tables were
+generated by the author with Python (NumPy, SciPy, SymPy) and \TeX, 2026.
+\vspace{4pt}
+
 [1] S. Rashidi, N. Shajareh Poursalavati, M. Tavakkoli, \emph{Computing the
 zero forcing number for generalized Petersen graphs}, J. Algebra Combin.
 Discrete Struct. Appl. \textbf{7}(2) (2020) 183--193.

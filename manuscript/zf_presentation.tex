@@ -129,13 +129,14 @@ Eliminating the inner coordinates turns $Ax=0$ into one linear recurrence of
 order \key{exactly $2k+2$}, with monodromy $T$, and
 $\operatorname{null}A=\dim\ker(T-I)\le2k+2$, equality iff $T=I$.
 \end{block}
-{\key{Proof sketch.} Substituting the inner equations leaves a nine-term
-relation with extreme offsets $\pm(k+1)$, so the order is $2k+2$; cyclicity
-makes the solution space $\ker(T-I)$.}
+{\key{Proof sketch.} The outer row meets \emph{one} inner variable, whose
+spoke weight is nowhere zero. Dividing it out leaves a nine-term relation with
+extreme offsets $\pm(k+1)$, nonzero.}
 
 \kb{\key{The ceiling equals the target.} $2k+2$ is also the best known
-\emph{upper} bound on $Z$. So the method \key{either settles $Z$ completely or
-cannot settle it at all}.}
+\emph{upper} bound on $Z$: the method \key{either settles $Z$ or cannot touch
+it}. The proof never used the outer voltage, so it holds on \key{every}
+two-vertex cover, ceiling $2(p{+}q)$ --- this is $p=1$.}
 \end{frame}
 
 %% --------------------------------------------- 6. FINDINGS 2: obstruction
