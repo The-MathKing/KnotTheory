@@ -1,82 +1,72 @@
-# Empirical Exploration of Knot-Invariant Inequalities
+# Maximum Nullity and Zero Forcing of Cyclic Covers; Ramanujan Generalized Petersen Graphs
 
-**Author**: Aryan Padarthi
+**Author**: Aryan Padarthi  
+**Repository**: [https://github.com/The-MathKing/KnotTheory](https://github.com/The-MathKing/KnotTheory)  
+**Preprint ($k=3$ Zero Forcing)**: [DOI: 10.5281/zenodo.23140891](https://doi.org/10.5281/zenodo.23140891)  
 
-**Public Repository**: [https://github.com/The-MathKing/KnotTheory](https://github.com/The-MathKing/KnotTheory)
-**Anonymous Repository (for double-blind review)**: [https://anonymous.4open.science/status/KnotTheory-8862](https://anonymous.4open.science/status/KnotTheory-8862)
+---
 
-## Status (updated September 22, 2026)
+## Overview
 
-This project is an **exploratory data-mining and verification pipeline** over
-the KnotInfo database (12,967 knots), plus a validated computational engine
-for exact invariants of positive braid closures. It is **not** a completed
-proof of any conjecture. An earlier version of this README and of
-`manuscript/log.tex` claimed a completed formal proof (via Khovanov homology,
-$B^4$-cobordisms, and a C++ verification script) that $tr(K) \geq 2u(K) +
-\max(0, |s(K)|-|\sigma(K)|)$. **That claim does not correspond to anything in
-this repository**: no such proof exists in any file here, and the referenced
-`src/models/audit.cpp` does not exist (only a compiled, sourceless binary
-`audit` does, which cannot be independently checked or reproduced). The
-project's git history records the actual sequence: an earlier "Zero-Trust ML"
-architecture was proposed (`manuscript/paper.tex`), then abandoned in favor of
-direct, reproducible empirical mining (commit `bfe5eaf`, "Hard Reset: Abandon
-fabricated proofs for honest exploratory architecture").
+This repository contains the computational infrastructure, manuscripts, and exact verification suites for research on graph spectra, zero forcing, and topological invariants across generalized Petersen graphs $P(n,k)$ and cyclic covers.
 
-On September 22, 2026 a full audit found that most of the numeric claims in
-`manuscript/log.tex` did not match what the scripts behind them actually
-compute, and that one experiment (`approach_1.py`) silently crashed after its
-first result. **`manuscript/log.tex` Log Entry 3 documents that audit in
-full**, and every entry after it is a direct, unedited transcript of a script
-run, saved under `results/` and reproducible with the commands given.
+The project consists of two core mathematical investigations (October 2026), built upon an empirical topology and knot-invariant foundation (May–September 2026):
 
-## What's actually here
+1. **Part II: Zero Forcing and Maximum Nullity of Cyclic Covers** (`manuscript/zf_paper.tex`, `deliverables/k3_note.tex`)
+   - **Proof of Krishnan's Conjecture 5**: Proves $Z(P(n,3)) = M(P(n,3)) = 8$ for all $n \ge 13$, resolving the open conjecture from arXiv:2607.19412 and settling the stabilization threshold.
+   - **Monodromy Ceiling**: Eliminates the internal coordinates of any symmetric matrix on a cyclic cover to yield a closed recurrence of order $2k+2$.
+   - **Certified Identity Tiles**: Exact rational Krawczyk contraction certificates proving tile existence and establishing large-$n$ stabilization for $k=2,3,4$.
+   - **All-$k$ Controllability**: Submersion and discrete Wronskian analysis for identity tile families across large lengths.
 
-- **`data/`** -- raw and processed KnotInfo CSVs (12,967 knots, ~250 tabulated invariants each).
-- **`src/data_ingestion/`** -- KnotInfo/NewDB parsing and an inequality-graph builder.
-- **`src/experiments/`** -- 10 independent exploratory approaches (inequality-slack mining, symbolic regression on subclasses, anomaly detection, saliency analysis, extremal statistics, structural graph analysis, conjecture-violation search, derived-bound cross-validation, a positive-knot deep dive, and family/boundary robustness testing) plus 3 "deep dive" suites (15 further tests on the defect, Turaev genus, and concordance slack) that run directly against the CSV data.
-- **`src/math_engine/`** -- exact, self-validating computational engines for braid closures:
-  - `braid_topology.py`: knot-ness, Rasmussen `s`, 3-genus, and signature for positive braids via a from-scratch implementation of the Collins (2007) Seifert-matrix algorithm, validated against 34 torus knots and all 17 KnotInfo knots with an authentic positive-braid word. Two scripts (`investigate_braid_families.py`, `syllable_depth_proof.py`) use it to search braid families for the signature defect $|s(K)|-|\sigma(K)|$.
-  - `turaev_diagram.py`: Turaev genus of the standard closed-braid diagram of any braid word, via from-scratch Kauffman-state (Temperley-Lieb) circle counting, validated against 3 alternating knots (must give exactly 0) and 596 real KnotInfo knots (never below the true tabulated value, as required; exactly tight in 25.3%). Used to independently re-derive (see `manuscript/log.tex` Log Entries 18-19, and `verification/prove_syllable_turaev_formula.py`) a closed form for positive 3-braid words: $g_T(\text{diagram}) = \lfloor k/2 \rfloor - 1$ for $k$ syllables, independent of total length and of how crossings are distributed within syllables. **Log Entry 19 corrects Log Entry 18's claim that this was original**: the underlying reduction lemma is Lowrance's Corollary 3.10 (2011, arXiv:0901.2196), building on Champanerkar-Kofman; this project's contribution is an independent proof via a different technique (union-find/Temperley-Lieb) plus the validated, reusable engine, not a new mathematical fact.
-- **`verification/`** -- standalone audit scripts. `audit_log_claims.py` recomputes 20 headline log.tex numbers from raw data and flags mismatches; `refute_3braid_claim.py` demonstrates the bug in the old (now-replaced) 3-braid signature engine and exhibits an explicit counterexample ($T(3,7)$) to a retracted claim; `refute_turaev_braid_bound.py` shows that a candidate bound found with zero violations across all 2,953 tabulated KnotInfo knots ($g_T(K)\le\text{braid index}(K)-1$) is false in general, citing a published closed-form Turaev-genus formula (Abe--Kishimoto 2010, Lowrance 2011) and giving the smallest counterexample, $T(3,10)$.
-- **`results/`** -- raw stdout of every script named above, one file per script, regenerated September 22, 2026. Every number in `manuscript/log.tex` after Log Entry 3 traces to one of these files.
-- **`src/models/`** -- an earlier, now-inactive PyTorch/adversarial-ML architecture (see `manuscript/paper.tex`) that was proposed but not completed; kept for the record, not currently part of the reproducible pipeline described above.
+2. **Part I: Ramanujan Generalized Petersen Graphs & Ihara Zeta Functions** (`manuscript/zf_ramanujan.tex`)
+   - **Forbidden Corner Criterion**: Reduction of the algebraic Ihara condition $D_k \ge 0$ to a $k$-independent forbidden region $Q(x,y) = 4x^2 + 4y^2 - 8\sqrt{2}|xy| + 3 \ge 0$.
+   - **Dirichlet Absolute Finiteness**: Dirichlet's approximation theorem forces failure once $n \ge 231$ for every $k$, establishing finiteness in both parameters.
+   - **Exact Classification**: Complete census (460 pairs, 324 isomorphism classes, none with $k > 45$) certified in exact arithmetic.
 
-## Manuscript
+3. **Historical Foundation: Knot Invariants & Braid Topology** (`src/math_engine/`, `src/experiments/`)
+   - Data mining across 12,967 KnotInfo knots and an exact Seifert-matrix engine (Collins 2007) for positive braid closures.
 
-`manuscript/isef_paper.tex` is the current write-up of this project: an
-audit of a database-driven inequality search (two refuted candidate
-bounds, one via an explicit counterexample and one via literature only
-the database couldn't reach), a validated diagram-level Turaev genus
-engine, an elementary proof of a syllable-structure formula for 3-strand
-positive braid diagrams (independently re-derived; not original, see its
-Section 4.3 for the correction and citation), and an honestly-labeled
-conjecture beyond 3 strands. Every number in it traces to
-`manuscript/log.tex`, the underlying dated lab notebook, and from there to
-a script and a saved file under `results/`.
+---
 
-`manuscript/paper.tex` is an earlier architecture *proposal* (not a
-completed result) for a "Zero-Trust" adversarial-ML framework; it predates
-the pivot to direct empirical mining and should be read as background, not
-as a description of the current pipeline.
+## Directory Structure
 
-## Reproducing every number in this README and in log.tex
+| Directory / File | Contents |
+|---|---|
+| `deliverables/` | Science fair deliverables, research binder, interview preparation, Zenodo preprint metadata, and the assistance record. |
+| `deliverables/k3_note.pdf` | Dedicated 5-page standalone preprint proving Krishnan's Conjecture 5. |
+| `deliverables/assistance_record.md` | Comprehensive provenance log detailing student vs. assisted contributions. |
+| `manuscript/` | LaTeX source and compiled PDFs for the comprehensive paper (`zf_paper.pdf`), research log (`zf_log.pdf`), foundations guide (`zf_guide.pdf`), poster (`zf_poster.pdf`), and presentation slides. |
+| `verification/` | Exact rational arithmetic verification scripts, certificate checkers, and Krawczyk certifiers. |
+| `verification/verify_all.py` | Standalone test suite executing 146 checks in exact arithmetic with zero external authority. |
+| `src/zero_forcing/` | Zero forcing solvers: exhaustive C search (`c/`), CP-SAT constraint models, and fort ILP. |
+| `video/series/` | 15-episode mathematical explainer animation series (Manim scene scripts and TTS generation pipelines). |
+| `results/zero_forcing/` | Saved certificate arrays (`.npy`), verification logs, and census tables. |
 
-```
-python venv/bin/python src/math_engine/braid_topology.py          # engine self-test
-python venv/bin/python src/experiments/approach_<1..10>.py        # each of the 10 approaches
-python venv/bin/python src/experiments/run_deep_dives.py          # all 15 deep-dive tests
-python venv/bin/python src/math_engine/investigate_braid_families.py
-python venv/bin/python src/math_engine/syllable_depth_proof.py
-python venv/bin/python verification/audit_log_claims.py           # 20-claim audit vs. raw CSV
-python venv/bin/python verification/refute_3braid_claim.py        # T(3,7) signature counterexample
-python venv/bin/python verification/refute_turaev_braid_bound.py  # T(3,10) Turaev-genus counterexample
-python venv/bin/python src/math_engine/turaev_diagram.py          # diagram-level Turaev genus engine self-test
-python venv/bin/python verification/prove_syllable_turaev_formula.py  # syllable-formula theorem, full proof + checks
+---
+
+## Reproducibility & Verification
+
+To reproduce every computational claim and number in the manuscripts:
+
+```bash
+# 1. Install Python dependencies
+pip install -r requirements.txt
+
+# 2. Build C zero-forcing solvers
+make solvers
+
+# 3. Run the full verification test suite (146 checks, exact arithmetic)
+python3 verification/verify_all.py
 ```
 
-## Usage
+All decision-making scripts use exact arithmetic (integers, rationals, cyclotomic field operations) rather than floating-point approximations. Numbers typeset into the manuscripts (`manuscript/zf_numbers.tex`, `manuscript/ram_table.tex`) are generated automatically by `verification/verify_all.py`.
 
-The Python code uses `pandas`, `numpy`, `scikit-learn`, and `scipy`
-(`src/experiments/`, `src/math_engine/`, `verification/`); `torch` and
-`matplotlib` are only needed for the inactive `src/models/` architecture.
-Install with `pip install -r requirements.txt` inside `venv/`.
+---
+
+## AI Assistance & Repository Maintenance Disclosure
+
+In compliance with science fair ethics rules (including **ISEF Rule 8** and **Student Support Disclosure Form 2A**):
+
+- **Repository Maintenance & Tooling**: Generative AI assistance (Claude / DeepMind Antigravity) was used as technical tooling for Git repository maintenance, commit staging and organization, `.gitignore` configuration, build automation scripts, and formatting assistance.
+- **Provenance Documentation**: A complete, itemized record of all computational and AI assistance—differentiating student-originated mathematical theorems from exploratory tooling and code—is documented in [deliverables/assistance_record.md](deliverables/assistance_record.md).
+- **Core Research**: All scientific directions, mathematical proofs, paper revisions, and presentation materials reflect the researcher's independent work and understanding.

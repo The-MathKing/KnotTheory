@@ -71,4 +71,8 @@ and every claim of ours that has been refuted or withdrawn, including the
 regular-base ceiling and the $K_4$ "gap family" conjecture (refuted 1 October
 2026 by `thm:k4rankone`).
 
+## Assistance and Repository Maintenance
+
+In accordance with fair ethics rules (ISEF Rule 8 / Form 2A), AI assistance was used for technical tooling and repository maintenance—including Git workflow, build scripting, verification harness maintenance, and documenting provenance in `deliverables/assistance_record.md`.
+
 
