@@ -1097,6 +1097,42 @@ with open(f"{_REPO}/manuscript/tiles_allk_table.tex", "w") as _f:
         _f.write(f"${k}$ & $({d[0]},{d[1]},{d[2]},{d[3]})$ & ${l}$ & ${r}={n}$ & ${db}$\\\\\n")
     _f.write("\\hline\\end{tabular}\n")
 
+
+print("25. The leading-coefficient criterion (thm:leading): monomial <=> unique permutation; |U|-|R| = D with rank R = |R| (mod p); dim K = D")
+from verification import leading_coefficient as LC
+_lc_bad = []
+_lc_excess = 0
+_lc_mono = 0
+for _be, _nV in LC.BASES:
+    try:
+        _r = LC.check_base(_be, _nV, verbose=False)
+    except AssertionError as _ex:
+        _lc_bad.append((_be, str(_ex)[:80]))
+        continue
+    if _r["mono"]:
+        _lc_mono += 1
+        if _r["state"] > _r["D"]:
+            _lc_excess += 1
+check("thm:leading: on every base of the paper, monomial c_max <=> unique sigma*; |U|-|R| = D and rank R = |R| over F_p; dim K = D by the monodromy",
+      not _lc_bad, str(_lc_bad) if _lc_bad else f"{len(LC.BASES)} bases, {_lc_mono} satisfy the criterion, forward state exceeds D on {_lc_excess} of them")
+_lc_rng = _np.random.default_rng(2026)
+_lc_cnt = dict(total=0, mono=0, bad=0)
+while _lc_cnt["total"] < 25:
+    _rb = LC.random_base(_lc_rng)
+    if _rb is None:
+        continue
+    _be, _nV = _rb
+    if LC.top_coefficient(_be, _nV)[2] == 0:
+        continue
+    _lc_cnt["total"] += 1
+    try:
+        _r = LC.check_base(_be, _nV, seed=int(_lc_rng.integers(1 << 30)), verbose=False)
+        _lc_cnt["mono"] += int(_r["mono"])
+    except AssertionError:
+        _lc_cnt["bad"] += 1
+check("thm:leading on 25 random bases (3-5 vertices): dim K = D on every base satisfying the criterion",
+      _lc_cnt["bad"] == 0, f"{_lc_cnt['mono']} of {_lc_cnt['total']} random bases satisfy the criterion")
+
 nums, npath = emit_numbers(pending=1, ram=RAM_CLASS, ram_cases=ram_cases)
 check("manuscript numbers emitted from the certificates on disk", True,
       f"{nums['NtileThreeFour']} tiles at k=3,4 + {nums['NtileFive']} at k=5; "

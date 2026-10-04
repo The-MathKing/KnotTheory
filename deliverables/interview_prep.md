@@ -225,8 +225,11 @@ list of finite problems.
 **"What is conjectural in the project?"** *(say it before they ask)*
 > "Two things, and one refuted conjecture I want to tell you about myself. The
 > leading-coefficient criterion for when the nullity ceiling holds on a general
-> cyclic cover is a conjecture; I have it proved only on two-vertex, path-with-
-> loops and cycle bases. The threshold N(k) for k ≥ 6 is a conjecture. And I
+> cyclic cover is now a theorem (4 October; the proof grades the lifted strip
+> twice and counts); what is still open there is the case where the top
+> coefficient has two monomials that can cancel. The threshold N(k) for k ≥ 6
+> is a conjecture [as of 4 Oct the existence of some threshold is a theorem for
+> every k, with an ineffective bound; what is open is an effective L(k)]. And I
 > had conjectured that on a cubic family covering K4 the maximum nullity stays
 > at 6 while Z = n+2 grows — an unbounded gap on cubic graphs, which would have
 > answered a question in the Fallat–Hogben survey. It is false, and I can show
@@ -292,7 +295,9 @@ list of finite problems.
 >
 > So the open question is no longer 'arbitrary base' — that's settled, falsely
 > — and it is no longer 'regular base' either, because K4 is cubic and a
-> rank-one fibre breaks it. What is open is the leading-coefficient criterion."
+> rank-one fibre breaks it. The leading-coefficient criterion is now proved
+> (4 Oct), so what is open is the case where the top coefficient has two
+> monomials — for instance the tie t_m = p+q on a two-vertex base."
 
 **"How did you find the counterexample?"** *(the honest version, and the better story)*
 > "Not by searching — by failing to. I'd run an adversarial search over ten

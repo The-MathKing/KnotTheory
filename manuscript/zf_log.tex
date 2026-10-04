@@ -2039,4 +2039,33 @@ $(0,1,0,1)$ at $k=5$ is resonant ($z\mapsto-z$) and is exactly where the
 numerics had refused to lift. So the statement is for every $k$. Two steps are
 stated against standard facts rather than written out; an expert should read
 them before I say ``theorem'' out loud. What is left is an effective $L(k)$.
+
+\section*{Entry 38: the criterion is a theorem, and the elimination was the wrong tool}
+\addcontentsline{toc}{section}{Entry 38: the criterion is a theorem, and the elimination was the wrong tool}
+
+\textbf{4 October 2026, afternoon.} [AI-DRAFTED --- rewrite or discard.] The
+leading-coefficient conjecture is proved. The route the paper had suggested
+--- chain the elimination, solve each new fibre through the block whose
+determinant is $c_{\max}$ --- fails: on three vertices with loops $2,1,3$ it
+leaves a recurrence of order $13$ when the span is $12$, and the kernel really
+has dimension $12$. The elimination counts a one-sided window; one direction in
+that window never extends backwards. What works is to grade the strip twice.
+Take the dual of the assignment problem for the top degree: integers $p_i,q_j$
+with $p_i+q_j$ at least every exponent of the $(i,j)$ entry and
+$\sum p+\sum q=D/2$. Put row $(i,t)$ at level $t+p_i$ and unknown $(j,s)$ at
+level $s-q_j$; every row looks down, and what it sees at its own level is
+governed by the matrix whose determinant is $c_{\max}$ --- which, being a
+monomial, is nonzero for every choice of weights, as is every sub-block cut
+out by the unique maximising permutation. Grade again from the bottom with
+$t-q_i$ and $s+p_j$; the bottom level of an unknown is its top level plus
+$p_j+q_j$. Cut a window: unknowns at top level $\le b$ and bottom level
+$\ge\beta$, rows likewise. The rows are independent, every solution on the
+window extends uniquely downwards (bottom grading) and upwards (top grading),
+and unknowns exceed rows by $2\sum(p_i+q_i)=D$. So the strip kernel has
+dimension exactly $D$ for every weight pattern, the periodic kernel vectors
+inject into it, and $\operatorname{null}A\le D$. The $P(n,k)$ theorem, the
+path and cycle theorems are the cases where one grading suffices. What is left
+open is the tie: two monomials in $c_{\max}$, which can cancel, and the proof
+gives nothing. Checked on every base in the paper and on random ones, with the
+rank over $\mathbb F_p$ (\texttt{verification/leading\_coefficient.py}).
 \end{document}

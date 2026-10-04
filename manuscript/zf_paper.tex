@@ -165,7 +165,10 @@ $Z(P(n,k))\le2k+2$, so \emph{the ceiling of the matrix-certificate method
 coincides with the upper bound it is trying to match}: either the method settles
 $Z$ completely or nothing does. For a general cover the same reduction holds for
 equivariant matrices, with the ceiling given by the degree span of
-$\det M(\zeta)$.
+$\det M(\zeta)$; and whenever the top coefficient of $\det M(\zeta)$ is a
+monomial in the edge weights, the ceiling holds for \emph{every} matrix carrying
+the pattern of the cover, the kernel of the lifted operator on the infinite
+strip having dimension exactly the span (Theorem~\ref{thm:leading}).
 
 We then reach the ceiling. Under the rotation the singularity condition is a
 monic degree-$(k+1)$ polynomial in $s=2\cos(2\pi m/n)$ carrying exactly three
@@ -2414,7 +2417,7 @@ $P(n,k)$ and the theta covers are handled by Theorems~\ref{thm:red},
 \ref{thm:red2} and \ref{thm:theta}, which are direct eliminations and never pass
 through $\det M(\zeta)$. Theorems~\ref{thm:cexcover} and~\ref{thm:k4rankone}
 kill the claim for arbitrary and for regular bases respectively; what replaces
-regularity as the hypothesis is Conjecture~\ref{conj:leading} below.
+regularity as the hypothesis is Theorem~\ref{thm:leading} below.
 \end{remark}
 
 \begin{remark}[What this does and does not reach]
@@ -2436,15 +2439,15 @@ Theorem~\ref{thm:k4rankone}. The live question is the condition the proofs
 actually use.
 \end{remark}
 
-\begin{conjecture}[Leading-coefficient criterion]\label{conj:leading}
-Let $B$ be a connected base with voltages, and let $c_{\max}$ be the
-coefficient of the top power of $\zeta$ in $\det M(\zeta)$, regarded as a
-polynomial in the edge weights and the diagonal entries of $B$. If $c_{\max}$
-is a nonzero monomial in the edge weights alone --- which holds when a unique
-permutation of $V(B)$ attains the maximum total voltage and it has no fixed
-points --- then $\operatorname{null}A\le D$ for every $A\in\mathcal S(B^n)$ and
-every $n$.
-\end{conjecture}
+\begin{theorem}[Leading-coefficient criterion]\label{thm:leading}
+Let $B$ be a base with voltages, and let $c_{\max}$ be the coefficient of the
+top power of $\zeta$ in $\det M(\zeta)$, regarded as a polynomial in the edge
+weights and the diagonal entries of $B$. If $c_{\max}$ is a nonzero monomial in
+the edge weights alone --- equivalently, a unique permutation of $V(B)$ attains
+the maximum total voltage and it uses no diagonal entry
+(Lemma~\ref{lem:monomial}) --- then $\operatorname{null}A\le D$ for every
+$A\in\mathcal S(B^{\,n})$ and every $n$.
+\end{theorem}
 
 \noindent
 The condition is what every proof in this paper uses. On the two-loop base the
@@ -2462,11 +2465,15 @@ means it can be made to vanish, the span drops, and the counting argument has no
 leading term; whether the whole determinant can then be made to vanish is a
 further question, answered for $K_4$ by a rank-one fibre. The criterion is
 checked symbolically on every base in the paper
-(\texttt{verification/k4\_rank\_one.py}). We do not prove the conjecture. The
-natural route is the chained elimination of Theorem~\ref{thm:redpath},
-organised so that at each step the unknowns of the newest fibre are solved for
-through the square subsystem whose determinant is $c_{\max}$; the two-vertex,
-path and cycle theorems are the cases where that subsystem is one equation.
+(\texttt{verification/k4\_rank\_one.py}). The proof follows. It is not the
+chained elimination of Theorem~\ref{thm:redpath}, whose order can exceed $D$
+(Theorem~\ref{thm:order}), but a count on a window cut by two gradings of the
+symbol, and it shows that the kernel of the lifted operator on the infinite
+strip has dimension exactly $D$ for every choice of nonzero weights. The
+two-vertex, path and cycle theorems are the cases in which one grading already
+suffices.
+
+\input{zf_leading}
 
 \noindent
 Theorems~\ref{thm:red2} and~\ref{thm:theta} are the two extreme shapes of a
@@ -2511,10 +2518,13 @@ matrix carrying the pattern, and Theorems~\ref{thm:red2} and~\ref{thm:theta} are
 the cases $t_m=0$ and ``loops absent''. When $t_m>\min(p,q)$ the reduction still
 applies but yields only $\operatorname{null}A\le N$ with $N>D$. This does
 \emph{not} exhibit a cover whose nullity exceeds the degree span: it shows the
-technique stops being tight there, not that the ceiling fails. Whether
-$\operatorname{null}A\le D$ still holds in that range is open, and is now a
-sharply posed question rather than a vague one --- as is the case of three or
-more base vertices, which none of this touches.
+technique stops being tight there, not that the ceiling fails.
+Theorem~\ref{thm:leading} settles the question: $c_{\max}$ is $w_pw_q$ when
+$p+q>t_m$ and $-w_{t_1}w_{t_m}$ when $t_m>p+q$, a monomial either way, so
+$\operatorname{null}A\le D$ holds throughout, with the single exception of the
+tie $t_m=p+q$, where $c_{\max}=w_pw_q-w_{t_1}w_{t_m}$ can vanish and the
+question remains open. The same theorem covers bases with any number of
+vertices.
 \end{remark}
 
 \begin{theorem}[Certified values off every congruence class]\label{thm:p17}
@@ -3489,7 +3499,14 @@ The rank hypothesis holds at every nonresonant elliptic dock, for every $k$
 $Z(P(n,k))=M(P(n,k))=2k+2$ for all sufficiently large $n$, for every $k\ge2$
 (Theorem~\ref{thm:allkranks}), with an ineffective threshold; the hypothesis is
 also certified exactly for $k\le\TileAllK$ (Proposition~\ref{prop:tilesallk}).
-Open: an effective $L(k)$.
+Open: an effective $L(k)$. Also proved the same day (\S\ref{sec:leading}): the
+leading-coefficient criterion, Theorem~\ref{thm:leading}, formerly a
+conjecture --- on every base whose top coefficient is a monomial in the edge
+weights, $\operatorname{null}A\le D$ for every $A\in\mathcal S(B^{\,n})$ and
+every $n$, and the kernel of the lifted operator on the infinite strip has
+dimension exactly $D$ for every choice of nonzero weights
+(Theorem~\ref{thm:stripdim}); the two-vertex, path and cycle reductions are
+special cases.
 Every claim below is labelled by the standard it meets. Four standards appear,
 in decreasing strength: \emph{proved}, meaning a proof in the text;
 \emph{proved by an exact certificate}, meaning an explicit matrix whose nullity
@@ -3570,10 +3587,11 @@ $\operatorname{rank}=\min(2d+1,k+1)$, verified for $3\le k\le13$ and
 $1\le d\le7$. Also the saturation of the reachable set of monodromies, at
 dimension $31$ for $k=2$ and $51$ for $k=3$.
 
-\item \textbf{Conjectural.} Conjecture~\ref{conj}; Conjecture~\ref{conj:leading},
-the leading-coefficient criterion, which is consistent with every base in the
-paper and proved on none beyond those; and
-Conjecture~\ref{conj:generaln} \emph{for $k\ge6$}. For $k=3$ and $k=4$ the
+\item \textbf{Conjectural.} Conjecture~\ref{conj}; and
+Conjecture~\ref{conj:generaln} \emph{for $k\ge6$}. The leading-coefficient
+criterion, a conjecture in earlier versions, is now Theorem~\ref{thm:leading};
+what remains open there is the case of a top coefficient with two or more
+monomials, such as the tie $t_m=p+q$ of Theorem~\ref{thm:order}. For $k=3$ and $k=4$ the
 conjecture is a theorem (Theorem~\ref{thm:k3all}), and for $k=5$ it is a theorem
 with a non-optimal threshold (Theorem~\ref{thm:k5all}, $N(5)\le\SettleFive$);
 what remains open is whether $N(k)$ exists for every $k$, for which we prove only
@@ -3734,5 +3752,8 @@ equations (On vanishing sums of roots of unity),
 \emph{Acta Arith.} 30 (1976), 229--240.
 \bibitem{niven} I. Niven, \emph{Irrational Numbers}, Carus Mathematical
 Monographs 11, Mathematical Association of America, 1956, Corollary 3.12.
+\bibitem{schrijver} A. Schrijver, \emph{Combinatorial Optimization: Polyhedra
+and Efficiency}, Springer, Berlin, 2003 (Chapter~17, weighted bipartite
+matching and the assignment problem).
 \end{thebibliography}
 \end{document}

@@ -1,0 +1,380 @@
+% =========================================================================
+% Prose rewritten by Aryan Padarthi, 4 October 2026.
+% Mathematics (displayed formulas, theorem statements) restored from the
+% main paper. Nine corrections marked % [FIX n] -- see the message that
+% accompanied this file.
+% =========================================================================
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{remark}[theorem]{Remark}
+
+\title{The zero forcing number of $P(n,3)$}
+\author{Aryan Padarthi}
+\date{October 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+In Theorem~3.6, Rashidi, Shajareh Poursalavati and Tavakkoli write that
+$Z(P(n,3))=8$ for all $n$ at least $12$. Krishnan found that this statement is
+false for $n=12$, where $Z(P(12,3))=7$, calculated $Z(P(n,3))$ exhaustively for
+$n$ from $7$ to $20$, and conjectured that $Z(P(n,3))=8$ for every $n$ at least
+$13$. He remarked that what was missing was a proof of a lower bound which holds
+for all large $n$. Here we provide that proof, and show that the conjecture
+holds.
+% [FIX 1] "which happens precisely if T is the identity" attached to "at most
+% 8"; the condition is for EQUALITY, not for the inequality.
+Our proof is a reduction. We observe that removing the interior coordinates of
+any matrix with the pattern of $P(n,3)$ produces a single linear recurrence of
+order $8$, so the nullity equals the dimension of the fixed space of the
+monodromy $T$, and is at most $8$, with equality precisely when $T$ is the
+identity.
+% [FIX 2] tiles do not "produce n"; they give the conclusion for every n.
+We then construct matrices achieving $8$ by concatenating tiles, each having a
+fixed pattern for docking, so that their transfer products depend only on their
+interiors. There are tiles of every length from $21$ up to but not including
+$42$, and together they settle every $n$ at least $21$ at once. We certify each
+tile by evaluating a Krawczyk contraction in exact rational arithmetic. With
+per-$n$ certificates for $n$ from $17$ to $20$ and an exhaustive search for $n$
+from $13$ to $16$, we have proved $Z(P(n,3))=8$ for every $n$ at least $13$.
+Here $13$ is optimal, because $Z(P(11,3))=Z(P(12,3))=7$.
+\end{abstract}
+
+\section{Introduction}
+
+Let $G$ be a graph whose vertices are each coloured black or white. The colour
+change rule is: if a black vertex has exactly one white neighbour, that
+neighbour becomes black. Let $S$ be a set of vertices. Then $S$ is zero forcing
+if colouring $S$ black and then repeatedly applying the rule until it stalls
+colours all vertices. Let $Z(G)$ denote the smallest possible size of a zero
+forcing set. If $M(G)$ denotes the maximum nullity among all symmetric real
+matrices having exactly the edge set of $G$ as their nonzero off-diagonal
+entries, then $M(G)$ is at most $Z(G)$ \cite{aim}.
+
+The generalized Petersen graph $P(n,k)$, for $n\ge3$ and $1\le k<n/2$, has
+vertices $u_0,\dots,u_{n-1}$ and $v_0,\dots,v_{n-1}$, where $u_i$ is joined to
+$u_{i+1}$, $v_i$ is joined to $v_{i+k}$, and $u_i$ is joined to $v_i$. All
+indices are taken modulo $n$. $P(n,k)$ is cubic.
+
+In their Theorem~3.6, Rashidi, Shajareh Poursalavati and Tavakkoli \cite{rst}
+write that $Z(P(n,3))=8$ for any $n\ge12$. Krishnan \cite{k} observed that this
+claim is false for $n=12$, and gives an explicit set of seven elements which
+constitutes a zero forcing set for $P(12,3)$. He also points out that an error
+was made in the proof of the result in the published paper, since it only rules
+out six-element sets in its case analysis.
+% [FIX 3] "does not change after n = 12" reads as though Z(12)=8; the values
+% stabilise FROM 13, and Z(12)=7.
+By brute force he determines $Z(P(n,3))$ for $n=7,\dots,20$, finds that the
+values stabilise at $8$ from $n=13$ onward, and thus concludes:
+
+\medskip
+\noindent\textbf{Conjecture 5.} $Z(P(n,3))=8$ for any $n\ge13$.
+\medskip
+
+The obstacle is a matching lower bound valid for all $n$: the upper bound is
+available for every $n$ at least $9$, and only finitely many lower bounds can
+come from computation.
+
+\begin{theorem}\label{thm:main}
+$Z(P(n,3))=8$ for every $n\ge13$, and $13$ is optimal, since
+$Z(P(11,3))=Z(P(12,3))=7$. Moreover $Z(P(n,3))=M(P(n,3))=8$ for every $n\ge17$.
+\end{theorem}
+
+This is Conjecture~5 of Krishnan.
+
+The upper bound $Z(P(n,3))\le8$ for $n$ at least $9$ is a rotation argument and
+is not new. The content is the lower bound, and all of it is in
+Sections~\ref{sec:red}--\ref{sec:cert}. Section~\ref{sec:red} reduces the kernel
+of any matrix carrying the pattern of $P(n,3)$ to the periodic solutions of a
+linear recurrence of order $8$, which bounds the nullity by $8$ and identifies
+exactly when the bound is attained: when the monodromy of the recurrence is the
+identity. Section~\ref{sec:tiles} makes that condition achievable for every
+large $n$ simultaneously, by assembling the weight sequence out of tiles whose
+transfer products multiply independently. Section~\ref{sec:cert} certifies the
+tiles. Section~\ref{sec:proof} assembles the proof.
+
+\section{Setup}\label{sec:setup}
+
+Fix $n$ and $k$ with $n\ge2k+3$. Let $A$ be a real matrix indexed by the
+vertices of $P(n,k)$, with a nonzero entry in position $xy$ if and only if $xy$
+is an edge, for $x\ne y$; the diagonal is unrestricted. We do not assume $A$ is
+symmetric. Write
+\[
+  b_i=A_{u_iu_{i+1}},\quad b'_i=A_{u_{i+1}u_i},\quad
+  c_i=A_{u_iv_i},\quad c'_i=A_{v_iu_i},\quad
+  e_i=A_{v_iv_{i+k}},\quad e'_i=A_{v_{i+k}v_i},
+\]
+with diagonal entries $a_i$ at $u_i$ and $d_i$ at $v_i$. All of
+$b,b',c,c',e,e'$ are nonzero.
+
+We do not need symmetry to prove that the nullity of $A$ is at most $Z(G)$. We
+only need to know that there is a nonzero entry on every edge in both
+directions. If we have $Ax=0$ and $x$ is zero on a set $B$, and there is a
+vertex $u$ in $B$ such that $u$ has exactly one neighbour $w$ not in $B$, then
+all the terms in the row of $Ax=0$ at $u$ will be zero except the one involving
+$x_w$, which has a nonzero coefficient, so $x_w=0$.
+% [FIX 4] "gives an injection onto the kernel of A" -- wrong direction and
+% "onto" would be surjectivity. The restriction map is injective ON the kernel.
+We can show by induction over a forcing process that for any zero forcing set
+$S$, the restriction map $x\mapsto x|_S$ is injective on the kernel of $A$. So
+\begin{equation}\label{eq:mz}
+  \operatorname{null}A\ \le\ Z(G).
+\end{equation}
+
+\section{The reduction}\label{sec:red}
+
+This allows us to combine the outer and inner equations of the kernel of $A$
+into one recurrence along the outer cycle. Taking $k=3$, we find that the
+recurrence is of order $8$, which is the bound we want to match.
+
+\begin{theorem}[Reduction]\label{thm:red}
+Let $n\ge2k+3$ and for $x\in\mathbb R^{\mathbb Z_n}$ define
+\[
+  (Lx)_i=-\frac{b'_{i-1}x_{i-1}+a_ix_i+b_ix_{i+1}}{c_i},
+\]
+obtained by solving the outer equation for the inner coordinate. Then the map
+taking $x$ to the pair $(x,Lx)$ is a linear isomorphism from
+\[
+  \Big\{x:\ \textstyle\sum_{p=-k-1}^{k+1}\gamma_{i,p}\,x_{i+p}=0
+  \ \text{ for all } i\in\mathbb Z_n\Big\}
+\]
+to the kernel of $A$, where $\gamma_{i,p}\ne0$ only for
+$p\in\{-k-1,-k,-k+1\}\cup\{-1,0,1\}\cup\{k-1,k,k+1\}$, and the two extreme
+coefficients are
+\[
+  \gamma_{i,k+1}=-\frac{e_i\,b_{i+k}}{c_{i+k}}\ne0,
+  \qquad
+  \gamma_{i,-k-1}=-\frac{e'_{i-k}\,b'_{i-k-1}}{c_{i-k}}\ne0 .
+\]
+Therefore, with $T$ the monodromy of the recurrence on the state
+$(x_{i-k-1},\dots,x_{i+k})$, the nullity of $A$ is the dimension of the fixed
+space of $T$, is at most $2k+2$, and equals $2k+2$ if and only if $T$ is the
+identity.
+\end{theorem}
+
+\begin{proof}
+Every spoke weight is nonzero, so the equation of the kernel at $u_i$ has a
+unique solution for the inner coordinate at $i$, a three-term expression in $x$.
+Putting this into the equation at $v_i$, namely
+$e'_{i-k}y_{i-k}+d_iy_i+e_iy_{i+k}+c'_ix_i=0$, gives the formula: the three
+substituted terms give the three index triples $\{i-k-1,i-k,i-k+1\}$,
+$\{i-1,i,i+1\}$ and $\{i+k-1,i+k,i+k+1\}$, and the two extreme coefficients are
+as claimed, both nonzero since the outer, spoke and inner weights are. Every
+vector $x$ solving all these equations gives a vector in the kernel.
+
+Both extreme coefficients are nonzero, so the relation is a recurrence of order
+exactly $2k+2$, which is solvable forward and backward, with solutions on the
+integers giving a space of dimension $2k+2$, which the monodromy acts on, and
+whose $n$-periodic solutions are exactly the fixed vectors of the monodromy.
+This proves that the nullity of $A$ is the dimension of that fixed space. This
+is at most $2k+2$ and equals $2k+2$ if and only if the monodromy is the
+identity.
+\end{proof}
+
+% [FIX 5] "the monodromy's order could be less than 2k+2" -- the monodromy is a
+% matrix; it is the RECURRENCE whose order can drop. Also merged the two
+% sentences, which said the same thing twice.
+This proof requires that $n$ be at least $2k+3$. Otherwise the index sets above
+collide modulo $n$, the extreme coefficients are no longer given by the explicit
+formulas, and for $n$ equal to $2k+1$ or $2k+2$ the recurrence can have order
+less than $2k+2$.
+
+\begin{corollary}\label{cor:ceiling}
+$M(P(n,3))\le8$ for $n\ge9$.
+\end{corollary}
+
+For $k=3$ the order of the recurrence is $8$, and the size of the forcing set
+produced by the rotation argument giving the upper bound is also $8$. The upper
+bound and the ceiling of the matrix method are identical, with no slack: there
+exists a matrix on the pattern of $P(n,3)$ with nullity $8$ if and only if the
+monodromy of its reduced recurrence is the identity, and such a matrix proves
+the lower bound.
+
+\section{Tiles}\label{sec:tiles}
+
+The docking pattern consists of all weights equal to $1$ in the outer, spoke and
+inner positions, and zero in the two diagonal positions. A tile of length $\ell$
+is a group of $\ell$ consecutive positions in which the first $k+1$ and last
+$k+1$ positions have the docking pattern, and the other positions make up its
+interior. The tile product is the product of the transfer matrices over the
+positions of the tile.
+
+\begin{lemma}[Tile independence]\label{lem:tile}
+If the weight sequence is a concatenation of tiles sharing one docking pattern,
+each tile product depends only on that tile's interior weights, and the
+monodromy is the product of the tile products.
+\end{lemma}
+
+\begin{proof}
+By the reduction theorem, each transfer matrix depends on the coefficients of
+one reduced equation, involving weights only at indices in a window of width
+$2k+2$ around its position. If the tile is in a block and the position is in
+that block, then the window will be in the block padded out by $k+1$ on each
+side. The positions below the block will be in the last $k+1$ positions of the
+previous tile and the positions above the block will be in the first $k+1$
+positions of the next tile; these also have the docking pattern, and so does the
+tile itself in its first and last $k+1$ positions. Everything the transfer
+matrix sees is either docking or interior to this tile. The second statement
+says that the monodromy product associates when regrouped over the tiles.
+\end{proof}
+
+% [FIX 6] The proof of the tiling theorem appeared BEFORE its statement in the
+% rewrite. Reordered.
+\begin{theorem}[Tiling]\label{thm:tiling}
+Fix $k$ and $L\ge2(k+1)$. Suppose that for every length from $L$ up to but not
+including $2L$ there are interior weights, all required entries nonzero, such
+that the tile product equals the identity. Then
+\[
+  Z(P(n,k))=M(P(n,k))=2k+2 \qquad\text{for every } n\ge L .
+\]
+\end{theorem}
+
+\begin{proof}
+Each $n$ at least $L$ is a sum of integers from that range: if $n$ is below $2L$
+take the single term $n$, otherwise take a term $L$ and recurse on $n-L$. We can
+concatenate together the corresponding tiles, giving a weight sequence with
+monodromy that by Lemma~\ref{lem:tile} is the product of the tile products, and
+hence the identity. All weights are nonzero, so it represents the pattern of
+$P(n,k)$, and from the reduction theorem the nullity is $2k+2$.
+% [FIX 7] "This can be seen using the inequality from Section 2 and the rotation
+% bound. Both are 2k+2." -- that is a separate deduction, not a restatement.
+Hence $M(P(n,k))\ge2k+2$; combining this with \eqref{eq:mz} and the rotation
+bound $Z\le2k+2$ gives $M(P(n,k))=Z(P(n,k))=2k+2$.
+\end{proof}
+
+% [FIX 8] "the first possible lengths here to solve is several hundred" --
+% garbled; it is the uncovered range that is several hundred.
+We have proven this without gaps because we used a full interval. If the lengths
+of two tiles were coprime, then they could cover only nonnegative integer
+combinations of the two, and every $n$ below a certain product would not be
+covered; for the smallest solvable lengths here, that uncovered range is already
+several hundred. Our hypothesis is a finite set of independent finite problems.
+
+\section{Certification}\label{sec:cert}
+
+% [FIX 9] "As an example consider k = 3" -- k = 3 is the case of the paper, not
+% an illustration.
+For $k=3$ we take $L=21$ and exhibit identity tiles of all lengths from $21$ to
+$43$ inclusive, which includes the needed range. That is $23$ tiles.
+
+To certify directly that the tile product is the identity would be to do
+interval arithmetic on a rational map. We do not need to do that. Applying the
+reduction theorem to the cyclic matrix formed from one tile tells us that the
+monodromy of that matrix is the tile product. Therefore the tile product is the
+identity if and only if the nullity of that matrix is $2k+2$, and that last
+statement is about a bilinear system. Say $K$ is a matrix with columns spanning
+a possible kernel, written in graph form. The property is that $A(w)K(X)=0$, and
+its Jacobian is affine in the unknowns.
+
+% [FIX 10 -- the one that matters] The rewrite said removing the dependencies
+% leaves "a system which is still a consequence of the original system". That
+% inverts the point: the whole reason for choosing the subsystem structurally
+% is that it is EQUIVALENT to AK = 0, not merely implied by it. As written it
+% would have weakened the central rigour claim of the note.
+We take the square subsystem not because it is the maximum-rank selection one
+could make, but because it is chosen structurally. The product
+$K^{\!\top}\!AK$ is symmetric, and its antisymmetric part accounts for precisely
+$\binom{8}{2}=28$ dependencies among the equations, so removing those leaves a
+system equivalent to $AK=0$, rather than a weaker consequence of it.
+
+For each tile we then perform a Krawczyk contraction to certify it. With $Y$ an
+approximate inverse of the square Jacobian $J$ at a numerically located point,
+$L_{\!J}$ a Lipschitz bound for $J$ in the $\infty$-norm, and $\delta$ a box
+radius,
+\[
+  \alpha=\|I-YJ\|_\infty+\|Y\|_\infty L_{\!J}\,\delta<1
+  \qquad\text{and}\qquad
+  \|Yf\|_\infty+\alpha\delta\le\delta
+\]
+together establish that a true real solution exists in that box.
+
+Every number appearing here is evaluated exactly: the box centre is dyadic; the
+system is bilinear with integer coefficients, so the value and Jacobian at the
+centre are both exactly rational; and the approximate inverse is arbitrary, so
+rounding it to a rational costs nothing. Across all $23$ tiles the contraction
+constant is at most $1.0\times10^{-9}$, and the nullity of each certified matrix
+is exactly $8$. In addition, every docking weight is equal to its prescribed
+integer. Finally, none of the above uses any nullity calculation with
+floating-point numbers.
+
+Performing exactly the same process per $n$ rather than per tile gives us a
+proof that $Z$ and $M$ are both equal to $8$ for every $n$ between $17$ and
+$33$, that is, for seventeen consecutive numbers including the primes
+$17,19,23,29$ and $31$.
+
+\section{Proof of the theorem}\label{sec:proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+First, the upper bound is correct for all $n\ge9$, by the rotation argument.
+
+For $n\ge21$ we have $Z=M=8$, since there are certified identity tiles of all
+lengths in the right range given by Section~\ref{sec:cert}, so
+Theorem~\ref{thm:tiling} applies with $L=21$.
+
+For $n$ from $17$ to $20$: these are covered by the per-$n$ certificates of
+Section~\ref{sec:cert}, which give $Z=M=8$ on the range $17$ to $33$.
+
+Finally, for $n$ in $[13,16]$, exhaustive search on subsets of vertices shows
+there is no zero forcing set of size $7$. Hence $Z=8$ by the upper bound. We
+deduce $Z$ only, and do not assert that $M=8$ here.
+
+Optimality of $13$: exhaustive search gives $Z(P(11,3))=Z(P(12,3))=7$.
+\end{proof}
+
+\begin{remark}
+The sequence of values for $n$ from $7$ to $14$ is $6,6,6,8,7,7,8,8$. So $Z=8$
+first occurs at $n=10$, well below the threshold $13$ beyond which it always
+holds. These are two different quantities.
+\end{remark}
+
+\begin{remark}
+By the reduction theorem the lower bound is attained precisely when a monodromy
+equals the identity, a condition with no arithmetic in it. That is why the proof
+reaches all large $n$, including primes, and not a congruence class.
+\end{remark}
+
+\section*{Independence and related work}
+
+This work was carried out independently. The lower bound for $n\ge17$ was
+obtained on 3 September 2026 and the determination of $Z(P(n,3))$ for every $n$
+on 22 September 2026; both dates are recorded in the version history of the
+project repository. I re-ran the verification suite for every computational
+claim in this note before posting.
+
+After obtaining these results I learned of \cite{lean}, a pull request to the
+repository \texttt{the-omega-institute/trureturing} (\#10129, opened and merged
+on 26 September 2026), which states and claims a Lean proof of the same
+conjecture. I looked over it myself. What I verified is that it defines the
+statement
+\[
+  \texttt{claim} \;:\; \forall\, n,\ 13\le n \implies
+  \texttt{zeroForcingNumber (gp n 3)} = 8,
+\]
+which is Conjecture~5, that it contains a declaration \texttt{theorem result :
+claim}, and that its Lean sources contain no \texttt{sorry} and no additional
+\texttt{axiom} declarations. I did not build it, so I make no claim about
+whether it compiles, and I make no other assessment of it.
+
+\begin{thebibliography}{9}
+\bibitem{aim} AIM Minimum Rank -- Special Graphs Work Group, Zero forcing sets
+  and the minimum rank of graphs, \emph{Linear Algebra Appl.} \textbf{428}
+  (2008), 1628--1648.
+\bibitem{k} A. Krishnan, A correction to the zero forcing number of the
+  generalized Petersen graphs $P(n,3)$, arXiv:2607.19412 (2026).
+\bibitem{lean} \texttt{the-omega-institute/trureturing}, pull request \#10129,
+  ``Prove Krishnan's Conjecture 5: the zero forcing number of $P(n,3)$ is 8 for
+  every $n\ge13$'', merged 26 September 2026.
+  \url{https://github.com/the-omega-institute/trureturing/pull/10129}
+\bibitem{rst} S. Rashidi, N. Shajareh Poursalavati, M. Tavakkoli, Computing the
+  zero forcing number for generalized Petersen graphs, \emph{J. Algebra Combin.
+  Discrete Struct. Appl.} \textbf{7}(2) (2020), 183--193.
+\end{thebibliography}
+
+\end{document}

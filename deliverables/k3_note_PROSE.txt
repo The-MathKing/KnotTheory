@@ -1,0 +1,307 @@
+THE ZERO FORCING NUMBER OF P(n,3)
+Plain-text prose of the draft note, for rewriting.
+
+Equations and displayed formulas are removed and marked [DISPLAY: ...].
+Short inline symbols are kept where the sentence needs them to parse.
+Word counts per section are given so you have a target.
+
+=============================================================================
+ABSTRACT  (178 words)
+=============================================================================
+
+Rashidi, Shajareh Poursalavati and Tavakkoli, in their Theorem 3.6, state that
+Z(P(n,3)) = 8 for all n at least 12. Krishnan showed that this fails at n = 12,
+where Z(P(12,3)) = 7, computed Z(P(n,3)) exhaustively for n from 7 to 20, and
+conjectured that Z(P(n,3)) = 8 for every n at least 13; he identified the
+missing ingredient as a lower-bound proof valid for all large n. We supply it
+and prove the conjecture.
+
+The method is a reduction: eliminating the inner coordinates of any matrix
+carrying the pattern of P(n,3) leaves a single linear recurrence of order 8, so
+the nullity equals the dimension of the fixed space of the monodromy T, and is
+at most 8, with equality exactly when T is the identity.
+
+We then build matrices attaining 8 by concatenating tiles with a fixed docking
+pattern, whose transfer products depend only on their interiors; tiles of every
+length from 21 up to but not including 42 give every n at least 21 at once.
+Each tile is certified by a Krawczyk contraction evaluated in exact rational
+arithmetic.
+
+Together with per-n certificates for n from 17 to 20 and exhaustive search for
+n from 13 to 16, this gives Z(P(n,3)) = 8 for every n at least 13, and 13 is
+optimal since Z(P(11,3)) = Z(P(12,3)) = 7.
+
+
+=============================================================================
+SECTION 1 — INTRODUCTION  (about 420 words)
+=============================================================================
+
+Let G be a graph whose vertices are each coloured black or white. The colour
+change rule is: if a black vertex has exactly one white neighbour, that
+neighbour becomes black. A set S of vertices is zero forcing if colouring S
+black and applying the rule until it stalls colours every vertex; the zero
+forcing number Z(G) is the least size of such a set. Writing M(G) for the
+maximum nullity over symmetric real matrices whose off-diagonal support is
+exactly the edge set of G, one has M(G) at most Z(G).
+
+The generalized Petersen graph P(n,k), for n at least 3 and k between 1 and
+n/2, has vertices u_0 through u_{n-1} and v_0 through v_{n-1}, with edges
+joining u_i to u_{i+1}, v_i to v_{i+k}, and u_i to v_i, indices taken modulo n.
+It is cubic.
+
+Rashidi, Shajareh Poursalavati and Tavakkoli state in their Theorem 3.6 that
+Z(P(n,3)) = 8 for every n at least 12. Krishnan showed that the statement fails
+at n = 12, exhibiting an explicit seven-element zero forcing set for P(12,3)
+and confirming by exhaustive search that no six-element set forces; he located
+the gap in the published argument, whose case analysis never excludes
+seven-element sets. He computed Z(P(n,3)) exhaustively for n from 7 to 20,
+observed that the values stabilise at 8 from n = 13 onward, and recorded as
+Conjecture 5 that Z(P(n,3)) = 8 for every n at least 13, noting that the
+obstacle is a matching lower bound valid for all n: the upper bound is
+available for every n at least 9, and only finitely many lower bounds can come
+from computation.
+
+[DISPLAY: the main theorem. Z(P(n,3)) = 8 for every n at least 13, and 13 is
+optimal, since Z(P(11,3)) = Z(P(12,3)) = 7. Moreover Z = M = 8 for every n at
+least 17.]
+
+This is Conjecture 5 of Krishnan.
+
+The upper bound Z(P(n,3)) at most 8 for n at least 9 is a rotation argument and
+is not new. The content is the lower bound, and all of it is in Sections 3
+through 5. Section 3 reduces the kernel of any matrix carrying the pattern of
+P(n,3) to the periodic solutions of a linear recurrence of order 8, which
+bounds the nullity by 8 and identifies exactly when the bound is attained: when
+the monodromy of the recurrence is the identity. Section 4 makes that condition
+achievable for every large n simultaneously, by assembling the weight sequence
+out of tiles whose transfer products multiply independently. Section 5
+certifies the tiles. Section 6 assembles the proof.
+
+
+=============================================================================
+SECTION 2 — SETUP  (about 190 words)
+=============================================================================
+
+Fix n and k with n at least 2k+3. Let A be a real matrix indexed by the
+vertices of P(n,k), with a nonzero entry in position xy if and only if xy is an
+edge, for x not equal to y; the diagonal is unrestricted. We do not assume A is
+symmetric.
+
+[DISPLAY: the weight names. b_i and b'_i for the two directions of the outer
+edge, c_i and c'_i for the spoke, e_i and e'_i for the inner edge, with
+diagonal entries a_i at u_i and d_i at v_i. All of these are nonzero.]
+
+Symmetry is not needed for the bound that the nullity of A is at most Z(G). It
+is enough that every edge carries a nonzero entry in each direction. Indeed, if
+Ax = 0 and x vanishes on a set B, and some vertex u in B has exactly one
+neighbour w outside B, then the row of Ax = 0 at u has every term vanishing
+except the one involving x_w, whose coefficient is nonzero; hence x_w = 0.
+Induction along a forcing process shows that restriction to S is injective on
+the kernel of A for every zero forcing set S, so the nullity of A is at most
+Z(G).
+
+
+=============================================================================
+SECTION 3 — THE REDUCTION  (about 330 words)
+=============================================================================
+
+The outer and inner equations of the kernel of A can be combined into one
+recurrence along the outer cycle. Specialised to k = 3 the recurrence has order
+8, which is exactly the bound to be matched.
+
+[DISPLAY: Theorem (Reduction). For n at least 2k+3, define L x at position i by
+solving the outer equation for the inner coordinate. Then the map sending x to
+the pair (x, Lx) is a linear bijection from the solutions of a nine-term
+recurrence onto the kernel of A. The two extreme coefficients, at offsets
+plus and minus (k+1), are given explicitly and are nonzero. Consequently the
+nullity of A equals the dimension of the fixed space of the monodromy T, is at
+most 2k+2, and equals 2k+2 exactly when T is the identity.]
+
+Proof. Each spoke weight is nonzero, so the equation of the kernel at u_i
+solves uniquely for the inner coordinate at i, a three-term expression in x.
+Substituting into the equation at v_i gives the stated relation: the three
+substituted terms contribute three index triples, and the two extreme
+coefficients are as stated, both nonzero because the outer, spoke and inner
+weights are. Conversely any x satisfying all the relations yields a kernel
+vector.
+
+Because both end coefficients are nonzero, the relation is a recurrence of
+order exactly 2k+2, solvable forward and backward, so its solutions on the
+integers form a space of dimension 2k+2 on which the monodromy acts, and the
+n-periodic solutions are exactly the fixed vectors of the monodromy. Hence the
+nullity of A is the dimension of that fixed space, which is at most 2k+2 and
+equals 2k+2 precisely when the monodromy is the identity.
+
+The hypothesis that n is at least 2k+3 is needed: for n equal to 2k+1 and
+2k+2 the index sets above collide modulo n, the extreme coefficients are no
+longer given by the displayed formulas, and the order of the recurrence can
+drop.
+
+[DISPLAY: Corollary. M(P(n,3)) is at most 8 for n at least 9.]
+
+For k = 3 the recurrence has order 8, and 8 is also the size of the forcing set
+produced by the rotation argument that gives the upper bound. The ceiling of
+the matrix method and the upper bound it is trying to match therefore coincide,
+with no slack on either side: a matrix on the pattern of P(n,3) with nullity 8
+exists if and only if the monodromy of its reduced recurrence is the identity,
+and such a matrix proves the lower bound.
+
+
+=============================================================================
+SECTION 4 — TILES  (about 310 words)
+=============================================================================
+
+Fix the docking pattern: at a position, the outer, spoke and inner weights are
+all 1 and the two diagonal entries are 0. A tile of length l is a block of l
+consecutive positions whose first k+1 and last k+1 positions carry the docking
+pattern; the remaining positions are its interior. The tile product is the
+product of the transfer matrices over the tile's positions.
+
+[DISPLAY: Lemma (Tile independence). If the weight sequence is a concatenation
+of tiles sharing one docking pattern, each tile product depends only on that
+tile's interior weights, and the monodromy is the product of the tile
+products.]
+
+Proof. By the reduction theorem, each transfer matrix is determined by the
+coefficients of one reduced equation, which involve weights only at indices in
+a window of width 2k+2 around its position. If the tile occupies a block and
+the position lies in that block, the window lies within the block extended by
+k+1 on each side. The part below the block lies in the preceding tile's final
+k+1 positions and the part above lies in the following tile's first k+1
+positions; both carry the docking pattern, as do the tile's own first and last
+k+1 positions. So every weight the transfer matrix sees is either docking or
+interior to this tile. The second statement is associativity of the monodromy
+product regrouped along the tiles.
+
+[DISPLAY: Theorem (Tiling). Fix k and L at least 2(k+1). Suppose that for every
+length from L up to but not including 2L there are interior weights, all
+required entries nonzero, making the tile product equal to the identity. Then
+Z(P(n,k)) = M(P(n,k)) = 2k+2 for every n at least L.]
+
+Proof. Every n at least L is a sum of integers from that range: if n is below
+2L take the single term n; if n is at least 2L take a term L and recurse on
+n minus L. Concatenating the corresponding tiles gives a weight sequence whose
+monodromy is, by the lemma, the product of the tile products, hence the
+identity. All required weights are nonzero, so the matrix carries the pattern
+of P(n,k), and the reduction theorem gives nullity 2k+2. With the inequality
+from Section 2 and the rotation bound, both quantities equal 2k+2.
+
+Using a full interval is what makes the conclusion gapless. Two tile lengths
+that are coprime would reach only sums of multiples of the two, leaving every n
+below a certain product uncovered, which for the smallest solvable lengths here
+is already several hundred. The hypothesis is a finite list of independent
+finite problems.
+
+
+=============================================================================
+SECTION 5 — CERTIFICATION  (about 330 words)
+=============================================================================
+
+For k = 3 we take L = 21 and exhibit identity tiles of every length from 21 to
+43 inclusive, which contains the required range; that is 23 tiles.
+
+Certifying that the tile product is the identity directly would mean interval
+arithmetic on a rational map. It is unnecessary. By the reduction theorem
+applied to the cyclic matrix built from a single tile, the monodromy of that
+matrix is the tile product, so the tile product is the identity if and only if
+that matrix has nullity 2k+2, and the latter is a statement about a bilinear
+system. Writing K for a matrix whose columns span a candidate kernel, in graph
+form, the condition is that A times K vanishes, and its Jacobian is affine in
+the unknowns.
+
+The square subsystem is chosen structurally rather than as a maximal-rank
+selection: the product of K transpose, A and K is symmetric, and its
+antisymmetric part accounts for exactly 28 dependencies among the equations, so
+removing those leaves a system equivalent to the original rather than a weaker
+consequence of it.
+
+Each tile is then certified by a Krawczyk contraction.
+
+[DISPLAY: the two Krawczyk inequalities, in terms of an approximate inverse Y
+of the square Jacobian, a Lipschitz bound for the Jacobian, and a box radius.
+Together they establish that a true real solution exists in the box.]
+
+Every quantity in these inequalities is evaluated in exact rational arithmetic:
+the box centre is dyadic, the system is bilinear with integer coefficients so
+its value and Jacobian at that centre are exactly rational, and the approximate
+inverse is arbitrary, so rounding it to a rational costs nothing. Across all 23
+tiles the contraction constant is at most 1.0 times 10 to the minus 9, every
+certified matrix has nullity exactly 8, and every docking weight equals its
+prescribed integer. No step rests on a floating-point nullity computation.
+
+The same machinery, applied per n rather than per tile, certifies that Z and M
+both equal 8 for every n from 17 to 33, seventeen consecutive values including
+the primes 17, 19, 23, 29 and 31.
+
+
+=============================================================================
+SECTION 6 — PROOF OF THE THEOREM  (about 190 words)
+=============================================================================
+
+Proof. The upper bound holds for every n at least 9 by the rotation argument.
+
+For n at least 21: Section 5 provides certified identity tiles of every length
+in the required range, so the tiling theorem with L = 21 gives Z = M = 8.
+
+For n from 17 to 20: these are covered by the per-n certificates of Section 5,
+which give Z = M = 8 on the range 17 to 33.
+
+For n from 13 to 16: exhaustive search over vertex subsets shows that no zero
+forcing set of size 7 exists, so Z = 8 by the upper bound. These four values
+give Z only; we do not claim that M = 8 there.
+
+Optimality of 13: exhaustive search gives Z(P(11,3)) = Z(P(12,3)) = 7.
+
+Remark. The sequence of values for n from 7 to 14 is 6, 6, 6, 8, 7, 7, 8, 8. It
+is not monotone, and the bound 8 is first attained at n = 10, well before the
+threshold 13 beyond which it holds always. The two are different quantities.
+
+Remark. By the reduction theorem the lower bound is attained exactly when a
+monodromy equals the identity, a condition with no arithmetic in it. This is
+why the argument reaches every large n, including primes, rather than a
+congruence class.
+
+
+=============================================================================
+INDEPENDENCE AND RELATED WORK  —  WRITE THIS YOURSELF
+=============================================================================
+
+Not drafted, deliberately. This paragraph is a factual claim about your own
+dates and about what you personally verified of someone else's work, so it has
+to be yours.
+
+What it needs to say:
+  - when you obtained the result (tracked history: n at least 17 on
+    3 September 2026; k = 3 complete on 22 September 2026);
+  - that a pull request to the-omega-institute/trureturing, number 10129,
+    merged 26 September 2026, states and claims a Lean proof of the same
+    conjecture;
+  - only what you have checked about it yourself. Do not characterise it
+    beyond that.
+
+
+=============================================================================
+REFERENCES  —  WRITE THESE YOURSELF
+=============================================================================
+
+Rule 8 names AI-generated citations specifically, so type these from the
+sources.
+
+  AIM Minimum Rank — Special Graphs Work Group, "Zero forcing sets and the
+  minimum rank of graphs", Linear Algebra and its Applications 428 (2008),
+  1628–1648.
+
+  A. Krishnan, "A correction to the zero forcing number of the generalized
+  Petersen graphs P(n,3)", arXiv:2607.19412 (2026).
+
+  S. Rashidi, N. Shajareh Poursalavati, M. Tavakkoli, "Computing the zero
+  forcing number for generalized Petersen graphs", Journal of Algebra
+  Combinatorics Discrete Structures and Applications 7(2) (2020), 183–193.
+
+
+=============================================================================
+TOTALS
+=============================================================================
+
+Prose to rewrite: roughly 1,770 words across six sections plus the abstract.
+The LaTeX draft is 5 pages, 2,738 words including the mathematics.

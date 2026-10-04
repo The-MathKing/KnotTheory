@@ -26,7 +26,7 @@ confident at the top and approximate in the middle.
 
 - **As it stands today** (false claim removed, nothing posted, prose AI-written, no expert read): 4th award or unplaced. The mathematics is 2nd-award-level; the presentation and provenance are not, and judges score what they can probe.
 - **After the plan below is executed** (posted preprint in your own words, split papers, one expert who has read it, disclosure on the board, interview-proof): **2nd–3rd award is the realistic target.** Part II's substance is at the 2nd-award level of 2026.
-- **1st** requires one of: `conj:leading` proved (a theorem about a class, not a family), or an expert telling the judges the monodromy ceiling surprised them. Neither is in hand. Plan for 2nd, leave the door open.
+- **1st** requires one of: `conj:leading` proved (a theorem about a class, not a family), or an expert telling the judges the monodromy ceiling surprised them. *Update 4 Oct: `conj:leading` is proved (`thm:leading`), but by the AI (record §12); it counts toward the ceiling only if the student can own it at a whiteboard.* Plan for 2nd, leave the door open.
 
 ### 1b. Against DRSEF / TXSEF
 
@@ -188,7 +188,7 @@ labelled open in the paper.
 - [ ] `verify_all.py` passes on a clean clone of the new repository in one command
 - [ ] Every claim in Status is proved / certified / labelled open; no "numerical" items remain in Part II
 - [ ] `thm:k4rankone`, `prop:lowrank`, and every claimed AI-originated result re-derived by you on paper
-- [ ] `conj:leading` either proved or presented as a conjecture with the symbolic evidence — not as anything in between
+- [x] `conj:leading` either proved or presented as a conjecture with the symbolic evidence — not as anything in between *(proved 4 Oct as `thm:leading`; AI-derived — rewrite the proof in your words or cut it)*
 - [ ] Board printed, binder current, presentation and quad chart regenerated from the split papers, video recorded
 - [ ] Three mock interviews done, including one with a non-mathematician
 - [ ] Working tree committed; new repository public

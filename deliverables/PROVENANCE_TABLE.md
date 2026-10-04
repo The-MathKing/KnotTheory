@@ -72,7 +72,7 @@ needed and what breaks without it.
 | `prop:k4cert` | Integer certificate at the span | **A** |
 | `prop:k4z` | Z = n+2 grows | **A** |
 | `thm:k4rankone` | **The refutation** of the cubic gap family | **A** |
-| `conj:leading` | Leading-coefficient criterion (replacement conjecture) | **A** |
+| `thm:leading` (was `conj:leading`) | Leading-coefficient criterion — proved 4 Oct (AI-derived; `zf_leading.tex`, record §12) | **A** |
 | `thm:ratclass` | Classification of rational-symbol certificates | **A** |
 | `rem:twoexc` | M(P(10,2)) = 6 | **A** |
 

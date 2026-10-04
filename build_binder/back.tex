@@ -183,11 +183,15 @@ reports pass or fail per check. Its current output follows, unedited.
 23. Classification of rational-symbol rotation-invariant certificates (thm:ratclass)
   [PASS] thm:ratclass: the admissible classes are 7,9,15,20 | 10,24,42 | 60,70,90 | 24,126 | none | 120 for k=2..7  --- {2: [7, 9, 15, 20], 3: [10, 24, 42], 4: [60, 70, 90], 5: [24, 126], 6: [], 7: [120]}
   [PASS] thm:ratclass: every listed certificate has nullity 2k+2 on its class and 0 off it  --- 26 certificates, k=2..7
-  [PASS] manuscript numbers emitted from the certificates on disk  --- 56 tiles at k=3,4 + 21 at k=5; L(3)=21, L(4)=29; 247 Ramanujan P(n,k); Nchecks=145
+24. Identity tiles for every large length: the hypotheses of thm:tilesallk, exactly (k=2..9)
+  [PASS] thm:tilesallk hypotheses hold exactly for k=2..9 (Sturm, det B, rank mod p)  --- k=2: dock (0, 1, 0, 1), l0=15, rank 21/21, det B=1; k=3: dock (1, 1, 1, 1), l0=21, rank 36/36, det B=1; k=4: dock (0, 1, 1, 1), l0=29, rank 55/55, det B=1; k=5: dock (0, 1, 0, 1), l0=39, rank 78/78, det B=1; k=6: dock (0, 1, -1, 2), l0=49, rank 105/105, det B=4096; k=7: dock (0, 1, 0, -1), l0=61, rank 136/136, det B=1; k=8: dock (-1, 1, 0, 2), l0=75, rank 171/171, det B=65536; k=9: dock (0, 1, 0, 2), l0=89, rank 210/210, det B=262144
+  [PASS] rem:threeperpos: rank dP_l = 3l-5k-5 (k=3, l=12..18), exactly mod p  --- law holds
+  [PASS] lem:firstorder/secondorder: dock-point rank = dim Sp-(k-2) and one a-perturbation gives dim Sp (k=3..6, mod p)  --- k=3..6 at nonresonant docks
+  [PASS] manuscript numbers emitted from the certificates on disk  --- 56 tiles at k=3,4 + 21 at k=5; L(3)=21, L(4)=29; 247 Ramanujan P(n,k); Nchecks=148
 
 ==================================================================
 ALL CHECKS PASSED
-145 checks in 332.6 s (5.5 min) on 10 cores
+148 checks in 279.6 s (4.7 min) on 10 cores
 SUITE_DONE
 
 \end{verbatim}\endgroup

@@ -262,3 +262,30 @@ Update, same day: the rank hypothesis is proved for every $k$ in
 unconditional for every $k$. Two steps an expert must sign off on before you
 claim it: the Vandermonde surjectivity and the exponential-sum independence in
 `lem:secondorder`. The remaining open problem is an effective $L(k)$.
+
+## 13. 4 October, afternoon: the leading-coefficient criterion is a theorem (AI-derived)
+
+`conj:leading` is now Theorem `thm:leading`, proved in
+`manuscript/zf_leading.tex` (input after the statement). If the top
+coefficient of $\det M(\zeta)$ is a monomial in the edge weights, then
+$\operatorname{null}A\le D$ for every matrix on every cyclic cover of the base,
+and the kernel of the lifted operator on the infinite strip has dimension
+exactly $D$ (`thm:stripdim`). The proof is a count: integer potentials from the
+assignment dual, two gradings of the strip (top and bottom), a window cut by
+one grading on each side, independent rows, unique two-way extension, and
+$|U|-|R|=2\sum(p_i+q_i)=D$. The chained elimination the paper had suggested
+does not work in general (its order exceeds $D$; `rem:onegrading` has a
+three-vertex example with $13$ against $12$), and `thm:order`'s open question is
+answered except for the tie $t_m=p+q$. Machine checks:
+`verification/leading_coefficient.py`, suite section 25. Record §12.
+
+The assistance record was found emptied (0 bytes, 10:47) and has been
+restored verbatim from the session transcripts; §11 was written by another
+session this afternoon. **Commit it.**
+
+What is yours: this is the theorem the completion plan called the one
+ceiling-raising item (A6/D4), and it was proved by the AI, not by you. Decide
+whether to keep it (rewrite the proof in your words after reproducing it on a
+whiteboard — it is elementary: potentials, two gradings, a count) or cut it
+under the proposal. Open afterwards: the two-monomial case of $c_{\max}$, an
+effective $L(k)$, $M(P(24,4))$.
