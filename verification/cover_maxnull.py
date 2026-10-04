@@ -19,11 +19,15 @@ normalising A, which removes the other direction the old search used to cheat.
 The sign pattern matters -- nullity is not achievable for every sign class -- so
 we sweep signs as well as starting points.
 """
+
+import os as _os
+_REPO = _os.path.abspath(_os.path.join(
+    _os.path.dirname(__file__), ".."))
 import sys, itertools
 import numpy as np
 from scipy.optimize import least_squares
 
-sys.path.insert(0, "/Volumes/2TB/scifair/verification")
+sys.path.insert(0, f"{_REPO}/verification")
 from certify_general import assemble
 
 

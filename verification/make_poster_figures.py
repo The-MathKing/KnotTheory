@@ -1,5 +1,9 @@
 """Figures for the conference poster.  Every panel is generated from the
 project's own verified data, not drawn by hand."""
+
+import os as _os
+_REPO = _os.path.abspath(_os.path.join(
+    _os.path.dirname(__file__), ".."))
 import os
 import numpy as np
 import matplotlib
@@ -7,9 +11,9 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from matplotlib.patches import Circle, FancyArrowPatch
 
-OUT = "/Volumes/2TB/scifair/manuscript/figures"
+OUT = f"{_REPO}/manuscript/figures"
 os.makedirs(OUT, exist_ok=True)
-BLUE, LIGHT, GREEN, RED = "#14386e", "#e4ecf6", "#236e3c", "#a52d2d"
+BLUE, LIGHT, GREEN, RED = "#4b2a7b", "#efe8f8", "#2a7a6b", "#c0503c"
 plt.rcParams.update({"font.size": 11, "axes.linewidth": 1.2,
                      "savefig.bbox": "tight", "savefig.pad_inches": 0.04})
 
@@ -24,9 +28,9 @@ def petersen_xy(n, k, rout=1.0, rin=0.58):
 def draw_graph(ax, n, k, filled=None, title="", newly=None):
     U, V = petersen_xy(n, k)
     for i in range(n):
-        ax.plot(*zip(U[i], U[(i + 1) % n]), color="#9aa7b8", lw=1.6, zorder=1)
-        ax.plot(*zip(V[i], V[(i + k) % n]), color="#9aa7b8", lw=1.6, zorder=1)
-        ax.plot(*zip(U[i], V[i]), color="#c3cbd8", lw=1.3, zorder=1)
+        ax.plot(*zip(U[i], U[(i + 1) % n]), color="#a9a2b8", lw=1.6, zorder=1)
+        ax.plot(*zip(V[i], V[(i + k) % n]), color="#a9a2b8", lw=1.6, zorder=1)
+        ax.plot(*zip(U[i], V[i]), color="#cfc8da", lw=1.3, zorder=1)
     filled = set(filled or []); newly = set(newly or [])
     for i in range(n):
         for tag, P in (("u", U), ("v", V)):
@@ -84,10 +88,10 @@ for ax, (n, k, a, al, ttl) in zip(axs, [
     Lk = lucas(k)
     s = np.linspace(-2.05, 2.05, 1600)
     F = (s + a) * np.polyval(Lk, s) + al * s + (a * al - 1.0)
-    ax.axhline(0, color="#9aa7b8", lw=1.0)
+    ax.axhline(0, color="#a9a2b8", lw=1.0)
     ax.plot(s, F, color=BLUE, lw=2.0)
     G = np.array([2 * np.cos(2 * np.pi * m / n) for m in range(n // 2 + 1)])
-    ax.plot(G, np.zeros_like(G), "o", ms=5, mfc="white", mec="#9aa7b8",
+    ax.plot(G, np.zeros_like(G), "o", ms=5, mfc="white", mec="#a9a2b8",
             mew=1.3, label="grid $\\Gamma_n$", zorder=3)
     Fg = (G + a) * np.polyval(Lk, G) + al * G + (a * al - 1.0)
     hit = np.abs(Fg) < 1e-9
@@ -114,7 +118,7 @@ ax.plot(np.arange(len(lam)), lam, "o", ms=5, color=BLUE)
 z = np.abs(lam) < 1e-9
 ax.plot(np.where(z)[0], lam[z], "o", ms=9, color=RED,
         label=f"{z.sum()} zero eigenvalues $=2k+2$")
-ax.axhline(0, color="#9aa7b8", lw=1.0)
+ax.axhline(0, color="#a9a2b8", lw=1.0)
 ax.set_xlabel("index"); ax.set_ylabel("eigenvalue")
 ax.set_title("Spectrum of $\\mathrm{Adj}\\,P(24,5)$: nullity $12$",
              fontsize=11, color=BLUE, weight="bold")
@@ -156,7 +160,7 @@ boxes = ["any matrix with\nthe $P(n,k)$\npattern",
          "$=2k+2$\n$\\Leftrightarrow\\ T=I$"]
 for j, txt in enumerate(boxes):
     x = j * (W + GAP)
-    col = "#cfe3d4" if j == len(boxes) - 1 else LIGHT
+    col = "#dcd0ee" if j == len(boxes) - 1 else LIGHT
     ax.add_patch(plt.Rectangle((x, 0.30), W, 0.42, fc=col, ec=BLUE, lw=1.8))
     ax.text(x + W / 2, 0.51, txt, ha="center", va="center", fontsize=9,
             color=BLUE)

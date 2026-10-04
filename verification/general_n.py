@@ -22,12 +22,16 @@ eigenvalue-minimising search (all spokes zero, or all edges zero, which give
 large nullity off the pattern) are excluded by the formulation itself rather
 than by a barrier.
 """
+
+import os as _os
+_REPO = _os.path.abspath(_os.path.join(
+    _os.path.dirname(__file__), ".."))
 import sys
 
 import numpy as np
 from scipy.optimize import least_squares
 
-sys.path.insert(0, "/Volumes/2TB/scifair/verification")
+sys.path.insert(0, f"{_REPO}/verification")
 from recurrence_order import monodromy
 
 
@@ -79,7 +83,7 @@ def solve(n, k, tries=15, seed=0):
     b, c, e, _, _ = unpack(best[2], n)
     sc = np.abs(best[2]).max()
     minedge = min(np.abs(b).min(), np.abs(c).min(), np.abs(e).min()) / sc
-    np.save(f"/Volumes/2TB/scifair/results/zero_forcing/w_{n}_{k}.npy", best[2])
+    np.save(f"{_REPO}/results/zero_forcing/w_{n}_{k}.npy", best[2])
     return nul, best[1], minedge, sv
 
 

@@ -22,10 +22,14 @@ This script tests those hypotheses directly: it computes the Jacobian
 nullspace, compares it with the explicit gauge directions, and checks whether
 rescaling the b's (or e's) at fixed product leaves the symbol invariant.
 """
+
+import os as _os
+_REPO = _os.path.abspath(_os.path.join(
+    _os.path.dirname(__file__), ".."))
 import sys
 import numpy as np
 
-sys.path.insert(0, "/Volumes/2TB/scifair/verification")
+sys.path.insert(0, f"{_REPO}/verification")
 from period_d_rank import G_coeffs
 
 

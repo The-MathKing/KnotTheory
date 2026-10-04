@@ -108,6 +108,18 @@ reports pass or fail per check. Its current output follows, unedited.
   [PASS] Z(P(8,2)) = 5, by every method that completed  --- 3/3 completed: reduced 5, unreduced 5, CP-SAT 5
   [PASS] Z(P(12,4)) = 6, by every method that completed  --- 3/3 completed: reduced 6, unreduced 6, CP-SAT 6
   [PASS] recorded cross-validation sweep has no disagreement  --- 79 rows agree
+13. The graph Riemann Hypothesis: classification of Ramanujan P(n,k)
+  [PASS] block decomposition reproduces the full spectrum  --- max deviation 1.8e-14 over k=1..10, n<=60
+  [PASS] spectra match published values for Petersen and Desargues  --- P(5,2) -> {3,1,-2}, P(10,3) -> {+-3,+-2,+-1}
+  [PASS] criterion G_k <= 7 agrees with the spectral test  --- k=1..10, n<=260
+  [PASS] D_k(1)=-7, D_k(0)>=17, D_k(-1)=-7 (k odd) / 9 (k even), deg 2k+2  --- k=1..12; these give the bad band at u=1 always and at u=-1 iff k is odd
+  [PASS] side condition 7 + 4u T_k(u) stays positive on [-1,1]  --- minimum over k=1..12 is 3.000, and |4u T_k| <= 4 bounds it by 3
+  [PASS] finiteness bound n <= 2 pi / arccos(u_k) holds for every k  --- k=1..11, attained exactly at 3 of them
+  [PASS] parity bound n <= pi / arccos(-v_k) holds for odd k, odd n  --- k=1,3,...,11, attained exactly at 4 of them
+  [PASS] uniform lemma: G_k > 7 on the whole interval the proof forbids  --- min G = 7.004872 at the band at 0, 7.004872 at the band at pi, over k=1..200
+  [PASS] uniform bound n <= pi(2+sqrt2) sqrt(k^2+1), halved for odd k odd n  --- holds against the certified classification for k=1..11
+  [PASS] every case below the bound decided in exact arithmetic  --- 458 cases certified, 0 disagreements with the control
+  [PASS] the classification is complete for k <= 10  --- 247 Ramanujan graphs; largest n per k: 1:14, 2:23, 3:32, 4:42, 5:50, 6:49, 7:70, 8:49, 9:90, 10:52
 14. Reduction on every two-vertex cover (thm:red2)
   [PASS] thm:red2: elimination gives the predicted offsets, ends nonzero  --- 8 bases, incl. p>1 and w!=0 which thm:red does not cover
   [PASS] thm:red2: x -> (x, Lx) is a bijection onto ker A, and null A <= 2(p+q)  --- null A = null R, lift residual at machine precision
@@ -116,11 +128,67 @@ reports pass or fail per check. Its current output follows, unedited.
   [PASS] thm:order: order = D iff t_m <= min(p,q)  --- the characterisation holds on every base tested
 15. Slice lemma (lem:slice)
   [PASS] spokes -> +1 and |outer| -> 1, nullity preserved, both parities  --- max deviation 2.7e-15
-16. Emit the manuscript's numbers from the certificates on disk
-  [PASS] manuscript numbers emitted from the certificates on disk  --- 56 tiles at k=3,4 + 21 at k=5; L(3)=21, L(4)=29; Nchecks=88
+16. The corner criterion, and the classification for every k
+  [PASS] both factors of D_k collapse to Q(x,y), independent of k  --- max deviation 4.1e-14 over k=1..14
+  [PASS] corner criterion agrees with the spectral test  --- 1512 cases, k=1..12
+  [PASS] lens area 3/2 - sqrt2 + (3/8)log((1+sqrt2)/3) matches the integral  --- 0.004321924509 of the square, i.e. 0.4322%
+  [PASS] Dirichlet witness forces failure for every n >= threshold, every k  --- threshold n >= 231; worst value 0.00743238 < 0.00869198, attained at (n,k)=(238, 112)
+  [PASS] the classification is finite in BOTH variables  --- 460 pairs, 324 isomorphism classes; largest n=112, largest k=45
+  [PASS] no case in the region is decided on a margin float64 could not see  --- smallest |margin| is 6.11e-05, at (n,k)=(172,72)
+  [PASS] the all-k census reproduces the exactly certified k <= 10 list  --- 247 graphs at k<=10, all recovered
+17. Structure of the classification: locality, gcd safety (sec:closed)
+  [PASS] thm:local: Ramanujan iff no divisor m >= 3 of n is bad for k  --- 8280 cases against the direct criterion, k<=45, n<=230
+  [PASS] cor:divclosed: the Ramanujan set of each k is divisor-closed  --- 202 (n,d) pairs with d | n, d > 2k
+  [PASS] lem:mingcd: min over units of ||jc/m|| equals gcd(c,m)/m  --- m < 120, c < 200; the identity the safety theorem rests on
+  [PASS] thm:gcdsafe: m/gcd(k+-1,m) in {2..7} implies m is safe  --- fired on 1576 of 11820 pairs, never on a bad level; gamma = 0.1328095, 1/gamma = 7.5296
+  [PASS] thm:closedsmall: exact where claimed, and fails where we say it does  --- holds for k=[1, 2, 3, 4, 5, 7, 9]; fails for k=[6, 8, 10, 11, 12, 13] (interior bands)
+  [PASS] lem:bands: D_k has end bands only for k in {1,2,3,4,5,7,9} (exact Sturm root isolation, k<=45)  --- end bands only for k=[1, 2, 3, 4, 5, 7, 9]; every other k<=45 has an interior root
+  [PASS] lem:bands: D_k is an even polynomial exactly for odd k  --- k<=45
+18. The Riemann Hypothesis on every cubic cyclic cover (thm:covcorner)
+  [PASS] character blocks reproduce the spectrum on both two-vertex bases  --- max deviation 8.7e-15
+  [PASS] the two-loop spectrum does not depend on the edge voltage c  --- max deviation 3.3e-15 over every c
+  [PASS] corner criterion decides every two-loop cover  --- 531 covers, brute-forced from the full adjacency matrix
+  [PASS] theta criterion decides every cyclic Haar cover  --- 384 covers, brute-forced from the full adjacency matrix
+  [PASS] both uniform bounds hold on every Ramanujan cover found  --- 485 Ramanujan covers, none above its bound
+  [PASS] no cover of ANY fixed cubic base is Ramanujan past its threshold  --- theta(0,1,2): max n=15 < 156; theta(0,1,3): max n=23 < 208; two-loop(1,2): max n=23 < 34; two-loop(2,3): max n=38 < 55; K4: max n=13 < 208; K3,3: max n=5 < 415; prism: max n=None < 57
+19. The cover ceiling: two theorems and a refutation
+  [PASS] thm:redpath: degree span of det M(zeta) is 2 sum(p_t)  --- 8 path-with-loops bases, m = 2 to 4, checked symbolically
+  [PASS] thm:redpath: non-equivariant weights cannot beat 2 sum(p_t)  --- p=(1, 2) n=9 D=6; p=(1, 3) n=11 D=8; p=(2, 3) n=13 D=10; p=(1, 1, 2) n=11 D=8; p=(1, 1, 1) n=9 D=6
+  [PASS] thm:redcycle: degree span is 2|W| with W the holonomy  --- 7 cycle bases, checked symbolically
+  [PASS] thm:redcycle: the cover is 2-regular with gcd(|W|,n) components  --- 42 (base, n) pairs -- this is why M(C_N)=2 gives the bound
+  [PASS] thm:cexcover: star-with-a-loop breaks the ceiling, null A = n vs D = 2  --- 9 (n, weight) pairs, ranks computed over Z
+  [PASS] rem:mindeg: minimum degree 2 does not repair it (K_{2,3}, D=4)  --- n=5: null=6 vs D=4; n=7: null=8 vs D=4
+  [PASS] the diagonal-zeroing attack alone never exceeds D on a regular base  --- 10 (regular base, n) pairs, exact ranks -- which is why it was a false negative: see thm:k4rankone
+  [PASS] thm:k4rankone: rank-one triangle blocks give null A = n on the K4 cover, against D = 6 (regular-base ceiling REFUTED)  --- n=4: null=4; n=5: null=5; n=6: null=6; n=7: null=7; n=8: null=8; n=9: null=9; n=10: null=10  -- exact over Q, pattern verified
+  [PASS] thm:cover needs det M(zeta) != 0: the rank-one equivariant matrix has det M(zeta) == 0 identically  --- every block singular, so the degree-span count does not apply
+  [PASS] conj:leading: top coefficient of det M(zeta) is a monomial in edge weights on every base where the ceiling is proved  --- P(n,2) two-loop: w0*w1; P(n,3) two-loop: w0*w1; theta (0,1,2): -w0*w2; theta (0,1,3): -w0*w2; 4-edge theta: -w0*w3; triangle (0,1,2): w0*w1*w2; C4 cycle base: -w0*w1*w2*w3
+  [PASS] conj:leading: top coefficient contains a free diagonal on every base where the ceiling fails  --- star-4 + loop: -w3*(-d0*d2*d3 + d2*w2**2 + d3*w1**2); K4 assorted: -w3*w5*(-d0*w4 + w0*w2); K_{2,3}: -w0*w3*(d3*w2*w5 + d4*w1*w4)
+20. The independent-set obstruction, and the cubic gap family
+  [PASS] cor:regblocks: d-regular implies |N(S)| >= |S| for independent S  --- 2798 (regular graph, independent set) pairs
+  [PASS] sec:gapfamily: the K4 covers are cubic, connected, with GENERIC D = 6 for all n  --- n = 4..10, |V| = 16..40
+  [PASS] prop:k4cert: the integer weights realise 16(z^7-1)/(z-1)  --- coefficients of z^3 det M all equal 16
+  [PASS] prop:k4cert: exact nullity over Z equals the degree span  --- n=7: null=6=D; n=14: null=6=D
+  [PASS] prop:k4z: Z = n+2 by CP-SAT with optimality proved  --- n=4: Z=6; n=5: Z=7; n=6: Z=8; n=7: Z=9; n=8: Z=10  -- but M >= n by thm:k4rankone, so Z - M <= 2
+21. The deficit (prop:deficit)
+  [PASS] delta(n,k) < 3 - 2 sqrt2 for every n, and delta* rises towards it  --- max delta* = 0.129473 < tau = 0.171573; 80 sizes admit an optimal member, largest n=112
+22. M(P(10,2)) exactly, and the period-one ceiling
+  [PASS] M(P(10,2))=6: a period-two solution over Q exists  --- a=1/5, c=1, e=1, f=-5, s=-1, t=-15
+  [PASS] M(P(10,2))=6: the witness carries exactly the P(10,2) pattern  --- 20x20, symmetric=True, missing=0, extra=0
+  [PASS] M(P(10,2))=6: exact nullity over Q equals 6  --- exact rank 14, nullity 6; with M <= Z = 6 this gives M(P(10,2)) = Z(P(10,2)) = 6, so there is NO strict gap at n=10
+  [PASS] no period-one matrix attains nullity 6 at P(10,2)  --- 10 block-class subsets of total dimension 6, 0 admit a matrix with the spoke nonzero
+  [PASS] period-one ceiling explains both missing certificates  --- P(10,2): bound 5 < 6; P(24,4): bound 8 < 10 -- so the absent certificate at n=24 is an impossibility, not a search failure
+  [PASS] CONTROL: the period-one bound contradicts no existing certificate  --- 16 certified (n,k) checked, 0 violations
+  [PASS] the period-one bound reproduces the paper's two exceptions at k=2  --- blocked n at k=2: [8, 10] -- exactly the n=8, n=10 of rem:twoexc, derived rather than observed
+23. Emit the manuscript's numbers from the certificates on disk
+23. Classification of rational-symbol rotation-invariant certificates (thm:ratclass)
+  [PASS] thm:ratclass: the admissible classes are 7,9,15,20 | 10,24,42 | 60,70,90 | 24,126 | none | 120 for k=2..7  --- {2: [7, 9, 15, 20], 3: [10, 24, 42], 4: [60, 70, 90], 5: [24, 126], 6: [], 7: [120]}
+  [PASS] thm:ratclass: every listed certificate has nullity 2k+2 on its class and 0 off it  --- 26 certificates, k=2..7
+  [PASS] manuscript numbers emitted from the certificates on disk  --- 56 tiles at k=3,4 + 21 at k=5; L(3)=21, L(4)=29; 247 Ramanujan P(n,k); Nchecks=145
 
 ==================================================================
 ALL CHECKS PASSED
+145 checks in 332.6 s (5.5 min) on 10 cores
+SUITE_DONE
 
 \end{verbatim}\endgroup
 \newpage

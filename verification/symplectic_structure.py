@@ -18,11 +18,15 @@ recurrence comes from a symmetric matrix, so the transfer matrices carry a
 Wronskian-type form along, and a tile whose two ends carry the same docking
 returns that form to itself.
 """
+
+import os as _os
+_REPO = _os.path.abspath(_os.path.join(
+    _os.path.dirname(__file__), ".."))
 import sys
 
 import numpy as np
 
-sys.path.insert(0, "/Volumes/2TB/scifair/verification")
+sys.path.insert(0, f"{_REPO}/verification")
 from tiles import tile_product
 
 

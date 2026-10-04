@@ -1,0 +1,76 @@
+THE UNIFORM THRESHOLD
+  tau = 3 - 2 sqrt2            = 0.1715728753
+  tau / (2 pi^2)               = 0.0086919834
+  least N with 2/N < that      = 231
+  Dirichlet witness, n >= 231: worst value 0.00743238 at (238, 112) (< 0.00869198)
+  cases where the witness fails to force failure: 0
+
+THE CLASSIFICATION, over the finite region 3 <= n <= 230
+  Ramanujan parameter pairs    = 460
+  isomorphism classes          = 324
+  largest n                    = 112
+  largest k                    = 45
+  k values occurring           = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 27, 29, 31, 33, 35, 37, 39, 41, 43, 45]
+  smallest |margin| seen       = 6.109e-05 at (n,k)=(172,72)
+
+  k=1   count=9   n = [3, 4, 5, 6, 7, 8, 10, 12, 14]
+  k=2   count=19  n = [5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+  k=3   count=18  n = [7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 18, 20, 22, 24, 26, 28, 30, 32]
+  k=4   count=34  n = [9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42]
+  k=5   count=28  n = [11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 28, 30, 32, 34, 36, 38, 40, 42, 44, 46, 48, 50]
+  k=6   count=20  n = [13, 14, 15, 16, 18, 20, 21, 22, 23, 25, 27, 28, 30, 32, 35, 37, 39, 42, 44, 49]
+  k=7   count=39  n = [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 38, 40, 42, 44, 46, 48, 50, 52, 54, 56, 58, 60, 62, 64, 66, 68, 70]
+  k=8   count=16  n = [17, 19, 20, 21, 22, 24, 26, 28, 29, 31, 33, 35, 38, 40, 42, 49]
+  k=9   count=50  n = [19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 48, 50, 52, 54, 56, 58, 60, 62, 64, 66, 68, 70, 72, 74, 76, 78, 80, 82, 84, 86, 88, 90]
+  k=10  count=14  n = [21, 23, 25, 26, 28, 30, 32, 34, 37, 39, 41, 43, 50, 52]
+  k=11  count=36  n = [23, 24, 25, 26, 28, 29, 30, 31, 32, 35, 36, 37, 38, 40, 41, 42, 46, 47, 48, 50, 52, 53, 58, 60, 62, 64, 70, 72, 74, 82, 84, 92, 94, 96, 104, 106]
+  k=12  count=9   n = [27, 29, 30, 32, 34, 38, 40, 45, 51]
+  k=13  count=23  n = [28, 29, 30, 32, 34, 35, 36, 37, 42, 43, 44, 46, 48, 49, 56, 58, 60, 70, 72, 74, 84, 86, 98]
+  k=14  count=7   n = [31, 33, 35, 36, 38, 46, 53]
+  k=15  count=19  n = [33, 34, 35, 36, 38, 40, 41, 42, 49, 50, 52, 54, 56, 66, 68, 70, 82, 84, 98]
+  k=16  count=6   n = [35, 39, 40, 42, 44, 52]
+  k=17  count=16  n = [37, 38, 39, 40, 42, 44, 46, 47, 56, 58, 60, 62, 74, 76, 78, 94]
+  k=18  count=3   n = [45, 46, 50]
+  k=19  count=17  n = [42, 43, 44, 46, 48, 50, 52, 53, 64, 66, 68, 70, 84, 86, 88, 104, 106]
+  k=20  count=3   n = [45, 49, 50]
+  k=21  count=11  n = [46, 48, 50, 54, 56, 58, 70, 72, 76, 92, 96]
+  k=22  count=1   n = [49]
+  k=23  count=10  n = [52, 53, 54, 56, 60, 62, 76, 78, 84, 106]
+  k=24  count=1   n = [53]
+  k=25  count=8   n = [56, 58, 60, 66, 68, 84, 90, 92]
+  k=27  count=8   n = [60, 62, 64, 70, 72, 74, 90, 98]
+  k=29  count=9   n = [64, 66, 68, 70, 76, 78, 96, 98, 106]
+  k=31  count=4   n = [70, 74, 82, 84]
+  k=33  count=5   n = [74, 76, 78, 86, 90]
+  k=35  count=5   n = [78, 80, 84, 92, 96]
+  k=37  count=3   n = [82, 84, 88]
+  k=39  count=3   n = [88, 102, 106]
+  k=41  count=2   n = [98, 112]
+  k=43  count=2   n = [96, 98]
+  k=45  count=2   n = [100, 108]
+
+EXACT CERTIFICATION of every case in the region
+    ... n=10, 20 cases certified, 0 disagreements
+    ... n=20, 90 cases certified, 0 disagreements
+    ... n=30, 210 cases certified, 0 disagreements
+    ... n=40, 380 cases certified, 0 disagreements
+    ... n=50, 600 cases certified, 0 disagreements
+    ... n=60, 870 cases certified, 0 disagreements
+    ... n=70, 1190 cases certified, 0 disagreements
+    ... n=80, 1560 cases certified, 0 disagreements
+    ... n=90, 1980 cases certified, 0 disagreements
+    ... n=100, 2450 cases certified, 0 disagreements
+    ... n=110, 2970 cases certified, 0 disagreements
+    ... n=120, 3540 cases certified, 0 disagreements
+    ... n=130, 4160 cases certified, 0 disagreements
+    ... n=140, 4830 cases certified, 0 disagreements
+    ... n=150, 5550 cases certified, 0 disagreements
+    ... n=160, 6320 cases certified, 0 disagreements
+    ... n=170, 7140 cases certified, 0 disagreements
+    ... n=180, 8010 cases certified, 0 disagreements
+    ... n=190, 8930 cases certified, 0 disagreements
+    ... n=200, 9900 cases certified, 0 disagreements
+    ... n=210, 10920 cases certified, 0 disagreements
+    ... n=220, 11990 cases certified, 0 disagreements
+    ... n=230, 13110 cases certified, 0 disagreements
+  13110 cases decided in exact arithmetic, 0 disagreements

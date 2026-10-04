@@ -21,12 +21,16 @@ Strategy: fix 13 weights at chosen rationals, solve the remaining 7 numerically
 at high precision, and test the result for rationality by integer-relation
 detection.  Recognition is heuristic; the exact check that follows is not.
 """
+
+import os as _os
+_REPO = _os.path.abspath(_os.path.join(
+    _os.path.dirname(__file__), ".."))
 import sys
 import numpy as np
 import mpmath as mp
 from scipy.optimize import least_squares
 
-sys.path.insert(0, "/Volumes/2TB/scifair/verification")
+sys.path.insert(0, f"{_REPO}/verification")
 from period_d_blocks import blocks
 from prescribe_symbol import grid_interior
 from verify_period_d_cert import verify
@@ -86,7 +90,7 @@ else:
     print(f"\nfree coordinates {list(free_idx)} solved to:")
     for j, v in zip(free_idx, full[free_idx]):
         print(f"   w[{j:>2}] = {v:+.15f}")
-    np.save("/Volumes/2TB/scifair/results/zero_forcing/rat_k6_d4_n64.npy", full)
+    np.save(f"{_REPO}/results/zero_forcing/rat_k6_d4_n64.npy", full)
     print("\nAre the free coordinates rational?  (integer-relation test)")
     mp.mp.dps = 40
     for j, v in zip(free_idx, full[free_idx]):

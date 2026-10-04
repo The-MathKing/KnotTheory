@@ -1,0 +1,37 @@
+Ramanujan threshold 2 sqrt 2 = 2.8284271247
+
+CONTROL: block decomposition vs brute-force diagonalisation
+  max deviation over k=1..10, n<=60: 1.83e-14   AGREE
+
+ANCHORS: spectra against published values
+  P(5,2) Petersen      PASS  distinct eigenvalues [-2.0, 1.0, 3.0]
+  P(10,3) Desargues    PASS  distinct eigenvalues [-3.0, -2.0, -1.0, 1.0, 2.0, 3.0]
+
+CONTROL: elementary criterion G_k <= 7 against the spectrum
+  k=1..10, n<=260: AGREE
+
+BAD BANDS B_k and the bound the band at 0 forces
+  k=1   n <=  15.06  (last Ramanujan n = 14  )  2 band(s): [0.0000,0.4172], [2.7244,3.1416]
+  k=2   n <=  23.37  (last Ramanujan n = 23  )  1 band(s): [0.0000,0.2689]
+  k=3   n <=  32.51  (last Ramanujan n = 32  )  2 band(s): [0.0000,0.1932], [2.9483,3.1416]
+  k=4   n <=  42.03  (last Ramanujan n = 42  )  1 band(s): [0.0000,0.1495]
+  k=5   n <=  51.73  (last Ramanujan n = 50  )  2 band(s): [0.0000,0.1215], [3.0201,3.1416]
+  k=6   n <=  61.54  (last Ramanujan n = 49  )  2 band(s): [0.0000,0.1021], [2.5799,2.6795]
+  k=7   n <=  71.41  (last Ramanujan n = 70  )  2 band(s): [0.0000,0.0880], [3.0536,3.1416]
+  k=8   n <=  81.32  (last Ramanujan n = 49  )  2 band(s): [0.0000,0.0773], [2.6999,2.8106]
+  k=9   n <=  91.26  (last Ramanujan n = 90  )  2 band(s): [0.0000,0.0688], [3.0727,3.1416]
+  k=10  n <= 101.21  (last Ramanujan n = 52  )  2 band(s): [0.0000,0.0621], [2.7805,2.8818]
+  k=11  n <= 111.19  (last Ramanujan n = 106 )  4 band(s): [0.0000,0.0565], [0.5483,0.5872], [2.5543,2.5933], [3.0851,3.1416]
+  k=12  n <= 121.18  (last Ramanujan n = 51  )  3 band(s): [0.0000,0.0519], [0.4963,0.5450], [2.8370,2.9272]
+
+CLASSIFICATION: Ramanujan P(n,k), searched to n = 2000
+  k=1   count=9     largest n=14      list=[3, 4, 5, 6, 7, 8, 10, 12, 14]
+  k=2   count=19    largest n=23      list=[5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+  k=3   count=18    largest n=32      list=[7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 18, 20, 22, 24, 26, 28, 30, 32]
+  k=4   count=34    largest n=42      list=[9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, ...]
+  k=5   count=28    largest n=50      list=[11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 28, 30, 32, 34, ...]
+  k=6   count=20    largest n=49      list=[13, 14, 15, 16, 18, 20, 21, 22, 23, 25, 27, 28, 30, 32, 35, 37, 39, 42, 44, 49]
+  k=7   count=39    largest n=70      list=[15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, ...]
+  k=8   count=16    largest n=49      list=[17, 19, 20, 21, 22, 24, 26, 28, 29, 31, 33, 35, 38, 40, 42, 49]
+  k=9   count=50    largest n=90      list=[19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, ...]
+  k=10  count=14    largest n=52      list=[21, 23, 25, 26, 28, 30, 32, 34, 37, 39, 41, 43, 50, 52]

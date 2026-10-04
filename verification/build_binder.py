@@ -7,6 +7,10 @@ Includes a comprehensive Table of Contents with exact page numbers, dates in
 parentheses next to each section, and clickable LaTeX/PDF links for every entry.
 """
 
+import os as _os
+_REPO = _os.path.abspath(_os.path.join(
+    _os.path.dirname(__file__), ".."))
+
 import datetime
 import os
 import re
@@ -14,7 +18,7 @@ import subprocess
 import sys
 import pymupdf as fitz
 
-ROOT = "/Volumes/2TB/scifair"
+ROOT = _REPO
 BUILD = f"{ROOT}/build_binder"
 os.makedirs(BUILD, exist_ok=True)
 
@@ -50,7 +54,13 @@ ENTRY_DATES = {
     28: "September 25, 2026",
     29: "September 27, 2026",
     30: "September 28, 2026",
+    35: "October 1, 2026",
 }
+
+# Log entries included in the binder. The full 36-entry log stays in
+# manuscript/zf_log.pdf. These are the entries that record a refuted, withdrawn
+# or corrected claim, plus the first entry and the most recent one.
+KEEP_ENTRIES = {1, 5, 9, 10, 11, 14, 29, 33, 35, 36}
 
 
 def esc(t):
@@ -174,7 +184,7 @@ def make_front_tex(today, toc_body):
 \vfill
 \begin{center}\begin{minipage}{0.88\textwidth}\small
 \textbf{Overview \& Standards of Proof}\par\vspace{0.4em}
-This research binder contains the complete, dated record of the investigation into exact zero forcing numbers and maximum nullity of generalized Petersen graphs $P(n,k)$ and general cyclic covers.
+This research binder contains a dated record of the investigation into exact zero forcing numbers and maximum nullity of generalized Petersen graphs $P(n,k)$ and general cyclic covers.
 \par\vspace{0.5em}
 Every claim in the paper is labelled by the standard it meets: \textbf{proved}, \textbf{proved by an exact certificate}, \textbf{proved by interval certification}, or \textbf{numerical}. Claims that have been refuted or withdrawn, including the author's own, are listed explicitly in the paper's Status section and dated in the log.
 \end{minipage}\end{center}
@@ -189,11 +199,10 @@ Every claim in the paper is labelled by the standard it meets: \textbf{proved}, 
     tex += "\n\\newpage\n\\hypertarget{sec:plan}{\\section*{II.\\quad Research Plan \\hfill\\normalsize\\normalfont(September 28, 2026)}}\n"
     tex += md_to_tex(open(f"{ROOT}/deliverables/research_plan.md").read())
     tex += (
-        "\n\\newpage\n\\hypertarget{sec:paper}{\\section*{III.\\quad Research Paper \\hfill\\normalsize\\normalfont(September 23--28, 2026)}}\n"
-        "The full paper follows this page. It states, for every claim, which of "
-        "four standards it meets: proved; proved by an exact certificate; proved "
-        "by interval certification; or numerical. Its Status section lists every "
-        "claim of the author's own that has been refuted or withdrawn.\n"
+        "\n\\newpage\n\\hypertarget{sec:paper}{\\section*{III.\\quad Short Note and Status of Claims \\hfill\\normalsize\\normalfont}}\n"
+        "\\textbf{Placeholder: the student's own short note goes here, 4--6 pages, written from scratch.} "
+        "The paper's Status-of-claims section follows this page, taken unedited from the full paper. "
+        "It states, for every claim, which of four standards it meets, and lists every claim of the author's own that has been refuted or withdrawn.\n"
     )
     tex += "\n\\end{document}\n"
     return tex
@@ -223,11 +232,11 @@ def build_toc_text(
     )
 
     lines.append(
-        r"\par\noindent\textbf{\large III.\quad \textcolor{toclink}{Research Paper}} \emph{(May--September 2026)} \dotfill \textbf{\textcolor{toclink}{%d}}\par"
+        r"\par\noindent\textbf{\large III.\quad \textcolor{toclink}{Short Note and Status of Claims}} \emph{(placeholder)} \dotfill \textbf{\textcolor{toclink}{%d}}\par"
         % (p_paper_start + 1)
     )
     lines.append(
-        r"{\small\emph{Maximum Nullity of Cyclic Covers of Graphs, and Exact Zero Forcing Numbers of Generalized Petersen Graphs}}\par\vspace{0.25em}"
+        r"{\small\emph{Status of the claims, from the full paper}}\par\vspace{0.25em}"
     )
 
     for it in paper_items:
@@ -246,7 +255,7 @@ def build_toc_text(
         % (p_log_start + 1)
     )
     lines.append(
-        r"{\small\emph{Complete dated record of all 30 investigation entries, preserving all false leads and corrections}}\par\vspace{0.25em}"
+        r"{\small\emph{Ten selected entries from the 36-entry log, chosen to show refuted and corrected claims; the full log is in zf\_log.pdf}}\par\vspace{0.25em}"
     )
 
     for it in log_items:
@@ -262,7 +271,7 @@ def build_toc_text(
 
     lines.append(r"\vspace{0.6em}")
     lines.append(
-        r"\par\noindent\textbf{\large V.\quad \textcolor{toclink}{Verification Suite Output (80 checks)}} \emph{(September 28, 2026)} \dotfill \textbf{\textcolor{toclink}{%d}}\par\vspace{0.35em}"
+        r"\par\noindent\textbf{\large V.\quad \textcolor{toclink}{Verification Suite Output}} \emph{(September 28, 2026)} \dotfill \textbf{\textcolor{toclink}{%d}}\par\vspace{0.35em}"
         % p_verify
     )
     lines.append(
@@ -287,11 +296,43 @@ for src in ("zf_paper", "zf_log"):
     pages = get_pdf_page_count(f"{ROOT}/manuscript/{src}.pdf")
     print(f"  {src}: {pages} pages (rebuilt)")
 
-n_paper = get_pdf_page_count(f"{ROOT}/manuscript/zf_paper.pdf")
-n_log = get_pdf_page_count(f"{ROOT}/manuscript/zf_log.pdf")
-
-paper_items = parse_aux_toc(f"{ROOT}/manuscript/zf_paper.aux")
 log_items = parse_aux_toc(f"{ROOT}/manuscript/zf_log.aux")
+
+# Paper excerpt: only the Status-of-claims section, from the full paper's pages
+paper_src = fitz.open(f"{ROOT}/manuscript/zf_paper.pdf")
+status_start = next(
+    p for p in range(len(paper_src))
+    if "Every claim below is labelled" in paper_src[p].get_text()
+)
+paper_status = fitz.open()
+paper_status.insert_pdf(paper_src, from_page=status_start, to_page=len(paper_src) - 1)
+paper_status.save(f"{BUILD}/paper_status.pdf")
+n_paper = len(paper_status)
+paper_status.close()
+paper_src.close()
+paper_items = [{"num": "", "title": "Status of the claims", "page": 1}]
+
+# Log excerpt: front pages of the log, then only the KEEP_ENTRIES
+log_src = fitz.open(f"{ROOT}/manuscript/zf_log.pdf")
+first_entry = log_items[0]["page"] - 1
+log_excerpt = fitz.open()
+if first_entry > 0:
+    log_excerpt.insert_pdf(log_src, from_page=0, to_page=first_entry - 1)
+kept_log_items = []
+for i, it in enumerate(log_items):
+    m = re.search(r"Entry\s+(\d+)", it["title"])
+    if not m or int(m.group(1)) not in KEEP_ENTRIES:
+        continue
+    start = it["page"] - 1
+    end = log_items[i + 1]["page"] - 1 if i + 1 < len(log_items) else len(log_src)
+    kept_log_items.append({**it, "page": len(log_excerpt) + 1})
+    if end > start:
+        log_excerpt.insert_pdf(log_src, from_page=start, to_page=end - 1)
+log_excerpt.save(f"{BUILD}/zf_log_excerpt.pdf")
+n_log = len(log_excerpt)
+log_excerpt.close()
+log_src.close()
+log_items = kept_log_items
 
 # Step 2: Build mid.tex and back.tex
 MID = r"""\documentclass[11pt]{article}
@@ -302,11 +343,13 @@ MID = r"""\documentclass[11pt]{article}
 \setlength{\parindent}{0pt}\setlength{\parskip}{0.55em}
 \begin{document}
 \section*{IV.\quad Research Log \hfill\normalsize\normalfont(May 30--September 28, 2026)}
-The dated research log follows this page. It records the work in the order it
+The selected dated log entries follow this page. They record the work in the order it
 happened rather than as a finished account, and it deliberately preserves what
 went wrong: conjectures that were tested and died, claims of the author's own
 that were later refuted, and software bugs that produced confident wrong answers
 before being caught.
+
+Entries 2--4, 6--8, 12--13, 15--28 and 30--32 are not reproduced here, so entry numbers match the full log, zf\_log.pdf, which has all 36 entries.
 
 It is included because a reader is entitled to see which conclusions were
 reached first and revised later, and because the superseded versions have been
@@ -398,9 +441,9 @@ print(f"  back: {n_back} pages")
 temp_united = f"{BUILD}/temp_united.pdf"
 input_pdfs = [
     f"{BUILD}/front.pdf",
-    f"{ROOT}/manuscript/zf_paper.pdf",
+    f"{BUILD}/paper_status.pdf",
     f"{BUILD}/mid.pdf",
-    f"{ROOT}/manuscript/zf_log.pdf",
+    f"{BUILD}/zf_log_excerpt.pdf",
     f"{BUILD}/back.pdf",
 ]
 subprocess.run(["pdfunite"] + input_pdfs + [temp_united], check=True)
@@ -442,7 +485,7 @@ toc = [
     [1, "Table of Contents", 2],
     [1, "I. Official Abstract (September 28, 2026)", p_abstract],
     [1, "II. Research Plan (September 28, 2026)", p_plan],
-    [1, "III. Research Paper (September 23--28, 2026)", p_paper_start + 1],
+    [1, "III. Short Note and Status of Claims (placeholder)", p_paper_start + 1],
 ]
 
 for it in paper_items:

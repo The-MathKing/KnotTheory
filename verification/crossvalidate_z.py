@@ -19,10 +19,14 @@ them against algorithmically unrelated implementations:
 Three methods, two of them sharing only the definition of forcing, is the
 strongest independent check available here without writing a fourth.
 """
+
+import os as _os
+_REPO = _os.path.abspath(_os.path.join(
+    _os.path.dirname(__file__), ".."))
 import subprocess, sys, time, re
 
-sys.path.insert(0, "/Volumes/2TB/scifair/src/zero_forcing")
-C = "/Volumes/2TB/scifair/src/zero_forcing/c"
+sys.path.insert(0, f"{_REPO}/src/zero_forcing")
+C = f"{_REPO}/src/zero_forcing/c"
 
 
 def run_c(prog, n, k, cap=14, extra=()):
@@ -64,7 +68,7 @@ def published():
     """Z values the paper prints, read from the recorded sweeps."""
     vals = {}
     import glob as _g
-    for f in _g.glob("/Volumes/2TB/scifair/results/zero_forcing/*.txt"):
+    for f in _g.glob(f"{_REPO}/results/zero_forcing/*.txt"):
         try:
             txt = open(f).read()
         except OSError:

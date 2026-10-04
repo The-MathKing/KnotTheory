@@ -19,10 +19,14 @@ at random points.  Rank k+1 means the map is a submersion, so every nearby G
 is reachable and prescribing all k+1 roots is possible; rank < k+1 means a
 genuine obstruction that more parameters of this kind cannot remove.
 """
+
+import os as _os
+_REPO = _os.path.abspath(_os.path.join(
+    _os.path.dirname(__file__), ".."))
 import sys
 import numpy as np
 
-sys.path.insert(0, "/Volumes/2TB/scifair/verification")
+sys.path.insert(0, f"{_REPO}/verification")
 from period_d_blocks import blocks, unpack
 
 

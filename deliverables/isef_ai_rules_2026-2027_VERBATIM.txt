@@ -1,0 +1,223 @@
+VERBATIM extract -- ISEF Companion Guide to the 2026-2027 International Rules, pp.5-6
+THIS IS THE RULES YEAR FOR ISEF 2027 (May 2027).
+Source: https://sspcdn.blob.core.windows.net/files/Documents/SEP/ISEF/2027/Rules/Rules-Companion-Guide.pdf
+Retrieved 2 October 2026.
+========================================================================
+
+ 
+Companion Guide | International Rules 2026–2027, societyforscience.org/ISEF -- 5 
+INAPPROPRIATE USE OF AI 
+Rule 8. for All Projects states: Artificial Intelligence 
+(AI) may be used as a project resource but must be 
+cited and given proper acknowledgment. A student 
+is expected to do independent work and all 
+materials presented must be in the researcher’s 
+own words. A student may not use generative AI to 
+write the research plan, abstract, poster or to create 
+citations (it is known to hallucinate and falsify 
+references). 
+Artificial Intelligence applications are progressing 
+quickly and setting policies and practices for its 
+appropriate use in education will inevitably evolve in 
+the next several years. The table below is adapted 
+from an AHA Ad Hoc Committee on AI in History 
+Education.1 This is a preliminary model and is a 
+suggested policy established by the ISEF SRC and 
+Society staff to help define what is and isn’t 
+appropriate AI usage in conducting a science fair 
+project. Affiliated fairs may adopt their own, stricter, 
+policies. 
+The key to this table and to our philosophy is that AI 
+may be used to ideate and to generate initial 
+brainstorming and research but that it must be cited 
+properly and reviewed thoroughly for accuracy and 
+veracity. It is the responsibility of the student 
+researcher to document where and how AI is used 
+and to never attribute the results from an AI prompt 
+as their own words. 
+As remains true in using the internet, students must 
+be guided and gain AI literacy to understand how to 
+use AI effectively while understanding its limitations.  
+“For all its capacities, generative AI regularly 
+hallucinates content, references, sources, and 
+quotations. AI models are trained to identify and 
+reproduce patterns, not to comprehend the world in 
+all its complexity and contradictions. If a pattern 
+leads to a false, biased, or imagined output, AI has 
+no way to self-correct.”1 
+Using AI responsibly requires a strict 
+documentation process to allow a student (and the 
+adults involved - adult sponsors, mentors, judges 
+and fair officials) to be able to identify and trace 
+where AI was used and how the student directed 
+the prompts and then verified the information being 
+provided.  
+For human participant projects, it is strongly 
+advised that students not use AI as a chat bot or to 
+provide unscripted responses to participants. Even 
+with guardrails in place, the AI tool may provide 
+harmful advice, diagnostic, or medical information 
+to participants and be in violation of the rules. 
+This is most critical when it comes to a literature 
+review and bibliography as it is a serious ethical 
+violation to use an AI tool to generate your 
+bibliography without ever having reviewed or 
+consulted the articles and documents it identifies. 
+“AI introduces new possibilities for fabricated 
+sources; students must be trained to critically 
+assess all outputs and to recognize that any 
+information provided by a generative AI tool could 
+be false unless properly verified.”1 Students are 
+presenting scientific research as their own 
+supported by their understanding from the existing 
+literature. If the citations and references are 
+fabricated it brings into question the validity and 
+veracity of the student’s research project.  
+It is strongly advised not to use AI tools for 
+formatting references, however if it is used, all 
+references must be verified manually by the student 
+researcher.
+ 
+Use of generative AI to support a research project 
+Task 
+Could this be  
+acceptable use? 
+Under what conditions? 
+Ask generative AI to identify or summarize key 
+points in an article before you read it. Use this as 
+a starting point for your literature review. 
+Yes 
+Acceptable without explicit citation 
+Ask AI to summarize a book or article in your field. 
+Reproduce that summary in your literature review 
+without reading the book or article 
+No 
+Never acceptable, as there has been no 
+engagement with the book or source itself 
+Use an AI chatbot as a writing tool to help 
+generate and develop ideas 
+Yes 
+Acceptable, may require explicit citation 
+depending on circumstances. Strongly 
+encouraged to keep a log of your prompts 
+as part of your research notebook. 
+Use generative AI to initially write the research 
+plan, abstract, paper or poster. 
+No 
+Never acceptable. This must be the 
+independent work of the student. Guidance 
+or refinement after the initial document has 
+been completed can be done with explicit 
+citation and a log. 
+
+6 -- Companion Guide | International Rules 2026–2027, societyforscience.org/ISEF 
+Task 
+Could this be  
+acceptable use? 
+Under what conditions? 
+Use AI to write initial code for your project 
+Yes 
+Acceptable, only with explicit citation stating 
+which portions of the code were AI 
+generated and with a log of the prompts. 
+You write an abstract. Ask AI to sharpen the 
+language but not modify, add to, or replace the 
+main points 
+Yes 
+Acceptable use without explicit citation only 
+if changes suggested by AI are limited to 
+grammar and syntax 
+Ask generative AI to produce a flowchart, graphic, 
+or image for a paper or presentation 
+Yes 
+Image should be clearly marked as AI-
+generated and with explicit citation as to 
+how the image was created. 
+Write your research paper. Ask AI to add 
+additional points to your research paper 
+No 
+Never acceptable. 
+Use AI to produce your conclusions, future steps, 
+etc. 
+No 
+Never acceptable 
+Use AI to help identify appropriate statistical tests 
+or software tools. (Interpretation of data must be 
+done by the student researcher). 
+Yes 
+Acceptable, requires a log of your prompts 
+as part of your research notebook  
+Ask generative AI to produce a starter 
+bibliography 
+No 
+Never acceptable. 
+Use AI to collect data and write research plan. 
+Use AI to provide citations that back up your 
+claims  
+No 
+Never acceptable. 
+Ask generative AI to fix the structure or formatting 
+of your bibliography 
+Yes 
+Acceptable without explicit citation. You 
+must review and verify all citations as valid. 
+• 
+Adapted from: Guiding Principles for Artificial Intelligence in History Education Approved by AHA Council,  
+July 29, 2025 
+ 
+Download the table as a stand-alone document.  
+ 
+ACADEMIC INTEGRITY 
+It is of utmost importance that a student researcher 
+works closely with the adults supporting their work 
+to both provide appropriate acknowledgement of 
+the support that they have received but to also gain 
+all appropriate permissions and clearances to 
+present their research in any circumstance in which 
+the work is not solely their own. Working in a RRI 
+laboratory, working with data that is not publicly 
+available or working as a sub-set of any identifiable 
+class or club project requires proper citations and 
+crediting of others’ work and may require formal 
+Institutional review and approval from the RRI or 
+RRI’s appropriate review body before public 
+presentation at a science fair. Seeking and 
+receiving permissions should be done as you begin 
+a project to make those involved aware of your 
+intentions to produce an independent project, and 
+compete at a future science fair. Student 
+researchers need to obtain permission from their 
+mentors before submitting their research to enter 
+science fair.  It is much better to have this 
+discussion and agreement before the project has 
+concluded and there are intellectual property or 
+other proprietary concerns that the mentor has 
+about publicly disclosing the research the student 
+has done via science competition. 
+DISCLOSURE OF MENTORS & PAID 
+SUPPORT 
+There is no rule that prohibits a student from 
+working closely with a mentor – whether a family 
+relative, friend or colleague or an individual sought 
+for their expertise in the field of study. A student 
+may participate in a paid or unpaid research 
+program (with compensation to the mentor or not) 
+and receive private lessons, tutoring or mentoring 
+support.  
+What is important is full disclosure of the 
+relationship, the nature of the mentorship and full 
+acknowledgement of the support received in 
+conducting the research. A student researcher must 
+attest that they have done an independent project  
+and what they are presenting is their own work. The 
+documentation of their project – the research plan 
+and the abstract – must present clearly what they 
+have done and what support they received.  
+New in 2027, all students must now complete the 
+Student Support Disclosure Form 2A.  This form 
+provides an opportunity to list all of the adults who 
+supported the project as well as indicating any 
+programs or paid mentorship that was provided and 
+how artificial intelligence was used in the project.  
+Society for Science does not endorse any particular 
+research programs; in fact, we do not believe a 

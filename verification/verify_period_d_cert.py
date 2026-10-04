@@ -9,10 +9,14 @@ the Fourier blocks the search used -- and checks, independently:
   * the nullity does not exceed 2k+2 (the structural ceiling), which is an
     automatic correctness check on the whole pipeline.
 """
+
+import os as _os
+_REPO = _os.path.abspath(_os.path.join(
+    _os.path.dirname(__file__), ".."))
 import sys
 import numpy as np
 
-sys.path.insert(0, "/Volumes/2TB/scifair/verification")
+sys.path.insert(0, f"{_REPO}/verification")
 from prescribe_symbol import solve_for, grid_interior
 
 
@@ -74,7 +78,7 @@ if __name__ == "__main__":
         print("  weights:")
         for L, v in zip(lab, w):
             print(f"     {L:>4} = {v:+.12f}")
-        np.save(f"/Volumes/2TB/scifair/results/zero_forcing/"
+        np.save(f"{_REPO}/results/zero_forcing/"
                 f"cert_k{k}_d{d}_n{n}.npy", w)
     else:
         print(f"\n  not a valid certificate (nullity {r}, gap {gap:.2e}, "

@@ -17,6 +17,10 @@ for order e >= 3 the orbit has size phi(e)/2.  This script enumerates the
 interior orbits of Gamma_m, forms every union of total size k+1, and tests each
 for a realisable solution.
 """
+
+import os as _os
+_REPO = _os.path.abspath(_os.path.join(
+    _os.path.dirname(__file__), ".."))
 import itertools
 import sys
 from math import gcd
@@ -24,7 +28,7 @@ from math import gcd
 import numpy as np
 from sympy import totient, Poly, symbols
 
-sys.path.insert(0, "/Volumes/2TB/scifair/verification")
+sys.path.insert(0, f"{_REPO}/verification")
 from prescribe_symbol import solve_for, grid_interior
 from verify_period_d_cert import verify
 from cyclotomic_certificates import psi
@@ -84,7 +88,7 @@ if __name__ == "__main__":
               f"min|required|/scale {minoff:.4f}  "
               f"{'REALISABLE' if ok else 'not realisable'}")
         if ok:
-            np.save(f"/Volumes/2TB/scifair/results/zero_forcing/"
+            np.save(f"{_REPO}/results/zero_forcing/"
                     f"galois_cert_k{k}_d{d}_n{n}.npy", w)
             lab = ([f"b{i}" for i in range(d)] + [f"c{i}" for i in range(d)]
                    + [f"e{i}" for i in range(d)] + [f"aO{i}" for i in range(d)]

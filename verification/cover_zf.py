@@ -14,12 +14,16 @@ as the special case.
 This script checks it against exhaustively computed zero forcing numbers on
 small covers, which is the only way to know the bound is not vacuous.
 """
+
+import os as _os
+_REPO = _os.path.abspath(_os.path.join(
+    _os.path.dirname(__file__), ".."))
 import sys
 from itertools import combinations
 
 import numpy as np
 
-sys.path.insert(0, "/Volumes/2TB/scifair/verification")
+sys.path.insert(0, f"{_REPO}/verification")
 from cyclic_covers import derived_graph
 
 

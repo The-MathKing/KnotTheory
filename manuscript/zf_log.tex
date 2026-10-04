@@ -10,6 +10,7 @@
 \author{Aryan Padarthi}
 \date{May 30 -- September 28, 2026}
 \setlength{\emergencystretch}{3em}
+\input{zf_numbers}
 \begin{document}
 \maketitle
 
@@ -1612,9 +1613,430 @@ the technique stops being tight there. Whether the ceiling itself survives is
 still open. What has changed is that the open question now has a boundary drawn
 through it, and I know which side of the boundary each base falls on.
 
+\section*{Entry 31: the same machine, pointed at a zeta function}
+\addcontentsline{toc}{section}{Entry 31: the same machine, pointed at a zeta function}
+
+\textbf{Why I went looking.} The project was finished and defensible, and that
+was the problem: the headline was an inverse eigenvalue problem, which takes
+three sentences to explain before a judge knows why to care. I went looking for
+a question with the same machinery underneath and a shorter path to
+significance. What I found was not a rebranding.
+
+\textbf{The find.} Every finite graph has an Ihara zeta function, with an Euler
+product, a functional equation and a prime number theorem for closed geodesics;
+by the Ihara determinant formula a $(q+1)$-regular graph satisfies the Riemann
+Hypothesis for it exactly when the graph is Ramanujan. So ``which $P(n,k)$
+satisfy the Riemann Hypothesis'' is a real question with a real answer. The
+spectrum of $P(n,k)$ has been completely known since Gera--St\u{a}nic\u{a}
+(2011). Their paper contains no occurrence of \emph{Ramanujan},
+\emph{expander} or \emph{spectral gap}. An arXiv search for the two phrases
+together returns nothing, while each alone returns plenty.
+
+\textbf{And it is our machinery.} Their Theorem 2.4 has $\beta_j=2T_k(\alpha_j/2)$
+--- that is $L_k$ on the grid $\Gamma_n$, the same object this whole paper is
+built on. On the zeta side the $\mathbb Z_n$ block decomposition \emph{is} the
+factorization into Artin--Ihara $L$-functions. Nothing had to be rebuilt.
+
+\textbf{Four things I got wrong, in order.}
+
+\emph{One: the attribution.} I first wrote that the equivalence is Sunada's,
+on the strength of a search summary. It is not. I downloaded Terras's own
+lecture notes and read the text: the equivalence follows from the Ihara
+determinant formula and appears there as Exercise 9; the term
+\emph{Ramanujan graph} is from Lubotzky--Phillips--Sarnak. I had made exactly
+this mistake earlier in the project --- asserting what a source says from a
+summary of it --- and made it again within the hour.
+
+\emph{Two: a search summary that was simply false.} A web search reported that
+``prism graphs and generalized Petersen graphs are regular and satisfy
+conditions that make them Ramanujan Graphs.'' That would have killed the
+novelty. I fetched the paper: ``Petersen'' occurs twice, both times as a
+component of a supercomputing torus topology, and the paper makes no such claim.
+The summary had invented it.
+
+\emph{Three: a derivation used outside its domain.} I derived a closed-form
+bound $n\le\pi(2+\sqrt2)\sqrt{k^2+1}$ by expanding $\lambda_+$ to second order
+in $t$. It passed every numerical test, because it is loose. It is also not a
+proof: the critical $t$ scales like $1/k$, so $kt$ is of order one and the
+expansion in $t$ was never valid there. I had already told the user the bound
+before noticing. What replaced it is better and exact --- substituting
+$\lambda=\pm2\sqrt2$ into the characteristic polynomial and squaring twice,
+each squaring an equivalence because $|A|\le4<4\sqrt2$ and $|P|\le4$ --- and
+the resulting bound is \emph{sharp} at $k=2,3,4$, which the invalid one was not.
+\emph{Lesson: a bound that survives testing may still have no proof behind it,
+and looseness is what hides that.}
+
+\emph{Four: a degree, caught by the suite.} I wrote $\deg D_k=2k$ in the
+theorem statement and in the verification check. It is $2k+2$, with leading
+coefficient $4^{k+1}$. The suite failed on it immediately, because I had made
+the degree an asserted quantity rather than a remark.
+
+\textbf{And one bug the control caught.} The exact certifier builds Laurent
+polynomials from dictionaries of exponents. At $k=1$ the exponents collide:
+$k=1$ duplicates the exponent $1$, and $k-1$ and $-(k-1)$ are both $0$. A
+Python dict literal silently keeps the last of each duplicated key, so the
+polynomial lost half its terms and the exact classifier declared \emph{every}
+$P(n,1)$ Ramanujan --- including $P(9,1)$, which has the eigenvalue
+$2\cos(8\pi/9)-1=-2.879$. The float64 classifier, running alongside with no
+authority, disagreed on exactly four values and failed the run. This is the
+clearest return the control discipline has paid: the exact method was the wrong
+one, and only the approximate method knew.
+
+\textbf{What came out.} A criterion with no radicals, $D_k(u)\ge0$ on the grid.
+A finiteness theorem from $D_k(1)=-7$. A parity law from $D_k(-1)=-7$ for odd
+$k$ and $+9$ for even $k$ --- with the pleasing consequence that
+\emph{bipartiteness helps}, since an even $n$ lands exactly on the trivial
+$-3$ that the Ramanujan condition exempts. And the complete classification for
+$k\le\RamKmax$: $\RamTotal$ graphs, $\RamCases$ cases, every one decided in
+exact arithmetic, zero disagreements with the control.
+
+\textbf{Addendum, same day: the press point, and closing it.}
+
+I asked where a judge would push hardest, and the honest answer was not the
+novelty and not the arithmetic. It was this: \emph{``you have computed a table
+for $k\le10$. Where is the theorem?''} The finiteness bound
+$B_k=2\pi/\arccos u_k$ is computed from the roots of $D_k$, one $k$ at a time,
+and says nothing whatever about $k=11$. A classification that stops where the
+computation stopped is a census.
+
+It is fixed, and the fix is elementary. Put $a=1-\cos t$, $b=1-\cos kt$,
+$s=a+b$. On $s<\tau$ the criterion function is
+$(8\sqrt2-4)-(4\sqrt2-4)s-4ab$; AM--GM gives $4ab\le s^2$; and
+$s^2+(4\sqrt2-4)s$ equals $8\sqrt2-11$ \emph{exactly} at $s=\tau=(\sqrt2-1)^2$.
+Then $1-\cos\theta\le\theta^2/2$ converts $s<\tau$ into a bound on $t$, and
+$\sqrt{2\tau}=2-\sqrt2$ turns that into
+\[
+  n\ \le\ \pi(2+\sqrt2)\sqrt{k^2+1}\qquad\text{for every }k .
+\]
+At $t=\pi$ the same expansion returns the \emph{identical} expression, so the
+parity bound is exactly half of the same constant --- not ``roughly half'', as I
+had been writing.
+
+\textbf{And here is the part I did not expect.} That constant, $\pi(2+\sqrt2)$,
+is precisely the one I stated earlier today from an invalid Taylor derivation
+and then retracted. I retracted it because the derivation was wrong, which was
+correct practice: the expansion in $t$ at fixed $k$ is used at $t\sim1/k$, where
+$kt$ is of order one, so it had no domain. But the constant was right. I had
+guessed the answer by a bad route and, because the bound is loose, testing
+could not tell me which part was broken.
+
+\emph{The lesson is uncomfortable and worth keeping.} Retracting the claim was
+still the right call --- an unproved constant is not a theorem however well it
+tests, and I could not have known it was right. What I should not have done is
+conclude from the bad derivation that the constant was also wrong. Those are
+different failures, and I ran them together. The correct response to ``this
+proof is invalid'' is to look for a proof, not to assume the statement is false.
+
+\textbf{What this changes.} Finiteness, with an explicit constant, is now a
+theorem for \emph{all} $k$, proved without expansion or computation. What
+remains certified only for $k\le\RamKmax$ is the \emph{list} --- which $n$ below
+the bound qualify --- because the interior bands that bind for even $k$ are
+still located numerically. That is a much smaller gap, and a much more honest
+place to be standing when asked the obvious question.
+
+\textbf{What is still open, and I want it recorded as open.} For even $k$ an
+interior band --- neither at $u=1$ nor at $u=-1$ --- binds well before the
+finiteness bound, and that is why the classification is not monotone in $k$.
+I locate those bands numerically. Until they are located exactly, the
+classification is certified for $k\le\RamKmax$ and not for all $k$. That is a
+genuine limitation and not a formality.
+
+\section*{Entry 32: the criterion never needed $k$, and a guard that could not fire}
+\addcontentsline{toc}{section}{Entry 32: the criterion never needed $k$, and a guard that could not fire}
+
+\textbf{What I was actually looking at.} Entry 31 left the classification
+certified for $k\le\RamKmax$ and open beyond it, blocked on locating interior
+bands of $D_k$ for general $k$. I had been treating that as a computation to
+extend. It was not. $D_k=(7+P)^{2}-8A^{2}$ is a difference of squares --- which
+I had written down a dozen times without reading --- so it factors over
+$\mathbb Q(\sqrt2)$ into $f_\pm=7+P\pm2\sqrt2A$. Those are not new objects:
+they are precisely the two eigenvalue conditions the criterion was assembled
+from. They cannot both be negative, because $f_-+f_+=2(7+P)\ge6$, which is why
+the single inequality $D_k\ge0$ was equivalent to the pair in the first place.
+
+\textbf{The substitution.} Putting $x=\cos\frac{\pi j(k+1)}{n}$ and
+$y=\cos\frac{\pi j(k-1)}{n}$, the product-to-sum identities give
+$7+P=3+4x^{2}+4y^{2}$ and $A=4xy$, so both factors become
+$3+4x^{2}+4y^{2}\mp8\sqrt2\,xy$ and the criterion is
+$Q=4x^{2}+4y^{2}-8\sqrt2|xy|+3\ge0$. \emph{$Q$ does not mention $k$.} The
+forbidden set is one fixed region --- four corner pieces, $0.4322\%$ of the
+square --- and $k$ survives only in the map into it. The thing I had been
+planning to compute for each $k$ separately was the same set every time.
+
+\textbf{What that unlocked, and what supplied it.} With the geometry fixed, the
+failure condition reads $\|j/n\|^{2}+\|jk/n\|^{2}<\tau/2\pi^{2}$ --- a
+simultaneous Diophantine condition, and those have unconditional answers.
+Dirichlet's approximation theorem with $J=\lfloor\sqrt n\rfloor$ gives a
+$j\le J$ with $\|jk/n\|\le1/(J+1)$, so the left side is under $2/n$ for
+\emph{every} $k$. Hence nothing with $n\ge\RamDirichlet$ is Ramanujan, the
+family is finite in both variables, and the remaining region is small enough to
+exhaust: $\RamAllTotal$ pairs, $\RamAllIso$ up to isomorphism, largest
+$n=\RamAllMaxN$, nothing past $k=\RamAllMaxK$. The open problem Entry 31 ended
+on was not hard; it was mis-stated.
+
+\textbf{The bug, which is the part worth keeping.} Extending the exact
+certifier past $n=126$ made it start raising ``could not separate sign'' --- on
+values of magnitude $11$. That is not a precision failure, and the message was
+lying about the cause. \texttt{sign\_exact} accepts a sign only if
+$|v|>\text{guard}$ and $\text{imag}<\text{guard}$, with
+$\text{guard}=10^{-(\mathrm{dps}-15)}$ computed in \texttt{float}. Once
+$\deg\Phi_m\ge126$ the precision ladder asks for more than $338$ digits, and
+$10^{-324}$ is below the smallest subnormal double: \texttt{guard} becomes
+exactly $0.0$. The imaginary part is a non-negative float, so
+$\text{imag}<0.0$ is false always, and \emph{no value can ever clear the
+guard}. The test could not pass, for any input.
+
+What I want to record is why this did not corrupt anything. It failed loudly
+rather than silently --- a guard that cannot fire refuses, it does not wave
+things through --- so the failure mode was a stopped run, not a wrong
+classification. And no published number moved: at $k\le\RamKmax$ the bound
+gives $n\le108$, so $\deg\Phi_m\le108$ and the underflow was never reached.
+The bug was latent in exactly the region the old scope never entered, and
+extending the scope is what exposed it. The fix is to keep the comparison in
+\texttt{mpmath} instead of narrowing to \texttt{float}.
+
+\textbf{What is still open.} A closed form. The answer is a certified list, not
+a formula: I can prove no $P(n,k)$ with $k>\RamAllMaxK$ is Ramanujan and I
+cannot say why the cut is at $\RamAllMaxK$ rather than somewhere near it,
+beyond having checked every case. The threshold $\RamDirichlet$ is loose
+against the true largest $\RamAllMaxN$, which costs nothing but is not
+sharpness. And the generalisation is exact only for two-vertex bases; on larger
+bases I have finiteness with a constant, not a criterion.
+
+\section*{Entry 33: the ceiling is not a property of the cover, and how the search lied}
+\addcontentsline{toc}{section}{Entry 33: the ceiling is not a property of the cover, and how the search lied}
+
+\textbf{The question.} Entry 30 left the ceiling proved for every matrix on
+$P(n,k)$ but only for \emph{equivariant} matrices on a general base, and the
+paper recorded the gap as open: is the ceiling a property of the cover, or only
+of equivariant matrices on it? Closing it would have turned a fact about one
+family into a theorem about cyclic covers, which is why I went at it.
+
+\textbf{Two theorems first.} The two-vertex elimination \emph{chains}: on a path
+base with a loop at each vertex, solve the row at one end for the next fibre and
+repeat, each loop widening the window by $2p_t$, giving order $2\sum p_t$ ---
+exactly the degree span. That is Theorem~\ref{thm:redpath}, with the two-vertex
+case as $m=2$. Cycle bases fall to something cruder: every base vertex has
+degree $2$, so the cover is a disjoint union of $\gcd(|W|,n)$ cycles, and
+$M(C_N)=2$ finishes it. Two different arguments, two different reasons.
+
+\textbf{Then the answer, which is no.} The conjecture is false. A base vertex of
+degree $1$ lifts to pendant vertices of the cover; the diagonal is free in
+$\mathcal S(G)$; so zero the pendant diagonals. The row at a pendant becomes
+$x_u=0$ for its neighbour, the shared fibre dies, and what is left is one
+relation among $2n$ pendant coordinates. On the star-with-a-loop base,
+$\operatorname{null}A=n$ against $D=2$: the gap is not marginal, it grows
+without bound. Demanding minimum degree $2$ does not save it either --- $K_{2,3}$
+gives $6$ against $D=4$. What survives is regularity, which costs nothing, since
+every cover this paper actually studies is cubic.
+
+\textbf{What I want to record is how I nearly missed it.} I had run an
+adversarial search over ten connected bases and found no counterexample, and I
+wrote that into the paper as evidence \emph{for} the conjecture. The star base
+was one of the ten. Three weaknesses compounded: Nelder--Mead in fifty
+dimensions, a penalty floor holding $|w|\ge0.3$ --- which excludes part of the
+admissible set rather than discouraging it --- and an objective that summed the
+$d$ smallest squared singular values, so one value at $10^{-10}$ hid two at
+$10^{-6}$. Every one of those is a way of asking a weaker question than the one
+I thought I was asking.
+
+What found it was not a better search. A gradient method flagged the base, and
+then the counterexample was written down \emph{by hand} from the structure ---
+pendants, free diagonal, zero --- and verified by exact rank over $\mathbb Z$.
+The lesson is the one already on my own board, in the keybox about interpreting
+a search failure, and I walked straight past it: a failed search measures effort
+spent, not impossibility. The failed-search paragraph stays in the paper,
+relabelled. A search that does not find something is evidence about the search.
+
+\textbf{Three more of the same shape, in one day.} An optimiser reported a
+strict gap $M(P(10,2))<Z$ that does not exist --- two further random seeds found
+the nullity-$6$ basin. A \texttt{pgrep} wait matched its own command line and
+span forever; another failed to match at all, and I read a half-written file as
+a finished result. And a patch script died on a missing anchor inside an
+\texttt{\&\&} chain whose trailing \texttt{echo} printed ``launched'' anyway, so
+I announced a verification run that was not running, over a suite still
+asserting the conjecture I had just refuted. Different tools, one error: I took
+the success signal for the thing it was supposed to signal.
+
+\section*{Entry 34: the obstruction, and what it is worth}
+\addcontentsline{toc}{section}{Entry 34: the obstruction, and what it is worth}
+
+\textbf{Why regularity, finally.} Entry 33 refuted the cover ceiling on an
+arbitrary base and left ``regular'' as a hypothesis fitted to the surviving
+cases, which is not a reason. The reason is one line of counting. Let $S$ be
+independent and zero the diagonals on $S$: each row at $v\in S$ reduces to
+$a_{vv}x_v=0$, which holds identically, and each row at a neighbour is one
+relation on $x|_S$, so vectors supported on $S$ give
+$M(G)\ge|S|-|N(S)|$. On the star-with-a-loop cover that is $2n-n=n$ --- exactly
+the nullity I had exhibited, so the bound is not merely compatible with the
+counterexample, it \emph{is} the counterexample. And in a $d$-regular graph all
+$d|S|$ edges from an independent $S$ land in $N(S)$, each vertex absorbing at
+most $d$, so $|N(S)|\ge|S|$ and the whole mechanism is unavailable. Now the
+hypothesis has a cause.
+
+\textbf{Then the thing I did not expect to find.} I went looking for what the
+minimum rank community actually considers open, rather than guessing, and the
+Fallat--Hogben survey --- which this paper already cites --- asks for sufficient
+conditions giving $M(G)<Z(G)$ and for a parameter $Y$ with $M\le Y<Z$ explaining
+the gap. The degree span is a candidate $Y$, and I had been treating it as an
+internal bookkeeping device.
+
+So I looked for a cover where $Z$ exceeds it. On the $K_4$ base, $D=6$ for every
+$n$ while $Z=n+2$, computed by CP-SAT with optimality proved at
+$n=4,\dots,8$. The certificate at the span came from the project's own Galois
+trick pointed somewhere new: $\det M(\zeta)$ is palindromic, hence a cubic in
+$x=\zeta+\zeta^{-1}$, and the minimal polynomial of $2\cos\frac{2\pi}{7}$ is also
+a cubic, so matching them forces every coefficient equal and pins the weights to
+integers --- edges $2$, diagonals $4,4,5,4$, nullity exactly $6$ by exact rank
+over $\mathbb Z$.
+
+\textbf{What is actually proved.} The equivariant ceiling is a theorem, and the
+certificate attains it, so ``equivariant maximum nullity is $6$ while $Z=n+2$''
+needs no conjecture: the gap is $n-4$ and unbounded. Only the step from
+equivariant to all matrices is open, and that is the regular-base ceiling.
+
+\textbf{The honest size of it.} I have not proved $M<Z$ on a cubic graph; I have
+proved that nothing rotation-invariant can close the gap, and conjectured the
+rest. The distinction is the whole difference between a result and a claim, and
+the board and the paper both state it that way. What changed is that the project
+now touches a question somebody else asked, which is not something I could say
+of it a week ago.
+
+\section*{Entry 35: the gap family was the counterexample}
+\addcontentsline{toc}{section}{Entry 35: the gap family was the counterexample}
+
+\textbf{1 October 2026.} An outside read of the project, written from a summary
+and without the paper, pointed at the voltages of the $K_4$ base: the three
+edges of voltage $0$ are $0\!-\!1$, $0\!-\!3$, $1\!-\!3$ --- a triangle. Each
+fibre index carries a triangle, and the only edges leaving it go to the fibre
+over vertex $2$. Make every triangle block rank one, $uu^{\top}$ with $u$
+entrywise nonzero: the pattern is respected, the diagonal is free, the rows at
+the $3n$ triangle vertices have rank at most $n+n$, and the rows over vertex $2$
+number $n$. So $\operatorname{rank}A\le3n$ and $\operatorname{null}A\ge n$.
+Exact rank over $\mathbb Q$ gives nullity exactly $n$ for $n=4,\dots,10$
+(\texttt{verification/k4\_rank\_one.py}).
+
+\textbf{What that kills.} The conjecture $M(B^n)=6$, and with it the cubic
+family with $Z-M\to\infty$ that Entry 34 called the strongest result in the
+project. $M\ge n$ and $Z=n+2$, so the gap is at most $2$. It kills the
+regular-base ceiling, since $K_4$ is cubic. And it kills a sentence I had
+called unconditional, that the \emph{equivariant} maximum nullity is $6$: the
+rank-one matrix is equivariant and $\det M(\zeta)\equiv0$ for it, so every
+block is singular. \texttt{thm:cover} needed the hypothesis
+$\det M(\zeta)\not\equiv0$ and did not state it.
+
+\textbf{Why both attacks missed it.} The diagonal-zeroing attack varies
+diagonals only; the gradient search starts from generic weights. The
+counterexample lives where three of the four fibre blocks are singular, which
+neither reaches. Entry 33 said a failed search is evidence about the search.
+This is the second conjecture the same lesson has cost.
+
+\textbf{What replaces regularity.} The top coefficient of $\det M(\zeta)$,
+computed symbolically on every base in the paper. Where the ceiling is proved
+it is a monomial in edge weights alone: $w_1w_k$ on the two-loop base, the
+product of the loop weights on a path with loops, the product of all edge
+weights on a cycle. On each of the three bases where the ceiling fails it
+contains a free diagonal: $-w_{12}w_{23}(w_{01}w_{03}-d_0w_{13})$ on $K_4$.
+That is the hypothesis every proof actually used, and it is now
+\texttt{conj:leading}. Regularity was a hypothesis fitted to the cases that
+survived two weak attacks; the general obstruction is
+$M(G)\ge|V|-\operatorname{mr}(G[S])-2|V\setminus S|$ for any $S$, of which the
+independent-set bound of Entry 34 is the case $\operatorname{mr}(G[S])=0$, and
+regularity does nothing to $\operatorname{mr}(G[S])$.
+
+\textbf{Also corrected today.} The abstract, the board and the arXiv draft said
+$Z=M=2k+2$ ``for all $n$ at $k=2,3,4$''. Krishnan's table has
+$Z(P(11,3))=Z(P(12,3))=7$ and the paper itself has $Z(P(8,2))=5$. The theorems
+carry the right thresholds; the summaries did not.
+
+\textbf{Found the same day.} A pull request merged on 26 September 2026 in an
+automated proof repository claims a Lean-checked proof of Krishnan's
+Conjecture~5 by an isoperimetric argument on forcing sets. It is not a paper
+and nobody has reviewed it, but it is dated, and nothing of mine is public.
+
 \begin{thebibliography}{9}
 \bibitem{RST} S. Rashidi, N. Shajareh Poursalavati, M. Tavakkoli,
 \emph{J. Algebra Combin. Discrete Struct. Appl.} 7(2) (2020), 183--193.
 \bibitem{K} A. Krishnan, arXiv:2607.19412 (2026).
 \end{thebibliography}
+
+\section*{Entry 36: making the mathematics the spine}
+\addcontentsline{toc}{section}{Entry 36: making the mathematics the spine}
+
+\textbf{3 October 2026.} [AI-DRAFTED --- rewrite in your own words before this
+log is shown to anyone.] The question I set myself: how much of this project
+is mathematics and how much is computation, and can the line be moved. Three
+uses of the computer, three different statuses. The finite census and the
+small values of $Z$ are finite case checks in exact arithmetic after a theorem
+has made the problem finite; nobody objects to that. The existence of the tiles
+is a computer-assisted existence proof: Krawczyk's fixed-point theorem with its
+hypothesis verified in exact rational arithmetic, the four-colour kind of
+proof. The verification suite is bookkeeping and not mathematics at all, and I
+should stop presenting it as if it were evidence.
+
+\textbf{What moved.} The closed form for $k\le9$ had been a proposition
+``verified case by case''. It is now a theorem: the negative set of $D_k$ on
+$[-1,1]$ is the end band(s) alone exactly for $k\in\{1,2,3,4,5,7,9\}$, by Sturm's
+theorem (an integer computation on the coefficients, exact root isolation over
+$\mathbb Q$ in \texttt{verification/interior\_bands.py}), and then only the
+grid point $j=1$ --- and for odd $n$ and odd $k$ only $j=(n-1)/2$ --- can enter
+a band. For $k=2$ the whole argument fits on a page. From $k=10$ on there is
+always an interior band, which is why the census is needed there.
+
+\textbf{A second theorem I should have seen earlier.} The paper's
+rotation-invariant certificates ($10\mid n$ at $k=3$; $60,70,90\mid n$ at
+$k=4$; $24\mid n$ at $k=5$) were constructions, with no claim that they were
+all of them. They can be classified. A rational symbol has a Galois-closed root
+set, a union of orbits $O_d=\{2\cos(2\pi l/d):\gcd(l,d)=1\}$ of total size
+$k+1$; the monic product of the minimal polynomials must equal
+$(s+a)(t_k(s)+d')-c_0$, which forces every middle coefficient; and
+realisability is $c_0\ne0$. That is a finite enumeration
+(\texttt{verification/period\_one\_classification.py}), and it gives an
+\emph{if and only if}: a rotation-invariant matrix with rational symbol reaches
+nullity $2k+2$ on $P(n,k)$ exactly when $n$ is divisible by one of $7,9,15,20$
+($k=2$); $10,24,42$ ($k=3$); $60,70,90$ ($k=4$); $24,126$ ($k=5$); and never
+for $k=6$, which recovers the $k=6$ impossibility as a corollary. The classes
+$24$ and $42$ at $k=3$ and $126$ at $k=5$ are new.
+
+\textbf{Still not pure.} Tile existence. The paper already proves why forts,
+the fort LP and spectral bounds cannot give the all-$n$ lower bound; a hand
+proof needs a new idea. Two candidates are written down in the handoff.
+
+
+\section*{Entry 37: the tiles exist, without finding them}
+\addcontentsline{toc}{section}{Entry 37: the tiles exist, without finding them}
+
+\textbf{4 October 2026.} [AI-DRAFTED --- rewrite or discard.] I asked for the
+controllability question of Entry~25 to be attacked directly. The answer: it
+never needed the semigroup to be the whole group. A tile with interior equal to
+the dock has product $S_0^{\ell}$; if the dock is \emph{elliptic}, the powers of
+$S_0$ stay in a compact torus, so the inverse of any power is a limit of positive
+powers. If moreover the tile map is a submersion at one point near the dock
+point, $S_\ell$ contains a ball around an elliptic element $P^*$, and products
+of $M$ ball elements reach any point of a compact set once $M$ is large ---
+including $P^{*-M}S_0^{-r}$. So identity tiles exist at every length past some
+$L$, with $L$ ineffective. Three things had to be checked: the adjacency dock is
+not elliptic (only at $k=1,2,5$), so the dock is chosen; the differential at
+the dock point itself has rank $\dim Sp-(k-2)$, the three-parameter obstruction
+again, so the submersion is at a nearby point; and the invariant form is the
+discrete Wronskian, nondegenerate with $\det B=e_0^{2k}/c_0^{4k}$. The rank
+hypothesis was then certified exactly, over $\mathbb F_p$, for $k=2$ to $12$.
+Also found on the way: only three of the five weights per position act, because
+two are diagonal gauge, so the generic rank is $3\ell-5k-5$ --- which is why the
+tiles appeared at $21$ and $29$ and not at $16$ and $24$. What is still open is
+the rank hypothesis for every $k$; I conjecture it holds at
+$\ell=\lceil(k+1)(2k+8)/3\rceil$.
+
+
+\textbf{Later the same day.} The rank hypothesis itself: at the dock point the
+$a$-weight direction has root-space coefficient $-c_0/(a_0+s_j)$, nonzero at
+every root, so every root space is reached at first order, and the Cartan
+motions are $\{1,u_j,1/u_j\}$, three dimensions --- that is the $k-2$. One
+perturbation at one position then supplies the rest through the brackets
+$[Y_{t_1},Y_t]$, whose Cartan parts are exponential sums in the position
+difference and are independent when the dock is nonresonant; the symmetric dock
+$(0,1,0,1)$ at $k=5$ is resonant ($z\mapsto-z$) and is exactly where the
+numerics had refused to lift. So the statement is for every $k$. Two steps are
+stated against standard facts rather than written out; an expert should read
+them before I say ``theorem'' out loud. What is left is an effective $L(k)$.
 \end{document}

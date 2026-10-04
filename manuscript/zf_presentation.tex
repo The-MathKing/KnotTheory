@@ -54,213 +54,183 @@
 \vfill
 \begin{center}
 {\color{myblue}\bfseries\large
-Maximum Nullity of Cyclic Covers of Graphs:\\[0.25em]
-A Monodromy Ceiling and the Zero Forcing Number\\[0.25em]
-of Generalized Petersen Graphs\par}
+Where Optimal Networks Stop Existing\\[0.25em]
+Certified Spectral Limits of Cyclic Architectures\par}
 \vspace{1.0em}
 Category: Mathematics \qquad Project ID: \rule{3cm}{0.4pt}
 \end{center}
 \vfill
-\kb{\centering How degenerate can the zero energy level of a periodic operator
-on a graph be? We answer it \key{exactly and unconditionally} for infinite
-families of covers --- proving a conjecture posed in 2026, and correcting a
-published theorem that is false.}
+\kb{\centering Every graph has a zeta function, so every graph has a Riemann
+Hypothesis --- and unlike the classical one, it can be \key{decided}. We decide
+it \key{completely and in exact arithmetic} for the generalized Petersen graphs,
+and prove that only \key{finitely many} satisfy it.}
 \vfill
 \end{frame}
 
 %% ------------------------------------------------------- 2. INTRODUCTION
-\begin{frame}{INTRODUCTION --- the question}
-\key{The problem.} Over all symmetric matrices with off-diagonal pattern $G$ ---
-Hamiltonians on that network --- how degenerate can the zero eigenvalue be? That
-maximum $M(G)$ is the central quantity of the \key{inverse eigenvalue problem of
-a graph}.
+\begin{frame}{INTRODUCTION --- an RH you can decide}
+\key{Every graph has a zeta function.} The \key{Ihara zeta}
+$\zeta_X(u)=\prod_{[C]}(1-u^{\ell(C)})^{-1}$, over primitive closed geodesics,
+has an Euler product, a functional equation, and a \key{prime number theorem}.
 
-\key{The tool.} $M(G)\le Z(G)$, the \key{zero forcing number}, a colouring game
-from quantum control and power-grid monitoring.
+\key{So one can ask the RH for a graph:} do the poles of $\zeta_X(q^{-s})$ in
+the critical strip lie on $\mathrm{Re}\,s=\tfrac12$?
 
-\key{The family.} $P(n,k)$ is a \key{cyclic cover}: one base graph repeated $n$
-times with a twist. This is the spectral theory of a periodic structure, so any
-answer must hold \emph{uniformly in the period $n$}.
+\key{And here it is decidable.} By the Ihara determinant formula, a
+$(q+1)$-regular graph satisfies the RH \emph{iff} it is \key{Ramanujan}: every
+eigenvalue with $|\lambda|\ne q+1$ has $|\lambda|\le2\sqrt q$.
 
-\kb{\key{What was wrong.} The published value is \key{false}: Rashidi et
-al.\ (2020) claim $Z(P(n,3))=8$ for $n\ge12$, but $Z(P(12,3))=7$.}
+\kb{$2\sqrt q$ is the smallest gap any infinite family can have: the
+\key{optimal expanders}.}
 \end{frame}
 
 %% -------------------------------------------------- 3. INTRODUCTION cont.
-\begin{frame}{INTRODUCTION --- the gap}
-The 2026 note states as \key{Conjecture 5} that $Z(P(n,3))=8$ for $n\ge13$, and
-says what is missing:
+\begin{frame}{INTRODUCTION --- the question}
+\kb{\centering\key{For which $n$ and $k$ does $P(n,k)$ satisfy the Riemann
+Hypothesis?}}
 
-\kb{\itshape ``the content is the lower bound $Z(P(n,3))\ge8$ for all $n\ge13$,
-which we verified only for $n\le20$\,\dots\ We will not assert it from finite
-computation, which would reproduce the gap this note corrects.''}
+\key{A question of a recognised kind.} The same classification exists for
+unitary Cayley graphs (Droll) and integral circulants (Le--Sander) --- only
+\emph{finitely many} members qualify.
 
-It closes: \emph{``Determining $Z(P(n,k))$ for general $k$ \dots\ remains open.''}
+\key{The ingredients have been on the shelf since 2011.} Gera and St\u{a}nic\u{a}
+determined the spectrum of $P(n,k)$ completely --- but their paper contains
+\key{no occurrence} of \emph{Ramanujan}, \emph{expander} or \emph{spectral gap}.
 
-\key{So the gap is uniformity in $n$}, not more computation:
-\begin{itemize}\setlength\itemsep{0.05em}
-\item combinatorial bounds must exclude all subsets at once;
-\item matrix bounds need one matrix per $n$ --- infinitely many.
-\end{itemize}
-Prior work treats circulants; $P(n,k)$ is a \emph{block} circulant, so it is
-not covered.
+\key{And it is not just a computation.} At a band edge the decision compares
+nested radicals, where floating point does not decide --- it guesses.
 \end{frame}
 
 %% --------------------------------------------------------- 4. FRAMEWORK
-\begin{frame}{FRAMEWORK}
-\key{The graph.} $P(n,k)$: outer $u_i$, inner $v_i$, edges
-$u_iu_{i+1}$, $u_iv_i$, $v_iv_{i+k}$ (mod $n$). Cubic, and $\rho(i)=i+1$ is an
-automorphism --- a \key{cyclic cover} of a two-vertex voltage graph.
+\begin{frame}{FRAMEWORK --- a symbol on a grid}
+$P(n,k)$ is a \key{cyclic cover}: it carries the rotation $\rho:i\mapsto i+1$,
+so the adjacency matrix decomposes over the characters of $\mathbb Z_n$:
+\[
+  M_j=\begin{pmatrix}\alpha_j&1\\1&\beta_j\end{pmatrix},\qquad
+  \alpha_j=2\cos\tfrac{2\pi j}{n},\quad\beta_j=2T_k(\alpha_j/2).
+\]
+\key{On the zeta side this is the factorization} into Artin--Ihara
+$L$-functions.
 
-\key{The matrix class.} $\mathcal S(G)=\{A=A^{\!\top}:a_{ij}\ne0\iff ij\in E,\
-i\ne j\}$, and $M(G)=\max\operatorname{null}A$ over it.
-
-\key{Two facts.} $\;M(G)\le Z(G)\;$ and $\;Z(P(n,k))\le2k+2$.
-
-\kb{\key{Goal.} Exhibit $A\in\mathcal S(P(n,k))$ with
-$\operatorname{null}A=2k+2$. Then
-$2k+2\le M\le Z\le2k+2$, so \key{$Z=M=2k+2$} --- an exact value, not a bound.}
+\kb{So the spectrum is \key{one fixed curve sampled at $n$ points}, and the RH
+holds when no sample lands where the curve is too big. \key{Does the grid miss
+the bad bands?} It refines as $n$ grows --- which will bound $n$.}
 \end{frame}
 
-%% ------------------------------------------------- 5. FINDINGS 1: ceiling
-\begin{frame}{FINDINGS 1 --- an exact ceiling}
-\begin{block}{Theorem 1 (reduction), $n\ge2k+3$}
-Eliminating the inner coordinates turns $Ax=0$ into one linear recurrence of
-order \key{exactly $2k+2$}, with monodromy $T$, and
-$\operatorname{null}A=\dim\ker(T-I)\le2k+2$, equality iff $T=I$.
-\end{block}
-{\key{Proof sketch.} The outer row meets \emph{one} inner variable, whose
-spoke weight is nowhere zero. Dividing it out leaves a nine-term relation with
-extreme offsets $\pm(k+1)$, nonzero.}
+%% ----------------------------------------- 5. FINDINGS 1 -- the criterion
+\begin{frame}{FINDINGS 1 --- clearing the radicals}
+Eigenvalues $\bigl(A\pm\sqrt{(\alpha-\beta)^2+4}\bigr)/2$ against $2\sqrt2$:
+\key{two nested irrationalities}. Substituting $\lambda=\pm2\sqrt2$ into $\lambda^2-A\lambda+(P-1)$ gives
+$2\sqrt2|A|\le7+P$. Squaring twice removes both radicals, and \key{each squaring
+is an equivalence}: $|A|\le4<4\sqrt2$, $|P|\le4$.
 
-\kb{\key{The ceiling equals the target.} $2k+2$ is also the best known
-\emph{upper} bound on $Z$: the method \key{either settles $Z$ or cannot touch
-it}. The proof never used the outer voltage, so it holds on \key{every}
-two-vertex cover, ceiling $2(p{+}q)$ --- this is $p=1$.}
+\kb{\key{Criterion.} $P(n,k)$ satisfies the RH iff
+\[D_k(u)=\bigl(7+4uT_k(u)\bigr)^2-8\bigl(2u+2T_k(u)\bigr)^2\ \ge\ 0\]
+at $u=\cos\frac{2\pi j}{n}$ for every non-trivial $j$.}
+
+The poles of a zeta function: now \key{one integer polynomial}.
 \end{frame}
 
-%% --------------------------------------------- 6. FINDINGS 2: obstruction
-\begin{frame}{FINDINGS 2 --- an obstruction}
-Singularity is governed by a \key{symbol}
-$F(s)=(s+a)L_k(s)+\alpha s+\beta$, monic of degree $k+1$ in
-$s=2\cos(2\pi m/n)$, with \key{exactly three} free parameters for every $k$:
-three roots may be prescribed, no more. Realisability is $c^2=a\alpha-\beta$.
+%% ---------------------------------------- 6. FINDINGS 2 -- finiteness
+\begin{frame}{FINDINGS 2 --- finiteness}
+Everything follows from three \key{exact} evaluations:
+\[
+  D_k(1)=-7,\quad D_k(0)\ge17,\quad
+  D_k(-1)=-7\ (k\text{ odd}),\ +9\ (k\text{ even}).
+\]
+$D_k(1)<0$ puts a \key{forbidden band at $u=1$}, where the grid accumulates.
+With $s=(1-\cos t)+(1-\cos kt)$, AM--GM gives $4ab\le s^2$, and
+$s^2+(4\sqrt2-4)s$ hits $8\sqrt2-11$ \key{exactly} at $s=(\sqrt2-1)^2$; then
+$1-\cos\theta\le\theta^2/2$ bounds $t$.
 
-\begin{block}{Theorem 2 (antipodal obstruction)}
-$c^2=0$ identically $\iff F=(s+a)(L_k+t)$. Since $L_k(-s)=(-1)^kL_k(s)$, for
-\key{every even $k$} a symbol with roots $y,-y$ has $c^2=0$; for odd $k$ there
-is no such obstruction.
-\end{block}
-{\key{Proof sketch.} $c^2$ vanishes identically exactly when $F$ factors
-through $L_k$, and the parity identity turns an antipodal pair into that
-factorisation.}
+\kb{\key{Theorem --- for every $k$.} $n\le\pi(2+\sqrt2)\sqrt{k^2+1}$. No
+expansion, no computation. Per $k$ the exact root sharpens this to
+$B_k=2\pi/\arccos u_k$, \key{sharp at $k=2,3,4$}.}
 \end{frame}
 
-%% ---------------------------------------- 7. FINDINGS 3: congruence wall
-\begin{frame}{FINDINGS 3 --- the congruence wall}
-A rational symbol drags its whole Galois orbit onto the grid. Taking $F$ as a
-product of minimal polynomials of $2\cos(2\pi/d)$ gives \key{exact integer}
-certificates: $Z(P(n,4))=10$ for $60,70,90\mid n$ --- the first exact values
-for $k\ge4$.
+%% ---------------------------------------- 7. FINDINGS 3 -- the parity law
+\begin{frame}{FINDINGS 3 --- a parity law}
+For \emph{odd} $k$, $D_k(-1)=-7<0$: a \key{second band at $t=\pi$}. For even
+$k$, $D_k(-1)=+9>0$ and there is none.
 
-\begin{block}{Theorem 3 (the congruence wall)}
-Every rotation-invariant certificate is confined to \key{one} divisibility
-class, containing \key{at most one prime}; and $e_2=-k$ for every such symbol
-with $k\ge3$.
-\end{block}
-\kb{\key{Proof sketch.} Grid roots must form full Galois orbits, forcing
-$\operatorname{lcm}(D)\mid n$. So symmetry is not a shortcut but a
-\key{barrier}: to reach all $n$ it must be broken.}
+\key{But the grid meets $t=\pi$ only when $n$ is even} --- and there the sample
+is the $-3$ of a \emph{bipartite} graph, which the Ramanujan condition
+\key{exempts}. Odd $n$ lands just short, inside the band.
+
+\kb{\key{Theorem (parity law).} At $t=\pi$ the same algebra returns the
+\emph{identical} expression, so odd $n$ is cut at \key{exactly half} the same
+constant. \key{Sharp at $k=1,5,7,9$.}}
+
+\key{Being bipartite helps} --- worth a factor of two in $n$.
 \end{frame}
 
-%% ---------------------------------------------------- 8. FINDINGS 4: tiling
-\begin{frame}{FINDINGS 4 --- tiling}
-Drop rotation invariance: $T=T_{n-1}\cdots T_0$, and we need $T=I$.
+%% ------------------------------------ 8. FINDINGS 4 -- exact certification
+\begin{frame}{FINDINGS 4 --- a theorem for $k\le9$, exact arithmetic beyond}
+\key{Theorem (closed form).} For $k\in\{1,2,3,4,5,7,9\}$ the negative set of
+$D_k$ on $[-1,1]$ is the end band(s) alone --- Sturm's theorem on one integer
+polynomial --- so only the grid point $j=1$ (and, for odd $n$ and odd $k$,
+$j=\tfrac{n-1}{2}$) can fail:
+\[
+  P(n,k)\ \text{Ramanujan}\iff 2k<n\le B_k,\quad\text{and }n\le B_k/2\text{ if }n,k\text{ odd}.
+\]
+From $k=10$ on an interior band always appears, and the list has gaps.
 
-\key{Docking.} $T_i$ sees only $[i-k-1,i+k]$, so fixing $k+1$ weights at each
-end of a tile makes its product independent of its neighbours: tiles
-\key{compose}.
-
-\begin{block}{Theorem 4 (tiling)}
-If an identity tile exists for every length in $[L,2L)$, then
-$Z(P(n,k))=M(P(n,k))=2k+2$ for \key{every} $n\ge L$.
-\end{block}
-{\key{Proof sketch.} Every $n\ge L$ is a sum of lengths from $[L,2L)$;
-concatenating gives $T=I$. In fact $[L,2L)$ is only \emph{sufficient}: $n$ need
-only be a \emph{sum} of certified lengths.}
-
-\kb{\key{An all-$n$ theorem, reduced to finitely many finite problems.}}
+\kb{\key{Beyond $k=9$:} $D$ is an algebraic integer of $\mathbb Z[\zeta_m]$,
+decided exactly mod $\Phi_m$ --- a finite check after a theorem made the problem finite.}
 \end{frame}
 
-%% --------------------------------------------- 9. FINDINGS 5: certification
-\begin{frame}{FINDINGS 5 --- exact certification}
-$T_{\text{tile}}=I$ is rational in the weights, so bounding it directly needs
-interval matrix products. Avoided: by Theorem 1,
-$T_{\text{tile}}=I\iff\operatorname{null}A_{\text{one tile}}=2k+2$, certified by
-the \key{bilinear} system $A(w)K(X)=0$, whose affine Jacobian lets a
-\key{Krawczyk contraction} need only three norms.
-
-\key{And the arithmetic is exact.} The box centre is dyadic, $f$ and $J$ have
-integer coefficients, and $Y$ is \emph{arbitrary} --- so rounding it to a
-rational costs nothing. Balanced limb decomposition keeps the product exact at
-BLAS speed.
-
-\kb{All \key{\NtileAll} tiles pass, $\alpha\le\MaxAlpha$; each $\alpha<1$ is an
-\key{exact integer comparison}, not an estimate.}
-\end{frame}
-
-%% ------------------------------------------------- 10. FINDINGS 6: results
-\begin{frame}{FINDINGS 6 --- results}
-\begin{center}\footnotesize
-\begin{tabular}{@{}clccc@{}}
-\toprule
-$k$ & settled & $L$ & certified tiles & $\max\alpha$\\
-\midrule
-$2$ & every $n$               & ---          & closed form   & ---\\
-$3$ & every $n$               & $\LvalThree$ & $\NtileThree$ & $3.2\times10^{-10}$\\
-$4$ & every $n$               & $\LvalFour$  & $\NtileFour$  & $7.6\times10^{-10}$\\
-$5$ & every $n\ge\SettleFive$ & $\LvalFive$  & $\NtileFive$  & $1.0\times10^{-9}$\\
-\bottomrule
-\end{tabular}
+%% -------------------------------------- 9. FINDINGS 5 -- the classification
+\begin{frame}{FINDINGS 5 --- the complete classification}
+\begin{center}
+\includegraphics[width=0.52\textwidth]{fig_ramclass.pdf}
 \end{center}
-\begin{itemize}\setlength\itemsep{0.05em}
-\item $Z(P(n,3))=8$ for every $n\ge13$, and $13$ is optimal --- this
-\key{proves Conjecture 5}.
-\item $Z(P(n,2)),Z(P(n,3)),Z(P(n,4))$ determined for \key{every} $n$, the last
-two for the first time. \key{No divisibility conditions; primes included.}
-\end{itemize}
-The $k=3$ sequence runs $6,6,6,8,7,7,8,8,\dots$ --- non-monotone, which is
-how the published proof went wrong.
+\vspace{-0.9em}
+\kb{\key{Theorem.} Every $n$, \emph{every} $k$: exactly \key{$\RamAllTotal$}
+pairs satisfy the RH ($\RamAllIso$ up to isomorphism), from $\RamAllCases$ cases
+in \key{exact arithmetic}. Nothing past $k=\RamAllMaxK$ qualifies.}
 \end{frame}
 
-%% ---------------------------------------------------------- 11. CONCLUSIONS
+%% ------------------------------------ 10. FINDINGS 6 -- the same engine
+\begin{frame}{FINDINGS 6 --- the same engine}
+The same decomposition settles the \key{inverse eigenvalue problem} here: over
+\emph{every} matrix carrying the pattern, eliminating the inner coordinates
+leaves one recurrence of order $2k+2$, so $\operatorname{null}A\le2k+2$.
+
+\key{That ceiling equals the best known upper bound on $Z$} --- so the method
+either settles it completely or cannot settle it at all.
+
+\kb{Building the matrix from interchangeable \key{tiles} turns an all-$n$ claim
+into finitely many finite ones. Certifying $\NtileAll$ tiles exactly gives
+$Z(P(n,k))=M(P(n,k))=2k+2$ for \key{every} $n$ at $k=2,3,4$ --- proving
+\key{Conjecture 5} of a 2026 note.}
+\end{frame}
+
+%% --------------------------------------------------------- 11. CONCLUSIONS
 \begin{frame}{CONCLUSIONS}
-\key{How this answers the question.} The ceiling makes the method exactly as
-strong as the target; the congruence wall shows symmetry cannot reach all $n$;
-tiling breaks it and supplies the \key{uniformity in $n$} the 2026 note
-identified as missing.
+\key{How this answers the question.} Clearing the radicals gives one integer
+polynomial; it factors into a form with \emph{no $k$ in it}; Dirichlet bounds
+$n$ uniformly in $k$; for $k\le9$ ($k\ne6,8$) the answer is a theorem, and the
+finite remainder is decided in exact arithmetic.
 
-\key{Limitations.}
-\begin{itemize}\setlength\itemsep{0.05em}
-\item $k\ge6$: no tiles. $k=5$: threshold $\SettleFive$ not optimal.
-\item $M(P(n,4))$ open at one value, $n=24$: there $Z=10$, no certificate.
-\item Whether $M=Z$ in general is open; the rank law is verified, not proved.
-\end{itemize}
+\key{Proved:} criterion, corner form, finiteness, parity, closed form,
+ceiling, symbol classification, tiling. \key{Finite exact checks:} the census
+for $k\ge10$, small $Z$. \key{One computer-assisted existence proof:} the tiles.
 
-\key{Unexpected problems.} A stalling search was twice mistaken for
-non-existence --- which is why every search now runs with a control.
+\key{Open.} $M(P(24,4))$; tiles at $k\ge6$; the leading-coefficient criterion;
+a hand proof of tile existence.
 \end{frame}
 
 %% ---------------------------------------------------------- 12. REFERENCES
 \begin{frame}{REFERENCES \& ACKNOWLEDGEMENTS}
 \begin{enumerate}\setlength\itemsep{0pt}
-\item Rashidi et al., \emph{JACODESMATH} 7 (2020) 183--193.
+\item Terras, \emph{Zeta Functions of Graphs}, CUP (2010); \emph{Zeta
+      Functions and Chaos}, notes (2009), Ex.\ 9.
+\item Lubotzky, Phillips, Sarnak, \emph{Combinatorica} 8 (1988) 261--277.
+\item Gera, St\u{a}nic\u{a}, \emph{Australas.\ J. Combin.} 49 (2011) 39--45.
+\item Le, Sander, \emph{Electron.\ J. Combin.} 20 (2013) \#P35.
 \item Krishnan, arXiv:2607.19412 (2026).
+\item Rashidi et al., \emph{JACODESMATH} 7 (2020) 183--193.
 \item AIM Minimum Rank Work Group, \emph{LAA} 428 (2008) 1628--1648.
-\item Fallat, Hogben, arXiv:1102.5142 (2011).
-\item Duong et al., \emph{Special Matrices} 8 (2020) 221--234.
-\item Brimkov, Fast, Hicks, \emph{EJOR} 273 (2019) 889--903.
-\item Fabila-Carrasco, Lled\'o, \emph{Symmetry} 11 (2019) 1163.
 \item Niven, \emph{Irrational Numbers}, Carus Monographs 11 (1956).
 \end{enumerate}
 \key{Acknowledgements.} All mathematics, code and computation are my own.

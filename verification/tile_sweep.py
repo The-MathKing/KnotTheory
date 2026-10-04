@@ -6,13 +6,17 @@ such n and Z(P(n,k)) = M(P(n,k)) = 2k+2 for all n >= L, with no congruence
 condition.  This script does the solving and then the end-to-end test: build the
 actual matrix on P(n,k) from a tiling and check its nullity.
 """
+
+import os as _os
+_REPO = _os.path.abspath(_os.path.join(
+    _os.path.dirname(__file__), ".."))
 import glob as glob_mod
 import os
 import sys
 
 import numpy as np
 
-sys.path.insert(0, "/Volumes/2TB/scifair/verification")
+sys.path.insert(0, f"{_REPO}/verification")
 from tiles import (solve_tile, tile_product, tile_sequence, dock_weights,
                    build_matrix, monodromy_range, extend_tile)
 
@@ -38,7 +42,7 @@ def main():
     sols = {}
     # reuse tiles already on disk: a sweep restarted over a wider range should
     # not re-solve lengths that are done
-    for f in glob_mod.glob(f"/Volumes/2TB/scifair/results/zero_forcing/"
+    for f in glob_mod.glob(f"{_REPO}/results/zero_forcing/"
                            f"tile_*_{k}.npy"):
         ll = int(os.path.basename(f).split("_")[1])
         if lo <= ll <= hi:
@@ -69,7 +73,7 @@ def main():
         ok = err < 1e-10 and -negme > 1e-3
         if ok:
             sols[l] = w
-            np.save(f"/Volumes/2TB/scifair/results/zero_forcing/"
+            np.save(f"{_REPO}/results/zero_forcing/"
                     f"tile_{l}_{k}.npy", w)
         print(f" {l:5d}{5*nint:10d}{err:13.2e}{-negme:18.4f}   "
               f"{'IDENTITY TILE' if ok else 'no'}")

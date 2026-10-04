@@ -16,13 +16,17 @@ eight such sets degenerate (a weight collapses), so no rational certificate
 exists there.  This script (a) verifies the proposition numerically, and
 (b) searches Galois-closed sets across many (n,d) for a realisable one.
 """
+
+import os as _os
+_REPO = _os.path.abspath(_os.path.join(
+    _os.path.dirname(__file__), ".."))
 import itertools
 import sys
 from math import gcd
 
 import numpy as np
 
-sys.path.insert(0, "/Volumes/2TB/scifair/verification")
+sys.path.insert(0, f"{_REPO}/verification")
 from period_d_blocks import blocks
 from prescribe_symbol import solve_for, grid_interior
 from verify_period_d_cert import verify
@@ -100,6 +104,6 @@ if __name__ == "__main__":
             print(f"{d:>3} {n:>5} {m:>4} {len(sets):>5} {best:>34}", flush=True)
     print(f"\nrealisable Galois-closed sets found: {len(found)}")
     for (d, n, orders, w) in found:
-        np.save(f"/Volumes/2TB/scifair/results/zero_forcing/"
+        np.save(f"{_REPO}/results/zero_forcing/"
                 f"rational_cert_k{k}_d{d}_n{n}.npy", w)
         print(f"   k={k} d={d} n={n} orders={orders}")

@@ -12,12 +12,16 @@ This sweeps n for a fixed k and reports, for each, whether SOME root set gives
 a realisable certificate -- stopping at the first success per n, since one is
 all a lower bound needs.
 """
+
+import os as _os
+_REPO = _os.path.abspath(_os.path.join(
+    _os.path.dirname(__file__), ".."))
 import itertools
 import sys
 
 import numpy as np
 
-sys.path.insert(0, "/Volumes/2TB/scifair/verification")
+sys.path.insert(0, f"{_REPO}/verification")
 from prescribe_symbol import solve_for, grid_interior
 from verify_period_d_cert import verify
 
@@ -61,7 +65,7 @@ for n in ns:
         hits.append((n, ls))
         print(f"{n:>5} {m:>5} {len(G):>9} {len(combos):>10} {tried:>6} "
               f"{'CERTIFICATE':>14} {minoff:>9.4f} {gap:>10.2e}", flush=True)
-        np.save(f"/Volumes/2TB/scifair/results/zero_forcing/"
+        np.save(f"{_REPO}/results/zero_forcing/"
                 f"cert_k{k}_d{d}_n{n}.npy", w)
     else:
         print(f"{n:>5} {m:>5} {len(G):>9} {len(combos):>10} {tried:>6} "

@@ -1,0 +1,156 @@
+% ---------------------------------------------------------------------------
+% The rank hypothesis holds for every k.  AI-DRAFTED, 4 October 2026
+% (assistance record §10); machine-checked claims are marked; the prose is to
+% be rewritten by the author.
+% ---------------------------------------------------------------------------
+\subsection*{The rank hypothesis holds for every $k$}
+\label{sec:tilesrank}
+
+Theorem~\ref{thm:tilesallk} is conditional on one rank. We now show the rank
+condition holds for every $k$, at every nonresonant elliptic dock, so that
+the conclusion is unconditional.
+
+Fix an elliptic dock and write $z_1,\dots,z_{2k+2}$ for the eigenvalues of
+$S_0$, distinct and unimodular, $s_j=z_j+z_j^{-1}\in(-2,2)$ the roots of the
+dock symbol, and $\phi_j=(z_j^{-k-1},\dots,z_j^{k})^{\!\top}$,
+$\psi_j$ the right and left eigenvectors, normalised by $\psi_j^{\!\top}\phi_j=1$.
+Call the dock \emph{nonresonant} if no ratio $z_j/z_l$ ($j\ne l$) is a root of
+unity, the only relations $z_jz_b=z_az_l$ among the eigenvalues are the
+trivial ones ($\{j,b\}=\{a,l\}$ or $(a,b)=(\bar l,\bar j)$ with $z_{\bar j}=z_j^{-1}$,
+which identifies the two copies of each root space of $\mathfrak{sp}$), and no
+$z_j$ equals a ratio $z_a/z_b$. For the explicit family of Lemma~\ref{lem:elliptic} this
+holds for all but countably many $c_0$, since each excluded relation is a
+nontrivial algebraic condition on $c_0$ and the eigenvalue angles are
+nonconstant in $c_0$.
+
+Let $w_0$ be the dock point and $A=dP_\ell(w_0)$, right-translated to
+$\mathfrak{sp}(B)$. Since every step matrix at $w_0$ is $S_0$, the direction of
+a weight perturbation at position $t$ is
+\[
+  Y_t=\operatorname{Ad}(S_0^{\,m_t})(X),\qquad m_t=\ell-1-t,
+\]
+with $X$ independent of $t$ for each weight type, and $X=\sum_i e_r\otimes v_i$
+over the rows $i$ in which that weight occurs, where $e_r$ is the last basis
+vector and $v_i$ the derivative of row $i$ of the recurrence. In the eigenbasis,
+$\operatorname{Ad}(S_0^{m})$ multiplies the $(j,l)$ entry by $(z_j/z_l)^{m}$; the
+diagonal entries form the Cartan subalgebra $\mathfrak h$, of dimension $k+1$
+in $\mathfrak{sp}$ (entries come in opposite pairs), and the off-diagonal
+positions are the root spaces.
+
+\begin{lemma}[First order]\label{lem:firstorder}
+At $w_0$, for $\ell$ large, the image of $A$ is the sum of all root spaces
+together with a $3$-dimensional subspace of $\mathfrak h$. In particular
+$\operatorname{rank}A=\dim Sp(2k+2)-(k-2)$.
+\end{lemma}
+
+\begin{proof}
+\emph{Root spaces.} Take the weight $a$ at position $t$. It enters the rows
+$i=t-k,\ t,\ t+k$, with $v_i$ supported at the single offset $k$, $0$, $-k$
+and values $-e_0/c_0$, $-d_0/c_0$, $-e_0/c_0$ (from $y_t=-(x_{t-1}+a_tx_t+x_{t+1})/c_t$).
+Since $\psi_j^{\!\top}e_r\ne0$ --- if the last entry of a left eigenvector of
+the companion matrix $S_0$ vanished, the shift structure would force all its
+entries to vanish --- the $(j,l)$ entry of $Y_t$ is, up to the nonzero factor
+$\psi_{j,r}/(\text{lead}\cdot z_l)$ and the phase $(z_j/z_l)^{m_t}$,
+\[
+  -\frac{1}{c_0}\Bigl(d_0+e_0z_j^{\,k}+e_0z_j^{-k}\Bigr)
+  = -\frac{d_0+e_0\,t_k(s_j)}{c_0}
+  = -\frac{c_0}{a_0+s_j}\ \ne0,
+\]
+using $(a_0+s_j)(d_0+e_0t_k(s_j))=c_0^2$ at a root. It does not depend on $l$.
+So every root space is touched, and as $m_t$ ranges over $\ell-2k-2$ values the
+phases $(z_j/z_l)^{m_t}$ are distinct for distinct root spaces (nonresonance),
+so the $Y_t$ span every root space once $\ell$ exceeds the number of root
+spaces plus a constant.
+
+\emph{Cartan.} The diagonal entry $j$ of $Y_t$ is independent of $m_t$ and
+equals the first-order shift of the eigenphase $\theta_j$ under the perturbation,
+i.e.\ the derivative of the dock symbol at $s_j$ with respect to the perturbed
+weight, divided by $F'(s_j)$. With $u_j=a_0+s_j$ these derivatives are
+\[
+  \partial_a F=\tfrac{c_0^2}{u_j},\quad
+  \partial_dF=u_j,\quad
+  \partial_eF=c_0^2,\quad
+  \partial_cF=-2c_0,\quad
+  \partial_bF=\tfrac{c_0^2 s_j}{u_j}=c_0^2-\tfrac{a_0c_0^2}{u_j},
+\]
+all evaluated at the roots, so the Cartan images lie in
+$\operatorname{span}\{(1)_j,(u_j)_j,(1/u_j)_j\}$, of dimension exactly $3$ for
+$k+1\ge3$ distinct $u_j$. Hence the Cartan part of the image has dimension $3$.
+\end{proof}
+
+\begin{lemma}[Second order fills the Cartan]\label{lem:secondorder}
+Let $\delta_1$ be the $a$-perturbation at one interior position. For all
+sufficiently small $\varepsilon\ne0$ and $\ell$ large,
+$\operatorname{rank}dP_\ell(w_0+\varepsilon\delta_1)=\dim Sp(2k+2)$.
+\end{lemma}
+
+\begin{proof}
+Write $A(\varepsilon)$ for the right-translated differential at
+$w_0+\varepsilon\delta_1$ and $B=\frac{d}{d\varepsilon}A(\varepsilon)|_{0}$,
+which lies in $\mathfrak{sp}$. By the block form of $A(\varepsilon)$ in a basis
+adapted to $\ker A$ and $\operatorname{im}A$, for small $\varepsilon\ne0$
+\[
+  \operatorname{rank}A(\varepsilon)\ \ge\ \operatorname{rank}A+\operatorname{rank}\bigl(\pi\circ B|_{\ker A}\bigr),
+\]
+with $\pi$ the projection onto $\mathfrak{sp}/\operatorname{im}A$, which by
+Lemma~\ref{lem:firstorder} is a $(k-2)$-dimensional quotient of $\mathfrak h$.
+For a perturbation $\delta$ at position $t$ and $\delta_1$ at position $t_1$,
+differentiating the right-translated differential gives the bracket
+\[
+  B[\delta]=[Y_{t_1},Y_t]\qquad(\text{the two orderings give opposite signs}),
+\]
+whose Cartan part at $j$ is, writing $Y_t=\operatorname{Ad}(S_0^{m_t})(\alpha\beta^{\!\top})$
+in the eigenbasis (rank one, by the proof of Lemma~\ref{lem:firstorder}),
+$\gamma_j=\alpha_j\beta_j$ and $\Delta=m_{t_1}-m_t$,
+\[
+  h(\Delta)_j=\gamma_j\Bigl(c_{-\Delta}z_j^{\Delta}-c_{\Delta}z_j^{-\Delta}\Bigr),
+  \qquad c_\Delta=\sum_l\gamma_lz_l^{\Delta}.
+\]
+Now take $\delta=\sum_t\lambda_t\delta_t$ over many positions $t$ with
+$\lambda$ chosen so that $A\delta=0$: this imposes one linear condition per root
+space, $\sum_t\lambda_t(z_j/z_l)^{m_t}=0$, and three on the Cartan,
+$\sum_t\lambda_t=0$ (the Cartan part of $Y_t$ is $m_t$-independent). Then
+$\pi B[\delta]=\pi\sum_t\lambda_th(\Delta_t)$. The map
+$\lambda\mapsto(\text{constraints},\ \sum_t\lambda_th(\Delta_t))$ is a
+Vandermonde-type map in the frequencies $z_j/z_l$, $1$, and $z_j^{\pm1}$; under
+nonresonance these frequencies are pairwise distinct, so for enough positions
+the map is onto, and $\pi B|_{\ker A}$ has image $\pi(\operatorname{span}_\Delta h(\Delta))$.
+Finally $\operatorname{span}_\Delta\{h(\Delta)\}=\mathfrak h$: a linear relation
+$\sum_j\mu_jh(\Delta)_j=0$ holding for all $\Delta$ in an infinite set is a
+vanishing exponential polynomial in $\Delta$ with frequencies $z_jz_l^{\pm1}$,
+which by nonresonance are distinct, so (Skolem--Mahler--Lech in its elementary
+form for nondegenerate sequences) every coefficient $\mu_j\gamma_j\gamma_l$
+vanishes, and $\gamma_j\ne0$ by the first-order computation. Hence
+$\operatorname{rank}(\pi B|_{\ker A})=k-2$.
+\end{proof}
+
+\begin{theorem}[All $k$]\label{thm:allkranks}
+For every $k\ge2$ there are $L$ and identity tiles of every length $\ell\ge L$;
+hence
+\[
+  Z(P(n,k))=M(P(n,k))=2k+2\qquad\text{for all sufficiently large }n .
+\]
+\end{theorem}
+
+\begin{proof}
+Choose a nonresonant elliptic dock (Lemma~\ref{lem:elliptic} and the remark
+after it). Lemma~\ref{lem:secondorder} supplies a point at which the tile
+differential has full rank, Lemma~\ref{lem:wronskian} supplies the group, and
+Theorem~\ref{thm:tilesallk} finishes.
+\end{proof}
+
+\begin{remark}[What is checked by machine, and what is not]
+Lemma~\ref{lem:firstorder} is verified numerically: at every $k\le9$ computed
+the dock-point rank is $\dim Sp-(k-2)$ at a nonresonant dock, every root space
+carries a nonzero component, and the Cartan part of the image has dimension
+exactly $3$ (\texttt{verification/tile\_controllability.py}). Lemma~\ref{lem:secondorder}
+is verified in the strongest form: one $a$-perturbation at one position lifts
+the rank to $\dim Sp$ at $k=3,4,6,7,8$ with nonresonant docks, and fails to
+at the symmetric dock $(0,1,0,1)$ for $k=5$, whose symbol is even in $s$ so
+that $z\mapsto-z$ pairs eigenvalues --- a resonance, exactly as the proof
+predicts. The exact certificates of Proposition~\ref{prop:tilesallk} remain
+the independent check for $k\le\TileAllK$. The nonresonance hypothesis is
+used only to separate frequencies in the Vandermonde arguments; we expect a
+weaker condition suffices, and we have not pursued it. The threshold $L(k)$
+remains ineffective.
+\end{remark}

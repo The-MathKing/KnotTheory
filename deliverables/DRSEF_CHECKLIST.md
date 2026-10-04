@@ -46,8 +46,8 @@ should be needed — confirm with the adult sponsor.
 
 ## Research binder — assemble from what exists
 
-- [ ] `manuscript/zf_paper.pdf` — the full paper (34 pp)
-- [ ] `manuscript/zf_log.pdf` — the dated research log (22 pp). **Bring this.**
+- [ ] `manuscript/zf_paper.pdf` — the full paper (63 pp as of 1 Oct 2026; see `arxiv_submission.md` on splitting it)
+- [ ] `manuscript/zf_log.pdf` — the dated research log (44 pp). **Bring this.**
       It is the strongest artifact in the project: dated entries, refuted
       conjectures preserved with the wrong version intact, and a Status section
       listing eleven claims withdrawn or corrected. It is direct evidence for
@@ -55,7 +55,7 @@ should be needed — confirm with the adult sponsor.
       *understanding limitations*.
 - [ ] `deliverables/presentation_pages/page-01..12.png` — the 12-page ISEF Project
       Presentation, one PNG per page, Mathematics/CS template order
-- [ ] `results/zero_forcing/verify_all.txt` — 85 checks, all passing, one page
+- [ ] `results/zero_forcing/verify_all.txt` — the suite transcript (141 checks as of 1 Oct 2026; the count and the runtime are printed on the last two lines), all passing
 - [ ] Printout of `verification/certify_tiles.py` output for one tile, as a
       concrete example of what "certified" means
 

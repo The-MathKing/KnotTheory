@@ -27,11 +27,15 @@ This module builds the machinery and checks the factorisation claim before any
 solving: it tiles a weight sequence, forms the actual matrix on P(n,k), and
 compares its monodromy against the product of the tile monodromies.
 """
+
+import os as _os
+_REPO = _os.path.abspath(_os.path.join(
+    _os.path.dirname(__file__), ".."))
 import sys
 
 import numpy as np
 
-sys.path.insert(0, "/Volumes/2TB/scifair/verification")
+sys.path.insert(0, f"{_REPO}/verification")
 from recurrence_order import gamma_row
 
 

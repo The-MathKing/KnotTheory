@@ -27,6 +27,10 @@ Protocol.
     precision is evidence that no certificate of that nullity exists; a
     plateau that reaches 1e-16 on some start is a certificate.
 """
+
+import os as _os
+_REPO = _os.path.abspath(_os.path.join(
+    _os.path.dirname(__file__), ".."))
 import sys
 import time
 import numpy as np
@@ -84,7 +88,7 @@ def main(cases, tries=60):
                        default=None) for cl in ("sym", "cs")}
         summ.append((n, k, Z, att["sym"], att["cs"], time.time() - t0))
         for cl, w in certs.items():
-            np.save(f"/Volumes/2TB/scifair/results/zero_forcing/"
+            np.save(f"{_REPO}/results/zero_forcing/"
                     f"cert_{cl}_{n}_{k}.npy", w)
     print("\nSUMMARY   max attained nullity = rigorous lower bound on Z")
     print(f"{'graph':>10} {'2k+2':>6} {'sym':>5} {'cs':>5} {'Z':>4} "

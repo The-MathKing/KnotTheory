@@ -1,0 +1,12 @@
+#!/bin/bash
+# Manim calls `pdflatex -interaction=batchmode -output-format=pdf -halt-on-error -output-directory=DIR file.tex`.
+# This machine has only tectonic, so translate.
+outdir=.
+for a in "$@"; do
+  case "$a" in
+    -output-directory=*) outdir="${a#-output-directory=}";;
+    -*) ;;
+    *) tex="$a";;
+  esac
+done
+exec tectonic -X compile --keep-logs --outdir "$outdir" "$tex" > /dev/null 2>&1

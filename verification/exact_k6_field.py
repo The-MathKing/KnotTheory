@@ -16,13 +16,17 @@ So: fix all but a handful of the (p_j, q_j) at small rationals, solve the rest
 at high precision, and test the result for rationality.  A rational solution
 gives weights exactly in K, and the exact check in Q(zeta_m) then settles it.
 """
+
+import os as _os
+_REPO = _os.path.abspath(_os.path.join(
+    _os.path.dirname(__file__), ".."))
 import sys
 from fractions import Fraction
 
 import mpmath as mp
 import numpy as np
 
-sys.path.insert(0, "/Volumes/2TB/scifair/verification")
+sys.path.insert(0, f"{_REPO}/verification")
 from exact_certifier import Cyclo
 from exact_subfield_verify import field_basis, det_exact, blocks_exact, to_field
 from verify_period_d_cert import verify
@@ -123,7 +127,7 @@ if __name__ == "__main__":
         v, wnum = run(H, S, D)
         if v is not None:
             print(f"\n*** rational-in-K solution found for H={H}, D={D} ***")
-            np.save(f"/Volumes/2TB/scifair/results/zero_forcing/"
+            np.save(f"{_REPO}/results/zero_forcing/"
                     f"exactK_k6_D{D}.npy", wnum)
             break
         print()

@@ -22,6 +22,10 @@ Realisability is still a separate hurdle: the solve may return weights with a
 vanishing required entry, in which case that target G* is unreachable even
 though it is in the image of the linearisation.
 """
+
+import os as _os
+_REPO = _os.path.abspath(_os.path.join(
+    _os.path.dirname(__file__), ".."))
 import itertools
 import sys
 
@@ -30,7 +34,7 @@ from scipy.optimize import least_squares
 
 WSYM = 1.0e4   # weight on the symbol residual relative to the barrier
 
-sys.path.insert(0, "/Volumes/2TB/scifair/verification")
+sys.path.insert(0, f"{_REPO}/verification")
 from period_d_rank import G_coeffs
 from period_d_blocks import blocks
 

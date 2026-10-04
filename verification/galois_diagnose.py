@@ -12,10 +12,14 @@ So: solve with NO barrier first.
   (2) if it does converge, are the required weights nonzero?  Only then is
       realisability the live question, and only then is a barrier meaningful.
 """
+
+import os as _os
+_REPO = _os.path.abspath(_os.path.join(
+    _os.path.dirname(__file__), ".."))
 import sys
 import numpy as np
 
-sys.path.insert(0, "/Volumes/2TB/scifair/verification")
+sys.path.insert(0, f"{_REPO}/verification")
 from galois_closed_sets import galois_closed_sets, interior_orbits
 from prescribe_symbol import solve_for, grid_interior
 from verify_period_d_cert import verify
@@ -44,5 +48,5 @@ for (orders, ls) in sets:
     print(f"{str(orders):>20} {str(bool(set(ls) & set(sigma0))):>10} "
           f"{err:>12.2e} {minnz:>15.5f} {r:>8}  {verdict}", flush=True)
     if err < 1e-9 and minnz > 1e-2:
-        np.save(f"/Volumes/2TB/scifair/results/zero_forcing/"
+        np.save(f"{_REPO}/results/zero_forcing/"
                 f"galois_cert_k{k}_d{d}_n{n}_{'_'.join(map(str,orders))}.npy", w)

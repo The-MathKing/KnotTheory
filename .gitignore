@@ -1,6 +1,20 @@
-manuscript/
+manuscript/*.aux
+manuscript/*.log
+manuscript/*.out
+manuscript/*.bak
 .DS_Store
 __pycache__/
 *.pyc
 /audit
 src/models/audit
+
+# video build outputs and large media
+video/tts_venv/
+video/*.log
+video/nohup.out
+video/**/media/
+video/**/audio/
+video/**/out/
+video/**/*.log
+*.mp4
+*.wav

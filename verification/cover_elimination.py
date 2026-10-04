@@ -23,13 +23,17 @@ gives null A <= D for every matrix carrying the pattern, not just equivariant
 ones.  This checks that injectivity directly, on matrices tuned to have
 genuinely nonzero nullity.
 """
+
+import os as _os
+_REPO = _os.path.abspath(_os.path.join(
+    _os.path.dirname(__file__), ".."))
 import itertools
 import sys
 
 import numpy as np
 from scipy.optimize import brentq
 
-sys.path.insert(0, "/Volumes/2TB/scifair/verification")
+sys.path.insert(0, f"{_REPO}/verification")
 from cyclic_covers import build_full, blocks
 
 

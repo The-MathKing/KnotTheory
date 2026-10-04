@@ -34,6 +34,10 @@ A zero of f gives A(w) K = 0 with K of graph form, hence rank K = 2k+2 exactly,
 hence null A >= 2k+2.  With cor:ceiling giving null A <= 2k+2, the nullity is
 exactly 2k+2, so M(P(n,k)) = Z(P(n,k)) = 2k+2.
 """
+
+import os as _os
+_REPO = _os.path.abspath(_os.path.join(
+    _os.path.dirname(__file__), ".."))
 import sys
 from fractions import Fraction
 
@@ -41,14 +45,14 @@ import numpy as np
 import scipy.linalg as sla
 from mpmath import mp, mpf, matrix as mpm
 
-sys.path.insert(0, "/Volumes/2TB/scifair/verification")
+sys.path.insert(0, f"{_REPO}/verification")
 from certify_general import pattern_cells, assemble, graph_form, build_K, jac
 
 L_LIP = 12
 
 
 def load(n, k):
-    wg = np.load(f"/Volumes/2TB/scifair/results/zero_forcing/w_{n}_{k}.npy")
+    wg = np.load(f"{_REPO}/results/zero_forcing/w_{n}_{k}.npy")
     b, c, e = wg[:n], wg[n:2*n], wg[2*n:3*n]
     a, d = wg[3*n:4*n], wg[4*n:5*n]
     return np.concatenate([a, d, b, c, e])

@@ -14,12 +14,16 @@ general form of the construction, and it produces the high-nullity examples
 needed to test the ceiling sharply (a cover with nullity 2 against a window of
 length 12 tests nothing).
 """
+
+import os as _os
+_REPO = _os.path.abspath(_os.path.join(
+    _os.path.dirname(__file__), ".."))
 import sys
 
 import numpy as np
 from scipy.optimize import least_squares
 
-sys.path.insert(0, "/Volumes/2TB/scifair/verification")
+sys.path.insert(0, f"{_REPO}/verification")
 from cyclic_covers import build_full, blocks
 
 
@@ -131,7 +135,7 @@ if __name__ == "__main__":
             print(f"{nm:>16} {nV:>3} {n:>4} {D:>7} {deg:>7} {'none':>8}")
             continue
         A, nul, minw, x = res
-        np.save(f"/Volumes/2TB/scifair/results/zero_forcing/"
+        np.save(f"{_REPO}/results/zero_forcing/"
                 f"coverA_{nm.split()[0]}_{n}.npy", A)
         print(f"{nm:>16} {nV:>3} {n:>4} {D:>7} {deg:>7} {nul:>8} "
               f"{minw:>8.4f}", flush=True)

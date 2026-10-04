@@ -19,13 +19,17 @@ This enumerates the subgroups H, forms the H-stable root sets of size k+1, and
 tests each for realisability -- looking for the largest H (smallest field) that
 admits a non-degenerate certificate.
 """
+
+import os as _os
+_REPO = _os.path.abspath(_os.path.join(
+    _os.path.dirname(__file__), ".."))
 import itertools
 import sys
 from math import gcd
 
 import numpy as np
 
-sys.path.insert(0, "/Volumes/2TB/scifair/verification")
+sys.path.insert(0, f"{_REPO}/verification")
 from prescribe_symbol import solve_for, grid_interior
 from verify_period_d_cert import verify
 
@@ -123,7 +127,7 @@ if __name__ == "__main__":
         print(f"\nBEST: H of index {index} -> weights lie in a degree-{index} "
               f"field over Q")
         print(f"  root set l = {ls}")
-        np.save(f"/Volumes/2TB/scifair/results/zero_forcing/"
+        np.save(f"{_REPO}/results/zero_forcing/"
                 f"subfield_cert_k{k}_d{d}_n{n}.npy", w)
     else:
         print("\nno H-stable realisable set found")

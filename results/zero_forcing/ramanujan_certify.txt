@@ -1,0 +1,64 @@
+Exact certification of the Ramanujan classification of P(n,k)
+A cubic graph is Ramanujan iff every nontrivial eigenvalue has
+|lambda| <= 2 sqrt 2; by Sunada this is the Riemann Hypothesis for
+its Ihara zeta function.  Criterion used, exactly:
+    D_k(u) = (7 + 4u T_k(u))^2 - 8(2u + 2T_k(u))^2  >=  0
+at u = cos(2 pi j/n) for every nontrivial index j.
+
+--- k = 1   (deg D_k = 4, certified bound B_k = 15) ---
+    Ramanujan (9): [3, 4, 5, 6, 7, 8, 10, 12, 14]
+    not Ramanujan (4): [9, 11, 13, 15]
+    no n > 15 is Ramanujan, by the certified bound
+--- k = 2   (deg D_k = 6, certified bound B_k = 23) ---
+    Ramanujan (19): [5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+    not Ramanujan (0): []
+    no n > 23 is Ramanujan, by the certified bound
+--- k = 3   (deg D_k = 8, certified bound B_k = 32) ---
+    Ramanujan (18): [7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 18, 20, 22, 24, 26, 28, 30, 32]
+    not Ramanujan (8): [17, 19, 21, 23, 25, 27, 29, 31]
+    no n > 32 is Ramanujan, by the certified bound
+--- k = 4   (deg D_k = 10, certified bound B_k = 42) ---
+    Ramanujan (34): [9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42]
+    not Ramanujan (0): []
+    no n > 42 is Ramanujan, by the certified bound
+--- k = 5   (deg D_k = 12, certified bound B_k = 51) ---
+    Ramanujan (28): [11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 28, 30, 32, 34, 36, 38, 40, 42, 44, 46, 48, 50]
+    not Ramanujan (13): [27, 29, 31, 33, 35, 37, 39, 41, 43, 45, 47, 49, 51]
+    no n > 51 is Ramanujan, by the certified bound
+--- k = 6   (deg D_k = 14, certified bound B_k = 61) ---
+    Ramanujan (20): [13, 14, 15, 16, 18, 20, 21, 22, 23, 25, 27, 28, 30, 32, 35, 37, 39, 42, 44, 49]
+    not Ramanujan (29): [17, 19, 24, 26, 29, 31, 33, 34, 36, 38, 40, 41, 43, 45, 46, 47, 48, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61]
+    no n > 61 is Ramanujan, by the certified bound
+--- k = 7   (deg D_k = 16, certified bound B_k = 71) ---
+    Ramanujan (39): [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 38, 40, 42, 44, 46, 48, 50, 52, 54, 56, 58, 60, 62, 64, 66, 68, 70]
+    not Ramanujan (18): [37, 39, 41, 43, 45, 47, 49, 51, 53, 55, 57, 59, 61, 63, 65, 67, 69, 71]
+    no n > 71 is Ramanujan, by the certified bound
+--- k = 8   (deg D_k = 18, certified bound B_k = 81) ---
+    Ramanujan (16): [17, 19, 20, 21, 22, 24, 26, 28, 29, 31, 33, 35, 38, 40, 42, 49]
+    not Ramanujan (49): [18, 23, 25, 27, 30, 32, 34, 36, 37, 39, 41, 43, 44, 45, 46, 47, 48, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, ...]
+    no n > 81 is Ramanujan, by the certified bound
+--- k = 9   (deg D_k = 20, certified bound B_k = 91) ---
+    Ramanujan (50): [19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 48, 50, 52, 54, 56, 58, 60, 62, 64, 66, 68, 70, 72, 74, 76, 78, 80, 82, 84, 86, 88, 90]
+    not Ramanujan (23): [47, 49, 51, 53, 55, 57, 59, 61, 63, 65, 67, 69, 71, 73, 75, 77, 79, 81, 83, 85, 87, 89, 91]
+    no n > 91 is Ramanujan, by the certified bound
+--- k = 10   (deg D_k = 22, certified bound B_k = 101) ---
+    Ramanujan (14): [21, 23, 25, 26, 28, 30, 32, 34, 37, 39, 41, 43, 50, 52]
+    not Ramanujan (67): [22, 24, 27, 29, 31, 33, 35, 36, 38, 40, 42, 44, 45, 46, 47, 48, 49, 51, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, ...]
+    no n > 101 is Ramanujan, by the certified bound
+
+==================================================================
+COMPLETE CLASSIFICATION  --  every case decided in exact arithmetic
+  k=1     9 Ramanujan values, largest n = 14    (bound 15)
+  k=2    19 Ramanujan values, largest n = 23    (bound 23)
+  k=3    18 Ramanujan values, largest n = 32    (bound 32)
+  k=4    34 Ramanujan values, largest n = 42    (bound 42)
+  k=5    28 Ramanujan values, largest n = 50    (bound 51)
+  k=6    20 Ramanujan values, largest n = 49    (bound 61)
+  k=7    39 Ramanujan values, largest n = 70    (bound 71)
+  k=8    16 Ramanujan values, largest n = 49    (bound 81)
+  k=9    50 Ramanujan values, largest n = 90    (bound 91)
+  k=10   14 Ramanujan values, largest n = 52    (bound 101)
+
+  cases certified: 458
+  disagreements with the float64 control: 0
+  ALL CERTIFIED

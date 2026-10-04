@@ -13,6 +13,10 @@ antipodal pairs, which would force c^2 = 0 if k were even.  k = 3 is odd, so by
 the parity theorem there is no obstruction, and the nullity is 2k+2 = 8 for
 every n divisible by 10.
 """
+
+import os as _os
+_REPO = _os.path.abspath(_os.path.join(
+    _os.path.dirname(__file__), ".."))
 import subprocess
 import numpy as np
 import sympy as sp
@@ -59,7 +63,7 @@ for n in (10, 20, 30, 40, 50, 60, 70, 80, 90, 100):
     ok = pattern_ok(A, n)
     Z = None
     if n <= 20:                       # exhaustive Z is only tractable here
-        Z = int(subprocess.run(["/Volumes/2TB/scifair/src/zero_forcing/c/zf",
+        Z = int(subprocess.run([f"{_REPO}/src/zero_forcing/c/zf",
                                 str(n), "3", "9"], capture_output=True,
                                text=True).stdout.split("Z=")[1].split()[0])
     good = (nul == 8 and ok and Z in (8, None))

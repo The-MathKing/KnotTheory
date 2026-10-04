@@ -1,0 +1,6 @@
+k=7 l=61 p=33554393: dock (0, 1, 0, -1) (E) exact: True; rank of Jacobian mod p = 136, dim Sp = 136  ->  (F) CERTIFIED
+k=8 l=75 p=33554393: dock (-1, 1, 0, 2) (E) exact: True; rank of Jacobian mod p = 171, dim Sp = 171  ->  (F) CERTIFIED
+k=9 l=89 p=33554393: dock (0, 1, 0, 2) (E) exact: True; rank of Jacobian mod p = 210, dim Sp = 210  ->  (F) CERTIFIED
+k=10 l=105 p=33554393: dock (1, 1, -1, 2) (E) exact: True; rank of Jacobian mod p = 253, dim Sp = 253  ->  (F) CERTIFIED
+k=11 l=123 p=33554393: dock (0, 1, 0, -2) (E) exact: True; rank of Jacobian mod p = 300, dim Sp = 300  ->  (F) CERTIFIED
+k=12 l=141 p=33554393: dock (0, 1, 1, 5) (E) exact: True; rank of Jacobian mod p = 351, dim Sp = 351  ->  (F) CERTIFIED

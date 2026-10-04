@@ -24,13 +24,17 @@ A "no" for some k is therefore a theorem about rational symbols, not a
 statement about how far we looked.  Irrational symbols are NOT covered --
 verification/period1_optimum.py searches those.
 """
+
+import os as _os
+_REPO = _os.path.abspath(_os.path.join(
+    _os.path.dirname(__file__), ".."))
 import sys
 from fractions import Fraction
 
 import numpy as np
 from sympy import totient
 
-sys.path.insert(0, "/Volumes/2TB/scifair/verification")
+sys.path.insert(0, f"{_REPO}/verification")
 from cyclotomic_certificates import lucas_poly, psi, membership
 
 

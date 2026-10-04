@@ -2,24 +2,43 @@
 
 ## What this project proved, in one paragraph
 
-There is a graph family called the generalized Petersen graphs, written P(n,k).
-There is a number attached to every graph called its **zero forcing number**,
-written Z(G), which measures how few vertices you must colour in at the start so
-that a simple spreading rule eventually colours the whole graph. For P(n,k),
-exact values of Z were known only for k = 2 and k = 3, and a correction note
-published in July 2026 explicitly recorded that a rigorous lower bound for
-k ≥ 4 was an open problem. This project (a) proves a structural theorem saying
-that *every* matrix carrying the graph's pattern collapses to a single linear
-recurrence of order 2k+2, so the entire matrix-certificate method has a hard
-ceiling of 2k+2 — which is exactly the best known upper bound — and (b) reaches
-that ceiling, giving the first exact values for k ≥ 4:
-Z(P(n,4)) = 10 for every n divisible by 60, 70 or 90, and Z(P(n,5)) = 12 for
-every n divisible by 24; and, by relaxing the
-rotational symmetry to period ceil(k/2), Z(P(60,6)) = Z(P(72,6)) = 14,
-Z(P(96,7)) = 16 and Z(P(96,8)) = 18 — the first values for k >= 6, so the
-ceiling is attained for every k from 2 to 8. The certificates are integer matrices whose nullity a
-computer verifies in exact arithmetic, so they are proofs rather than numerical
-observations.
+Every finite graph carries an **Ihara zeta function**, with an Euler product, a
+functional equation, and a prime number theorem counting closed paths. So every
+graph has a **Riemann Hypothesis** — and unlike the classical one, it is
+decidable: by the Ihara determinant formula a cubic graph satisfies it exactly
+when it is **Ramanujan**, every eigenvalue of modulus other than 3 having
+modulus at most 2√2. Part I of this project asks which generalized Petersen
+graphs P(n,k) satisfy it, a question whose ingredients have been on the shelf
+since the spectrum of P(n,k) was determined in 2011 but which appears never to
+have been put. Substituting the threshold into the characteristic polynomial and
+squaring twice — each squaring an equivalence, since both sides are provably
+positive — clears both radicals and leaves the nonnegativity of one integer
+polynomial D_k of degree 2k+2 on the grid cos(2πj/n). Three exact evaluations
+then settle the structure: D_k(1) = −7 forbids a band where the grid
+accumulates, so **only finitely many n qualify for each k**, with an explicit
+certified bound; and D_k(−1) is −7 for odd k but +9 for even k, while an even n
+lands exactly on an exempt trivial eigenvalue, giving a **parity law** in which
+bipartiteness helps. Then two further steps close it completely: D_k factors over Q(√2) and both
+factors collapse to one quadratic form **Q = 4x²+4y²−8√2|xy|+3 ≥ 0 that does not
+mention k**, so the forbidden set is one fixed region (four corner pieces, 0.43%
+of the square) for every k; and since failure is a *simultaneous Diophantine*
+condition, Dirichlet's approximation theorem forces it for every k once n ≥ 231.
+The family is therefore finite in **both** variables, and exhausting what
+remains gives the classification outright: exactly **460** pairs (n,k), **324**
+graphs up to isomorphism, from 13,110 cases in exact arithmetic — largest
+n = 112, and nothing at all past k = 45.
+
+Part II uses the same cyclic-cover decomposition on a different question: over
+**every** matrix carrying the graph's pattern, how degenerate can the zero
+eigenvalue be? Eliminating the inner coordinates collapses any such matrix to a
+single linear recurrence of order 2k+2, so the whole matrix-certificate method
+has a hard ceiling of 2k+2 — which is exactly the best known upper bound on the
+zero forcing number Z. Reaching that ceiling with tiles determines
+Z(P(n,k)) = M(P(n,k)) for **every** n at k = 2, 3, 4, proving Conjecture 5 of a
+July 2026 correction note and fixing at 13 the threshold it leaves open. (Note
+on priority: exact values for k ≥ 4 were **not** previously unknown — Rashidi et
+al. give Z(P(2k+1,k)) = 6 for k ≥ 5. What is new is the first n at which the
+bound 2k+2 is *attained*, and the first results holding for infinitely many n.)
 
 ## What is in this folder
 
@@ -47,6 +66,7 @@ Read in order. Each file assumes only the ones before it.
 | `18_isef_context.md` | competition landscape and requirements | — |
 | `23_antipodal_obstruction.md` | exactly when a certificate exists; the signed adjacency matrix; $k=3,7$ | 08, 10, 11 |
 | `24_general_n.md` | escaping the congruence classes; certified primes; all $n\ge22$ for $k=3$ | 09, 23 |
+| `25_riemann_hypothesis.md` | **Part I**: Ihara zeta, the RH for graphs, the criterion, finiteness, the parity law, the classification | 03, 07, 08, 10 |
 
 Four PDFs are also included:
 

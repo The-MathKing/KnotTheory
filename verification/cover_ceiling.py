@@ -13,11 +13,15 @@ the sum of squares of the r smallest eigenvalues, over fully non-equivariant
 weights -- and reports the largest r attained.  If that equals D, the span is
 tight; if it exceeds D, the conjecture is false and we learn so immediately.
 """
+
+import os as _os
+_REPO = _os.path.abspath(_os.path.join(
+    _os.path.dirname(__file__), ".."))
 import sys
 import numpy as np
 from scipy.optimize import minimize
 
-sys.path.insert(0, "/Volumes/2TB/scifair/verification")
+sys.path.insert(0, f"{_REPO}/verification")
 from cyclic_covers import blocks
 
 

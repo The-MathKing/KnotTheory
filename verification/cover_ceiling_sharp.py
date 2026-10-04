@@ -13,12 +13,16 @@ at the ceiling is exactly the statement that no nonzero kernel vector vanishes
 on D consecutive fibre coordinates, which is what bounds the nullity by D for
 EVERY matrix carrying the pattern -- the general form of the P(n,k) theorem.
 """
+
+import os as _os
+_REPO = _os.path.abspath(_os.path.join(
+    _os.path.dirname(__file__), ".."))
 import itertools
 import sys
 
 import numpy as np
 
-sys.path.insert(0, "/Volumes/2TB/scifair/verification")
+sys.path.insert(0, f"{_REPO}/verification")
 from cyclic_covers import build_full
 from cover_certificates import prescribe, true_span
 from cover_elimination import has_hamiltonian_path, window_injective

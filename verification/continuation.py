@@ -19,12 +19,16 @@ driven up to an O(1) value with the symbol still exact and every other
 required weight nonzero -- which is a certificate.  If tau stalls, the
 degeneracy is real and the target G* is unreachable with the correct pattern.
 """
+
+import os as _os
+_REPO = _os.path.abspath(_os.path.join(
+    _os.path.dirname(__file__), ".."))
 import sys
 
 import numpy as np
 from scipy.optimize import least_squares
 
-sys.path.insert(0, "/Volumes/2TB/scifair/verification")
+sys.path.insert(0, f"{_REPO}/verification")
 from period_d_rank import G_coeffs
 from prescribe_symbol import grid_interior, target_coeffs, true_nullity, solve_for
 from period_d_blocks import blocks

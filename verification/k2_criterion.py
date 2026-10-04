@@ -8,10 +8,14 @@ c^2 > 0, which happens for odd n >= 9 and even n >= 12.  For 7 | n the
 combinatorially symmetric integer matrix with spoke weights 1 and -1 does it
 instead.  This script builds both and counts nullity numerically.
 """
+
+import os as _os
+_REPO = _os.path.abspath(_os.path.join(
+    _os.path.dirname(__file__), ".."))
 import subprocess
 import numpy as np
 
-ZF = "/Volumes/2TB/scifair/src/zero_forcing/c/zf"
+ZF = f"{_REPO}/src/zero_forcing/c/zf"
 
 
 def true_Z(n):

@@ -1,0 +1,242 @@
+% ---------------------------------------------------------------------------
+% The leading-coefficient criterion is a theorem.  AI-DRAFTED, 4 October 2026
+% (assistance record §11).  The mathematics is machine-checked on every base in
+% the paper and on random bases (verification/leading_coefficient.py); the
+% prose is to be rewritten by the author.
+% ---------------------------------------------------------------------------
+\subsection*{The leading-coefficient criterion, proved}
+\label{sec:leading}
+
+Theorem~\ref{thm:leading} is proved here. The proof is not the chained
+elimination: that elimination solves for the unknowns of one fibre at a time
+and, as Theorem~\ref{thm:order} shows, its order can exceed the degree span.
+What gives exactly $D$ is a count that grades the unknowns twice --- once from
+the top of the symbol and once from the bottom --- and reads the kernel off a
+window that is cut by one grading on each side.
+
+\paragraph{Notation.}
+Throughout, $B$ has vertex set $V$, $|V|=m$, and for $i,j\in V$ let
+$E_{ij}\subset\mathbb Z$ be the set of exponents of $\zeta$ occurring in the
+entry $M_{ij}(\zeta)$: the voltages $v$ of the edges $i\to j$, their negatives
+for $j\to i$, both $\pm v$ for a loop at $i=j$, and always $0\in E_{ii}$ for
+the diagonal. Put $v^+(i,j)=\max E_{ij}$ (and $-\infty$ if $E_{ij}=\emptyset$).
+By $M(\zeta)^{\!\top}=M(\zeta^{-1})$ we have $E_{ji}=-E_{ij}$. Expanding the
+determinant, the top degree of $\det M(\zeta)$ is
+\[
+  V_{\max}=\max_{\sigma}\ \sum_{i\in V}v^+(i,\sigma(i)) ,
+\]
+the maximum over permutations $\sigma$ of $V$ with every $(i,\sigma(i))$ an
+entry, the bottom degree is $-V_{\max}$, and $D=2V_{\max}$. The \emph{strip}
+$B^{\infty}$ is the derived graph over $\mathbb Z$: vertices $(x,t)$, an edge
+$(x,t)\!-\!(y,t+v)$ for every edge $x\!-\!y$ of voltage $v$ and every $t$. A
+\emph{strip matrix} is a real symmetric matrix $A$ indexed by $V\times\mathbb Z$
+with the pattern of $B^{\infty}$, every edge weight nonzero and the diagonal
+arbitrary; no decay is imposed on anything. Its kernel $K$ is the space of all
+sequences $x=(x_{j,s})$ with $Ax=0$, and the row of $A$ at $(i,t)$ reads
+\begin{equation}\label{eq:striprow}
+  \sum_{j\in V}\ \sum_{v\in E_{ij}} a_{ij}^{v}(t)\,x_{j,t+v}=0 ,
+\end{equation}
+with $a_{ij}^{v}(t)\ne0$ for $v\ne0$ or $j\ne i$, and $a_{ii}^{0}(t)$ the free
+diagonal.
+
+\begin{lemma}[Potentials, and the leading matrix]\label{lem:potentials}
+There are integers $(p_i)_{i\in V}$, $(q_j)_{j\in V}$ with
+\[
+  p_i+q_j\ \ge\ v\quad\text{for all }i,j\text{ and }v\in E_{ij},
+  \qquad \sum_i p_i+\sum_j q_j=V_{\max}.
+\]
+Call $(i,j,v)$ \emph{tight} if $p_i+q_j=v$, and let $\Gamma$ be the bipartite
+graph on two copies of $V$ with an edge $ij$ for each tight $(i,j,v)$. Let $L$
+be the $m\times m$ matrix whose $(i,j)$ entry is the coefficient of
+$\zeta^{p_i+q_j}$ in $M_{ij}(\zeta)$. Then $\det L=c_{\max}$ as polynomials in
+the weights and diagonals, and the perfect matchings of $\Gamma$ are exactly
+the permutations attaining $V_{\max}$.
+\end{lemma}
+
+\begin{proof}
+The first statement is the duality theorem of the assignment problem with
+integer weights $v^+(i,j)$ (Egerv\'ary; see \cite[Thm.~17.5]{schrijver}),
+applied to the complete bipartite graph with $v^+(i,j)=-\infty$ on missing
+entries; the constraint for $v<v^+(i,j)$ is implied. For the second, the matrix
+$N(\zeta)=\operatorname{diag}(\zeta^{-p_i})\,M(\zeta)\,\operatorname{diag}(\zeta^{-q_j})$
+has entries of degree $\le0$ whose degree-$0$ part is $L$, and
+$\det N=\zeta^{-V_{\max}}\det M$, so the constant term of $\det N$, which is
+$\det L$, is the coefficient of $\zeta^{V_{\max}}$ in $\det M$. For the third:
+if $(i,\sigma(i),v)$ is tight then $v\le v^+(i,\sigma(i))\le p_i+q_{\sigma(i)}=v$,
+so $\sum_iv^+(i,\sigma(i))=\sum p+\sum q=V_{\max}$; conversely a maximising
+$\sigma$ has $\sum_i\bigl(p_i+q_{\sigma(i)}-v^+(i,\sigma(i))\bigr)=0$ with every
+term $\ge0$.
+\end{proof}
+
+\begin{lemma}[What a monomial top coefficient means]\label{lem:monomial}
+$c_{\max}$ is a nonzero monomial in the edge weights alone if and only if
+$V_{\max}$ is attained by exactly one permutation $\sigma^*$ and, for every
+$i$, the top coefficient of $M_{i\sigma^*(i)}$ is a single edge weight. In that
+case $c_{\max}=\pm\prod_iw(i,\sigma^*(i))$, $\Gamma$ has $\sigma^*$ as its
+unique perfect matching, and for every $S\subseteq V$ the induced subgraph
+$\Gamma[S,\sigma^*(S)]$ has $\sigma^*|_S$ as its unique perfect matching.
+\end{lemma}
+
+\begin{proof}
+``If'' is the expansion of the determinant. For ``only if'', each maximising
+$\sigma$ contributes $\operatorname{sgn}(\sigma)\prod_i(\text{top coefficient of
+}M_{i\sigma(i)})$ to $c_{\max}$, the top coefficient being a sum of the weights
+of the edges $i\to\sigma(i)$ of voltage $v^+(i,\sigma(i))$, or $d_i$ at a fixed
+point without a loop. Expand each contribution into monomials. A monomial
+determines the multiset of edges used, hence the $2$-regular multigraph they
+form on $V$, hence the cycle structure of $\sigma$ and therefore its sign;
+two maximising permutations with a common monomial differ only in the
+orientation of cycles of length $\ge3$, which must have voltage $0$ for both to
+be maximal. So no cancellation occurs between distinct permutations, and every
+monomial of every maximising permutation survives in $c_{\max}$. If
+$c_{\max}$ is a single monomial, no top coefficient involved is a sum and no
+$d_i$ occurs; and if two permutations attained $V_{\max}$ they would differ by
+reversing a zero-voltage cycle $C$ of length $\ge3$, which can be replaced by
+$2$-cycles along the edges of $C$ (and, if $|C|$ is odd, one fixed point, at a
+vertex that carries no loop, since a loop there would raise the voltage above
+$V_{\max}$): a third maximising permutation whose monomial contains a squared
+edge weight or a $d_i$, contradicting the single monomial. Uniqueness of the
+perfect matching of $\Gamma$ is Lemma~\ref{lem:potentials}; a second perfect
+matching of $\Gamma[S,\sigma^*(S)]$ would extend by $\sigma^*$ on $V\setminus S$
+to a second perfect matching of $\Gamma$.
+\end{proof}
+
+\paragraph{Two gradings.}
+Fix potentials as in Lemma~\ref{lem:potentials} and put $h_i=p_i+q_i\ge0$ (the
+constraint for $0\in E_{ii}$). Grade rows and unknowns of the strip twice:
+\[
+  \text{top:}\ \ \tau(i,t)=t+p_i,\quad \lambda(j,s)=s-q_j;\qquad
+  \text{bottom:}\ \ \tau'(i,t)=t-q_i,\quad \lambda'(j,s)=s+p_j .
+\]
+In the row \eqref{eq:striprow} at $(i,t)$ the unknown $x_{j,t+v}$ has
+\[
+  \lambda=\tau-(p_i+q_j-v)\ \le\ \tau,\qquad
+  \lambda'=\tau'+(p_j+q_i+v)\ \ge\ \tau' ,
+\]
+the second because $-v\in E_{ji}$. Equality holds exactly for the tight
+$(i,j,v)$, respectively the tight $(j,i,-v)$. Thus every row sees unknowns at
+top-level at most its own and at bottom-level at least its own, and
+$\lambda'(j,s)=\lambda(j,s)+h_j$, $\tau'(i,t)=\tau(i,t)-h_i$. At a fixed
+top-level $\tau$ there is one row $(i,\tau-p_i)$ and one unknown $(j,\tau+q_j)$
+for each $i,j\in V$; the $m\times m$ matrix $L_\tau$ of the coefficients of the
+level-$\tau$ unknowns in the level-$\tau$ rows has support in $\Gamma$ and
+carries, on the edges of $\sigma^*$, the weights of the lifted edges realising
+them: nonzero. Likewise the bottom-level matrix $L'_{\tau'}$ has support in the
+transpose of $\Gamma$, whose unique perfect matching is $\sigma^{*-1}$. By
+Lemma~\ref{lem:monomial}, for every $S\subseteq V$ the sub-block
+$L_\tau[S,\sigma^*(S)]$ is, after permuting its columns, a matrix with a
+unique perfect matching in its support and nonzero entries on it: its
+determinant is $\pm$ the product of those entries, nonzero. The same holds for
+$L'_{\tau'}$ and $\sigma^{*-1}$.
+
+\begin{theorem}[The strip kernel has dimension exactly $D$]\label{thm:stripdim}
+Let $c_{\max}$ be a nonzero monomial in the edge weights alone. Then for every
+strip matrix $A$, $\dim\ker A=D$.
+\end{theorem}
+
+\begin{proof}
+Let $h=\max_ih_i$ and fix integers $\beta<b$ with $b-\beta\ge h$. Put
+\[
+  U=\{(j,s):\ \lambda\le b,\ \lambda'\ge\beta\},\qquad
+  R=\{(i,t):\ \tau\le b,\ \tau'\ge\beta\}.
+\]
+Both are finite: $(j,s)\in U$ iff $\beta-h_j\le s-q_j\le b$, so
+$|U|=\sum_j(b-\beta+1+h_j)$; $(i,t)\in R$ iff $\beta+h_i\le t+p_i\le b$, so
+$|R|=\sum_i(b-\beta+1-h_i)$. Hence
+\[
+  |U|-|R|=2\sum_ih_i=2\Bigl(\sum_ip_i+\sum_iq_i\Bigr)=2V_{\max}=D .
+\]
+
+\emph{Rows in $R$ live on $U$.} An unknown of a row in $R$ has
+$\lambda\le\tau\le b$ and $\lambda'\ge\tau'\ge\beta$.
+
+\emph{Rows in $R$ are independent.} Order them by top-level. At top-level
+$\tau$ the rows in $R$ are those $i$ with $h_i\le\tau-\beta$; call this set
+$S_\tau$. A nontrivial linear relation among the rows of $R$ has a highest
+level $\tau$ with a nonzero coefficient; restricted to the unknowns at
+top-level $\tau$, which rows of lower level do not touch, it is a nontrivial
+relation among the rows of $L_\tau[S_\tau,\cdot\,]$, impossible since the
+sub-block $L_\tau[S_\tau,\sigma^*(S_\tau)]$ is nonsingular.
+
+\emph{Restriction to $U$ is a bijection from $K$ onto the solutions of $R$.}
+Let $y$ be a vector on $U$ satisfying every row in $R$. Extend it downwards:
+for $\tau'=\beta-1,\beta-2,\dots$ in turn, the $m$ rows at bottom-level $\tau'$
+have top-level $\tau'+h_i\le\beta-1+h\le b$, are not in $R$, and involve
+unknowns at bottom-level $\ge\tau'$; those at bottom-level $>\tau'$ are already
+defined (they lie in $U$, having $\lambda\le b$ and $\lambda'\ge\beta$, or were
+defined at an earlier step), and the coefficients of the $m$ unknowns at
+bottom-level exactly $\tau'$ form $L'_{\tau'}$, nonsingular. So the step is
+forced and possible. After all steps $y$ is defined on every unknown with
+$\lambda\le b$ (those with $\lambda'<\beta$ have $\lambda<\beta\le b$) and
+satisfies every row with $\tau\le b$: the rows with $\tau'\ge\beta$ are in $R$,
+and every row with $\tau'<\beta$ was used. Then extend upwards: for
+$\tau=b+1,b+2,\dots$ the rows at top-level $\tau$ involve unknowns at top-level
+$\le\tau$, all defined except the $m$ at level $\tau$, whose coefficient matrix
+is $L_\tau$, nonsingular. The result is an element of $K$ restricting to $y$,
+and the same two recursions with zero right-hand sides show that an element of
+$K$ vanishing on $U$ vanishes everywhere. Therefore
+$\dim K=|U|-\operatorname{rank}R=|U|-|R|=D$.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:leading}]
+Let $A\in\mathcal S(B^{\,n})$. The covering $(x,t)\mapsto(x,t\bmod n)$ maps each
+edge of $B^{\infty}$ onto an edge of $B^{\,n}$, or onto a vertex if a loop has
+$n\mid v$. Give each edge of $B^{\infty}$ a nonzero weight so that the weights
+of the edges over one edge of $B^{\,n}$ add up to its entry in $A$ (if $r\ge1$
+classes of strip edges lie over it, use $1/r$ of the entry on each), and
+choose the strip diagonal so that, with the loop lifts that close up, the
+diagonal of $A$ is reproduced. The result is a strip matrix $\tilde A$, and
+$x\mapsto\tilde x$, $\tilde x_{j,s}=x_{j,\,s\bmod n}$, is an injection of
+$\ker A$ into $\ker\tilde A$. By Theorem~\ref{thm:stripdim},
+$\operatorname{null}A\le D$.
+\end{proof}
+
+\begin{remark}[The monodromy, for every base]\label{rem:monodromy}
+The proof gives more than the bound. With $A$ as above, $\tilde A$ has
+$n$-periodic weights, so the shift $(j,s)\mapsto(j,s+n)$ acts on $K$, a space
+of dimension exactly $D$; call the action $T$. Periodic kernel sequences are the
+fixed vectors of $T$, so
+\[
+  \operatorname{null}A=\dim\ker(T-I)\ \le\ D,\qquad\text{with equality iff }T=I ,
+\]
+which is Theorem~\ref{thm:red} with $2k+2$ replaced by $D$ and the two-vertex
+base by any base satisfying the criterion. For equivariant $A$ the
+eigenvalues of $T$ are the $n$th powers of the roots of $\det M(\zeta)$, and
+this recovers Theorem~\ref{thm:cover}.
+\end{remark}
+
+\begin{remark}[Why one grading is not enough]\label{rem:onegrading}
+Grading from the top alone, the unknowns at levels below $\tau$ that some row
+at level $\ge\tau$ still needs form a \emph{forward state} of size
+$\sum_jm_j$, $m_j=\max\{p_i+q_j-v\}$ over the entries of column $j$, and the
+level-$\tau$ rows determine the level-$\tau$ unknowns from it, so the kernel is
+determined by its forward state and $\operatorname{null}A\le\sum_jm_j$ for
+every optimal potential. One computes $\sum_jm_j\ge D$ always, with equality
+iff the potential $p$ is also, after a sign change, an optimal column
+potential; for the two-loop base this holds and gives the $2k+2$ of
+Theorem~\ref{thm:red}, but on the three-vertex base with loops of voltages
+$2,1,3$ and edges $0\!-\!2$, $0\!-\!1$, $1\!-\!2$ of voltages $0,3,2$ the
+minimum over optimal potentials is $13$ while $D=12$, and the kernel does have
+dimension $12$: the forward state carries one direction that never extends
+backwards. Theorem~\ref{thm:order} is this phenomenon on two vertices: its
+$N$ is the size of a one-sided window, and $N>D$ exactly when the window
+over-counts. Since the forward state is a zero forcing set of $B^{\,n}$ --- a
+bipartite graph with a unique perfect matching has a vertex of degree one, so
+each level is forced one unknown at a time --- one also has
+\[
+  M(B^{\,n})\ \le\ D\ \le\ Z(B^{\,n})\ \le\ \min_{(p,q)}\sum_jm_j ,
+\]
+and the two outer bounds can differ.
+\end{remark}
+
+\begin{remark}[What is checked by machine]
+\texttt{verification/leading\_coefficient.py} checks, on every base of this
+paper and on random bases with up to five vertices: the equivalence of
+Lemma~\ref{lem:monomial} against the symbolic $c_{\max}$; the count
+$|U|-|R|=D$ together with $\operatorname{rank}R=|R|$ for random
+non-equivariant integer weights, the rank computed exactly over $\mathbb F_p$;
+and $\dim K=D$ independently, as the number of nonzero eigenvalues of the
+forward-state transfer matrix over one period, which exceeds $D$ in size on
+$18$ of $30$ random bases satisfying the criterion and has exactly
+$\sum_jm_j-D$ zero eigenvalues on each.
+\end{remark}

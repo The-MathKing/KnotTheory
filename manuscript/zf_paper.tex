@@ -4,7 +4,7 @@
 \usepackage{mathtools}
 \usepackage{fancyhdr}
 \pagestyle{fancy}\fancyhf{}
-\fancyhead[L]{\footnotesize Maximum Nullity and Zero Forcing of Cyclic Covers}
+\fancyhead[L]{\footnotesize The Riemann Hypothesis for Generalized Petersen Graphs}
 \fancyhead[R]{\footnotesize\thepage}
 \renewcommand{\headrulewidth}{0.4pt}
 
@@ -23,10 +23,11 @@
 \theoremstyle{definition}
 \newtheorem{remark}[theorem]{Remark}
 \newtheorem{observation}[theorem]{Observation}
+\newtheorem{question}[theorem]{Question}
 \newtheorem{definition}[theorem]{Definition}
 
-\title{Maximum Nullity of Cyclic Covers of Graphs,\\
-and Exact Zero Forcing Numbers of Generalized Petersen Graphs}
+\title{Where Optimal Networks Stop Existing: Certified Spectral Limits\\
+of Cyclic Architectures for Quantum Controllability and Bottleneck-Free Routing}
 \author{Aryan Padarthi}
 \date{September 23, 2026}
 
@@ -34,6 +35,108 @@ and Exact Zero Forcing Numbers of Generalized Petersen Graphs}
 \maketitle
 
 \begin{abstract}
+This paper studies one family of graphs -- the generalized Petersen graphs
+$P(n,k)$, and cyclic covers more generally -- with one engine, and answers two
+questions about it. Both questions are about the spectrum of a matrix attached
+to the graph; they differ in whether the matrix is fixed or ranges over a class.
+The engine is one object, the \emph{symbol} $M(\zeta)$ of the cyclic cover: a
+$2\times2$ matrix of Laurent polynomials in $\zeta$, which evaluated at the
+$n$-th roots of unity gives the $n$ Fourier blocks of any rotation-invariant
+matrix on $P(n,k)$. Part~I asks where the eigenvalues of $M(\zeta)$ lie as
+$\zeta$ runs over the grid, for the one matrix with adjacency weights; Part~II
+asks how often $\det M(\zeta)$ can vanish on the same grid when the weights are
+free, and then what survives when the weights are allowed to vary around the
+ring. Same grid, same symbol, two questions.
+
+\medskip\noindent\textbf{Part I: which of these graphs satisfy the Riemann
+Hypothesis.}
+Attached to a finite graph is its Ihara zeta function, which has an Euler
+product, a functional equation, and a prime number theorem for closed geodesics.
+For a $(q+1)$-regular graph one can ask the Riemann Hypothesis for it, and by
+the Ihara determinant formula the answer is equivalent to a finite spectral
+condition: the graph satisfies the RH if and only if it is \emph{Ramanujan},
+every eigenvalue with $|\lambda|\ne q+1$ obeying $|\lambda|\le2\sqrt q$
+\cite[Ex.~9]{terras}. The analogous question has been settled for other
+families: Droll classified Ramanujan unitary Cayley graphs, and Le and
+Sander~\cite{lesander} classified Ramanujan integral circulant graphs of prime
+power order, in both cases finding only finitely many members qualify.
+Which $P(n,k)$ satisfy the Riemann Hypothesis appears not to have been asked,
+although the spectrum has been completely known since~\cite{gs} --- a paper
+containing no occurrence of \emph{Ramanujan}, \emph{expander} or \emph{spectral
+gap}. We answer it completely, for every $n$ and every $k$.
+
+Clearing both radicals in the eigenvalue comparison --- twice legitimately,
+since $|A|\le4<4\sqrt2$ and $7+P\ge3$ make each squaring an equivalence rather
+than an implication --- collapses the analytic statement to the nonnegativity of
+a single integer polynomial,
+\[
+  D_k(u)=\bigl(7+4u\,T_k(u)\bigr)^2-8\bigl(2u+2T_k(u)\bigr)^2,
+  \qquad\deg D_k=2k+2,
+\]
+evaluated on the grid $u=\cos(2\pi j/n)$. Since $D_k(1)=-7$, the grid must clear
+a band at $u=1$, and a fine grid cannot. Monotonicity, AM--GM and
+$1-\cos\theta\le\theta^2/2$ turn this into a bound holding for \emph{every} $k$,
+\[
+  n\ \le\ \pi\bigl(2+\sqrt2\bigr)\sqrt{k^2+1},
+\]
+with the sharper $n\le2\pi/\arccos u_k$ available for each individual $k$ from
+the largest root $u_k$ of $D_k$ below $1$.
+Since $D_k(-1)=-7$ for odd $k$ and $+9$ for even $k$, there is a second band at
+$u=-1$ exactly when $k$ is odd --- but the grid meets $u=-1$ only when $n$ is
+even, and there the sample is the trivial eigenvalue $-3$ of a bipartite graph,
+which the Ramanujan condition exempts. Hence a \emph{parity law}: for odd $k$,
+odd $n$ is cut off at \emph{exactly half} the same constant, and bipartiteness
+\emph{helps}. The per-$k$ forms are sharp in cases: the first is attained at
+$k=2,3,4$ and the second at $k=1,5,7,9$.
+
+Neither bound is uniform in $k$, so neither closes the question. Two further
+steps do. First, $D_k$ is a difference of squares, so it factors over
+$\mathbb Q(\sqrt2)$ into the two eigenvalue conditions $f_\pm=7+P\pm2\sqrt2A$;
+these cannot both be negative, since $f_-+f_+=2(7+P)\ge6$, and under
+$x=\cos\frac{\pi j(k+1)}{n}$, $y=\cos\frac{\pi j(k-1)}{n}$ both collapse to the
+same quadratic form
+\[
+  Q(x,y)=4x^{2}+4y^{2}-8\sqrt2\,|xy|+3\ \ge\ 0 ,
+\]
+which \emph{does not involve $k$}. The forbidden set is one fixed region --- four
+congruent pieces at the corners of the square, each of area
+$\tfrac32-\sqrt2+\tfrac38\log\frac{1+\sqrt2}{3}$, together $0.4322\%$ of it ---
+and $k$ survives only in the map into the square. Second, failure is forced
+whenever $\|j/n\|^{2}+\|jk/n\|^{2}<\tau/2\pi^{2}$, a \emph{simultaneous
+Diophantine} condition, and Dirichlet's approximation theorem supplies such a
+$j$ unconditionally: with $J=\lfloor\sqrt n\rfloor$ some $j\le J$ has
+$\|jk/n\|\le1/(J+1)$, making the left side less than $2/n$. Hence
+$n\ge\RamDirichlet$ fails for \emph{every} $k$, and since $1\le k<n/2$ the family
+is finite in both variables.
+
+What remains is finite and is certified in exact arithmetic, never floating
+point: on the grid $A=c_1+c_k$ and $P=c_{k+1}+c_{k-1}$ are values of integer
+Laurent polynomials at roots of unity, so reduction modulo $\Phi_m$ decides
+band-edge vanishing by integer arithmetic, and a separation bound for nonzero
+algebraic integers guards every sign. Exhausting the region gives the
+classification outright: exactly $\RamAllTotal$ pairs $(n,k)$ satisfy the
+Riemann Hypothesis, $\RamAllIso$ graphs up to isomorphism, from $\RamAllCases$
+cases each decided exactly; the largest is $n=\RamAllMaxN$, and no $P(n,k)$ with
+$k>\RamAllMaxK$ qualifies at all. The
+classification is not monotone in $k$ --- $k=9$ reaches $n=\RamLastNine$ while
+$k=8$ and $k=10$ stop at $\RamLastEight$ and $\RamLastTen$ --- because for even
+$k$ an interior band binds first; the same asymmetry closes the list, since past
+$k=25$ no even $k$ survives at all.
+
+None of this used $P(n,k)$ beyond ``two-vertex base, cubic cover''. There are
+exactly two such bases, and the criterion carries to both: the two-loop base
+$B(a,b,c)$ by the \emph{same} $Q$ with $(a+b,a-b)$ in place of $(k+1,k-1)$, the
+edge voltage $c$ playing no role at all, and the theta base by
+$\sum_{l<m}\cos\frac{2\pi j(c_l-c_m)}{n}\le\frac52$. For a base of any size,
+$M_1\to M_0$ as $n\to\infty$ and $M_0$ has top eigenvalue $3$, so some
+nontrivial eigenvalue exceeds $2\sqrt2$: \emph{no infinite family of Ramanujan
+graphs is a cyclic cover of a fixed base}. That is the cyclic instance of the
+known principle that abelian covers do not expand, made explicit with a
+constant. Finally the \emph{deficit} $\delta=\lambda_2-2\sqrt2$ measures what
+the no-go costs, and is bounded by $3-2\sqrt2$ throughout.
+
+\medskip\noindent\textbf{Part II: how degenerate the zero eigenvalue can be,
+over every matrix carrying the pattern.}
 Over all symmetric matrices whose off-diagonal support is exactly $E(G)$ ---
 Hamiltonians on that network --- how degenerate can the zero eigenvalue be? That
 maximum, the maximum nullity $M(G)$, is the central quantity of the inverse
@@ -74,9 +177,11 @@ hence
 \[
   Z(P(n,4))=M(P(n,4))=10,\qquad Z(P(n,5))=M(P(n,5))=12,
 \]
-for every $n$ divisible by $60$, $70$ or $90$, respectively by $24$ --- the
-first exact values of $Z(P(n,k))$ for $k\ge4$, a range \cite{K} closes by
-recording as open. In the second case the certificate is the adjacency matrix
+for every $n$ divisible by $60$, $70$ or $90$, respectively by $24$. For
+$k\ge4$ the only exact values previously known are $Z(P(2k+1,k))=6$
+\cite[Thm.~2.6]{RST}, a single $n$ for each $k$ at which the bound $2k+2$ is far
+from attained; these are the first at which it is \emph{attained}, and the first
+holding for infinitely many $n$. In the second case the certificate is the adjacency matrix
 itself, and we classify its nullity completely: with
 $P_k(z)=z^{2k+2}+z^{2k}-z^{k+1}+z^2+1$,
 $\operatorname{null}(\mathrm{Adj}\,P(n,k))=\sum\varphi(d)$ over those $d$ with
@@ -150,7 +255,17 @@ this paper not lying on a congruence class. Finally we obtain a statement for \e
 large $n$. Tiles carrying a fixed docking pattern at both ends have transfer
 products depending only on their interiors, so identity tiles of every length in
 $[L,2L)$ give $Z(P(n,k))=2k+2$ for every $n\ge L$ --- a finite list of finite
-problems. Carrying this out and certifying all $\NtileAll$ tiles involved,
+problems. The existence of those tiles is the one computer-assisted step in
+this paper, and it is exact: every bound in the contraction test is a rational
+number and the final inequality an integer comparison, so the step is a proof
+in the sense of the four-colour and Kepler proofs, not a numerical observation.
+Separately, and without finding any tile, an elliptic choice of dock and a
+single full-rank evaluation of the tile differential imply that identity tiles
+of \emph{every} sufficiently large length exist (Theorem~\ref{thm:tilesallk},
+hypotheses certified exactly for $k\le\TileAllK$), and the rank condition is proved for every $k$ by a second-order argument in
+$\mathfrak{sp}(2k+2)$ (\S\ref{sec:tilesrank}); together these give
+$Z(P(n,k))=M(P(n,k))=2k+2$ for all sufficiently large $n$, \emph{for every}
+$k\ge2$, with an ineffective threshold. Carrying the explicit construction out and verifying all $\NtileAll$ tiles involved,
 \[
   Z(P(n,3))=M(P(n,3))=8\ \ (n\ge17),\qquad
   Z(P(n,4))=M(P(n,4))=10\ \ (n\ge\SettleFour),
@@ -175,6 +290,51 @@ We state throughout which claims are proved, which rest on exact certificates,
 which on interval certification, which are numerical, and which earlier claims of
 ours are corrected or withdrawn.
 \end{abstract}
+
+% ---------------------------------------------------------------------------
+% MAIN RESULTS -- assembled summary. The statements below are lifted verbatim
+% from the theorems they cite; no claim is made here that is not proved there.
+% ---------------------------------------------------------------------------
+\section*{Main results}
+
+\noindent\textbf{Part I --- which $P(n,k)$ satisfy the Riemann Hypothesis}
+(for the Ihara zeta function; equivalently, which are Ramanujan).
+
+\begin{enumerate}\setlength{\itemsep}{2pt}
+\item[(I.1)] If $P(n,k)$ satisfies the Riemann Hypothesis then
+  $n\le\pi(2+\sqrt2)\sqrt{k^2+1}$, and if $k$ and $n$ are both odd,
+  $n\le\tfrac12\pi(2+\sqrt2)\sqrt{k^2+1}$. \hfill (Theorem~\ref{thm:uniform})
+\item[(I.2)] \emph{Parity law.} For odd $k$ and odd $n$,
+  $n\le\pi/\arccos(-v_k)$; no such restriction for even $n$ or even $k$.
+  \hfill (Theorem~\ref{thm:parity})
+\item[(I.3)] Exactly $\RamAllTotal$ pairs $(n,k)$ qualify, in $\RamAllIso$
+  isomorphism classes; no $k>\RamAllMaxK$ occurs. All $\RamAllCases$ cases
+  decided in exact arithmetic. \hfill (Theorem~\ref{thm:allk})
+\end{enumerate}
+
+\medskip\noindent\textbf{Part II --- maximum nullity and zero forcing.}
+
+\begin{enumerate}\setlength{\itemsep}{2pt}
+\item[(II.1)] \emph{Ceiling.} For every matrix carrying the $P(n,k)$ pattern,
+  symmetric or not, $\operatorname{null}A=\dim\ker(T-I)\le2k+2$, with equality
+  iff $T=I$. \hfill (Theorem~\ref{thm:red})
+\item[(II.2)] $Z(P(n,k))$ is determined for \emph{every} admissible $n$ when
+  $k=2$, $k=3$ and $k=4$. \hfill (Theorem~\ref{thm:complete})
+\item[(II.3)] $Z(P(n,3))=8$ for every $n\ge13$, and $13$ is optimal --- this is
+  Conjecture~5 of~\cite{K}. \hfill (Theorem~\ref{thm:k3krishnan})
+\item[(II.4)] $Z(P(n,k))=M(P(n,k))=2k+2$ for all sufficiently large $n$, for
+  every $2\le k\le\TileAllK$; the threshold is ineffective.
+  \hfill (Proposition~\ref{prop:tilesallk})
+\end{enumerate}
+
+\medskip\noindent
+Section~\ref{sec:contribution} states what these do and do not contribute, and
+the Status of the claims section labels every claim by the standard it meets.
+
+\input{zf_ramanujan}
+
+\part{Maximum Nullity and Zero Forcing on Cyclic Covers}
+\label{part:zf}
 
 \section{Background}
 Given a set $S$ of \emph{filled} vertices of a graph $G$, the colour change
@@ -820,7 +980,7 @@ the nullity is exactly $6$ because $F$ has exactly three distinct interior roots
 on $\Gamma_n$, each met by two Fourier indices.
 \end{remark}
 
-\begin{remark}[What the two exceptions mean]
+\begin{remark}[What the two exceptions mean]\label{rem:twoexc}
 At $n=8$ and $n=10$ the grid is too small to avoid antipodal pairs --
 $\Gamma^{\circ}_8=\{\sqrt2,0,-\sqrt2\}$ and $\Gamma^{\circ}_{10}$ has four
 elements in two antipodal classes, so by pigeonhole every triple contains such
@@ -828,13 +988,55 @@ a pair. The two cases then behave differently: $Z(P(8,2))=5$, so there the
 method is right to fail, while $Z(P(10,2))=6$, so there it is the method that
 falls short and not the bound. This is the sharpest available statement of the
 limitation, and it is a statement about $\Gamma_n$ alone.
+
+That reading is now confirmed rather than inferred. Maximising the nullity
+directly over all symmetric matrices carrying the $P(10,2)$ pattern --- $30$ edge
+weights and $20$ diagonal entries, by gradient descent on the sum of squares of
+the six eigenvalues nearest zero --- produces a matrix of nullity exactly $6$,
+with the next eigenvalue at $0.40$ of the matrix scale and every edge weight at
+least $0.30$. So
+\[
+  M(P(10,2))=Z(P(10,2))=6 :
+\]
+there is no strict gap at $n=10$, and the period-one construction fails there
+for the reason the remark gives --- the grid, not the bound.
+
+This is now \emph{certified}, not numerical. The optimiser's witness has been
+replaced by an exact one. A period-one matrix cannot attain nullity $6$ here at
+all: its $2\times2$ Fourier blocks pair under conjugation, the inner cosine
+$2\cos(4\pi j/10)$ takes each of its values twice on $0\le j\le5$, so any three
+blocks forced to be singular contain two sharing that value, and subtracting
+their determinant conditions forces either an edge weight or the spoke to
+vanish --- which is why the search was hard, and why it stalls at $5$. A
+period-two matrix can, and only as $6=2+1+1$ across the blocks over the fifth
+roots of unity, since a block at $j=1,2$ has nullity at most $1$ and the block
+at $j=0$ at most $2$. Imposing that, and requiring the entries to be rational
+so that the $j=1$ and $j=2$ conditions are Galois conjugate over
+$\mathbb Q(\sqrt5)$, leaves $st+2sf+2et-ef=0$ with
+$a^2=-c^2d^2ef/\bigl((s+2e)(t+2f)(sf+et-ef)\bigr)$. Solving it and clearing
+denominators gives an \emph{integer} matrix on the $P(10,2)$ pattern with
+entries in $\{-375,-125,-25,-5,-1,5,25\}$ whose rank over $\mathbb Z$ is $14$,
+hence nullity exactly $6$ (\texttt{verification/p10\_2\_exact.py}).
+\end{remark}
+
+\begin{remark}[A search failure is not an impossibility, again]
+The first run of that search reached nullity $5$ easily and stalled at
+$6\times10^{-6}$ for nullity $6$, across sixty restarts --- which looks exactly
+like a strict gap, and on a solver that found nullity $6$ instantly at
+$P(9,2)$, $P(11,2)$ and $P(12,2)$. It was not one: two further random seeds
+out of six found the nullity-$6$ basin at $10^{-18}$. The $n=10$ optimum is
+simply harder to locate than its neighbours', which is the same fact about
+$\Gamma_{10}$ that makes the symbol construction fail there. We flag it because
+it is precisely the failure mode this paper warns about elsewhere --- a failed
+search measures effort spent, not impossibility --- and we walked into it on our
+own graph.
 \end{remark}
 
 \begin{corollary}[Excluded cyclotomic symbols, even $k$]\label{cor:excluded}
 Let $k$ be even. The roots of $\Psi_{2d}$ are the negatives of the roots of
 $\Psi_d$ for odd $d$, and the root set of $\Psi_d$ is closed under negation
 whenever $4\mid d$ and $\varphi(d)\ge4$. Hence in Theorem~\ref{thm:cyclo} the
-factor set $D$ may contain neither both $d$ and $2d$ for any odd $d$, nor any
+factor set $\mathcal D$ may contain neither both $d$ and $2d$ for any odd $d$, nor any
 $d$ divisible by $4$ with $\varphi(d)\ge4$.
 \end{corollary}
 
@@ -986,11 +1188,11 @@ $16$ at $n=120$, and $6$, $8$ at the corresponding $n$ for $k=2,3$
 (\texttt{verification/signed\_adjacency.py}).
 
 \begin{theorem}[$k=6$ is impossible over $\mathbb Q$]\label{thm:k6imp}
-Of the $225$ products $\prod_{d\in D}\Psi_d$ of total degree $7$ with every
+Of the $225$ products $\prod_{d\in \mathcal D}\Psi_d$ of total degree $7$ with every
 $\Psi_d$ of interior roots, $216$ do not lie in the three-parameter family, and
 all $9$ that do are degenerate in the sense of Theorem~\ref{thm:realis}:
 each is $(s+a)(L_6+t)$ with $a\in\{0,\pm1\}$ and $t\in\{0,\pm1\}$, namely
-$\Psi_d$-products over $D=(3,8,24)$, $(4,8,24)$, $(6,8,24)$, $(3,9,18)$,
+$\Psi_d$-products over $\mathcal D=(3,8,24)$, $(4,8,24)$, $(6,8,24)$, $(3,9,18)$,
 $(4,9,18)$, $(6,9,18)$, $(3,36)$, $(4,36)$, $(6,36)$. Hence no rational
 period-one symbol attains $14$ for $k=6$, in either matrix class.
 \end{theorem}
@@ -1011,18 +1213,18 @@ values $2\cos(2\pi j/d)$ with $\gcd(j,d)=1$; put $\Psi_1=s-2$, $\Psi_2=s+2$.
 Every root of $\Psi_d$ lies in $\Gamma_n$ as soon as $d\mid n$.
 
 \begin{theorem}[Cyclotomic certificates]\label{thm:cyclo}
-Let $D$ be a set of distinct positive integers with
-$\sum_{d\in D}\deg\Psi_d=k+1$ and put $F=\prod_{d\in D}\Psi_d$. Write
+Let $\mathcal D$ be a set of distinct positive integers with
+$\sum_{d\in \mathcal D}\deg\Psi_d=k+1$ and put $F=\prod_{d\in \mathcal D}\Psi_d$. Write
 $G=F-sL_k$, let $a$ be the coefficient of $s^{k}$ in $G$, and suppose
 $G-aL_k$ has degree at most $1$, say $G-aL_k=\alpha s+\beta$; that is
 $k-2$ linear conditions with integer coefficients. Put $e=1$, $d=\alpha$,
 $c^{2}=a\alpha-\beta$, and suppose $c^{2}>0$. Then for every $n$ divisible by
-$\operatorname{lcm}(D)$ with $n\ge2k+3$, the matrix
+$\operatorname{lcm}(\mathcal D)$ with $n\ge2k+3$, the matrix
 \[
   A=\begin{pmatrix} aI+P+P^{-1} & cI\\ cI & \alpha I+P^{k}+P^{-k}\end{pmatrix}
 \]
 lies in $S(P(n,k))$ and has nullity
-$2\sum_{d\in D,\,d\ge3}\deg\Psi_d+\#\{d\in D: d\le2\}$. If every $d\in D$ is
+$2\sum_{d\in \mathcal D,\,d\ge3}\deg\Psi_d+\#\{d\in \mathcal D: d\le2\}$. If every $d\in \mathcal D$ is
 at least $3$ this equals $2k+2$, and then
 \[
   Z(P(n,k))=M(P(n,k))=2k+2 .
@@ -1033,7 +1235,7 @@ at least $3$ this equals $2k+2$, and then
 By construction $F=(s+a)L_k+\alpha s+\beta$ as an identity in
 $\mathbb Z[s]$, so $F$ is the symbol of $A$ by
 Proposition~\ref{prop:symbol}, and $A\in S(P(n,k))$ because $c^{2}>0$ makes
-$c$ real and nonzero while the edge weights $1$ are nonzero. Each $d\in D$
+$c$ real and nonzero while the edge weights $1$ are nonzero. Each $d\in \mathcal D$
 divides $n$, so all $k+1$ roots of $F$ lie in $\Gamma_n$; they are distinct
 because the $\Psi_d$ are distinct irreducible polynomials. Counting
 multiplicities as in Proposition~\ref{prop:symbol} gives the stated nullity,
@@ -1048,7 +1250,7 @@ matrix, and its nullity was confirmed by exact rational Gaussian elimination.
 \begin{table}[h]\centering
 \begin{tabular}{clllrrrl}
 \toprule
-$k$ & $D$ & $\operatorname{lcm}(D)$ & $F$ & $a$ & $d$ & $c^{2}$ & nullity \\
+$k$ & $\mathcal D$ & $\operatorname{lcm}(\mathcal D)$ & $F$ & $a$ & $d$ & $c^{2}$ & nullity \\
 \midrule
 2 & $\{3,10\}$  & 30 & $sL_2-1$            & 0 & 0 & 1 & $6=2k+2$ \\
 2 & $\{14\}$    & 14 & $\Psi_{14}$         & $-1$ & 0 & 1 & $6=2k+2$ \\
@@ -1156,11 +1358,23 @@ Then $A$ block-diagonalises into $n$ blocks of size $|V(B)|$,
   M_m[x,y]=\sum_{\text{edges }x\to y\text{ of voltage }v} w_{xy}\,\omega^{mv}
   \;+\;\delta_{xy}a_x ,
 \]
-and $\operatorname{null}A=\sum_{m}\operatorname{null}M_m$. Writing
-$\det M(\zeta)$ as a Laurent polynomial in $\zeta$, the number of $m$ at which a
-block is singular --- hence $\operatorname{null}A$ --- is at most the degree
-span of $\det M(\zeta)$, which is determined by the voltages of $B$ alone.
+and $\operatorname{null}A=\sum_{m}\operatorname{null}M_m$. Suppose
+$\det M(\zeta)$, a Laurent polynomial in $\zeta$, is not identically zero. Then
+$\operatorname{null}A$ is at most the number of roots of $\det M(\zeta)$ among
+the $n$th roots of unity counted with multiplicity, hence at most the degree
+span of $\det M(\zeta)$, which is at most the \emph{generic} span $D$
+determined by the voltages of $B$ alone.
 \end{theorem}
+
+\noindent
+The hypothesis is not decorative. The nullity of $M_m$ is at most the
+multiplicity of $\omega^m$ as a root of $\det M(\zeta)$, which is what the count
+uses; but $\det M(\zeta)$ can vanish identically for a legal choice of weights,
+and then every block is singular and $\operatorname{null}A\ge n$.
+Section~\ref{sec:gapfamily} exhibits exactly this on a cubic cover of $K_4$. An
+earlier version of this theorem omitted the hypothesis, and the omission
+propagated into a conjecture we have since refuted
+(Theorem~\ref{thm:k4rankone}).
 
 \noindent
 For $P(n,k)$ the degree span is $2k+2$, recovering Corollary~\ref{cor:ceiling}
@@ -1172,17 +1386,40 @@ voltages (\texttt{verification/cyclic\_covers.py}).
 Two caveats. Theorem~\ref{thm:cover} is stated for \emph{equivariant} $A$;
 the stronger statement of Theorem~\ref{thm:red}, which bounds the nullity of
 \emph{every} matrix carrying the pattern, we have proved only for $P(n,k)$,
-where the nonzero spoke weights permit the elimination. Whether the
-corresponding elimination can be carried out over an arbitrary base graph --- and
-so whether the ceiling is a property of the cover rather than of equivariant
-matrices on it --- we leave open. Second, we have tested the non-equivariant bound on general covers by
+where the nonzero spoke weights permit the elimination. Earlier versions of this
+paper left open whether the same holds over an arbitrary base graph --- whether
+the ceiling is a property of the cover rather than of equivariant matrices on
+it. It is not, and Theorem~\ref{thm:cexcover} settles it in the negative. Second, we have tested the non-equivariant bound on general covers by
 \emph{maximising} the nullity rather than sampling --- random matrices are
 generically nonsingular, so sampling proves nothing. Optimising over fully
-non-equivariant weights on four small covers, the largest attainable nullity
-never exceeded the degree span, and equalled it for the theta graphs with
-voltages $(0,1,2)$ and $(0,1,3)$; on the $P(n,2)$ and $P(n,3)$ covers at $n=9$
-it fell short, as it must, since $Z(P(9,k))<2k+2$ there. That is evidence for
-the conjecture, not a proof of it.
+non-equivariant weights --- one free weight per lift of each base edge and a
+free diagonal per lift --- on ten connected covers, the largest attainable
+nullity never exceeded the degree span. The bases include two-loop, theta and
+four-edge theta bases, a triangle, a $C_4$, $K_4$, a path base with loops, and a
+star base with a loop, so the test spans sizes two to four, Hamiltonian and
+non-Hamiltonian, with and without parallel edges and loops. Tree bases are
+excluded rather than passed: a tree has trivial cycle space, so its cover is
+$n$ disjoint copies and the question does not apply.
+
+That search is reported here because of how it failed, not because of what it
+found. It is an optimisation, so it establishes only that a search did not
+exceed the span; and on the star base it did not exceed the span while a matrix
+exceeding it exists --- by an unbounded margin, as Theorem~\ref{thm:cexcover}
+shows. Three separate weaknesses produced that false negative. The optimiser was
+Nelder--Mead, which is hopeless at this dimension; edge weights were held above
+a floor by a penalty, which excludes part of the admissible set rather than
+merely discouraging it; and the statistic was the \emph{sum} of the $d$ smallest
+squared singular values, which reports success when one is at $10^{-10}$ and the
+rest at $10^{-6}$. Replacing the statistic by $\sigma_d$ itself and the
+optimiser by a gradient method flagged the star base immediately; the
+counterexample was then written down by hand and verified over $\mathbb Z$.
+
+We leave the record of the failed search in place deliberately. A search that
+does not find something is evidence about the search. The $K_4$ base was in
+the same list, and the same search missed the matrices of
+Theorem~\ref{thm:k4rankone} as well: they lie on the locus where three of the
+four fibre blocks are singular, which a local optimiser started from generic
+weights does not reach.
 
 \subsection*{The construction on a general cover}
 Section~\ref{sec:cyclo} prescribes a symbol for $P(n,k)$ and solves for the
@@ -1296,8 +1533,9 @@ exactly in $\mathbb Q(\zeta_n)$:
 
 \noindent
 The $k=4$ and $k=5$ lines are the first exact values of $Z(P(n,k))$ for
-$k\ge4$, the range \cite{K} records as open; previously we had only
-$8\le Z(P(n,4))\le10$ and nothing at all for $k=5$. The $k=3$ line is a matrix
+$k\ge4$ at which the bound $2k+2$ is attained. The one previously known family
+for $k\ge5$ is $Z(P(2k+1,k))=6$ \cite[Thm.~2.6]{RST} --- one $n$ per $k$, with
+$6\ll2k+2$ --- and before this we had only $8\le Z(P(n,4))\le10$. The $k=3$ line is a matrix
 proof of values \cite{K} obtains combinatorially. Some certificates are
 irrational: at $(n,k)=(40,3)$ one has $a=-\sqrt2$, $d=0$, $c^{2}=1$, and at
 $(60,3)$, $c^{2}=1/\varphi$ with $\varphi$ the golden ratio. Full output is in
@@ -1458,9 +1696,9 @@ symbol $F$.
 of $F$ is $2\cos(2\pi j/d)$ with $\gcd(j,d)=1$ and $d\ge3$, and such a root
 lies in $\Gamma_m$ if and only if $d\mid m$. Hence the set of $n$ at which
 \emph{this same} $A$ attains the ceiling is exactly
-$\{n:\operatorname{lcm}(D)\mid n\}$, where $D$ is the multiset of those $d$. It
+$\{n:\operatorname{lcm}(\mathcal D)\mid n\}$, where $\mathcal D$ is the multiset of those $d$. It
 is therefore a single divisibility class of density
-$1/\operatorname{lcm}(D)\le1/3$, and it contains \emph{at most one prime}.
+$1/\operatorname{lcm}(\mathcal D)\le1/3$, and it contains \emph{at most one prime}.
 \item[(ii)] Consequently, to attain the ceiling for infinitely many $n$ outside
 one divisibility class --- in particular for infinitely many primes, or for all
 large $n$ --- the weights must depend on $n$.
@@ -1529,6 +1767,76 @@ the condition $T=I$ on the monodromy, and that condition carries no arithmetic
 in it.
 \end{remark}
 
+\subsection*{Exactly which $n$ a rational symbol can reach}
+Theorem~\ref{thm:cyclo} builds certificates from products of the $\Psi_d$ and
+Theorem~\ref{thm:congbound} says every period-one certificate lives on one
+divisibility class. Together they make the rational case \emph{classifiable}:
+there are finitely many candidate root sets, each is admissible or not by a
+finite check, and the union of the admissible classes is exactly the reach of
+the method. We carry this out.
+
+\begin{theorem}[Classification of rational-symbol certificates]\label{thm:ratclass}
+Fix $k\ge2$. A symmetric rotation-invariant matrix in $S(P(n,k))$ whose symbol
+has rational coefficients and nullity $2k+2$ exists if and only if $n>2k$ and
+$L\mid n$ for some $L$ in the finite list $\mathcal L_k$ below:
+\[
+\begin{array}{c|l|l}
+ k & \text{admissible root sets } \mathcal D\ (\text{orbits }O_d) & \mathcal L_k\\\hline
+ 2 & \{7\},\{9\},\{14\},\{18\},\{3,5\},\{3,10\},\{4,5\},\{4,10\},\{5,6\},\{6,10\} & \RatClassTwo\\
+ 3 & \{5,10\},\{5,8\},\{8,10\},\{3,14\},\{6,7\},\{3,6,8\} & \RatClassThree\\
+ 4 & \{4,15\},\{4,30\},\{5,14\},\{7,10\},\{5,18\},\{9,10\} & \RatClassFour\\
+ 5 & \{3,6,24\},\{7,18\},\{9,14\} & \RatClassFive\\
+ 6 & \text{none} & \RatClassSix\\
+ 7 & \{5,10,24\} & \RatClassSeven
+\end{array}
+\]
+In particular the classes $24\mid n$ and $42\mid n$ at $k=3$ and $126\mid n$ at
+$k=5$ are new, the lists $60,70,90$ at $k=4$ and $24$ at $k=5$ were already
+complete, and $k=6$ admits no rational-symbol certificate at all, which
+recovers Theorem~\ref{thm:k6imp}.
+\end{theorem}
+
+\begin{proof}
+\emph{Necessity.} Let $A$ be rotation-invariant with symbol $F\in\mathbb Q[s]$
+and nullity $2k+2$. By Theorem~\ref{thm:congbound}(i) every root of $F$ is
+$2\cos(2\pi j/d)$ with $\gcd(j,d)=1$ and $d\ge3$, and $F$ has $k+1$ distinct
+such roots, each counted twice on $\Gamma_n$. Since $F$ has rational
+coefficients its root set is stable under $\operatorname{Gal}(\mathbb Q(\zeta_d)/\mathbb Q)$,
+hence a union of full orbits $O_d=\{2\cos(2\pi j/d):\gcd(j,d)=1\}$ of sizes
+$\varphi(d)/2$ summing to $k+1$; so $F/\operatorname{lc}(F)=\prod_{d\in\mathcal D}\Psi_d$
+for a set $\mathcal D$ of integers $d\ge3$, and $d\mid n$ for each. Writing the
+symbol as $F=e\bigl[(s+a)(L_k(s)+\alpha)-c_0\bigr]$ with $L_k$ monic of degree
+$k$ (the block determinant with inner weight $e$), $\prod\Psi_d-(s+a)L_k$ must
+have degree at most $1$, where $a$ is the coefficient of $s^k$ in
+$\prod\Psi_d$: these are the $k-2$ linear conditions of
+Theorem~\ref{thm:cyclo}, and they are now \emph{necessary}. Finally
+$c^2=e\,c_0$ must be nonzero, so $c_0\ne0$.
+
+\emph{Sufficiency.} Conversely, given $\mathcal D$ with $\sum\varphi(d)/2=k+1$
+satisfying the degree condition and $c_0\ne0$, take $e=\operatorname{sign}(c_0)$,
+$c=\sqrt{|c_0|}$, $d=e\alpha$; then $A$ is symmetric, carries the pattern, and
+its symbol vanishes exactly at the $k+1$ roots, each hit twice whenever
+$\operatorname{lcm}(\mathcal D)\mid n$.
+
+\emph{Finiteness and the table.} $\varphi(d)/2\le k+1$ bounds $d$, so there are
+finitely many $\mathcal D$; the degree condition and $c_0\ne0$ are exact
+computations in $\mathbb Z[s]$. The enumeration
+(\texttt{verification/period\_one\_classification.py}) produces the table; the
+suite rebuilds the lists on every run and checks the nullity of each listed
+certificate on the first two members of its class and its absence just off the
+class. The minimal elements of the lcm's under divisibility are $\mathcal L_k$.
+\end{proof}
+
+\begin{remark}
+The theorem is sharp about the method, not about $Z$: $Z(P(n,3))=8$ holds for
+every $n\ge13$ (Theorem~\ref{thm:k3krishnan}), but a \emph{rotation-invariant,
+rational-symbol} proof of it exists only when $10$, $24$ or $42$ divides $n$.
+Irrational real symbols reach more --- at $k=2$ they reach every $n\ge9$ except
+$10$ (Theorem~\ref{thm:k2all}) while the rational ones reach only the classes
+of $7,9,15,20$ --- and the tiles of \S\ref{sec:tilesallk} reach everything. The
+table is the exact boundary of what cyclotomy alone can do.
+\end{remark}
+
 \section{Period-$d$ certificates, and the first values for $k\ge6$}
 \label{sec:periodd}
 Proposition~\ref{prop:exh} leaves $k=6$ and $k\ge8$ untouched: no rational
@@ -1585,7 +1893,9 @@ $d=4$ for $k=7,8$, i.e.\ $d=\lceil k/2\rceil$.
 \end{theorem}
 
 \noindent
-These are the first exact values of $Z(P(n,k))$ for $k\ge6$. That the required
+These are the first exact values of $Z(P(n,k))$ for $k\ge6$ at which the bound
+$2k+2$ is attained; $Z(P(2k+1,k))=6$ \cite[Thm.~2.6]{RST} is exact but far below
+it. That the required
 period was predicted in advance, and that $d=3$ then failed for $k=7,8$ while
 $d=4$ succeeded, is the strongest evidence we have that the rank law is
 describing something real rather than fitting the cases it was measured on. The
@@ -1876,6 +2186,289 @@ shapes --- loops with a single connecting edge, and several connecting edges wit
 no loops.
 
 \noindent
+Both of those are two-vertex statements. The elimination in
+Theorem~\ref{thm:red2} is not, however, limited to two vertices: it chains, and
+chaining it settles the ceiling on bases of arbitrary size.
+
+\begin{theorem}[Reduction on a path-with-loops cover]\label{thm:redpath}
+Let $B$ have vertices $x_1,\dots,x_m$, a loop of voltage $p_t\ge1$ at each
+$x_t$, and a single edge $x_t\!-\!x_{t+1}$ of voltage $w_t$ for $1\le t<m$. Put
+$P=\sum_{t=1}^m p_t$, let $n>2P$, and let $A\in\mathcal S(B^{\,n})$ have all
+edge weights nonzero. Then eliminating the coordinates of the fibres over
+$x_2,\dots,x_m$ leaves a single linear recurrence in the fibre over $x_1$ whose
+extreme offsets are $\pm P$ with nonzero coefficients. Consequently
+\[
+  \operatorname{null}A=\dim\ker(T-I)\ \le\ 2P ,
+\]
+which is the degree span of $\det M(\zeta)$, with equality if and only if
+$T=I$. Theorem~\ref{thm:red2} is the case $m=2$.
+\end{theorem}
+
+\begin{proof}
+Write $X_t$ for the fibre over $x_t$ and $S_t=2(p_1+\dots+p_t)$, $S_0=0$. We
+show by induction that $X_{t+1}$ is expressible in the coordinates of $X_1$
+across a window of offsets of span $S_t$.
+
+For $t=1$: the neighbours of $(x_1,i)$ are $(x_1,i\pm p_1)$ and $(x_2,i+w_1)$,
+so the row there reads
+$b'_{i-p_1}X_1(i-p_1)+a_iX_1(i)+b_iX_1(i+p_1)+c_iX_2(i+w_1)=0$ with $c_i\ne0$.
+Solving for $X_2(i+w_1)$ expresses $X_2$ in $X_1$ across offsets of span
+$2p_1=S_1$.
+
+For the step, let $1<t<m$. The row at $(x_t,i)$ is
+\[
+  b'_{i-p_t}X_t(i-p_t)+a_iX_t(i)+b_iX_t(i+p_t)
+  +\gamma_iX_{t-1}(i-w_{t-1})+c_iX_{t+1}(i+w_t)=0,
+\]
+again with $c_i\ne0$, so it solves for $X_{t+1}(i+w_t)$. By induction $X_t$ has
+span $S_{t-1}$ in $X_1$; the two loop terms shift that window by $\pm p_t$ and
+so contribute span $S_{t-1}+2p_t=S_t$, while $X_{t-1}$ contributes only
+$S_{t-2}<S_t$. Hence $X_{t+1}$ has span $S_t$, as claimed.
+
+The row at $(x_m,i)$ has no further vertex to solve for: it reads
+$b'_{i-p_m}X_m(i-p_m)+a_iX_m(i)+b_iX_m(i+p_m)+\gamma_iX_{m-1}(i-w_{m-1})=0$,
+and substituting gives a relation in $X_1$ alone of span
+$S_{m-1}+2p_m=S_m=2P$, the term in $X_{m-1}$ again contributing less. The
+coefficient at the offset $+P$ is a product of the loop weights $b$ at each
+$x_t$, the connecting weights, and the inverses of the connecting weights used
+to solve at each step; every factor is nonzero, so it is nonzero, and
+symmetrically at $-P$. The relation is therefore a recurrence of order exactly
+$2P$, solvable in both directions. Its solutions on $\mathbb Z$ form a space of
+dimension $2P$ on which the monodromy $T$ of one period acts, and the
+$n$-periodic solutions --- which is to say $\ker A$ --- are the fixed vectors of
+$T$. That $2P$ is the degree span of $\det M(\zeta)$ is immediate: $M(\zeta)$ is
+tridiagonal with diagonal entries $d_t+b_t(\zeta^{p_t}+\zeta^{-p_t})$ and
+off-diagonal pairs contributing $\zeta^{w_t}\zeta^{-w_t}=1$, so the extreme
+exponents come from $\prod_t(\zeta^{p_t}+\zeta^{-p_t})$ alone.
+\end{proof}
+
+\begin{theorem}[Cycle bases]\label{thm:redcycle}
+Let $B$ be the cycle $x_0\!-\!x_1\!-\!\cdots\!-\!x_{m-1}\!-\!x_0$ with edge
+voltages $w_0,\dots,w_{m-1}$ and holonomy $W=\sum_t w_t$. If $W\ne0$ then for
+every $A\in\mathcal S(B^{\,n})$,
+\[
+  \operatorname{null}A\ \le\ 2\gcd(|W|,n)\ \le\ 2|W| ,
+\]
+and $2|W|$ is the degree span of $\det M(\zeta)$.
+\end{theorem}
+
+\begin{proof}
+Every vertex of $B$ has degree $2$, hence so does every vertex of $B^{\,n}$: the
+cover is a disjoint union of cycles. Lifting the base cycle starting at
+$(x_0,i)$ returns to $(x_0,i+W)$, so the fibre over $x_0$ is partitioned into
+the orbits of $i\mapsto i+W$ on $\mathbb Z_n$, of which there are $\gcd(|W|,n)$;
+the cover is therefore $\gcd(|W|,n)$ cycles, each of length $mn/\gcd(|W|,n)$.
+A matrix supported on a disjoint union of $g$ cycles is block diagonal with $g$
+blocks, each supported on a single cycle, and $M(C_N)=2$ since
+$\operatorname{mr}(C_N)=N-2$; so $\operatorname{null}A\le2g$. Finally
+$\gcd(|W|,n)\le|W|$ because $W\ne0$.
+
+For the span: $M(\zeta)$ is tridiagonal with corners. In the Leibniz expansion
+every permutation other than the two $m$-cycles pairs each off-diagonal entry
+$c_t\zeta^{w_t}$ with its transpose $c_t\zeta^{-w_t}$ and so contributes no
+power of $\zeta$; the two $m$-cycles contribute $\mp\prod_tc_t\,\zeta^{\pm W}$.
+The extreme exponents are therefore $\pm W$, and the span is $2|W|$.
+\end{proof}
+
+\begin{remark}
+The hypothesis $W\ne0$ is not a technicality. If $W=0$ the lift of the base
+cycle closes after one circuit, the cover is $n$ disjoint $m$-cycles --- and in
+particular disconnected --- while $\det M(\zeta)$ is constant, so the span is
+$0$ and the bound would assert $\operatorname{null}A=0$, which is false. This is
+the same degeneracy that excludes tree bases: a cover whose voltages do not
+generate $\mathbb Z_n$ is disconnected, and the ceiling is a statement about
+connected covers.
+\end{remark}
+
+\noindent
+Theorem~\ref{thm:redcycle} is worth contrasting with
+Theorem~\ref{thm:redpath}. It closes the cycle case, which the chained
+elimination cannot reach --- but it closes it for an entirely different reason,
+and an easier one: on a cycle base the cover degenerates to a union of cycles,
+where the bound follows from $M(C_N)=2$ rather than from any transfer-matrix
+argument. What that tells us is that the obstruction we named was an obstruction
+to the \emph{method}, not evidence against the statement.
+
+\begin{theorem}[The cover ceiling fails on a general base]\label{thm:cexcover}
+There is a connected cyclic cover and a matrix carrying its pattern whose
+nullity exceeds the degree span of $\det M(\zeta)$ by an amount growing with
+$n$. Explicitly, let $B$ have vertices $0,1,2,3$, edges $0\!-\!1$, $0\!-\!2$,
+$0\!-\!3$ of voltages $0,1,2$ and a loop of voltage $1$ at vertex $1$, so the
+degrees are $(3,3,1,1)$ and $D=2$. Give every edge of $B^{\,n}$ weight $1$, the
+fibres over $0$ and $1$ diagonal entries $1$ and $3$, and the fibres over $2$
+and $3$ diagonal entry $0$. Then $B^{\,n}$ is connected and
+\[
+  \operatorname{null}A \;=\; n \qquad\text{for every }n, \qquad\text{against } D=2 .
+\]
+\end{theorem}
+
+\begin{proof}
+Vertices $2$ and $3$ have degree $1$ in $B$, so their fibres are pendant
+vertices of $B^{\,n}$. The diagonal is unconstrained in $\mathcal S(G)$, so the
+assignment is legitimate. The row at a pendant $(2,j)$ reads
+$0\cdot x_{(2,j)}+x_{(0,j-1)}=0$, forcing $x_{(0,i)}=0$ for every $i$, and
+likewise from the fibre over $3$. With the fibre over $0$ annihilated, the row
+at $(1,j)$ becomes $x_{(1,j-1)}+3x_{(1,j)}+x_{(1,j+1)}=0$, a three-term
+recurrence on a cycle of length $n$ whose only solution is $x_{(1,\cdot)}=0$
+because $3>2$. What remains is the row at $(0,i)$, namely
+$x_{(1,i)}+x_{(2,i+1)}+x_{(3,i+2)}=0$, which with $x_{(1,\cdot)}=0$ is one
+linear relation between the two pendant values attached to $(0,i)$. That leaves
+$2n$ pendant coordinates subject to $n$ independent relations, so
+$\operatorname{null}A=n$. The ranks were also computed over $\mathbb Z$ for
+$n=5,6,7$ and for several edge weights
+(\texttt{verification/cover\_ceiling\_counterexample.py}).
+\end{proof}
+
+\begin{proposition}[The independent-set obstruction]\label{prop:indobs}
+Let $G$ be a graph and $S\subseteq V(G)$ an independent set. Then
+\[
+  M(G)\ \ge\ |S|-|N(S)| .
+\]
+\end{proposition}
+
+\begin{proof}
+Choose $A\in\mathcal S(G)$ with $a_{vv}=0$ for every $v\in S$ and with all
+off-diagonal entries nonzero; the diagonal is unconstrained in
+$\mathcal S(G)$, so this is legitimate. Consider the vectors $x$ supported on
+$S$. For $v\in S$ the row at $v$ reads $a_{vv}x_v+\sum_{w\sim v}a_{vw}x_w$, and
+every neighbour $w$ of $v$ lies outside $S$ because $S$ is independent, so
+$x_w=0$ and the row reduces to $a_{vv}x_v=0$, which holds identically. For
+$u\notin S$ the row reads $\sum_{w\sim u,\,w\in S}a_{uw}x_w=0$, which is
+vacuous unless $u\in N(S)$. So the vectors supported on $S$ that lie in $\ker A$
+are cut out by at most $|N(S)|$ linear conditions on $|S|$ coordinates, and
+$\operatorname{null}A\ge|S|-|N(S)|$.
+\end{proof}
+
+The bound is elementary and we do not claim it is new; what matters here is
+that it is exactly the mechanism behind Theorem~\ref{thm:cexcover}. On the
+star-with-a-loop cover take $S$ to be the two pendant fibres: $|S|=2n$,
+$N(S)$ is the fibre over the centre, $|N(S)|=n$, and the bound gives
+$\operatorname{null}A\ge n$ --- which is precisely the nullity exhibited there.
+On the $K_{2,3}$ cover, $S$ the three degree-two fibres gives
+$|S|-|N(S)|=3n-2n=n$, against $D=4$.
+
+And it is also exactly what regularity forbids.
+
+\begin{corollary}[Why regularity is the right hypothesis]\label{cor:regblocks}
+If $G$ is $d$-regular then $|N(S)|\ge|S|$ for every independent set $S$, so
+Proposition~\ref{prop:indobs} is vacuous on a regular graph.
+\end{corollary}
+
+\begin{proof}
+Count the edges leaving $S$. Each $v\in S$ has $d$ of them and, $S$ being
+independent, every one lands in $N(S)$; each vertex of $N(S)$ receives at most
+$d$. Hence $d|S|\le d|N(S)|$.
+\end{proof}
+
+\noindent
+So the particular obstruction that kills the ceiling on the star and on
+$K_{2,3}$ is available exactly when some independent set fails to expand, and
+in a regular graph no independent set fails to expand. It rules out one
+mechanism, not all of them; and the mechanism it rules out is the degenerate
+case of a larger one that regularity does not block.
+
+\begin{proposition}[The low-rank-subgraph obstruction]\label{prop:lowrank}
+For every $S\subseteq V(G)$,
+\[
+  M(G)\ \ge\ |V(G)|-\operatorname{mr}(G[S])-2\,|V(G)\setminus S| ,
+\]
+where $\operatorname{mr}(G[S])$ is the minimum rank of the induced subgraph.
+Proposition~\ref{prop:indobs} is the case of $S$ independent, where
+$\operatorname{mr}(G[S])=0$.
+\end{proposition}
+
+\begin{proof}
+Choose $A\in\mathcal S(G)$ whose principal submatrix on $S$ attains
+$\operatorname{mr}(G[S])$: the diagonal is free and the off-diagonal support on
+$S$ is $E(G[S])$, so this is legitimate; give every other edge a nonzero weight.
+Write $S^c=V(G)\setminus S$. The rows of $A$ indexed by $S$ form the block
+$[\,A[S]\;\;A[S,S^c]\,]$, of rank at most
+$\operatorname{rank}A[S]+\operatorname{rank}A[S,S^c]\le\operatorname{mr}(G[S])+|S^c|$,
+and the rows indexed by $S^c$ number $|S^c|$. So
+$\operatorname{rank}A\le\operatorname{mr}(G[S])+2|S^c|$.
+\end{proof}
+
+\noindent
+Regularity bounds $|N(S)|$ from below for an independent $S$ and says nothing
+about $\operatorname{mr}(G[S])$ for a general $S$. A regular cover whose fibres
+contain triangles has induced subgraphs of very low minimum rank, and that is
+what happens on $K_4$ in Section~\ref{sec:gapfamily}.
+
+\begin{remark}[The obvious repair fails too]\label{rem:mindeg}
+One might demand minimum degree $2$ in the base, so that the cover has no
+pendant vertices. That is not enough. Take $B=K_{2,3}$ with parts $\{0,1\}$ and
+$\{2,3,4\}$ and voltages $0,1,2$ and $1,0,1$; the degrees are $(3,3,2,2,2)$ and
+$D=4$. Zeroing the diagonal on the three degree-$2$ fibres gives
+$\operatorname{null}A=6$ at $n=5$ and $8$ at $n=7$, both connected covers, again
+computed exactly over $\mathbb Z$.
+
+Regularity does not survive either. Every \emph{regular} base we attacked
+--- $C_3$, the theta and four-edge theta bases, the two-loop base, $K_4$,
+$K_{3,3}$ and the prism --- held under both the diagonal-zeroing construction
+above and a gradient search over fully non-equivariant weights, and on that
+evidence we conjectured the ceiling for regular bases. The conjecture is false,
+and $K_4$ was in the list: Theorem~\ref{thm:k4rankone} gives nullity $n$
+against $D=6$ on a cubic cover of $K_4$, by Proposition~\ref{prop:lowrank}
+rather than by either attack. What does survive is the rest of the paper:
+$P(n,k)$ and the theta covers are handled by Theorems~\ref{thm:red},
+\ref{thm:red2} and \ref{thm:theta}, which are direct eliminations and never pass
+through $\det M(\zeta)$. Theorems~\ref{thm:cexcover} and~\ref{thm:k4rankone}
+kill the claim for arbitrary and for regular bases respectively; what replaces
+regularity as the hypothesis is Conjecture~\ref{conj:leading} below.
+\end{remark}
+
+\begin{remark}[What this does and does not reach]
+Theorem~\ref{thm:redpath} removes the two-vertex restriction, but not by
+settling the general conjecture: it settles the bases on which the elimination
+\emph{chains}, namely those whose underlying graph is a path and whose
+connecting edges are single. The chain does not terminate when the base contains a
+cycle --- the last elimination feeds back into a fibre already eliminated --- and
+it solves for nothing when two vertices are joined by parallel edges, since the
+relevant row then contains two unknowns of the next fibre; that is the $\theta$
+case of Theorem~\ref{thm:theta}. Theorem~\ref{thm:redcycle} disposes of the
+first obstruction for \emph{pure} cycle bases, by a degeneration rather than by
+an elimination. What remains genuinely open is the case that is neither a path
+nor a cycle nor two vertices: a base carrying both a cycle and extra structure,
+such as a cycle with loops, or $K_4$, where neither argument applies --- and,
+for an arbitrary base, nothing at all, since Theorem~\ref{thm:cexcover} shows
+the statement is false there, and for a regular base likewise, by
+Theorem~\ref{thm:k4rankone}. The live question is the condition the proofs
+actually use.
+\end{remark}
+
+\begin{conjecture}[Leading-coefficient criterion]\label{conj:leading}
+Let $B$ be a connected base with voltages, and let $c_{\max}$ be the
+coefficient of the top power of $\zeta$ in $\det M(\zeta)$, regarded as a
+polynomial in the edge weights and the diagonal entries of $B$. If $c_{\max}$
+is a nonzero monomial in the edge weights alone --- which holds when a unique
+permutation of $V(B)$ attains the maximum total voltage and it has no fixed
+points --- then $\operatorname{null}A\le D$ for every $A\in\mathcal S(B^n)$ and
+every $n$.
+\end{conjecture}
+
+\noindent
+The condition is what every proof in this paper uses. On the two-loop base the
+top coefficient is the product of the two loop weights; on a theta base, minus
+the product of the two extreme-voltage edge weights; on a path with a loop at
+every vertex, the product of the loop weights; on a cycle base, the product of
+all edge weights. None of these can vanish, which is why each elimination has a
+leading term to solve for. On each of the three bases where we know the ceiling
+fails, the top coefficient contains a diagonal entry: on the star with a loop it
+is $-w_{\ell}\,(d_2w_{03}^{2}+d_3w_{02}^{2}-d_0d_2d_3)$ with $w_\ell$ the loop
+weight; on $K_{2,3}$ it is $-w_{02}w_{12}(d_3w_{04}w_{14}+d_4w_{03}w_{13})$; on
+the $K_4$ base of Section~\ref{sec:gapfamily} it is
+$-w_{12}w_{23}(w_{01}w_{03}-d_0w_{13})$. A free diagonal in the top coefficient
+means it can be made to vanish, the span drops, and the counting argument has no
+leading term; whether the whole determinant can then be made to vanish is a
+further question, answered for $K_4$ by a rank-one fibre. The criterion is
+checked symbolically on every base in the paper
+(\texttt{verification/k4\_rank\_one.py}). We do not prove the conjecture. The
+natural route is the chained elimination of Theorem~\ref{thm:redpath},
+organised so that at each step the unknowns of the newest fibre are solved for
+through the square subsystem whose determinant is $c_{\max}$; the two-vertex,
+path and cycle theorems are the cases where that subsystem is one equation.
+
+\noindent
 Theorems~\ref{thm:red2} and~\ref{thm:theta} are the two extreme shapes of a
 two-vertex base: loops with one connecting edge, and connecting edges with no
 loops. Between them lies the general case, where the two eliminations compete
@@ -2100,10 +2693,14 @@ products of transfer matrices, with no arithmetic in it --- which is why we
 expect it to behave uniformly in $n$, unlike everything in
 Sections~\ref{sec:cyclo} and~\ref{sec:periodd}.
 
-\begin{remark}[A strict gap, and a correction to our own evidence]
+\begin{remark}[Two corrections to our own evidence]
 Two caveats. First, $n=10$, $k=2$ resists the search even though its reachable
-dimension is already saturated, and $Z(P(10,2))=6$; so we expect
-$M(P(10,2))<Z(P(10,2))$, a strict gap, though we have not proved it. Second, the
+dimension is already saturated, and $Z(P(10,2))=6$; we took that resistance as
+reason to expect a strict gap $M(P(10,2))<Z(P(10,2))$. There is none:
+$M(P(10,2))=6$, by the integer certificate of
+Remark~\ref{rem:twoexc}. The resistance was a fact about $\Gamma_{10}$, not
+about the bound --- a failed search measuring effort spent, which is the error
+this paper warns about and walked into twice. Second, the
 eigenvalue-minimising search we reported earlier is unreliable and its negative
 results should not be read as evidence: it gave maximum nullity $7$ at
 $P(20,3)$, whereas the ceiling $8$ is attained there both by
@@ -2382,7 +2979,28 @@ $M(P(n,4))=10$ is proved for every $n\ge29$ by Theorem~\ref{thm:k3all}, for
 $n=25,26,27,28$ by individual certificates, and for every $n$ divisible by $60$,
 $70$ or $90$ by Theorem~\ref{thm:certvals}. Only at $n=24$ do we know $Z=10$
 without a certificate, so $M(P(24,4))$ is not determined; nothing suggests
-$M<Z$ there, we simply have not found the matrix.
+$M<Z$ there.
+
+That one is not a search failure, and it is worth saying why, because the same
+mechanism governs the two exceptions at $k=2$. In a period-one matrix the block
+$M_j$ is singular only if $(d_{\mathrm{out}}+ax_j)(d_{\mathrm{in}}+by_j)=c^2$
+with $x_j=2\cos(2\pi j/n)$ and $y_j=2\cos(2\pi jk/n)$; since $c\neq0$ neither
+factor vanishes, so two singular blocks with $y_j=y_{j'}$ force
+$x_j=x_{j'}$ and hence $j'\equiv\pm j$. The singular blocks therefore have
+pairwise distinct $y$ values, and
+\[
+  \operatorname{null}A\;\le\!\!\sum_{\text{distinct } y\text{ values}}\!\!
+  \bigl(\text{largest } \pm\text{class in that value}\bigr),
+\]
+a bound on every period-one matrix at once. It gives $8$ at $(n,k)=(24,4)$
+against a ceiling of $10$, so no rotation-invariant matrix attains the ceiling
+at $n=24$ and no restart budget would have found one; it gives $5$ at
+$(10,2)$, which is the general form of the computation in
+Remark~\ref{rem:twoexc}; and at $k=2$ the values of $n$ it blocks are exactly
+$8$ and $10$, the two exceptions, derived rather than observed
+(\texttt{verification/period1\_ceiling.py}). The bound constrains period-one
+matrices only --- the period-$d$ and tiling constructions are not affected, and
+it is an upper bound, so a value below it need not be attainable.
 
 \begin{theorem}[$k=3$ completely, and the stabilization threshold]
 \label{thm:k3krishnan}
@@ -2581,6 +3199,9 @@ $21\le\ell\le43$, $k=4$ at all $\LvalFour\le\ell\le\LmaxFour$, $k=5$ at
 $\NtileFive$ lengths in $[\LvalFive,\LmaxFive]$), which is
 evidence for the general statement and not a proof of it.
 
+\input{zf_tiles_allk}
+\input{zf_tiles_rank}
+
 \begin{remark}[What this does not give]
 Theorem~\ref{thm:k3all} leaves $7\le n\le16$ open at $k=3$, apart from $n=10$
 which Theorem~\ref{thm:k3} settles; the construction of
@@ -2668,6 +3289,129 @@ the damped Newton stalls near $10^{-2}$ from such starts at the lengths that
 needed retrying.
 \end{remark}
 
+\section{A cubic family on which the symbol stays at \texorpdfstring{$6$}{6} and the nullity does not}
+\label{sec:gapfamily}
+
+The ceiling, where it holds, says the maximum nullity of a cover is read off its
+base. This section records a family on which we believed it would hold, and the
+matrix that shows it does not. The family was proposed, in an earlier version of
+this paper, as a cubic separation between $M$ and $Z$ with an unbounded gap; it
+is instead the counterexample to the regular-base conjecture of
+Remark~\ref{rem:mindeg}. We keep the certificate and the $Z$ values because they
+are correct, and the record of how the conjecture failed because it is the
+point.
+
+Let $B=K_4$ with voltages $0$ on $0\!-\!1$, $1$ on $0\!-\!2$, $0$ on $0\!-\!3$,
+$2$ on $1\!-\!2$, $0$ on $1\!-\!3$ and $1$ on $2\!-\!3$. Every cover $B^n$ is
+cubic, simple and connected, on $4n$ vertices, and the generic degree span of
+$\det M(\zeta)$ is $D=6$ for every $n$.
+
+\begin{proposition}[An exact certificate at the span]\label{prop:k4cert}
+Give every edge of $B^{\,n}$ weight $2$ and the four fibres diagonal entries
+$4,4,5,4$. The resulting integer matrix has
+$\operatorname{null}A=6=D$, verified by exact rank over $\mathbb Z$ at $n=7$
+and $n=14$.
+\end{proposition}
+
+\begin{proof}
+$\det M(\zeta)$ is palindromic, since $M(1/\zeta)=M(\zeta)^{\!\top}$ for real
+weights, so in $x=\zeta+\zeta^{-1}$ it is a cubic. Writing
+$\zeta^{3}\det M(\zeta)=A(\zeta^{6}{+}1)+B(\zeta^{5}{+}\zeta)+C(\zeta^{4}{+}\zeta^{2})+E\zeta^{3}$
+and using $\zeta^{3}+\zeta^{-3}=x^{3}-3x$, $\zeta^{2}+\zeta^{-2}=x^{2}-2$, the
+symbol in $x$ is $Ax^{3}+Bx^{2}+(C-3A)x+(E-2B)$. The minimal polynomial of
+$2\cos\frac{2\pi}{7}$ is $x^{3}+x^{2}-2x-1$, also a cubic, and matching the two
+up to scale forces $A=B=C=E$. With all six edge weights equal this reduces to
+$d_0=d_1=d_3=:t$ and $d_2=(3t+4)/\bigl((t-1)(t+2)\bigr)$; taking $t=2$ gives
+$d_2=\tfrac52$, and scaling the matrix by $2$ clears the denominator. The
+symbol is then $16(\zeta^{7}-1)/(\zeta-1)$, which vanishes at each of the six
+primitive $7$th roots of unity, so six blocks are singular.
+\end{proof}
+
+\begin{proposition}[The zero forcing number grows]\label{prop:k4z}
+$Z(B^{\,n})=n+2$ for $n=4,\dots,8$, each value computed by a CP-SAT model with
+optimality \emph{proved} rather than merely attained.
+\end{proposition}
+
+\begin{center}
+\begin{tabular}{r r r r r}
+\hline
+$n$ & $|V(B^{n})|$ & $D$ & $Z$ & $Z-D$\\
+\hline
+$4$ & $16$ & $6$ & $6$ & $0$\\
+$5$ & $20$ & $6$ & $7$ & $+1$\\
+$6$ & $24$ & $6$ & $8$ & $+2$\\
+$7$ & $28$ & $6$ & $9$ & $+3$\\
+$8$ & $32$ & $6$ & $10$ & $+4$\\
+\hline
+\end{tabular}
+\end{center}
+
+\noindent
+Theorem~\ref{thm:cover} bounds every equivariant matrix with
+$\det M(\zeta)\not\equiv0$ by $6$, and Proposition~\ref{prop:k4cert} attains it.
+We had concluded that the equivariant maximum nullity of the family is $6$
+while $Z$ grows without bound, and conjectured $M(B^{\,n})=6$ --- which would
+have been an infinite family of cubic graphs with bounded maximum nullity and
+unbounded zero forcing number, the gap explained by a parameter read off the
+base. Both the conclusion and the conjecture are false, and the reason is in
+the voltages: the three edges of voltage $0$ are $0\!-\!1$, $0\!-\!3$ and
+$1\!-\!3$, a triangle, so each fibre index $i$ carries a triangle
+$\{(0,i),(1,i),(3,i)\}$, and the only edges leaving it go to the fibre over
+vertex $2$.
+
+\begin{theorem}[The regular-base ceiling fails]\label{thm:k4rankone}
+On the cover $B^{\,n}$ above, for every $n\ge4$, there is an equivariant
+$A\in\mathcal S(B^{\,n})$ with $\operatorname{null}A\ge n$. Hence
+$M(B^{\,n})\ge n$ against $D=6$, and $Z(B^{\,n})-M(B^{\,n})\le2$ wherever
+$Z(B^{\,n})=n+2$.
+\end{theorem}
+
+\begin{proof}
+Take $u\in\mathbb R^{3}$ with all entries nonzero and let the principal
+submatrix of $A$ on each triangle $\{(0,i),(1,i),(3,i)\}$ be $uu^{\!\top}$: its
+off-diagonal entries $u_au_b$ are nonzero, as the pattern requires, and its
+diagonal entries are free. Give the remaining edges any nonzero weights and the
+fibre over $2$ any diagonal. Let $S$ be the $3n$ triangle vertices and $S^c$
+the $n$ vertices over $2$. Then $G[S]$ is $n$ disjoint triangles and $A[S]$ has
+rank $n$; the block $A[S,S^c]$ has $n$ columns; so the rows indexed by $S$ have
+rank at most $2n$, the rows indexed by $S^c$ have rank at most $n$, and
+$\operatorname{rank}A\le3n$. This is Proposition~\ref{prop:lowrank} with
+$\operatorname{mr}(G[S])=n$ and $|S^c|=n$. In the equivariant picture
+$M(\zeta)$ has a rank-one $3\times3$ block, so its first three columns span at
+most two dimensions and $\det M(\zeta)\equiv0$: every block is singular, which
+is the case Theorem~\ref{thm:cover} excludes. The ranks were also computed
+exactly over $\mathbb Q$ for $n=4,\dots,10$, where the nullity is exactly $n$
+(\texttt{verification/k4\_rank\_one.py}).
+\end{proof}
+
+\noindent
+What survives of the section is this. The generic span $D=6$ is attained, by an
+integer matrix; $Z=n+2$ by exact search; and $M\ge n$, so the family is not a
+separation between $M$ and $Z$, and the degree span is not the parameter $Y$
+with $M\le Y<Z$ that the survey \cite{FH} asks for --- not on regular bases,
+where we had proposed it. Whether $M(B^{\,n})$ is $n$, $n+1$ or $n+2$ we have
+not determined, and one piece of evidence should be recorded with its standard
+attached. Maximising the nullity over the \emph{full} pattern at $n=4$ --- not
+the equivariant subclass --- reaches $5=n+1$, with the five smallest singular
+values between $10^{-9}$ and $10^{-11}$ and the sixth at $0.24$ of the matrix
+scale, while $n+2=6$ is not reached and stalls at $6\times10^{-4}$, nowhere
+near zero. If that witness is genuine then the rank-one construction is not
+optimal and $Z-M\le1$ at $n=4$. We label it \emph{numerical}: unlike
+$P(10,2)$ it resisted exact rationalisation, so there is no certificate, and
+this project has twice been misled by a converged optimum. Its structure is at
+least not the one the proof above uses --- the triangle blocks come out with
+ranks $(2,2,2,3)$ rather than all $1$, so Proposition~\ref{prop:lowrank} does
+not account for it (\texttt{verification/k4\_nplus1.py}). Certifying or
+refuting it is the open problem.
+The documented strict separations remain tree-like --- the
+Barioli--Fallat tree and a graph derived from it --- and the published cubic
+results reach $Z=3$ and $Z=4$ \cite{AVG}; we do not have a regular example. The
+two attacks of Remark~\ref{rem:mindeg} both missed this matrix, for a reason
+worth recording: the diagonal-zeroing attack varies only diagonals, and the
+gradient search starts from generic weights, while the construction lives on
+the locus where the triangle blocks are singular, which neither explores. The
+matrix was found by reading the voltages, not by searching.
+
 \section{Why lower bounds resist standard methods}\label{sec:resist}
 A set is zero forcing iff it meets every \emph{fort} --- a nonempty $F$ such
 that every vertex outside $F$ has $0$ or $\ge2$ neighbours in $F$ --- so $Z$
@@ -2691,7 +3435,61 @@ $Z\ge N(1+2\lambda_{\min}/(d-\lambda_{\min}))$ yields values in $1.2$--$2.9$
 against true $Z$ of $6$--$12$, and also weakens as $k$ grows.
 \end{itemize}
 
+\section{What this contributes, and what it does not}\label{sec:contribution}
+
+It is worth separating the contribution from the framing before listing the
+claims, because the two are not the same size.
+
+\textbf{The clearest contribution is Part II.} It closes three specific gaps in
+the literature on a family that is used as a test case. A published
+theorem --- $Z(P(n,3))=8$ for $n\ge12$, \cite[Thm.~3.6]{RST} --- is false;
+the error was found by \cite{K}, which exhibits $Z(P(12,3))=7$, and what was
+missing there, a lower bound valid for every large $n$, is
+Theorem~\ref{thm:k3krishnan}. Conjecture 5 of \cite{K} is thereby proved and
+the stabilisation threshold that note leaves open is fixed at $13$. And the
+values at $k=4$ are the first exact ones at that parameter at all, as well as
+the first holding for an infinite family at any $k\ge4$. Separately, the
+ceiling of Corollary~\ref{cor:ceiling} is a statement about the method rather
+than the family: the matrix-certificate approach either settles $Z(P(n,k))$
+completely or cannot settle it at all.
+
+\textbf{Part I is a complete classification of a recognised kind.} Droll did
+this for unitary Cayley graphs and Le--Sander~\cite{lesander} for integral
+circulants of prime power order; in both cases, as here, only finitely many
+members qualify. The contribution is exactness and completeness, not surprise:
+anyone who knows that abelian covers do not expand would have predicted the
+shape of the answer. What was not available before is \emph{which} members, and
+that no member exists beyond $k=\RamAllMaxK$. For $k\le9$ other than $6$ and
+$8$ the answer is a theorem rather than a list (Theorem~\ref{prop:closedsmall}):
+the classification is an initial segment, cut at $B_k$, and at $B_k/2$ for odd
+$n$ when $k$ is odd, because the negative set of $D_k$ consists of the end
+bands alone --- a fact about the real roots of one integer polynomial, decided
+by Sturm's theorem. Where the list has gaps, it is because an interior band
+appears, and from $k=10$ on it always does.
+
+\textbf{Three things we are careful not to claim.} First, the graph Riemann
+Hypothesis is not the classical one: by the Ihara determinant formula it is
+equivalent to a finite eigenvalue check, which is exactly why it is decidable.
+The analogy lives in the zeta function, not in the difficulty. Second,
+Theorem~\ref{thm:noinfinite} refines a known principle rather than establishing
+a new one; what is new is the explicit constant and the exact criteria of
+Theorems~\ref{thm:covcorner} and~\ref{thm:thetarh} for the two-vertex bases.
+Third, the verification apparatus is methodology, not mathematics: it is why we
+believe the numbers, and it is not a theorem.
+
 \section{Status of the claims}
+
+\noindent\textbf{Added 4 October (\S\ref{sec:tilesallk}).} Proved: the invariant
+form of a tile is the discrete Wronskian and tile products lie in $Sp(B)$
+(Lemma~\ref{lem:wronskian}); elliptic docks exist for every $k$
+(Lemma~\ref{lem:elliptic}); identity tiles of every large length exist whenever
+the tile differential has full rank at one point (Theorem~\ref{thm:tilesallk}).
+The rank hypothesis holds at every nonresonant elliptic dock, for every $k$
+(Lemmas~\ref{lem:firstorder}, \ref{lem:secondorder}), so
+$Z(P(n,k))=M(P(n,k))=2k+2$ for all sufficiently large $n$, for every $k\ge2$
+(Theorem~\ref{thm:allkranks}), with an ineffective threshold; the hypothesis is
+also certified exactly for $k\le\TileAllK$ (Proposition~\ref{prop:tilesallk}).
+Open: an effective $L(k)$.
 Every claim below is labelled by the standard it meets. Four standards appear,
 in decreasing strength: \emph{proved}, meaning a proof in the text;
 \emph{proved by an exact certificate}, meaning an explicit matrix whose nullity
@@ -2713,8 +3511,12 @@ Proposition~\ref{prop:k2closed}; Theorem~\ref{thm:k6imp}, that no rational
 period-one symbol attains $14$ at $k=6$ in either matrix class;
 Theorem~\ref{thm:congbound}, that a period-one certificate covers exactly one
 divisibility class, which contains at most one prime, together with the identity
-$e_2=-k$ for every $k\ge3$; and Theorem~\ref{thm:cover} with
-Theorem~\ref{thm:coverattain} for cyclic covers.
+$e_2=-k$ for every $k\ge3$; Theorem~\ref{thm:cover} --- under the hypothesis
+$\det M(\zeta)\not\equiv0$, which an earlier version omitted --- with
+Theorem~\ref{thm:coverattain} for cyclic covers; Theorems~\ref{thm:red2},
+\ref{thm:theta}, \ref{thm:redpath} and \ref{thm:redcycle}; the two refutations,
+Theorems~\ref{thm:cexcover} and \ref{thm:k4rankone}; and
+Propositions~\ref{prop:indobs} and \ref{prop:lowrank}.
 
 \item \textbf{Proved by an exact certificate.} $Z(P(n,2))=6$ for every $n\ge9$
 with $n\ne10$, and for every $n$ divisible by $7$ (Theorem~\ref{thm:k2all});
@@ -2768,12 +3570,24 @@ $\operatorname{rank}=\min(2d+1,k+1)$, verified for $3\le k\le13$ and
 $1\le d\le7$. Also the saturation of the reachable set of monodromies, at
 dimension $31$ for $k=2$ and $51$ for $k=3$.
 
-\item \textbf{Conjectural.} Conjecture~\ref{conj}, and
+\item \textbf{Conjectural.} Conjecture~\ref{conj}; Conjecture~\ref{conj:leading},
+the leading-coefficient criterion, which is consistent with every base in the
+paper and proved on none beyond those; and
 Conjecture~\ref{conj:generaln} \emph{for $k\ge6$}. For $k=3$ and $k=4$ the
 conjecture is a theorem (Theorem~\ref{thm:k3all}), and for $k=5$ it is a theorem
 with a non-optimal threshold (Theorem~\ref{thm:k5all}, $N(5)\le\SettleFive$);
 what remains open is whether $N(k)$ exists for every $k$, for which we prove only
 the necessary condition \eqref{eq:thresh}.
+
+\item \textbf{Refuted (ours).} The regular-base ceiling conjectured in
+Remark~\ref{rem:mindeg}, and with it the conjecture of an earlier version that
+$M(B^{\,n})=6$ on the $K_4$ family of Section~\ref{sec:gapfamily}, which would
+have given $Z-M\to\infty$ on cubic graphs: Theorem~\ref{thm:k4rankone} gives
+$M(B^{\,n})\ge n$. The accompanying statement that the \emph{equivariant}
+maximum nullity of that family is $6$ was also false, because
+Theorem~\ref{thm:cover} needs $\det M(\zeta)\not\equiv0$ and a rank-one fibre
+makes it vanish identically. The conjecture had been written into the paper,
+the board and the interview script as the strongest result in the project.
 
 \item \textbf{Refuted (ours).} That the period-one construction ``never exceeds
 $6$ for every $k\ge2$''. Three roots can be prescribed and no more, but the
@@ -2850,10 +3664,10 @@ no tiles at all and the count gives only $\ell\ge54$. At $k=5$ the conjecture no
 holds for $n\ge\SettleFive$ (Theorem~\ref{thm:k5all}) but not below it: we have
 $\NtileFive$ of the $54$ lengths $[54,108)$ would require, and $54\le n<\SettleFive$
 is settled only at the $64$ values that are sums of them. Also whether
-$M=Z$ in general, and the rank law. We expect
-$M(P(10,2))<Z(P(10,2))=6$, a strict gap, since the search fails there even
-though the reachable dimension is saturated, but we do not prove it and no
-$(n,k)$ is proved to have $M(P(n,k))<2k+2$.
+$M=Z$ in general, and the rank law. No $(n,k)$ is proved to have
+$M(P(n,k))<2k+2$, and the one case where we expected a strict gap,
+$(n,k)=(10,2)$, turned out not to be one: $M(P(10,2))=Z(P(10,2))=6$ by the
+integer certificate of Remark~\ref{rem:twoexc}.
 
 \item \textbf{Superseded (ours).} The claim that the period-$d$ method ``cannot
 settle prime $n$ at all'' and that a different construction would be needed
@@ -2891,6 +3705,30 @@ Computing the zero forcing number for generalized Petersen graphs,
 \emph{J. Algebra Combin. Discrete Struct. Appl.} 7(2) (2020), 183--193.
 \bibitem{K} A. Krishnan, A correction to the zero forcing number of the
 generalized Petersen graphs $P(n,3)$, arXiv:2607.19412 (2026).
+\bibitem{terras} A. Terras, \emph{Zeta Functions and Chaos},
+  lecture notes, October 12, 2009; and \emph{Zeta Functions of Graphs: A Stroll
+  through the Garden}, Cambridge Studies in Advanced Mathematics 128,
+  Cambridge University Press, 2010. The equivalence we use is stated there as
+  Exercise 9: for a $(q+1)$-regular graph the Riemann Hypothesis holds if and
+  only if every eigenvalue $\lambda$ of the adjacency matrix with
+  $|\lambda|\ne q+1$ satisfies $|\lambda|\le2\sqrt q$.
+
+\bibitem{AVG} S. Akbari, E. Vatandoost and Y. Golkhandy Pour,
+\emph{Maximum nullity and zero forcing number on cubic graphs},
+arXiv:1705.09773 (2017).
+\bibitem{lps} A. Lubotzky, R. Phillips and P. Sarnak, Ramanujan graphs,
+  \emph{Combinatorica} \textbf{8} (1988), 261--277.
+
+\bibitem{gs} R. Gera and P. St\u{a}nic\u{a}, The spectrum of generalized
+  Petersen graphs, \emph{Australasian J. Combinatorics} \textbf{49} (2011),
+  39--45. Theorem 2.4 gives the quadratic
+  $\delta^2-(\alpha_j+\beta_j)\delta+\alpha_j\beta_j-1=0$ with
+  $\beta_j=2T_k(\alpha_j/2)$, which is our Lemma~\ref{lem:blocks}.
+
+\bibitem{lesander} T. A. Le and J. W. Sander, Integral circulant Ramanujan
+  graphs of prime power order, \emph{Electron. J. Combin.} \textbf{20} (2013),
+  no.~3, \#P35.
+
 \bibitem{cj76} J. H. Conway and A. J. Jones, Trigonometric diophantine
 equations (On vanishing sums of roots of unity),
 \emph{Acta Arith.} 30 (1976), 229--240.

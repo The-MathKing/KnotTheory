@@ -16,6 +16,10 @@ the degenerate strata:
     otherwise attracts (with spokes 1 and all edges 0 the matrix splits into
     2x2 blocks [[d_i,1],[1,D_i]] and any 2k+2 of them can be made singular).
 """
+
+import os as _os
+_REPO = _os.path.abspath(_os.path.join(
+    _os.path.dirname(__file__), ".."))
 import sys
 
 import numpy as np
@@ -100,6 +104,6 @@ if __name__ == "__main__":
         if 2 * k >= n:
             print(f" {n:4d}   (needs n > 2k)"); continue
         nul, obj, me, sv, w = solve(n, k)
-        np.save(f"/Volumes/2TB/scifair/results/zero_forcing/ws1_{n}_{k}.npy", w)
+        np.save(f"{_REPO}/results/zero_forcing/ws1_{n}_{k}.npy", w)
         print(f" {n:4d}   {'yes' if is_prime(n) else ' no'}{obj:18.3e}"
               f"{me:18.4f}{nul:10d}   {'CEILING' if nul >= r else 'no'}")

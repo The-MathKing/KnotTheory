@@ -15,18 +15,22 @@ recomputed X agrees with the stored X, which confirms the reconstruction picked
 the same pivot rows.  If it does not agree the run aborts rather than certifying
 a different system than the one on disk.
 """
+
+import os as _os
+_REPO = _os.path.abspath(_os.path.join(
+    _os.path.dirname(__file__), ".."))
 import sys, os, glob
 
 import numpy as np
 import scipy.linalg as sla
 
-sys.path.insert(0, "/Volumes/2TB/scifair/verification")
+sys.path.insert(0, f"{_REPO}/verification")
 from certify_general import pattern_cells, assemble, graph_form, jac
 from certify_tiles import dock_indices, dock_weights
 from krawczyk import L_LIP
 from exact_krawczyk import exact_krawczyk, edge_bound
 
-RES = "/Volumes/2TB/scifair/results/zero_forcing"
+RES = f"{_REPO}/results/zero_forcing"
 
 
 def rebuild(zn, n, k, pinned):

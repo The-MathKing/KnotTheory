@@ -18,6 +18,10 @@ certified solution carries them exactly.
 A certified tile of every length in [L, 2L) therefore proves, via
 Theorem (tiling), that Z(P(n,k)) = M(P(n,k)) = 2k+2 for every n >= L.
 """
+
+import os as _os
+_REPO = _os.path.abspath(_os.path.join(
+    _os.path.dirname(__file__), ".."))
 import glob
 import os
 import sys
@@ -27,7 +31,7 @@ import numpy as np
 import scipy.linalg as sla
 from mpmath import mp, mpf
 
-sys.path.insert(0, "/Volumes/2TB/scifair/verification")
+sys.path.insert(0, f"{_REPO}/verification")
 from certify_general import pattern_cells, assemble, graph_form, build_K, jac
 from krawczyk import resid_mp, L_LIP
 from tiles import dock_weights
@@ -161,7 +165,7 @@ def certify_tile(l, k, w_int, digits=6, verbose=True):
 def main():
     k = int(sys.argv[1])
     got, failed = [], []
-    files = sorted(glob.glob(f"/Volumes/2TB/scifair/results/zero_forcing/tile_*_{k}.npy"),
+    files = sorted(glob.glob(f"{_REPO}/results/zero_forcing/tile_*_{k}.npy"),
                    key=lambda f: int(os.path.basename(f).split("_")[1]))
     print(f"certifying {len(files)} identity tiles at k={k}")
     for f in files:
@@ -170,7 +174,7 @@ def main():
         ok, zn = certify_tile(l, k, w)
         (got if ok else failed).append(l)
         if ok:
-            np.save(f"/Volumes/2TB/scifair/results/zero_forcing/"
+            np.save(f"{_REPO}/results/zero_forcing/"
                     f"tilecert_{l}_{k}.npy", zn)
     print()
     print(f"CERTIFIED tile lengths: {got}")

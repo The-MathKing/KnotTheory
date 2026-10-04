@@ -1,34 +1,13 @@
 # Official Abstract (250-word format)
 
-**Title.** Maximum Nullity of Cyclic Covers of Graphs: A Monodromy Ceiling and
-the Zero Forcing Number of Generalized Petersen Graphs
+**Title.** Ramanujan Graphs and Zero Forcing in the Generalized Petersen Family
 
 **Category.** Mathematics
 
 ---
 
-Zero forcing is a colouring process: a coloured vertex with exactly one
-uncoloured neighbour forces that neighbour to colour. The zero forcing number
-Z(G) is the smallest starting set that colours everything, and it bounds the
-maximum nullity M(G) over symmetric matrices with the graph's pattern. For the
-generalized Petersen graphs P(n,k), a 2020 paper claimed Z(P(n,3))=8 for n at
-least 12. A July 2026 note showed this is false and conjectured Z(P(n,3))=8 for
-n at least 13, identifying the missing ingredient as a lower-bound proof
-for all large n.
+Fix the adjacency matrix of the generalized Petersen graph P(n,k): is its spectral gap optimal? That is the Riemann Hypothesis for its Ihara zeta function, the Ramanujan condition. Let it range over every matrix with that pattern: how degenerate can zero be? That is the zero forcing number Z(G), which bounds maximum nullity M(G).
 
-Eliminating the inner coordinates of any matrix carrying the P(n,k) pattern
-leaves one linear recurrence of order exactly 2k+2. Its nullity is therefore at
-most 2k+2 — the best known upper bound on Z. So the matrix method either settles
-Z completely or cannot settle it at all.
+Fixed matrix: squaring twice, each step an equivalence, leaves one integer polynomial D_k. Substituting x = cos(πj(k+1)/n), y = cos(πj(k−1)/n) collapses it to Q = 4x²+4y²−8√2|xy|+3 ≥ 0, with no k in it: one fixed forbidden set, 0.43% of the square. Failure is then a Diophantine condition, forced for every k once n ≥ 231 by Dirichlet's theorem: the family is finite in both variables. For k ≤ 9 other than 6 and 8, Sturm root isolation of D_k proves the classification outright: P(n,k) is Ramanujan iff n lies below an explicit bound, halved for odd n when k is odd. The finite remainder gives 460 pairs (n,k), 324 graphs; none with k > 45. No infinite Ramanujan family is a cyclic cover.
 
-Reaching that ceiling with a rotation-invariant matrix provably confines n to
-one divisibility class containing at most one prime. Assembling it from tiles
-that each contribute the identity to the monodromy removes the
-restriction: tiles whose lengths sum to n settle n. I certified 77 such tiles,
-evaluating every Krawczyk bound in exact rational arithmetic rather than
-floating point.
-
-That is the missing ingredient. Consequently Z(P(n,2)), Z(P(n,3)) and Z(P(n,4))
-are determined for every n, the last two for the first time; Z(P(n,3))=8 for
-every n at least 13, proving Conjecture 5 of that note; Z(P(n,4))=10 for every n
-at least 18; and Z(P(n,5))=12 for every n at least 162.
+Ranging matrix: eliminating inner coordinates leaves one recurrence of order 2k+2, a ceiling equal to the known upper bound. A tiling theorem reduces all large n to finitely many identity tiles, verified in exact arithmetic; this gives Z = M = 2k+2 for all n ≥ 17 at k = 3 and n ≥ 29 at k = 4, determines Z(P(n,k)) for every n at k ≤ 4, and proves Krishnan's Conjecture 5.

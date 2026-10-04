@@ -20,10 +20,14 @@ and the claim null A <= D is the claim that this constant is at most D.  Nothing
 here optimises or samples weights for a purpose; the weights are generic, and a
 generic value of a rank is an upper bound for every value of it.
 """
+
+import os as _os
+_REPO = _os.path.abspath(_os.path.join(
+    _os.path.dirname(__file__), ".."))
 import sys
 import numpy as np
 
-sys.path.insert(0, "/Volumes/2TB/scifair/verification")
+sys.path.insert(0, f"{_REPO}/verification")
 
 
 def band_nullity(p, q, volts, W, seed=0, jitter=True):

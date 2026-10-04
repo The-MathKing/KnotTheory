@@ -1,0 +1,174 @@
+% ---------------------------------------------------------------------------
+% Identity tiles for every large length, from two conditions at one point.
+% AI-DRAFTED on 4 October 2026 (assistance record, §10).  The mathematics is
+% machine-verified (verification/tile_controllability.py, tile_wronskian.py,
+% tile_rank_exact.py); the prose is to be rewritten by the author.
+% ---------------------------------------------------------------------------
+\subsection*{Existence of identity tiles without finding them}
+\label{sec:tilesallk}
+
+The controllability question above can be answered. The answer rests on two
+facts about a single, explicitly chosen tile --- the tile whose interior
+\emph{is} the dock --- and the rest is an argument about compact subgroups.
+It yields $Z(P(n,k))=M(P(n,k))=2k+2$ for all sufficiently large $n$ at every
+$k$ for which the two facts are verified, and they are verified exactly for
+$k\le\TileAllK$; in particular at $k=6,\dots,\TileAllK$, where no identity tile has
+ever been found. The price is that the threshold $L(k)$ is not effective.
+
+Throughout, a \emph{dock} is a constant weight pattern $(a_0,b_0,c_0,d_0,e_0)$
+with $b_0c_0e_0\ne0$, normalised to $b_0=1$; the \emph{dock symbol} is the
+rotation-invariant symbol of \S\ref{sec:cyclo} with these weights,
+\[
+  F_{\mathrm{dock}}(s)=(a_0+s)\bigl(d_0+e_0\,t_k(s)\bigr)-c_0^{2},
+  \qquad t_k(s)=2T_k(s/2),
+\]
+and $S_0$ is the common step matrix of the constant weight sequence, so that a
+tile whose interior equals the dock has product $S_0^{\ell}$.
+
+\begin{lemma}[The invariant form, exactly]\label{lem:wronskian}
+Fix a dock. For the state $Z_0=(x_{-k-1},\dots,x_k)$ let $B=B(\mathrm{dock})$ be
+the skew form
+\[
+  Z^{\!\top}BZ' \;=\; \sum_{\substack{\text{edges }pq\\ p\le -1<q}} A_{pq}\,(z_pz'_q-z'_pz_q),
+\]
+the flux of two kernel sequences across the cut between positions $-1$ and $0$,
+with inner coordinates eliminated by $y_m=-(x_{m-1}+a_0x_m+x_{m+1})/c_0$. Then
+$P^{\!\top}BP=B$ for every tile product $P$, and
+\[
+  \det B \;=\; e_0^{\,2k}/c_0^{\,4k}\;\ne\;0 .
+\]
+Hence every tile product lies in $Sp(B)\cong Sp(2k+2,\mathbb R)$.
+\end{lemma}
+
+\begin{proof}
+For two kernel sequences $z,z'$ of the strip operator, the flux across the cut
+between $j$ and $j+1$ changes, when the cut moves one position, by
+$\sum_p\bigl(z_p(Az')_p-z'_p(Az)_p\bigr)$ over the vertices that cross, which is
+$0$. So the flux is the same across every cut. Across the cut $(-1,0)$ it
+involves the outer edge $u_{-1}u_0$ and the $k$ inner edges $v_mv_{m+k}$ with
+$-k\le m\le-1$, whose inner coordinates are linear in $x_{-k-1},\dots,x_k$:
+this is the form $B$, and it depends only on the weights at positions
+$-k-1,\dots,k$. Transporting the state from the cut $(-1,0)$ to the cut
+$(\ell-1,\ell)$ by the tile product preserves the flux, and at both cuts the
+weights in range are dock weights (the tile's own dock at one end, the
+neighbouring tile's at the other), so both forms are $B$: $P^{\!\top}BP=B$.
+The determinant is computed in exact arithmetic for the docks used below
+(\texttt{verification/tile\_wronskian.py}); the closed form was checked on
+random rational docks for $k\le8$ and is stated as what it is.
+\end{proof}
+
+\begin{lemma}[Elliptic docks exist for every $k$]\label{lem:elliptic}
+Let $\varepsilon_k=1$ for $k$ even and $\varepsilon_k=(-1)^{(k-1)/2}$ for $k$ odd.
+For $c_0>0$ small enough the dock $(0,1,c_0,0,\varepsilon_k)$ has
+$F_{\mathrm{dock}}(s)=\varepsilon_k\,s\,t_k(s)-c_0^{2}$ with $k+1$ distinct real
+roots in $(-2,2)$; hence $S_0$ is diagonalisable with all eigenvalues on the
+unit circle, and $\{S_0^m:m\ge0\}$ has compact closure, a group.
+\end{lemma}
+
+\begin{proof}
+$g(s)=s\,t_k(s)$ has the $k$ simple zeros $2\cos\frac{(2j-1)\pi}{2k}$ of $t_k$
+in $(-2,2)$ and the zero $s=0$. For even $k$ these are $k+1$ distinct simple
+zeros, $g(\pm2)=\pm4\ne0$, and simple zeros persist under the small
+perturbation $-c_0^2/\varepsilon_k$. For odd $k$, $t_k$ is odd, so $s=0$ is a
+double zero of $g$ with $g(s)=t_k'(0)s^2+O(s^4)$ and $t_k'(0)=k(-1)^{(k-1)/2}$;
+the equation $\varepsilon_kg(s)=c_0^2$ then has two real roots $\pm c_0/\sqrt{k}+O(c_0^3)$
+near $0$ because $\varepsilon_kt_k'(0)=k>0$, and the other $k-1$ zeros are simple
+and persist. The eigenvalues of $S_0$ are the $z$ with $F_{\mathrm{dock}}(z+z^{-1})=0$;
+real roots $s\in(-2,2)$ give $z=e^{\pm i\theta}$ with $s=2\cos\theta$, distinct
+for distinct $s$. A diagonalisable matrix with unimodular eigenvalues generates
+a relatively compact cyclic group, whose closure is a compact abelian group.
+\end{proof}
+
+\begin{theorem}[Identity tiles for every large length]\label{thm:tilesallk}
+Fix $k\ge2$ and a dock satisfying Lemma~\ref{lem:elliptic}. Suppose that for
+some length $\ell_0$ the differential of the tile map $w\mapsto P_{\ell_0}(w)$ has
+rank $(k+1)(2k+3)=\dim Sp(2k+2)$ at some point. Then there is $L$ such that an
+identity tile of every length $\ell\ge L$ exists. Consequently
+$Z(P(n,k))=M(P(n,k))=2k+2$ for all $n\ge L$.
+\end{theorem}
+
+\begin{proof}
+Write $G=Sp(B)$, a connected Lie group by Lemma~\ref{lem:wronskian}, and fix a
+left-invariant metric. The set where the differential of $P_{\ell_0}$ has rank
+$<\dim G$ is a proper algebraic subset of the weight space (the rank is
+maximal on an open dense set), so there are full-rank points $w^*$ arbitrarily
+close to the dock point $w_0$ (interior $=$ dock), and at such points all edge
+weights are nonzero. At a full-rank point $P_{\ell_0}$ is a submersion onto $G$,
+hence open: $S_{\ell_0}$ contains a ball $B_\varepsilon(P^*)$ around
+$P^*=P_{\ell_0}(w^*)$. Since $P^*$ is close to $S_0^{\ell_0}$ and
+$S_0^{\ell_0}$ is diagonalisable with distinct unimodular eigenvalues --- an
+open condition in $Sp$, because unimodular eigenvalues of a symplectic matrix
+can leave the circle only by colliding --- we may take $P^*$ elliptic: the
+closure $C$ of $\{P^{*m}:m\in\mathbb Z\}$ is compact.
+
+Let $\kappa$ bound the Lipschitz constant of conjugation by elements of $C$ on
+a neighbourhood of the identity, and put $B'=B_{\varepsilon/\kappa}(I)$. For
+$v_1,\dots,v_M\in B'$ set $u_i=P^{*\,M-i}v_iP^{*\,-(M-i)}\in B_\varepsilon(I)$,
+so that $P^*u_i\in B_\varepsilon(P^*)\subseteq S_{\ell_0}$ and, telescoping,
+\[
+  (P^*u_1)(P^*u_2)\cdots(P^*u_M)=P^{*M}\,v_1v_2\cdots v_M .
+\]
+The sets $B'^M$ increase with $M$ and exhaust an open subgroup of $G$, which is
+$G$ itself; the set $K=\{P^{*-M}S_0^{-r}: M\ge0,\ 2k+2\le r<2k+2+\ell_0\}$ is
+contained in $C\cdot\{S_0^{-r}\}$, a compact set, so $K\subseteq B'^{M_0}$ for
+some $M_0$. Given $N\ge M_0\ell_0+2k+2$ write $N=M\ell_0+r$ with $M\ge M_0$ and
+$2k+2\le r<2k+2+\ell_0$, choose $v_i\in B'$ with $v_1\cdots v_M=P^{*-M}S_0^{-r}$,
+and concatenate the $M$ tiles $P^*u_i$ with a pure-dock tile of length $r$
+(product $S_0^{r}$): by Lemma~\ref{lem:concat} the result is a tile of length
+$N$ with product $P^{*M}\,v_1\cdots v_M\,S_0^{r}=I$. Theorem~\ref{thm:tiling}
+with Theorem~\ref{thm:red} gives the nullity $2k+2$ and hence
+$Z=M=2k+2$ for every $n\ge L:=M_0\ell_0+2k+2$.
+\end{proof}
+
+\begin{remark}[Three directions per position]\label{rem:threeperpos}
+The hypothesis is checkable, and the length at which it holds is predictable.
+Rescaling the coordinate at $u_i$ and at $v_i$ by nonzero constants is a
+diagonal similarity $A\mapsto DAD$, which preserves the pattern, the nullity
+and the monodromy up to conjugation, and moves two of the five weights at
+position $i$. So only three weights per position act on the tile product, and
+the generic rank of the differential is
+\[
+  \operatorname{rank}dP_\ell \;=\; 3(\ell-2k-2)+(k+1) \;=\; 3\ell-5k-5
+\]
+until it saturates at $\dim Sp=(k+1)(2k+3)$, a law we observe exactly at every
+$(k,\ell)$ computed. The first submersive length is therefore
+$\ell_F(k)=\lceil(k+1)(2k+8)/3\rceil$: $19,27,36,47,\dots$ for $k=3,4,5,6,\dots$,
+and the identity tiles of Theorem~\ref{thm:k3all} first appeared at $21$ and
+$29$ --- two above $\ell_F$ --- which also explains why the count
+$5(\ell-2k-2)\ge(2k+2)^2$ used earlier overestimated the parameters available.
+At the dock point itself the rank is $\dim Sp-(k-2)$: a constant perturbation of
+a constant background moves the $k+1$ eigenphases of $S_0$ only through the
+three parameters of the symbol, the obstruction of \S\ref{sec:cyclo} in
+infinitesimal form.
+\end{remark}
+
+\begin{proposition}[The hypothesis, verified exactly]\label{prop:tilesallk}
+For $2\le k\le\TileAllK$, with the integer docks of
+Table~\ref{tab:tilesallk}: the dock symbol has $k+1$ distinct real roots in
+$(-2,2)$ (Sturm's theorem over $\mathbb Q$); $\det B(\mathrm{dock})\ne0$ (exact
+rational arithmetic); and at the integer point $w^*$ of the table the
+differential of $P_{\ell_0}$, computed by exact forward-mode differentiation
+over $\mathbb F_p$, $p=33554393$, has rank $(k+1)(2k+3)$ --- a lower bound for
+the rank over $\mathbb Q$. Hence Theorem~\ref{thm:tilesallk} applies, and
+\[
+  Z(P(n,k))=M(P(n,k))=2k+2\qquad\text{for all sufficiently large }n,\ \ 2\le k\le\TileAllK .
+\]
+\end{proposition}
+
+\begin{table}[ht]\centering\small
+\input{tiles_allk_table}
+\caption{The docks and lengths at which the hypothesis of
+Theorem~\ref{thm:tilesallk} is certified. Generated by
+\texttt{verification/verify\_all.py}.}
+\label{tab:tilesallk}
+\end{table}
+
+\begin{remark}[What is new, and what is not]
+For $k=3,4,5$ the statement was already known with effective thresholds
+(Theorems~\ref{thm:k3all}, \ref{thm:k5all}) by finding and certifying the
+tiles; for $k\ge6$ no tile has been found, and Proposition~\ref{prop:tilesallk}
+is the first statement of any kind about $Z(P(n,k))$ for all large $n$ at those
+$k$. The bound $L(k)$ is ineffective because $M_0$ comes from compactness.
+The rank hypothesis is proved for every $k$ in \S\ref{sec:tilesrank}: the
+$k-2$ directions missing at the dock point are supplied at second order.
+\end{remark}

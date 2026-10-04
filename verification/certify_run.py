@@ -3,12 +3,16 @@
 Pipeline: numerical w  ->  kernel in graph form  ->  square bilinear system
 ->  high-precision Newton  ->  Krawczyk interval test  ->  proof.
 """
+
+import os as _os
+_REPO = _os.path.abspath(_os.path.join(
+    _os.path.dirname(__file__), ".."))
 import sys
 
 import numpy as np
 from mpmath import iv, mp
 
-sys.path.insert(0, "/Volumes/2TB/scifair/verification")
+sys.path.insert(0, f"{_REPO}/verification")
 from certify_general import pattern_cells, assemble, graph_form, build_K, jac
 
 
@@ -63,7 +67,7 @@ def f_and_J(z, zfix, free, fixed, cells, perm, N, r, nw, interval=False):
 
 def main():
     n, k = int(sys.argv[1]), int(sys.argv[2])
-    wg = np.load(f"/Volumes/2TB/scifair/results/zero_forcing/w_{n}_{k}.npy")
+    wg = np.load(f"{_REPO}/results/zero_forcing/w_{n}_{k}.npy")
     # general_n.py packs (b, c, e, a, d); pattern_cells wants (a, d, b, c, e)
     b, c, e = wg[:n], wg[n:2*n], wg[2*n:3*n]
     a, d = wg[3*n:4*n], wg[4*n:5*n]
@@ -99,8 +103,8 @@ def main():
     b = z[:nw][2*n:3*n]; c = z[:nw][3*n:4*n]; e = z[:nw][4*n:5*n]
     print(f"  min |edge weight| / scale = "
           f"{min(np.abs(b).min(),np.abs(c).min(),np.abs(e).min())/np.abs(z[:nw]).max():.4f}")
-    np.save(f"/Volumes/2TB/scifair/results/zero_forcing/certz_{n}_{k}.npy", z)
-    np.save(f"/Volumes/2TB/scifair/results/zero_forcing/certperm_{n}_{k}.npy",
+    np.save(f"{_REPO}/results/zero_forcing/certz_{n}_{k}.npy", z)
+    np.save(f"{_REPO}/results/zero_forcing/certperm_{n}_{k}.npy",
             np.array(perm))
     print(f"  saved refined solution")
 

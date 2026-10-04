@@ -23,6 +23,10 @@ Removing the outer-edge freedom also removes the degenerate stratum that
 defeated the earlier searches (all outer weights -> 0); only the inner edges
 still need a homotopy holding them away from zero.
 """
+
+import os as _os
+_REPO = _os.path.abspath(_os.path.join(
+    _os.path.dirname(__file__), ".."))
 import sys
 
 import numpy as np
@@ -181,7 +185,7 @@ if __name__ == "__main__" and sys.argv[1:2] != ["verify"]:
             A = assemble(w, cells, S)
             sv = np.linalg.svd(A, compute_uv=False)
             nul = int(np.sum(sv < 1e-9 * sv.max()))
-            np.save(f"/Volumes/2TB/scifair/results/zero_forcing/"
+            np.save(f"{_REPO}/results/zero_forcing/"
                     f"wg_{n}_{k}_{'p' if sign > 0 else 'm'}.npy", w)
             print(f" {n:4d}   {'yes' if is_prime(n) else ' no'}"
                   f"{int(3*n-(k+1)*(2*k+3)):13d}  {sign:+d}   {obj:14.3e}"
@@ -196,7 +200,7 @@ def verify_slice(k=3, ns=(17, 18, 19, 20, 21, 22), seed=5):
     needed as well; and the cyclic system u_i + u_{i+1} = -log|b_i| is invertible
     for odd n but has corank 1 for even n, which is why one weight survives."""
     import numpy as _np
-    sys.path.insert(0, "/Volumes/2TB/scifair/verification")
+    sys.path.insert(0, f"{_REPO}/verification")
     from certify_general import pattern_cells, assemble
     rng = _np.random.default_rng(seed)
     rows = []

@@ -5,11 +5,15 @@ per gauge slice, which dominates everything.  Once one n is certified, the next
 starts from a resampling of that solution and needs a single pass, so the sweep
 cost is roughly one cold solve plus a cheap step per n.
 """
+
+import os as _os
+_REPO = _os.path.abspath(_os.path.join(
+    _os.path.dirname(__file__), ".."))
 import sys
 
 import numpy as np
 
-sys.path.insert(0, "/Volumes/2TB/scifair/verification")
+sys.path.insert(0, f"{_REPO}/verification")
 from certify_pipeline import certify
 
 
@@ -35,7 +39,7 @@ def main():
         if ok:
             proved.append(n)
             warm = info
-            np.save(f"/Volumes/2TB/scifair/results/zero_forcing/"
+            np.save(f"{_REPO}/results/zero_forcing/"
                     f"cert_gn_{n}_{k}.npy", zn)
         else:
             print("  not certified at this n")

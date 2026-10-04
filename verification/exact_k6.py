@@ -25,13 +25,17 @@ are each hit by two Fourier indices, so 2k+2 blocks are singular, and the
 ceiling forces the nullity to be exactly 2k+2 -- a discrete consequence of an
 exactly verified equation, not a thresholded rank.
 """
+
+import os as _os
+_REPO = _os.path.abspath(_os.path.join(
+    _os.path.dirname(__file__), ".."))
 import sys
 from fractions import Fraction
 
 import mpmath as mp
 import numpy as np
 
-sys.path.insert(0, "/Volumes/2TB/scifair/verification")
+sys.path.insert(0, f"{_REPO}/verification")
 from exact_certifier import Cyclo
 from exact_subfield_verify import field_basis, recognise, to_field, \
     det_exact, blocks_exact

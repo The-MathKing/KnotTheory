@@ -48,11 +48,15 @@ draw a conclusion when the control fails.  That is the only reason the three bad
 formulations above were caught instead of being written up as evidence that the
 ceiling holds.
 """
+
+import os as _os
+_REPO = _os.path.abspath(_os.path.join(
+    _os.path.dirname(__file__), ".."))
 import sys
 import numpy as np
 from scipy.optimize import least_squares
 
-sys.path.insert(0, "/Volumes/2TB/scifair/verification")
+sys.path.insert(0, f"{_REPO}/verification")
 from certify_general import assemble, graph_form, build_K, jac
 
 

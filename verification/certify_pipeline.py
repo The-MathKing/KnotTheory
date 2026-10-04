@@ -10,6 +10,10 @@
 
 Output: null A = 2k+2 proved, hence M(P(n,k)) = Z(P(n,k)) = 2k+2.
 """
+
+import os as _os
+_REPO = _os.path.abspath(_os.path.join(
+    _os.path.dirname(__file__), ".."))
 import sys
 from fractions import Fraction
 
@@ -17,7 +21,7 @@ import numpy as np
 import scipy.linalg as sla
 from mpmath import mp, mpf
 
-sys.path.insert(0, "/Volumes/2TB/scifair/verification")
+sys.path.insert(0, f"{_REPO}/verification")
 from certify_general import pattern_cells, assemble, graph_form, build_K, jac
 from gauge_fixed import solve as gf_solve
 from krawczyk import resid_mp, L_LIP

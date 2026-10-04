@@ -22,13 +22,17 @@ That det M_l = 0 for the k+1 chosen l (each hit by two Fourier indices) gives
 The nullity is therefore a DISCRETE consequence of an exactly verified
 equation, never a thresholded numerical rank.
 """
+
+import os as _os
+_REPO = _os.path.abspath(_os.path.join(
+    _os.path.dirname(__file__), ".."))
 import sys
 from fractions import Fraction
 from math import gcd
 
 import numpy as np
 
-sys.path.insert(0, "/Volumes/2TB/scifair/verification")
+sys.path.insert(0, f"{_REPO}/verification")
 from exact_certifier import Cyclo
 
 
